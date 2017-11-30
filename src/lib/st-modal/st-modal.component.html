@@ -30,7 +30,7 @@
 
          </div>
       </div>
-      <footer class="st-modal-footer">
+      <footer class="st-modal-footer" *ngIf="buttons && buttons.length > 0">
          <div class="container">
             <st-modal-buttons *ngIf="!isFullscreen" [buttonConfig]="buttons" (click)="click.emit($event)"></st-modal-buttons>
          </div>

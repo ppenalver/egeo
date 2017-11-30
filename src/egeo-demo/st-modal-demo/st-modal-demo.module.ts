@@ -14,18 +14,19 @@ import { StDemoGeneratorModule, StModalModule, StModalService } from '@stratio/e
 
 import { StModalDemoComponent } from './st-modal-demo.component';
 import { StModalDemoTestComponent } from './st-modal-test-demo.component';
-import {StDemoLoggerModule} from '../shared/st-demo-logger/st-demo-logger.module';
+import { StModalDemoTestButtonsComponent } from './st-modal-test-buttons-demo.component';
+import { StDemoLoggerModule } from '../shared/st-demo-logger/st-demo-logger.module';
 
 @NgModule({
    imports: [
       CommonModule,
       StDemoLoggerModule.withService(),
-      StModalModule.withComponents([StModalDemoTestComponent]),
+      StModalModule.withComponents([StModalDemoTestComponent, StModalDemoTestButtonsComponent]),
       StDemoGeneratorModule.withComponents({
          components: [StModalDemoComponent]
       })
    ],
-   declarations: [StModalDemoComponent, StModalDemoTestComponent],
+   declarations: [StModalDemoComponent, StModalDemoTestComponent, StModalDemoTestButtonsComponent],
    providers: [StModalService]
 })
 export class StModalDemoModule { }

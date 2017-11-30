@@ -129,7 +129,8 @@ export {
 export {
    StModalButton,
    StModalConfig,
-   StModalResponse
+   StModalResponse,
+   StModalBasicType
 } from './st-modal/st-modal.model';
 export { StModalService } from './st-modal/st-modal.service';
 export { StModalModule } from './st-modal/st-modal.module';

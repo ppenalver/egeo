@@ -23,6 +23,9 @@
       <button class="button button-primary" (click)="showModalWithComponent()">
          <span>Modal with component</span>
       </button>
+      <button class="button button-primary" (click)="showModalWithoutButtons()">
+         <span>Modal without buttons</span>
+      </button>
 
       <br>
       <br>
@@ -34,8 +37,14 @@
       <br>
       <br>
       <h1 class="st-live-example-title">Other modals:</h1>
-      <button class="button button-primary" (click)="showDeleteConfirmation()">
-         <span>Delete confirmation modal</span>
+      <button class="button button-primary" (click)="showBasic('delete')">
+         <span>Delete modal</span>
+      </button>
+      <button class="button button-primary" (click)="showBasic('confirm')">
+         <span>Confirmation modal</span>
+      </button>
+      <button class="button button-primary" (click)="showBasic('info')">
+         <span>Info modal</span>
       </button>
 
 

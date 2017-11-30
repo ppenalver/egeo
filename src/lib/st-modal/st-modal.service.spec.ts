@@ -12,7 +12,13 @@ import { Component } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 // Component
-import { StModalButton, StModalConfig, StModalResponse, StModalButtonResponse } from './st-modal.model';
+import {
+   StModalButton,
+   StModalConfig,
+   StModalResponse,
+   StModalButtonResponse,
+   StModalBasicType
+} from './st-modal.model';
 import { StModalService } from './st-modal.service';
 
 @Component({ selector: 'st-modal-test', template: `<h1>Hello World</h1>` }) export class ModalTestComponent { }
@@ -160,8 +166,8 @@ describe('StModal', () => {
          service.container = containerRef;
 
          const buttons: StModalButton[] = [
-            { label: okButton, classes: 'button-critical', responseValue: StModalResponse.YES, closeOnClick: true },
-            { label: cancelButton, classes: 'button-secondary-gray', responseValue: StModalResponse.NO, closeOnClick: true }
+            { label: cancelButton, classes: 'button-secondary-gray', responseValue: StModalResponse.NO, closeOnClick: true },
+            { label: okButton, classes: 'button-critical', responseValue: StModalResponse.YES, closeOnClick: true }
          ];
 
          const deleteConfig: StModalConfig = {
@@ -176,11 +182,11 @@ describe('StModal', () => {
             maxWidth: 600
          };
 
-         service.showDeleteConfirmation(deleteModalTitle, deleteMessageTitle, deleteMessage, okButton, cancelButton);
+         service.showBasicModal(StModalBasicType.DELETE, deleteModalTitle, deleteMessageTitle, deleteMessage, okButton, cancelButton);
          expect(instanceObj.modalConfig).toEqual(deleteConfig);
          service.close();
 
-         service.showDeleteConfirmation(deleteModalTitle, deleteMessageTitle, deleteMessage, okButton, cancelButton, 500);
+         service.showBasicModal(StModalBasicType.DELETE, deleteModalTitle, deleteMessageTitle, deleteMessage, okButton, cancelButton, 500);
          expect(instanceObj.modalConfig).toEqual(Object.assign({}, deleteConfig, { maxWidth: 500 }));
       });
 

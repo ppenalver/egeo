@@ -13,12 +13,14 @@ import {
    StModalService,
    StModalConfig,
    StModalButton,
-   StModalResponse
+   StModalResponse,
+   StModalBasicType
 } from '@stratio/egeo';
 
-import {StDemoLoggerSeverity} from '../shared/st-demo-logger/st-demo-loger.model';
+import { StDemoLoggerSeverity } from '../shared/st-demo-logger/st-demo-loger.model';
 import { StModalDemoTestComponent } from './st-modal-test-demo.component';
-import {StDemoLoggerService} from '../shared/st-demo-logger/st-demo-logger.service';
+import { StModalDemoTestButtonsComponent } from './st-modal-test-buttons-demo.component';
+import { StDemoLoggerService } from '../shared/st-demo-logger/st-demo-logger.service';
 
 @Component({
    selector: 'modal-example',
@@ -35,7 +37,7 @@ export class StModalDemoComponent implements AfterViewInit {
 
    constructor(private _modalService: StModalService, private _logger: StDemoLoggerService) {
       this._logger.maxMessages = 15;
-    }
+   }
 
    ngAfterViewInit(): void {
       this._modalService.container = this.target;
@@ -85,7 +87,17 @@ export class StModalDemoComponent implements AfterViewInit {
          buttons: this.buttons,
          maxWidth: 600
       }, StModalDemoTestComponent)
-      .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
+         .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
+   }
+
+   showModalWithoutButtons(): void {
+      this._modalService.show({
+         modalTitle: 'With component',
+         maxWidth: 600,
+         outputs: { close: this.onCloseModalWithoutButtons.bind(this) }
+      }, StModalDemoTestButtonsComponent)
+         .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
+
    }
 
    showFullscreenModal(): void {
@@ -96,17 +108,22 @@ export class StModalDemoComponent implements AfterViewInit {
          buttons: this.buttons,
          fullscreen: true
       }, StModalDemoTestComponent)
-      .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
+         .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
    }
 
-   showDeleteConfirmation(): void {
-      this._modalService.showDeleteConfirmation(
-         'Delete',
-         'Delete confirmation',
-         'Are you sure you want to delete this item?',
-         'Delete',
-         'Cancel'
+   showBasic(type: string): void {
+      this._modalService.showBasicModal(
+         this.getBasicType(type),
+         this.getTitle(type),
+         'Title',
+         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor non nulla quis rhoncus. Cras vitae pretium arcu, ac semper justo.',
+         this.getAcceptButton(type),
+         this.getCancelButton(type)
       ).subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
+   }
+
+   private onCloseModalWithoutButtons(event: Event): void {
+      this._modalService.close();
    }
 
    private evaluateResponse(response: StModalResponse): string {
@@ -115,6 +132,42 @@ export class StModalDemoComponent implements AfterViewInit {
          case StModalResponse.NO: return 'Click on cancel';
          case StModalResponse.CLOSE: return 'Get event close';
          default: return 'Error response not found';
+      }
+   }
+
+   private getTitle(text: string): string {
+      switch (text) {
+         case 'delete': return 'Delete';
+         case 'confirm': return 'Confirmation';
+         case 'info': return 'Info';
+         default: return '';
+      }
+   }
+
+   private getAcceptButton(text: string): string {
+      switch (text) {
+         case 'delete': return 'Delete';
+         case 'confirm': return 'Accept';
+         case 'info': return 'Accept';
+         default: return '';
+      }
+   }
+
+   private getCancelButton(text: string): string {
+      switch (text) {
+         case 'delete': return 'Cancel';
+         case 'confirm': return 'Not now';
+         case 'info': return '';
+         default: return '';
+      }
+   }
+
+   private getBasicType(text: string): StModalBasicType {
+      switch (text) {
+         case 'delete': return StModalBasicType.DELETE;
+         case 'confirm': return StModalBasicType.CONFIRM;
+         case 'info': return StModalBasicType.INFO;
+         default: return StModalBasicType.INFO;
       }
    }
 }

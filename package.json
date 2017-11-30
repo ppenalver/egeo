@@ -18,7 +18,9 @@
       "test:watch": "karma start test/karma.conf.js --auto-watch --no-single-run",
       "lint": "gulp lint",
       "replace": "json -I -f package.json -e",
-      "commit": "git-cz"
+      "commit": "git-cz",
+      "serve:coverage": "http-server target/html",
+      "serve:build": "npm run build:demo-ap && http-server dist/demo-app"
    },
    "repository": {
       "type": "git",
@@ -79,6 +81,7 @@
       "gulp-remove-html-comments": "1.0.1",
       "gulp-sass": "3.1.0",
       "gulp-sourcemaps": "2.6.0",
+      "http-server": "0.10.0",
       "intl": "1.2.5",
       "jasmine-core": "2.6.4",
       "js-beautify": "1.6.14",

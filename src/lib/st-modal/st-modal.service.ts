@@ -21,7 +21,13 @@ import { Subject } from 'rxjs/Subject';
 
 /* local dependencies */
 import { StModalComponent } from './st-modal.component';
-import { StModalButton, StModalConfig, StModalResponse, StModalButtonResponse } from './st-modal.model';
+import {
+   StModalButton,
+   StModalConfig,
+   StModalResponse,
+   StModalButtonResponse,
+   StModalBasicType
+} from './st-modal.model';
 
 @Injectable()
 export class StModalService {
@@ -48,19 +54,31 @@ export class StModalService {
       return this.notifyButtonInteraction.asObservable();
    }
 
-   showDeleteConfirmation(
+   showBasicModal(
+      type: StModalBasicType,
       modalTitle: string,
       messageTitle: string,
       message: string,
       okButton: string,
-      cancelButton: string,
+      cancelButton: string = '',
       maxWidth: number = 600
    ): Observable<StModalResponse> {
 
-      const buttons: StModalButton[] = [
-         { label: okButton, classes: 'button-critical', responseValue: StModalResponse.YES, closeOnClick: true },
-         { label: cancelButton, classes: 'button-secondary-gray', responseValue: StModalResponse.NO, closeOnClick: true }
-      ];
+      const buttons: StModalButton[] = [{
+         label: okButton,
+         classes: type === StModalBasicType.DELETE ? 'button-critical' : 'button-primary',
+         responseValue: StModalResponse.YES,
+         closeOnClick: true
+      }];
+
+      if (type !== StModalBasicType.INFO) {
+         buttons.unshift({
+            label: cancelButton,
+            classes: type === StModalBasicType.DELETE ? 'button-secondary-gray' : 'button-secondary-line',
+            responseValue: StModalResponse.NO,
+            closeOnClick: true
+         });
+      }
       return this.show({
          fullscreen: false,
          message,

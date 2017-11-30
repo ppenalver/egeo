@@ -9,6 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 export enum StModalResponse { YES, NO, CLOSE }
+export enum StModalBasicType { DELETE, CONFIRM, INFO }
 
 export class StModalButton {
    response?: Function;

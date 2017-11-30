@@ -2,13 +2,23 @@
 
 ## 6.0.0 (upcoming)
 
+**Fixed bugs:**
+
+* st-modal: Removed space when modal does not have buttons
+* st-modal: Reorder buttons in delete confirmation modal
+
 **New features:**
 
+* st-modal: Added new function showBasicModal to show Info, Confirmation and Delete Modals
 * st-header: New input "navigateByDefault" for prevent navigation when click 
 * st-header: Add new parameter "external" to model to define external links
 * st-header: Add new parameter "openInNewPage" to model to define if open new tab when navigate to link 
 * st-progress-bar: create component
-* st-widget: Implement loading state 
+* st-widget: Implement loading state
+
+ **Breaking changes:**
+
+* st-modal: Removed function showDeleteConfirmation
 
 ## 5.0.0 (November 15, 2017)
 
