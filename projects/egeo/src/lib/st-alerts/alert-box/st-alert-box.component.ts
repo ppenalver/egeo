@@ -64,14 +64,6 @@ export class StAlertBoxComponent implements OnInit {
       this.iconValue = this.getIcon();
    }
 
-   enter(): void {
-      this.alert.pauseNotify();
-   }
-
-   leave(): void {
-      this.alert.continueNotify();
-   }
-
    closeAlert(): void {
       this.alert.cancel();
       this.close.emit(true);
@@ -79,9 +71,10 @@ export class StAlertBoxComponent implements OnInit {
 
    getIcon(): string {
       switch (this.alert.severity) {
-         case STALERT_SEVERITY.ERROR: return 'icon-ban';
+         case STALERT_SEVERITY.ERROR: return 'icon-circle-alert';
          case STALERT_SEVERITY.WARNING: return 'icon-alert';
          case STALERT_SEVERITY.SUCCESS: return 'icon-circle-check';
+         case STALERT_SEVERITY.INFO: return 'icon-info';
          default: return '';
       }
    }
@@ -91,6 +84,7 @@ export class StAlertBoxComponent implements OnInit {
          case STALERT_SEVERITY.ERROR: return 'sth-alert-box-error';
          case STALERT_SEVERITY.WARNING: return 'sth-alert-box-warning';
          case STALERT_SEVERITY.SUCCESS: return 'sth-alert-box-success';
+         case STALERT_SEVERITY.INFO: return 'sth-alert-box-info';
          default: return '';
       }
    }

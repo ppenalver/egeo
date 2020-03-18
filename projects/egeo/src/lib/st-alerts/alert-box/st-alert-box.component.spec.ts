@@ -49,13 +49,16 @@ describe('StAlertsComponent', () => {
          component.showInConsole = false;
          fixture.detectChanges();
 
-         expect(component.getIcon()).toEqual('icon-ban');
+         expect(component.getIcon()).toEqual('icon-circle-alert');
 
          component.alert.severity = STALERT_SEVERITY.WARNING;
          expect(component.getIcon()).toEqual('icon-alert');
 
          component.alert.severity = STALERT_SEVERITY.SUCCESS;
          expect(component.getIcon()).toEqual('icon-circle-check');
+
+         component.alert.severity = STALERT_SEVERITY.INFO;
+         expect(component.getIcon()).toEqual('icon-info');
 
          component.alert.severity = undefined;
          expect(component.getIcon()).toEqual('');
@@ -73,6 +76,9 @@ describe('StAlertsComponent', () => {
 
          component.alert.severity = STALERT_SEVERITY.SUCCESS;
          expect(component.getSeverityColor()).toEqual('sth-alert-box-success');
+
+         component.alert.severity = STALERT_SEVERITY.INFO;
+         expect(component.getSeverityColor()).toEqual('sth-alert-box-info');
 
          component.alert.severity = undefined;
          expect(component.getSeverityColor()).toEqual('');
@@ -99,7 +105,7 @@ describe('StAlertsComponent', () => {
 
          spyOn(component.close, 'emit');
 
-         fixture.nativeElement.querySelector('.sth-alert-box-close-button').click();
+         fixture.nativeElement.querySelector('.sth-alert-box-close-button i').click();
 
          expect(component.close.emit).toHaveBeenCalledWith(true);
       });
@@ -165,54 +171,6 @@ describe('StAlertsComponent', () => {
          expect(console.error).toHaveBeenCalledWith(`ERROR: severity not found for ${component.alert.title}: ${component.alert.message}`);
       });
 
-      it('Should notify pause alert', fakeAsync(() => {
-         let link: StAlertLink = { link: 'test', title: 'test title' };
-         component.alert = new StAlert(0, 'Error', 'error message', STALERT_SEVERITY.ERROR, 1000, 500, link);
-         spyOn(component.alert, 'pauseNotify').and.callThrough();
-         fixture.detectChanges();
-
-         tick(500);
-
-         let alert: HTMLDivElement = fixture.debugElement.query(By.css('.sth-alert-box')).nativeElement;
-
-         expect(alert).toBeDefined();
-         alert.dispatchEvent(new Event('mouseenter'));
-         fixture.detectChanges();
-
-         expect(component.alert.pauseNotify).toHaveBeenCalled();
-         expect(component.opacity).toEqual(1);
-
-         discardPeriodicTasks();
-      }));
-
-      it('Should notify continue alert after pause', fakeAsync(() => {
-         let link: StAlertLink = { link: 'test', title: 'test title' };
-         component.alert = new StAlert(0, 'Error', 'error message', STALERT_SEVERITY.ERROR, 1000, 500, link);
-         spyOn(component.alert, 'pauseNotify').and.callThrough();
-         spyOn(component.alert, 'continueNotify').and.callThrough();
-         fixture.detectChanges();
-
-         tick(500);
-
-         let alert: HTMLDivElement = fixture.debugElement.query(By.css('.sth-alert-box')).nativeElement;
-
-         expect(alert).toBeDefined();
-         alert.dispatchEvent(new Event('mouseenter'));
-         fixture.detectChanges();
-
-         expect(component.alert.pauseNotify).toHaveBeenCalled();
-         expect(component.opacity).toEqual(1);
-
-         alert.dispatchEvent(new Event('mouseleave'));
-         fixture.detectChanges();
-
-         expect(component.alert.continueNotify).toHaveBeenCalled();
-         tick(1000);
-         expect(component.opacity).toBeLessThan(1);
-
-         discardPeriodicTasks();
-      }));
-
       it('Should notify close alert', fakeAsync(() => {
          let link: StAlertLink = { link: 'test', title: 'test title' };
          component.alert = new StAlert(0, 'Error', 'error message', STALERT_SEVERITY.ERROR, 1000, 500, link);
@@ -221,7 +179,7 @@ describe('StAlertsComponent', () => {
 
          tick(500);
 
-         let closeButton: HTMLDivElement = fixture.debugElement.query(By.css('.sth-alert-box-close-button')).nativeElement;
+         let closeButton: HTMLDivElement = fixture.debugElement.query(By.css('.sth-alert-box-close-button i')).nativeElement;
 
          expect(closeButton).toBeDefined();
          closeButton.click();

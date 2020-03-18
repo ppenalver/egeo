@@ -11,7 +11,7 @@
 import { Observable ,  Observer ,  Subject } from 'rxjs';
 
 // tslint:disable:max-classes-per-file
-export enum STALERT_SEVERITY { SUCCESS, WARNING, ERROR }
+export enum STALERT_SEVERITY { SUCCESS, WARNING, ERROR, INFO }
 
 export class StAlertLink {
    public title: string;

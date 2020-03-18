@@ -10,22 +10,20 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="sth-alert-box" [ngClass]="severityColorValue" (mouseenter)="enter()" (mouseleave)="leave()" [ngStyle]="{opacity: opacity}">
-   <span class="sth-alert-box-close-button" (click)="closeAlert()">
-      <i class="icon-circle-cross"></i>
-   </span>
-   <div class="sth-alert-box-ico-type">
-      <i [ngClass]="iconValue"></i>
-   </div>
-   <div class="sth-alert-box-message">
-      <header class="sth-alert-box-message-header">
-         <p class="sth-alert-box-message-header-title">{{alert.title}}</p>
+<div class="sth-alert-box" [ngClass]="severityColorValue" [ngStyle]="{opacity: opacity}">
+   <div class="sth-alert-box-content">
+      <div class="sth-alert-box-close-button">
+         <i (click)="closeAlert()" class="icon-cross"></i>
+      </div>
+      <header class="sth-alert-box-header">
+         <i class="status-icon" [ngClass]="iconValue"></i>
+         <span>{{alert.title}}</span>
       </header>
-      <div class="sth-alert-box-message-body">
+      <div class="sth-alert-box-body">
          <p>{{alert.message}}</p>
-         <footer *ngIf="alert.link" class="sth-alert-box-message-footer">
-            <a (click)="goTo()">{{alert.link.title}}</a>
-         </footer>
       </div>
    </div>
+   <footer *ngIf="alert.link" class="sth-alert-box-footer">
+      <a (click)="goTo()">{{alert.link.title}}</a>
+   </footer>
 </div>

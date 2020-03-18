@@ -37,7 +37,7 @@ export class StAlertsDemoComponent {
          'Error',
          'Internal server Error.sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
          STALERT_SEVERITY.ERROR,
-         undefined, 10000);
+         {title: 'Action', link: '#'}, 10000);
    }
 
    showSuccess(): void {
@@ -45,5 +45,12 @@ export class StAlertsDemoComponent {
          'Success',
          'Internal server Error.sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
          STALERT_SEVERITY.SUCCESS);
+   }
+
+   showInfo(): void {
+      this._alertService.notifyAlert(
+         'Info',
+         'Internal server Error.sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+         STALERT_SEVERITY.INFO);
    }
 }

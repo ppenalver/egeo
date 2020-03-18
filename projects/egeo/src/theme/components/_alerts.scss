@@ -18,61 +18,87 @@
 
 .sth-alert-box {
    width: 100%;
-   color: $neutral-full;
+   color: $neutral;
    font-weight: 400;
    min-height: 100px;
    display: block;
    position: relative;
+   border-radius: 4px;
+   background-color: $neutral-full;
+   border: solid 1px $space-20;
+   border-left: 4px solid;
 
    &-success {
-      background: $success;
+      border-left-color: $success;
+
+      .status-icon {
+         color: $success;
+      }
    }
 
    &-warning {
-      background: $warning;
+      border-left-color: $warning;
+
+      .status-icon {
+         color: $warning;
+      }
    }
 
    &-error {
-      background: $error-120;
+      border-left-color: $error;
+
+      .status-icon {
+         color: $error;
+      }
+   }
+
+   &-info {
+      border-left-color: $action;
+
+      .status-icon {
+         color: $action;
+      }
+   }
+
+   &-content {
+      padding: 16px 16px 27px 24px;
    }
 
    .sth-alert-box-close-button {
-      font-size: $egeo-font-size-xlarge;
-      position: absolute;
-      top: 13px;
-      right: 13px;
-      cursor: pointer;
-   }
+      font-size: $egeo-font-size-16;
+      text-align: right;
 
-   .sth-alert-box-ico-type {
-      position: absolute;
-      top: 23px;
-      left: 20px;
-      height: 16px;
-      width: 16px;
-      line-height: 16px;
-      font-size: $egeo-font-size-xsmall;
-   }
-
-   &-message {
-      padding: 20px 50px 30px 40px;
-      text-align: left;
-      &-header {
-         font-size: $egeo-font-size-16;
-         font-weight: 600;
-         margin-bottom: 10px;
-         &-title {
-            height: 22px;
-            line-height: 22px;
-         }
-      }
-      &-body {
-         font-size: $egeo-font-size-14;
-         line-height: 1.29;
-      }
-      &-footer {
-         text-decoration: underline;
+      i {
          cursor: pointer;
       }
+   }
+
+   &-header {
+      font-size: $egeo-font-size-16;
+      font-weight: 600;
+      margin-bottom: 17px;
+
+      .status-icon {
+         font-size: $egeo-font-size-20;
+         margin-right: 11px;
+         vertical-align: text-top;
+      }
+   }
+
+   &-body {
+      text-align: left;
+      font-size: $egeo-font-size-14;
+      line-height: 1.29;
+      margin-right: 15px;
+   }
+
+   &-footer {
+      font-size: $egeo-font-size-14;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: $neutral-4;
+      color: $action;
+      padding: 12px 0 6px 0;
+      text-align: center;
    }
 }
