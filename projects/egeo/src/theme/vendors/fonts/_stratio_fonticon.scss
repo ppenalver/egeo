@@ -69,6 +69,12 @@ i {
    -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-columns-view:before {
+   content: "\ea06";
+}
+.icon-instagram:before {
+   content: "\ea05";
+}
 .icon-foreign-key-auto:before {
    content: "\ea03";
 }

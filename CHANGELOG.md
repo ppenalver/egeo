@@ -16,6 +16,7 @@
 **Others:**
 
 * Configure puppeteer to launch tests
+* Update icon font to 1.32
 
 
 ## 20.0.0 (March 24, 2020)
