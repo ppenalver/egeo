@@ -34,6 +34,7 @@ export {
 /**************************** PIPES ***************************************************/
 export { PipesModule } from './pipes/pipes.module';
 export { StFilterList } from './pipes/search-filter/search-filter.pipe';
+export { StObjectToArrayPipe } from './pipes/st-object-to-array/st-object-to-array.pipe';
 
 /**************************** DIRECTIVES ***************************************************/
 export { StInputAdjustable } from './directives/st-input-adjustable/st-input-adjustable';
@@ -59,6 +60,7 @@ export {
 } from './st-breadcrumbs/st-breadcrumbs.interface';
 export { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 export { StBreadCrumbsComponent } from './st-breadcrumbs/st-breadcrumbs.component';
+export { StBreadcrumbItemComponent } from './st-breadcrumbs/st-breadcrumbs-item/st-breadcrumbs-item.component';
 
 // Bubble
 export { StBubbleModule } from './st-bubble/st-bubble.module';
@@ -125,12 +127,15 @@ export { StHeaderComponent } from './st-header/st-header.component';
 
 // Dynamic form
 export { StFormModule } from './st-form/st-form.module';
+export { StFormComponent } from './st-form/st-form.component';
+export { StFormFieldComponent } from './st-form/st-form-field/st-form-field.component';
 export { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 export { StFormListModule } from './st-form-list/st-form-list.module';
+export { StFormListComponent } from './st-form-list/st-form-list.component';
 
 // Foreground notifications
 
-export {StNotificationElement} from './st-foreground-notifications/st-foreground-notifications.model';
+export { StNotificationElement } from './st-foreground-notifications/st-foreground-notifications.model';
 
 // Fullscreen layout
 export { StFullscreenLayoutModule } from './st-fullscreen-layout/st-fullscreen-layout.module';
@@ -227,6 +232,7 @@ export { StPopOverComponent } from './st-pop-over/st-pop-over.component';
 export {
    StPrismModule
 } from './st-docs/st-prism/st-prism.module';
+export { StPrismComponent } from './st-docs/st-prism/st-prism.component';
 
 // Progress bar
 
@@ -236,7 +242,7 @@ export { StProgressBarComponent } from './st-progress-bar/st-progress-bar';
 
 // Radio
 export { StRadioModule } from './st-radio/st-radio.module';
-export { StRadioComponent } from './st-radio/st-radio.component';
+export { StRadioComponent, StRadioGroupComponent } from './st-radio/st-radio.component';
 export { RadioChange } from './st-radio/st-radio.change';
 
 // Radio menu
@@ -258,6 +264,7 @@ export {
 // Select
 export { StSelectModule } from './st-select/st-select.module';
 export { StSelectComponent } from './st-select/st-select';
+export { StCheckValidationsDirective } from './st-select/st-check-validations';
 
 // Sidebar
 export { StSidebarModule } from './st-sidebar/st-sidebar.module';
@@ -276,6 +283,9 @@ export { StSwitchComponent } from './st-switch/st-switch.component';
 // Table
 export { StTableModule } from './st-table/st-table.module';
 export { StTableComponent } from './st-table/st-table.component';
+export { StPopoverFilterComponent } from './st-table/shared/st-popover-filter/st-popover-filter.component';
+export { StTableRowComponent } from './st-table/shared/st-table-row/st-table-row.component';
+export { StTableCellComponent } from './st-table/shared/st-table-cell/st-table-cell.component';
 export { StTableHeader } from './st-table/shared/table-header.interface';
 export { Order, ORDER_TYPE } from './st-table/shared/order';
 
@@ -299,6 +309,7 @@ export {
 export {
    StToggleButtonsModule
 } from './st-toggle-buttons/st-toggle-buttons.module';
+export { StToggleButtonsComponent } from './st-toggle-buttons/st-toggle-buttons.component';
 
 // Tooltip
 export { StTooltipModule } from './st-tooltip/st-tooltip.module';
@@ -308,7 +319,7 @@ export { StTooltipComponent } from './st-tooltip/st-tooltip.component';
 export {
    StTwoListSelectionModule
 } from './st-two-list-selection/st-two-list-selection.module';
-export { StTwoListSelectionComponent} from './st-two-list-selection/st-two-list-selection.component';
+export { StTwoListSelectionComponent } from './st-two-list-selection/st-two-list-selection.component';
 export {
    StTwoListSelectionConfig,
    StTwoListSelectionConfigSchema,
@@ -319,10 +330,11 @@ export {
 export {
    StTwoListSelection
 } from './st-two-list-selection/st-two-list-selection';
+export { StTwoListSelectionViewComponent } from './st-two-list-selection/st-two-list-selection.view.component';
 
 // Vertical tabs
 export { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
-export { StVerticalTabsComponent  } from './st-vertical-tabs/st-vertical-tabs.component';
+export { StVerticalTabsComponent } from './st-vertical-tabs/st-vertical-tabs.component';
 
 // Widget
 export { StWidgetModule } from './st-widget/st-widget.module';
@@ -339,7 +351,7 @@ export { StPopOffset, StPopPlacement } from './st-pop/st-pop.model';
 
 // Utils
 export { StDemoGeneratorModule } from './utils/demo-generator/demo-generator.module';
-
+export { StDemoGenerator } from './utils/demo-generator/demo-generator';
 
 /**************************** FULL MODULES *********************************************/
 export * from './st-label/index';

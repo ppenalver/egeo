@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StFilterList } from './search-filter/search-filter.pipe';
-import {StObjectToArrayPipe} from './st-object-to-array/st-object-to-array.pipe';
+import { StObjectToArrayPipe } from './st-object-to-array/st-object-to-array.pipe';
 
 @NgModule({
    imports: [CommonModule],

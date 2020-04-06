@@ -12,10 +12,12 @@ import { ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 
 export abstract class EventWindowManager {
    public isActive: boolean;
+
+   public abstract _eventElementRef: ElementRef;
    private globalListener: Function;
    private forceClose: Function;
 
-   constructor(private _renderer: Renderer2, private _cd: ChangeDetectorRef, private _elementRef: ElementRef) { }
+   constructor(private _renderer: Renderer2, private _cd: ChangeDetectorRef) { }
 
    abstract ngOnDestroy(): void;
 
@@ -43,7 +45,7 @@ export abstract class EventWindowManager {
    }
 
    private onClickOutside(event: MouseEvent): void {
-      if (!this._elementRef.nativeElement.contains(event.target)) {
+      if (!this._eventElementRef.nativeElement.contains(event.target)) {
          this.closeElement();
       }
    }

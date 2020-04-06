@@ -121,15 +121,15 @@ export class StSearchComponent extends EventWindowManager implements OnChanges, 
    public searchBox: FormControl = new FormControl();
    public showClear: boolean;
    public filter: string;
+   @ViewChild('buttonId', {static: false}) public _eventElementRef: ElementRef;
 
    private subscriptionSearch: Subscription | undefined = undefined;
    private subscriptionSearchClearButton: Subscription | undefined = undefined;
    private lastEmittedText: string | undefined = undefined;
 
    constructor(private _render: Renderer2,
-               private cd: ChangeDetectorRef,
-               @ViewChild('buttonId', {static: false}) public buttonElement: ElementRef) {
-      super(_render, cd, buttonElement);
+               private cd: ChangeDetectorRef) {
+      super(_render, cd);
    }
 
    get menuId(): string {
