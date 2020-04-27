@@ -8,7 +8,7 @@
 * st-dropdown-menu: Apply new UX definition
 
 
-## 20.1.0 (upcoming)
+## 20.1.0 (April 27, 2020)
 
 **New features:**
 
