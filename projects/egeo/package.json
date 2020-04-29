@@ -16,7 +16,7 @@
       "gulp",
       "webpack"
    ],
-   "license": "MIT",
+   "license": "Apache-2.0",
    "bugs": {
       "url": "https://github.com/Stratio/egeo/issues"
    },
@@ -32,6 +32,7 @@
      "@angular/forms":"^8.0.0",
      "@angular/http": "^8.0.0",
      "@angular/platform-browser-dynamic": "^8.0.0",
-     "@angular/router": "^8.0.0"
+     "@angular/router": "^8.0.0",
+     "@stratio/egeo-ui-base": "^2.0.0"
    }
  }
