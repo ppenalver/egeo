@@ -17,13 +17,13 @@
 }
 
 .st-modal-container {
-   background-color: rgba(var(--egeo-theme-neutral, $neutral), 0.3);
+   background-color: var(--egeo-stmodal-container__bg-color, rgba($neutral, 0.3));
    z-index: $modal-z-index;
 
    .st-modal {
       background-color: var(--egeo-theme-neutral-full, $neutral-full);
       border-radius: 4px;
-      box-shadow: 0 1px 10px 0 rgba(var(--egeo-theme-neutral-60, $neutral-60), 0.8);
+      box-shadow: var(--egeo-stmodal__shadow, 0 1px 10px 0 rgba($neutral-60, 0.8));
       display: flex;
       flex-direction: column;
 
