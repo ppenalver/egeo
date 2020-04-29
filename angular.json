@@ -63,12 +63,12 @@
                      "projects/egeo-demo/src/assets",
                      {
                         "glob": "**/*.*",
-                        "input": "assets/fonts",
+                        "input": "node_modules/@stratio/egeo-ui-base/assets",
                         "output": "/assets/fonts"
                      },
                      {
-                        "glob": "_stratio_fonticon.scss",
-                        "input": "projects/egeo/src/theme/vendors/fonts",
+                        "glob": "stratio-fonticon.css",
+                        "input": "node_modules/@stratio/egeo-ui-base",
                         "output": "/assets"
                      },
                      {

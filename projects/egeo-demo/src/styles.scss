@@ -18,6 +18,10 @@ $egeo-fontface-src: 'assets/fonts';
 @import '../theme/theme';
 @import '~prismjs/themes/prism.css';
 
+@import '~@stratio/egeo-ui-base/nunito-sans.css';
+@import '~@stratio/egeo-ui-base/stratio-fonticon.css';
+
+
 :root {
    --egeo-grid---max: 100%;
 }

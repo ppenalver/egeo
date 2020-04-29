@@ -7,6 +7,10 @@
 * st-header: Apply new UX definition
 * st-dropdown-menu: Apply new UX definition
 
+**Breaking changes:**
+
+* egeo-theme: Moved fonts to egeo-ui-base
+
 **Fixed bugs:**
 
 * st-table: Filtered header fields are introduced as input and they are not modified inside table component

@@ -47,6 +47,7 @@
       "@angular/platform-browser": "~8.2.14",
       "@angular/platform-browser-dynamic": "~8.2.14",
       "@angular/router": "~8.2.14",
+      "@stratio/egeo-ui-base": "2.0.0-SNAPSHOT",
       "@webcomponents/webcomponentsjs": "~2.4.0",
       "classlist.js": "^1.1.20150312",
       "core-js": "^2.5.4",
