@@ -13,7 +13,7 @@ import { task } from 'gulp';
 
 const chalk = require('chalk');
 
-task('prepare-build:logo', () => {
+task('prepare-build:logo', (done) => {
    console.log(chalk.rgb(61, 178, 225)(`
                \`,;';
       \`,;++++++++++++;
@@ -29,4 +29,5 @@ task('prepare-build:logo', () => {
       '++++++++++;,\`
          ,\`
    `));
+   done();
 });

@@ -11,5 +11,4 @@
 
 // Expose gulp utilities.
 export * from './build-scss-task';
-export * from './sequence-task';
 export * from './build-config';
