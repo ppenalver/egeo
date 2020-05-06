@@ -58,5 +58,5 @@ export function execTask(binPath: string, args: string[], options: ExecTaskOptio
 
 /** Delete files. */
 export function cleanTask(glob: string): any {
-   return () => gulp.src(glob, { read: false, allowEmpty: true  }).pipe(gulpClean(null));
+   return () => gulp.src(glob, { read: false }).pipe(gulpClean(null));
 }

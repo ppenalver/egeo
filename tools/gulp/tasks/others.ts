@@ -8,14 +8,14 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { task, series } from 'gulp';
+import { task } from 'gulp';
 import { mkdirpSync } from 'fs-extra';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 const gulp = require('gulp');
 
-import { buildConfig } from 'build-tools';
+import { buildConfig, sequenceTask } from 'build-tools';
 
 const { outputDir, packagesDir, packagesDemoDir } = buildConfig;
 
@@ -52,4 +52,4 @@ task('demo-app:copy:sourcecode:lib', () => {
        }).pipe(gulp.dest(`${destinyDemoPath}/source-code/lib`));
 });
 
-task('demo-app:copy:sourcecode', series('demo-app:copy:sourcecode:demo', 'demo-app:copy:sourcecode:lib'));
+task('demo-app:copy:sourcecode', sequenceTask('demo-app:copy:sourcecode:demo', 'demo-app:copy:sourcecode:lib'));

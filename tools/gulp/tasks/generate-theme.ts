@@ -8,12 +8,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { task, src, dest, parallel } from 'gulp';
+import { task, src, dest } from 'gulp';
 import { join } from 'path';
 import { writeFileSync, mkdirpSync } from 'fs-extra';
 import { Bundler } from 'scss-bundle';
 
-import { buildConfig, buildScssFromFileTask } from 'build-tools';
+import { buildConfig, buildScssFromFileTask, sequenceTask } from 'build-tools';
 
 const { projectDir, packagesDir, outputDir } = buildConfig;
 
@@ -53,4 +53,4 @@ task('styles:theme:scss', () => {
    });
 });
 
-task('build:styles', parallel('styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:constants', 'styles:theme:scss'));
+task('build:styles', ['styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:constants', 'styles:theme:scss']);

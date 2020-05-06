@@ -8,8 +8,15 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+// This import does not have any type definitions.
+const gulpRunSequence = require('run-sequence');
 
-// Expose gulp utilities.
-export * from './build-scss-task';
-export * from './sequence-task';
-export * from './build-config';
+/** Create a task that's a sequence of other tasks. */
+export function sequenceTask(...args: any[]): any {
+  return (done: any) => {
+    gulpRunSequence(
+      ...args,
+      done
+    );
+  };
+}

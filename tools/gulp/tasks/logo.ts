@@ -14,7 +14,7 @@ import { task } from 'gulp';
 const chalk = require('chalk');
 
 task('prepare-build:logo', () => {
-   return Promise.resolve(console.log(chalk.rgb(61, 178, 225)(`
+   console.log(chalk.rgb(61, 178, 225)(`
                \`,;';
       \`,;++++++++++++;
       +++++++++++++++:      @@@@@@@    @@@@@@@@   @@@@@@@    @@@@@@@
@@ -28,5 +28,5 @@ task('prepare-build:logo', () => {
       +++++++++++++++,
       '++++++++++;,\`
          ,\`
-   `)));
+   `));
 });

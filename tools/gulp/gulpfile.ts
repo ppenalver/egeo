@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import './tasks/others';
-import './tasks/logo';
 import './tasks/clean';
-import './tasks/generate-theme';
 import './tasks/build';
+import './tasks/logo';
+import './tasks/generate-theme';
+import './tasks/others';
 import './tasks/egeo-publish';

@@ -11,9 +11,9 @@
 import { spawn } from 'child_process';
 import { existsSync, statSync } from 'fs-extra';
 import { join } from 'path';
-import { task, series } from 'gulp';
+import { task } from 'gulp';
 import { execTask } from '../util/task_helpers';
-import { buildConfig } from 'build-tools';
+import { buildConfig, sequenceTask } from 'build-tools';
 import { yellow, green, red, grey } from 'chalk';
 import * as minimist from 'minimist';
 import { composeRelease } from '../package-tools/build-release';
@@ -115,7 +115,7 @@ task(':publish', async () => {
    process.chdir(currentDir);
 });
 
-task('publish', series(
+task('publish', sequenceTask(
    ':publish:whoami',
    ':publish:build-releases',
    ':publish:compose',

@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import { task, parallel, series } from 'gulp';
+import { task } from 'gulp';
 
-task('prepare-build', series('prepare-build:logo', 'clean'));
-task('build', parallel('build:styles'));
+task('prepare-build', ['prepare-build:logo', 'clean']);
+task('build', ['build:styles']);
