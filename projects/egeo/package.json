@@ -26,13 +26,16 @@
       "ngx-virtual-scroller": "3.0.2",
       "prismjs": "1.16.0"
    },
+   "devDependencies": {
+      "@types/json-schema": "7.0.4"
+   },
    "peerDependencies": {
-     "@angular/common": "^8.0.0",
-     "@angular/core": "^8.0.0",
-     "@angular/forms":"^8.0.0",
-     "@angular/http": "^8.0.0",
-     "@angular/platform-browser-dynamic": "^8.0.0",
-     "@angular/router": "^8.0.0",
-     "@stratio/egeo-ui-base": "^2.0.0"
+      "@angular/common": "^8.0.0",
+      "@angular/core": "^8.0.0",
+      "@angular/forms": "^8.0.0",
+      "@angular/http": "^8.0.0",
+      "@angular/platform-browser-dynamic": "^8.0.0",
+      "@angular/router": "^8.0.0",
+      "@stratio/egeo-ui-base": "^2.0.0"
    }
- }
+}

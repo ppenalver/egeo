@@ -12,6 +12,7 @@
    "whitelistedNonPeerDependencies": [
       "lodash",
       "ngx-virtual-scroller",
-      "prismjs"
+      "prismjs",
+      "@types/json-schema"
    ]
 }
