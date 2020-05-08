@@ -107,6 +107,10 @@ describe('StTableRowComponent', () => {
       });
    });
 
+   it('if row does not have a hover menu, reserved column is removed', () => {
+      expect(rowElement.querySelector('td.hover-menu')).toBeNull();
+   });
+
    describe('if row has a hover menu', () => {
 
       describe('should be able to listen when mouse is over it', () => {

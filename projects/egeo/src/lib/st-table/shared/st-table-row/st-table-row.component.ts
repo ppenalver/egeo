@@ -8,7 +8,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import {
+   ChangeDetectionStrategy, Component, HostListener, Input, OnInit, ViewChild, HostBinding,
+   ElementRef, AfterViewInit
+} from '@angular/core';
 
 /**
  * @description {Component} [Table Row]
@@ -34,13 +37,13 @@ import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Input, V
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StTableRowComponent {
+export class StTableRowComponent implements AfterViewInit {
    /** @Input {boolean} [selected=''] It indicates if row is selected or not */
    @Input() selected: boolean;
    /** @Input {boolean} [standUpSelected=true] It indicates if when row is selected, it has to be displayed stood up */
    @Input() standUpSelected: boolean = true;
 
-   @ViewChild('hoverMenu', { static: false }) hoverMenu: any;
+   @ViewChild('hoverMenu', {static: false}) hoverMenu: any;
 
    @HostBinding('class.st-table-row') rootClass: boolean = true;
 
@@ -49,7 +52,18 @@ export class StTableRowComponent {
       return this.selected && this.standUpSelected;
    }
 
+
    public showHoverMenu: boolean = false;
+
+   constructor(private elementRef: ElementRef) {
+
+   }
+
+   ngAfterViewInit(): void {
+      if (this.hoverMenu && this.hoverMenu.nativeElement.children.length === 0) {
+         this.elementRef.nativeElement.removeChild(this.hoverMenu.nativeElement);
+      }
+   }
 
    @HostListener('mouseover') onShowHoverMenu(): void {
       this.showHoverMenu = true;
