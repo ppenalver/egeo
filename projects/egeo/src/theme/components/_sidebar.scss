@@ -110,7 +110,7 @@
 
    .title {
       margin: 0;
-      font-weight: var(--egeo-st-sidebar__title--font-weigh, 900);
+      font-weight: var(--egeo-st-sidebar__title--font-weight, 900);
       font-size: var(--egeo-st-sidebar__title--font-size, $egeo-font-size-20);
       line-height:  var(--egeo-st-sidebar__title--line-height, $egeo-line-height-24);
       color: var(--egeo-st-sidebar__title--color, var(--egeo-theme-neutral, $neutral));

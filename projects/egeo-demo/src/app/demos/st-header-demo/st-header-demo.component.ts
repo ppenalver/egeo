@@ -29,7 +29,7 @@ export class StHeaderDemoComponent {
    public headerMenuSchema: StHeaderMenuOption[] = HEADER_MENU;
    public showLauncherMenu: boolean = false;
    public showUserProfileMenu: boolean = false;
-   public userMenuOffset: StPopOffset = { x: 50, y: 7 };
+   public activeButton: number;
 
    @ViewChild('launcher', { static: false }) launcherElement: ElementRef;
 
@@ -45,5 +45,9 @@ export class StHeaderDemoComponent {
       if (expandNewValue !== this.showLauncherMenu) {
          this.showLauncherMenu = expandNewValue;
       }
+   }
+
+   public onActiveButton(button: number): void {
+      this.activeButton = button;
    }
 }

@@ -24,9 +24,9 @@
             </svg>
          </div>
          <div class="st-header-shortcut-buttons">
-            <span class="st-header-shortcut-buttons__button icon-search"></span>
-            <span class="st-header-shortcut-buttons__button icon-paper-clip"></span>
-            <span class="st-header-shortcut-buttons__button icon-cog"></span>
+            <span class="st-header-shortcut-buttons__button icon-search" [class.active]="activeButton === 0" (click)="onActiveButton(0)"></span>
+            <span class="st-header-shortcut-buttons__button icon-paper-clip" [class.active]="activeButton === 1"  (click)="onActiveButton(1)"></span>
+            <span class="st-header-shortcut-buttons__button icon-cog" [class.active]="activeButton === 2"  (click)="onActiveButton(2)"></span>
          </div>
          <div class="st-header-user-menu" (clickOutside)="toggleUserProfile()">
             <span class="st-header-user-info">

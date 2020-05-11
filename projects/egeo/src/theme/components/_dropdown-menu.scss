@@ -35,6 +35,9 @@
    ul {
       list-style: none;
       overflow-y: auto;
+      margin: 0;
+      padding: 0;
+
       &:focus {
          outline: none;
       }

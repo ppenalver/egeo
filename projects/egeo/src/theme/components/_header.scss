@@ -65,18 +65,33 @@
          display: flex;
          flex-direction: row;
          flex-grow: 1;
-         font-size: $egeo-font-size-20;
+         font-size: $egeo-font-size-24;
          height: 50px;
          justify-content: flex-end;
-         line-height: $egeo-line-height-20;
+         line-height: $egeo-line-height-24;
          margin-left: auto;
 
-         .st-header-shortcut-buttons__button {
-            cursor: pointer;
-            margin-right: 30px;
+         .st-header-shortcut-buttons {
+            height: 100%;
 
-            &.active {
-               color: var(--egeo-theme-neutral-full, $neutral-full);
+            .st-header-shortcut-buttons__button {
+               cursor: pointer;
+               margin-right: 15px;
+               height: 100%;
+               display: inline-flex;
+               vertical-align: middle;
+               flex-direction: column;
+               justify-content: center;
+               padding: 0 15px;
+
+               &.active {
+                  color: var(--egeo-theme-neutral-full, $neutral-full);
+                  background-color: var(--egeo-theme-space-80, $space-80);
+               }
+
+               &:hover {
+                  color: var(--egeo-theme-neutral-full, $neutral-full);
+               }
             }
          }
       }
@@ -95,7 +110,7 @@
 
          .st-header-user-menu {
             display: flex;
-            border-left: 1px solid var(--egeo-theme-neutral-full, $neutral-full);
+            border-left: 1px solid var(--egeo-theme-space-50, $space-50);
          }
 
          .st-header-user-info {
