@@ -16,7 +16,6 @@
    background-color: var(--egeo-st-sidebar--bg-color, var(--egeo-theme-neutral-full, $neutral-full));
    box-shadow: 2px 2px 5px 0 var(--egeo-st-sidebar--box-shadow, var(--egeo-theme-neutral-8, $neutral-8));
    border: solid 1px var(--egeo-st-sidebar--border-color, var(--egeo-theme-neutral-8, $neutral-8));
-   text-transform: capitalize;
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
 
    .item-list {
@@ -43,6 +42,10 @@
          overflow: hidden;
          display: inline-block;
          text-overflow: ellipsis;
+
+         &:first-letter {
+            text-transform: capitalize;
+         }
 
          &--with-results {
             max-width: calc(100% - 40px);
@@ -112,9 +115,13 @@
       margin: 0;
       font-weight: var(--egeo-st-sidebar__title--font-weight, 900);
       font-size: var(--egeo-st-sidebar__title--font-size, $egeo-font-size-20);
-      line-height:  var(--egeo-st-sidebar__title--line-height, $egeo-line-height-24);
+      line-height: var(--egeo-st-sidebar__title--line-height, $egeo-line-height-24);
       color: var(--egeo-st-sidebar__title--color, var(--egeo-theme-neutral, $neutral));
       padding-bottom: 30px;
+
+      &:first-letter {
+         text-transform: capitalize;
+      }
    }
 
    .item {
@@ -149,7 +156,7 @@
             content: '\E613';
             font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
             color: var(--egeo-st-sidebar__warning--color, var(--egeo-theme-error, $error));
-            font-size:  var(--egeo-st-sidebar__warning--font-size, $egeo-font-size-16);
+            font-size: var(--egeo-st-sidebar__warning--font-size, $egeo-font-size-16);
             position: relative;
             padding-left: 10px;
             vertical-align: text-top;
@@ -163,7 +170,7 @@
             border-radius: 10px;
             background-color: var(--egeo-st-sidebar__result--bg-color, var(--egeo-theme-neutral-15, $neutral-15));
             font-weight: 400;
-            font-size:  var(--egeo-st-sidebar__result--font-size, $egeo-font-size-12);
+            font-size: var(--egeo-st-sidebar__result--font-size, $egeo-font-size-12);
             float: right;
             display: inline-block;
             .result__text {
