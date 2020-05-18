@@ -362,21 +362,21 @@ describe('StTableComponent', () => {
 
    describe('it should fix its header in order to be displayed although page scrolling', () => {
       it('if input "fixedHeader" is not specified, header is not fixed', () => {
-         expect(fixture.nativeElement.querySelector('table').classList).not.toContain('st-table--fixed-header');
+         expect(fixture.nativeElement.classList).not.toContain('fixed-header');
       });
 
       it('if input "fixedHeader" is true, header is fixed', () => {
          component.fixedHeader = true;
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('table').classList).toContain('st-table--fixed-header');
+         expect(fixture.nativeElement.classList).toContain('fixed-header');
       });
 
       it('if input "fixedHeader" is false, header is not fixed', () => {
          component.fixedHeader = false;
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('table').classList).not.toContain('st-table--fixed-header');
+         expect(fixture.nativeElement.classList).not.toContain('fixed-header');
       });
    });
 

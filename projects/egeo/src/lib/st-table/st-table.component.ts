@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, HostBinding, Host } from '@angular/core';
 
 import { StEgeo, StRequired } from '../decorators/require-decorators';
 import { Order, ORDER_TYPE } from './shared/order';
@@ -100,13 +100,13 @@ export class StTableComponent implements OnInit {
 
    /** @Input {boolean} [fixedHeader=false] Boolean to fix the table header */
    @Input()
+   @HostBinding('class.st-custom-scrollbar')
+   @HostBinding('class.fixed-header')
    get fixedHeader(): boolean {
       return this._fixedHeader;
    }
-
    set fixedHeader(newValue: boolean) {
       this._fixedHeader = newValue;
-      this.tableClasses['st-table--fixed-header'] = this._fixedHeader;
    }
 
    /** @Input {string} [customClasses=] Classes for adding styles to table tag from outside. These can be: separated-rows */

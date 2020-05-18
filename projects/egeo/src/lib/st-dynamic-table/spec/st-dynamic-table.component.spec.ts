@@ -378,14 +378,14 @@ describe('StDynamicTableComponent', () => {
       it('if input "fixedHeader" is not specified, header is not fixed', () => {
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('table').classList).not.toContain('st-table--fixed-header');
+         expect(fixture.nativeElement.querySelector('st-table').classList).not.toContain('fixed-header');
       });
 
       it('if input "fixedHeader" is true, header is fixed', () => {
          component.fixedHeader = true;
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('table').classList).toContain('st-table--fixed-header');
+         expect(fixture.nativeElement.querySelector('st-table').classList).toContain('fixed-header');
       });
 
       it('if input "fixedHeader" is false, header is not fixed', () => {

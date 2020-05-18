@@ -28,25 +28,4 @@
       justify-content: flex-start;
       cursor: inherit;
    }
-
-   &--fixed-header {
-      display: flex;
-      flex-flow: column;
-   }
-
-   &--fixed-header {
-      tbody {
-         overflow: auto;
-      }
-      thead {
-         display: block;
-         > tr {
-            display: flex;
-            > th {
-               flex: 1;
-               display: inline-flex;
-            }
-         }
-      }
-   }
 }

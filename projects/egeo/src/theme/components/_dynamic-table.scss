@@ -11,7 +11,13 @@
 @import '../constants/fonts';
 @import '../constants/colors';
 
+:host {
+   display: block;
+}
+
 .st-dynamic-table {
+   display: block;
+   height: 100%;
 
    .st-table-hover {
       i {
