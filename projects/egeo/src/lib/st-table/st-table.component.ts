@@ -14,6 +14,7 @@ import { StEgeo, StRequired } from '../decorators/require-decorators';
 import { Order, ORDER_TYPE } from './shared/order';
 import { StTableHeader } from './shared/table-header.interface';
 import { cloneDeep as _cloneDeep, get as _get } from 'lodash';
+import { StTableIconClasses } from './st-table.interface';
 
 /**
  * @description {Component} [Table]
@@ -25,6 +26,8 @@ import { cloneDeep as _cloneDeep, get as _get } from 'lodash';
  *   [StTableHeader] {./shared/table-header.interface.ts#StTableHeader}
  *   [StDynamicTableHeader] {./shared/table-header.interface.ts#StFilterElement}
  *   [StFilterHeader] {./shared/table-header.interface.ts#StFilterHeader}
+ *   [StTableFilterIconClasses] {./st-table.interface.ts#StTableFilterIconClasses}
+ *   [StTableIconClasses] {./st-table.interface.ts#StTableIconClasses}
  *
  * @example
  *
@@ -97,6 +100,8 @@ export class StTableComponent implements OnInit {
    @Input() templateContentFilter?: TemplateRef<any>;
    /** @Input {boolean[]} [statusFilter=''] List of status filter by column, needed with templateContentFilter */
    @Input() statusFilter?: boolean[];
+   /** @Input {StTableIconClasses} [iconClasses=''] List of icon classes */
+   @Input() iconClasses?: StTableIconClasses = new StTableIconClasses();
 
    /** @Input {boolean} [fixedHeader=false] Boolean to fix the table header */
    @Input()
@@ -151,7 +156,7 @@ export class StTableComponent implements OnInit {
     */
    @Output() selectAll: EventEmitter<boolean> = new EventEmitter();
 
-   /** @Output {string} Event emitted when clicking on filters icon  */
+   /** @Output {string} [clickFilter=] Event emitted when clicking on filters icon  */
    @Output() clickFilter: EventEmitter<StTableHeader> = new EventEmitter();
 
    /** @Output {StTableHeader[]} [selectFilters=''] Event emitted  when user interacts with filter button without a custom template */
@@ -178,7 +183,7 @@ export class StTableComponent implements OnInit {
 
    public getHeaderItemClass(field: StTableHeader): string {
       let isOrderAsc = this.isSortedByFieldAndDirection(field, this.orderTypes.ASC);
-      return isOrderAsc ? 'icon-arrow-up' : 'icon-arrow-down';
+      return isOrderAsc ? this.iconClasses.sort.asc : this.iconClasses.sort.desc;
    }
 
    public isSortable(field: StTableHeader): boolean {

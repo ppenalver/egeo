@@ -133,6 +133,21 @@ export class StTableDemoComponent implements OnInit {
          name: '--egeo-st-table__row--selected--bg-color',
          description: 'Selected row background color',
          default: '$space-5'
+      },
+      {
+         name: '--egeo-st-table__cell--padding',
+         description: 'Cell padding',
+         default: '9px 20px 9px 20px'
+      },
+      {
+         name: '--egeo-st-table__hover-menu--padding',
+         description: 'Hover menu padding',
+         default: '0 25px 0 20px'
+      },
+      {
+         name: '--egeo-st-table__cell--white-space',
+         description: 'Cell white space',
+         default: 'normal'
       }
    ];
 

@@ -12,6 +12,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Templa
 import { get as _get } from 'lodash';
 
 import { StTableHeader } from '../../shared/table-header.interface';
+import { StTableFilterIconClasses } from '../../st-table.interface';
 
 @Component({
    selector: 'st-popover-filter',
@@ -36,7 +37,10 @@ export class StPopoverFilterComponent {
    /** @Input {TemplateRef} [templateContentFilter=undefined] Reference to paint a custom template inside popover content */
    @Input() templateContentFilter?: TemplateRef<any>;
 
-   /** @Output {} [filter=''] Event emitted  when user interacts with filter button without a custom template */
+   /** @Input {{StTableFilterIconClasses} [iconClasses=''] List of icon classes */
+   @Input() iconClasses?: StTableFilterIconClasses = new StTableFilterIconClasses();
+
+   /** @Output [filter=''] Event emitted  when user interacts with filter button without a custom template */
    @Output() filter: EventEmitter<any> = new EventEmitter();
 
    public getConfigField(field: StTableHeader, config: string): any {
@@ -44,7 +48,7 @@ export class StPopoverFilterComponent {
    }
 
    public getFilteredIcon(): string {
-      return this.filtered ? 'icon-facets-2' : 'icon-arrow4_down';
+      return this.filtered ? this.iconClasses.selected :  this.iconClasses.enabled;
    }
 
    public onChangeFilter(indexFilter: number, event: Event): void {

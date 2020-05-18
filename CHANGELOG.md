@@ -11,7 +11,7 @@
 * st-dynamic-table: Create dynamic table component in order to render tables using a json schema to define their structure
 * st-spinner: Allow to customize its color from outside using css variables
 * st-sidebar: Allow to customize some styles from outside using css variables
-* build: Upgrade to Gulp 4
+* st-table: Allow to customize sort and filter icons using an input
 
 **Breaking changes:**
 
@@ -30,6 +30,7 @@
 **Others:**
 
 * Added css variables to customize colors from outside
+* build: Upgrade to Gulp 4
 
 
 ## 20.1.0 (April 27, 2020)

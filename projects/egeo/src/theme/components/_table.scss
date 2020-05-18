@@ -16,7 +16,8 @@
 
    th,
    td {
-      padding: 9px 20px 9px 20px;
+      padding: var(--egeo-st-table__cell--padding, 9px 20px 9px 20px);
+      white-space: var(--egeo-st-table__cell--white-space, normal);
    }
 
    &__header {
@@ -50,7 +51,7 @@
       }
 
       &--sortable {
-       cursor: pointer;
+         cursor: pointer;
       }
    }
 
@@ -73,6 +74,7 @@
       vertical-align: middle;
       margin-left: 4px;
       line-height: 13px;
+      font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
 
       &.icon-facets-2 {
          vertical-align: baseline;
@@ -145,7 +147,7 @@ st-table.fixed-header {
    display: flex;
    justify-content: flex-end;
    color: var(--egeo-theme-space-50, $space-50);
-   padding: 0 25px 0 20px;
+   padding: var(--egeo-st-table__hover-menu--padding, 0 25px 0 20px);
 
    &:hover {
      color: var(--egeo-theme-space, $space);

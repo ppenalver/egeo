@@ -16,6 +16,7 @@ import { Order } from '../st-table/shared/order';
 import { StTableHeader } from '../st-table/shared/table-header.interface';
 import { StDynamicTableUtils } from './utils/st-dynamic-table.utils';
 import { StDynamicTableHeader, StDynamicTableUserInterface } from './st-dynamic-table.model';
+import { StTableIconClasses } from '../st-table/st-table.interface';
 
 
 /**
@@ -63,7 +64,7 @@ import { StDynamicTableHeader, StDynamicTableUserInterface } from './st-dynamic-
 })
 
 export class StDynamicTableComponent {
-   /** @Input {{key: string, value: any}[]} [items=''] Item list displayed as table rows */
+   /** @Input {Object(key: string, value: any)[]} [items=''] Item list displayed as table rows */
    @Input() @StRequired() items: { key: string, value: any }[];
 
    /** @Input {StDynamicTableUserInterface} [uiDefinitions=''] UI definition for each field */
@@ -104,9 +105,10 @@ export class StDynamicTableComponent {
 
    /** @Input {boolean} [fixedHeader=false] Boolean to fix the table header */
    @Input() fixedHeader: boolean = false;
+   /** @Input {StTableIconClasses} [iconClasses=''] List of icon classes */
+   @Input() iconClasses?: StTableIconClasses = new StTableIconClasses();
 
    /** @Input {TemplateRef} [templateContentFilter=undefined] Reference to paint a custom template inside popover content */
-   // @Input() templateContentFilter?: TemplateRef<any>;
    @Input()
    get templateContentFilter(): TemplateRef<any> {
       return this._templateContentFilter;
@@ -139,17 +141,19 @@ export class StDynamicTableComponent {
     * all rows
     */
    @Output() selectAll: EventEmitter<boolean> = new EventEmitter<boolean>();
+   /** @Output {EventEmitter<StTableHeader[]>} [fields=] Event emitted when header fields are being loaded */
+   @Output() updateFields: EventEmitter<StTableHeader[]> = new EventEmitter<StTableHeader[]>();
 
-   /** @Output {string} Event emitted when using filters custom template  */
+   /** @Output {string} [clickFilter=] Event emitted when using filters custom template  */
    @Output() clickFilter: EventEmitter<StTableHeader> = new EventEmitter();
 
    /** @Output {StTableHeader[]} [selectFilters=] Event emitted  when user interacts with filter button without a custom template */
    @Output() selectFilters: EventEmitter<StTableHeader[]> = new EventEmitter<StTableHeader[]>();
    /** @Output {EventEmitter<number} [showHoverMenu=] Event emitted when user clicks on hover button of a row */
    @Output() showHoverMenu: EventEmitter<number> = new EventEmitter<number>();
-   /** @Output {EventEmitter<{checked: boolean, row: number}} [selectRow=] Event emitted when user clicks on checkbox of a row */
+   /** @Output {Object(checked: boolean, row: number)} [selectRow=] Event emitted when user clicks on checkbox of a row */
    @Output() selectRow: EventEmitter<{ checked: boolean, row: number }> = new EventEmitter<{ checked: boolean, row: number }>();
-   /** @Output {EventEmitter<{checked: boolean, row: number}} [selectRow=] Event emitted when user clicks on checkbox of a row */
+   /** @Output {Object(checked: boolean, row: number)} [clickCell=] Event emitted when user clicks on checkbox of a row */
    @Output() clickCell: EventEmitter<{ row: number, fieldId: string, label: string }> = new EventEmitter<{ row: number, fieldId: string, label: string }>();
 
    public fields: StDynamicTableHeader[] = [];
@@ -170,6 +174,7 @@ export class StDynamicTableComponent {
    set jsonSchema(_jsonSchema: JSONSchema4) {
       this._jsonSchema = _jsonSchema;
       this.fields = StDynamicTableUtils.getHeaderFieldsFromJsonSchema(this._jsonSchema, this.uiDefinitions);
+      this.updateFields.emit(this.fields);
       this._cd.markForCheck();
    }
 

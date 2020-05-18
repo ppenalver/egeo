@@ -29,7 +29,7 @@ export class StDynamicTableUtils {
 
                   fields.push({
                      id: _propertyKey,
-                     label: _property.title,
+                     label: _property.title || _propertyKey,
                      reference: _property.$ref,
                      filters: filters,
                      filterable: filters && (filters.templateRef !== undefined || (filters.filterConfig && filters.filterConfig.length > 0)),

@@ -32,6 +32,7 @@
                [templateContentFilter]="templateContentFilter"
                [filtered]="statusFilter[i]"
                [hidden]="visibleFilter !== i"
+               [iconClasses]="iconClasses?.filter"
                (filter)="onSelectedFilters($event)"
                (click)="onClickPopover(i, field)">
             </st-popover-filter>
