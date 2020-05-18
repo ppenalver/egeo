@@ -218,7 +218,8 @@ export {
    Paginate,
    PaginateOptions,
    PaginateTexts,
-   PaginateTextsSchema
+   PaginateTextsSchema,
+   PaginateIconClasses
 } from './st-pagination/st-pagination.interface';
 export { StPaginationPipe } from './st-pagination/st-pagination.pipe';
 export { StPaginationService } from './st-pagination/st-pagination.service';

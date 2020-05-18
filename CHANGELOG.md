@@ -12,6 +12,7 @@
 * st-spinner: Allow to customize its color from outside using css variables
 * st-sidebar: Allow to customize some styles from outside using css variables
 * st-table: Allow to customize sort and filter icons using an input
+* st-pagination: Allow to customize icon classes of previous and next page buttons using input "iconClasses"
 
 **Breaking changes:**
 

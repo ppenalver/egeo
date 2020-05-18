@@ -21,10 +21,10 @@
 
       <div class="buttons">
          <button class="button button-toolbar" [attr.id]="buttonPrevId" [disabled]="disablePrevButton" type="button" (click)="prevPage()">
-            <i class="icon-arrow2_left"></i>
+            <i class="{{iconClasses?.previous || 'icon-arrow2_left'}}"></i>
          </button>
          <button class="button button-toolbar" [attr.id]="buttonNextId" [disabled]="disableNextButton" type="button" (click)="nextPage()">
-            <i class="icon-arrow2_right"></i>
+            <i class="{{iconClasses?.next || 'icon-arrow2_right'}}"></i>
          </button>
       </div>
    </div>

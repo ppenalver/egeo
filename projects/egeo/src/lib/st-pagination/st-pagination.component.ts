@@ -22,6 +22,7 @@ import {
 } from '@angular/core';
 import { StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
 import { Paginate, PaginateOptions, PaginateTexts } from './st-pagination.interface';
+import { PaginateIconClasses } from './st-pagination.interface';
 
 /**
  * @description {Component} [Table]
@@ -33,6 +34,14 @@ import { Paginate, PaginateOptions, PaginateTexts } from './st-pagination.interf
  * It is made by two sub-components:
  * - A range selector, that allows the user provides a dropdown to set how many items he wants to be displayed per page.
  * - A page navigation control, in order to let the user where he is and where he can go to.
+ *
+ * * @model
+ *
+ *   [Paginate] {./st-pagination.interface.ts#Paginate}
+ *   [PaginateOptions] {./st-pagination.interface.ts#PaginateOptions}
+ *   [PaginateTexts] {./st-pagination.interface.ts#PaginateTexts}
+ *   [PaginateTextsSchema] {./st-pagination.interface.ts#PaginateTextsSchema}
+ *   [PaginateIconClasses] {./st-pagination.interface.ts#PaginateIconClasses}
  *
  * @example
  *
@@ -72,6 +81,9 @@ export class StPaginationComponent implements OnInit, OnChanges {
    @Input() perPageOptions: PaginateOptions[] = [
       { value: 20, showFrom: 0 }, { value: 50, showFrom: 50 }, { value: 200, showFrom: 200 }
    ];
+
+   /** @Input {PaginateIconClasses} [iconClasses=Object(previous='', next='')] Icon classes for previous and next page buttons */
+   @Input() iconClasses: PaginateIconClasses = {previous: 'icon-arrow2_left', next: 'icon-arrow2_right'};
 
    /** @Output {Paginate} [change=''] Event emitted when user interacts with some of the elements in the pagination.
     *  This sends the new pagination status (current page and items per page)

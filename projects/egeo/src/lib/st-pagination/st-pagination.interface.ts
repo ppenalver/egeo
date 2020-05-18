@@ -31,3 +31,8 @@ export interface PaginateTextsSchema {
    perPage: TranslateableElement;
    of: TranslateableElement;
 }
+
+export interface PaginateIconClasses {
+   previous: string;
+   next: string;
+}
