@@ -10,7 +10,7 @@
  */
 
 import { JSONSchema4 } from 'json-schema';
-import { StDynamicTableHeader, StDynamicTableUserInterface } from '../st-dynamic-table.model';
+import { StDynamicTableHeader, StDynamicTableUISpecification, StDynamicTableUserInterface } from '../st-dynamic-table.model';
 import { StFilterHeader } from '../../st-table/shared/table-header.interface';
 
 export class StDynamicTableUtils {
@@ -24,8 +24,9 @@ export class StDynamicTableUtils {
             properties.forEach(_propertyKey => {
                const _property = jsonSchema.properties[_propertyKey];
                if (_property && _property.type !== 'object') {
-                  const filters: StFilterHeader = StDynamicTableUtils.getHeaderFiltersFromJsonSchema(_property);
-                  const isSortable = uiDefinitions && uiDefinitions[_propertyKey] && uiDefinitions[_propertyKey].sortable;
+                  const uiDefinition: StDynamicTableUISpecification = uiDefinitions && uiDefinitions[_propertyKey];
+                  const filters: StFilterHeader = StDynamicTableUtils.getHeaderFiltersFromJsonSchema(_property, uiDefinition);
+                  const isSortable = uiDefinition && uiDefinitions[_propertyKey].sortable;
 
                   fields.push({
                      id: _propertyKey,
@@ -42,7 +43,7 @@ export class StDynamicTableUtils {
       return fields;
    }
 
-   public static getHeaderFiltersFromJsonSchema(propertyDefinition: JSONSchema4): StFilterHeader {
+   public static getHeaderFiltersFromJsonSchema(propertyDefinition: JSONSchema4, uiDefinition: StDynamicTableUISpecification): StFilterHeader {
       let filters: StFilterHeader;
       if (propertyDefinition.enum && propertyDefinition.enum.length) {
          filters = {
@@ -55,10 +56,10 @@ export class StDynamicTableUtils {
                name: <any> _value
             });
          });
-      } else if (propertyDefinition.templateRef) {
+      } else if (uiDefinition && uiDefinition.templateRef) {
          filters = {
             title: propertyDefinition.title,
-            templateRef: propertyDefinition.templateRef
+            templateRef: uiDefinition.templateRef
          };
       }
 

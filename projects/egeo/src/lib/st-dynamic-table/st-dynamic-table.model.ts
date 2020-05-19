@@ -10,6 +10,14 @@ export interface StDynamicTableUISpecification {
    styles?: {
       [key: string]: string;
    };
+   fk?: {
+      table: string;
+      field: string;
+   };
+   group_field?: {
+      name: string;
+   };
+   templateRef?: string;
 }
 
 
