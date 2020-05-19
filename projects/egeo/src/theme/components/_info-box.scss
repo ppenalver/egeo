@@ -22,7 +22,7 @@
 
 .sth-info-box__header__icon {
    text-align: center;
-   font-family: $egeo-stratio-icons;
+   font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
    font-size: $egeo-font-size-20;
    color: var(--egeo-theme-neutral-50, $neutral-50);
 }

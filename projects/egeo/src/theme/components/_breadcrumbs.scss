@@ -19,7 +19,7 @@
       font-size: $egeo-font-size-xsmall;
 
       &:after {
-         font-family: $egeo-stratio-icons;
+         font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
          content: "\E605";
          font-size: $egeo-font-size-12;
          color: var(--egeo-theme-neutral-60, $neutral-60);

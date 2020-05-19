@@ -35,7 +35,7 @@
 
    &.warning,   &.error{
       &:after {
-         font-family: $egeo-stratio-icons;
+         font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
          font-size: $egeo-font-size-xlarge;
          content: "\e622";
          display: inline-block;

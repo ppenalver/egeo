@@ -16,16 +16,16 @@
    color: var(--egeo-theme-neutral-full, $neutral-full);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   font-size: $egeo-font-size-14;
-   line-height: $egeo-line-height-18;
+   font-size: var(--egeo-st-button__label--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-button__label--line-height, $egeo-line-height-18);
    height: 40px;
 }
 
 %button-label-small {
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   font-size: $egeo-font-size-14;
-   line-height: $egeo-line-height-18;
+   font-size: var(--egeo-st-button__label--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-button__label--line-height, $egeo-line-height-18);
    height: 25px;
 }
 
@@ -33,7 +33,7 @@
    color: var(--egeo-theme-neutral-full, $neutral-full);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   line-height: $egeo-line-height-22;
+   line-height: var(--egeo-st-button__large-label--line-height, $egeo-line-height-22);
    height: 50px;
    &[disabled] {
       color: var(--egeo-theme-neutral-20, $neutral-20);
@@ -42,9 +42,9 @@
 
 %button-toolbar-ico-default {
    color: var(--egeo-theme-neutral-60, $neutral-60);
-   font-family: $egeo-stratio-icons;
-   font-size: $egeo-font-size-18;
-   line-height: $egeo-line-height-22;
+   font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+   font-size: var(--egeo-st-button__icon--font-size, $egeo-font-size-18);
+   line-height:  var(--egeo-st-button__icon--line-height, $egeo-line-height-22);
    &[disabled] {
       color: var(--egeo-theme-neutral-20, $neutral-20);
    }
@@ -54,15 +54,15 @@
    color: var(--egeo-theme-action, $action);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   font-size: $egeo-font-size-14;
-   line-height: $egeo-line-height-20;
+   font-size: var(--egeo-st-button__link--font-size, $egeo-font-size-14);
+   line-height:  var(--egeo-st-button__link--line-height, $egeo-line-height-20);
 
    &:hover {
-      color: var(--egeo-theme-action-120, $action-120) ;
+      color: var(--egeo-theme-action-120, $action-120);
    }
 
    :active {
-      color: var(--egeo-theme-action-150, $action-150) ;
+      color: var(--egeo-theme-action-150, $action-150);
    }
 
    &[disabled] {
@@ -70,8 +70,8 @@
    }
 
    &.small {
-      font-size: $egeo-font-size-12;
-      line-height: $egeo-line-height-18;
+      font-size: var(--egeo-st-button__small-label--font-size, $egeo-font-size-12);
+      line-height: var(--egeo-st-button__small-label--line-height, $egeo-line-height-18);
    }
 }
 
@@ -123,16 +123,16 @@
       background-color: var(--egeo-theme-action, $action);
 
       &:hover {
-         background-color: var(--egeo-theme-action-120, $action-120) ;
+         background-color: var(--egeo-theme-action-120, $action-120);
       }
 
       &:active {
-         background-color: var(--egeo-theme-action-150, $action-150) ;
+         background-color: var(--egeo-theme-action-150, $action-150);
       }
 
       &[disabled] {
-         background-color: var(--egeo-theme-action-10, $action-10) ;
-         color: var(--egeo-theme-action-60, $action-60) ;
+         background-color: var(--egeo-theme-action-10, $action-10);
+         color: var(--egeo-theme-action-60, $action-60);
       }
    }
 
@@ -142,13 +142,13 @@
       color: var(--egeo-theme-action, $action);
 
       &:hover {
-         color: var(--egeo-theme-action-120, $action-120) ;
-         border-color: var(--egeo-theme-action-120, $action-120) ;
+         color: var(--egeo-theme-action-120, $action-120);
+         border-color: var(--egeo-theme-action-120, $action-120);
       }
 
       &[disabled] {
-         color: var(--egeo-theme-action-60, $action-60) ;
-         border-color: var(--egeo-theme-action-40, $action-40) ;
+         color: var(--egeo-theme-action-60, $action-60);
+         border-color: var(--egeo-theme-action-40, $action-40);
       }
 
       &.large {

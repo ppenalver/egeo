@@ -101,7 +101,7 @@
 
          &:after {
             content: '\E605';
-            font-family: $egeo-stratio-icons;
+            font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
             font-size: $egeo-font-size-16;
             position: absolute;
             right: 0;

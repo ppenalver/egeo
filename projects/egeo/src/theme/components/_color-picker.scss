@@ -28,7 +28,7 @@
 
          &:after {
             content: '\e116';
-            font-family: $egeo-stratio-icons;
+            font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
             color: var(--egeo-theme-neutral-full, $neutral-full);
             font-size: $egeo-font-size-20;
             width: 20px;

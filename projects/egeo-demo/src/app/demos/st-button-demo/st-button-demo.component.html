@@ -11,8 +11,12 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid">
+   <section class="container-liquid demo-layout">
+      <h1 class="title">Theme customization</h1>
+      <p class="paragraph">You can customize some styles using the following css variables</p>
+      <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
 
+      <h1 class="title">Examples</h1>
       <div class="row">
          <div class="col-md-12">
             <h1>REGULAR BUTTONS:</h1>

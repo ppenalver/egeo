@@ -240,7 +240,7 @@
    }
    .st-header-menu-option-arrow {
       align-self: flex-end;
-      font-family: $egeo-stratio-icons;
+      font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
       font-size: $egeo-font-size-12;
       height: 15px;
       line-height: 15px;

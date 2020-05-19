@@ -9,6 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component } from '@angular/core';
+import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
 
 @Component({
    selector: 'st-button-demo',
@@ -21,6 +22,53 @@ export class StButtonDemoComponent {
       html: 'demo/st-button-demo/st-button-demo.component.html',
       ts: 'demo/st-button-demo/st-button-demo.component.ts'
    };
+   public cssProperties: CssProperty[] = [
+      {
+         name: '--egeo-st-button__label--font-size',
+         description: 'Button font size',
+         default: '$egeo-font-size-14'
+      },
+      {
+         name: '--egeo-st-button__label--line-height',
+         description: 'Button line height',
+         default: '$egeo-line-height-18'
+      },
+      {
+         name: '--egeo-st-button__large-label--line-height',
+         description: 'Large button line height',
+         default: '$egeo-line-height-22'
+      },
+      {
+         name: '--egeo-st-button__icon--font-size',
+         description: 'Icon button font size',
+         default: '$egeo-font-size-18'
+      },
+      {
+         name: '--egeo-st-button__icon--line-height',
+         description: 'Icon button line height',
+         default: '$egeo-line-height-22'
+      },
+      {
+         name: '--egeo-st-button__link--font-size',
+         description: 'Link button font size',
+         default: '$egeo-font-size-14'
+      },
+      {
+         name: '--egeo-st-button__link--line-height',
+         description: 'Link button line height',
+         default: '$egeo-line-height-20'
+      },
+      {
+         name: '--egeo-st-button__small-label--font-size',
+         description: 'Small button font size',
+         default: '$egeo-font-size-12'
+      },
+      {
+         name: '--egeo-st-button__small-label--line-height',
+         description: 'Small button line height',
+         default: '$egeo-line-height-18'
+      }
+   ];
 
    public test1(): void {
       console.log('You clicked the button 1!');

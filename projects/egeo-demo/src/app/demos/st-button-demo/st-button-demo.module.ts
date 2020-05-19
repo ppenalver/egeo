@@ -13,12 +13,14 @@ import { CommonModule } from '@angular/common';
 import { StDemoGeneratorModule, StDocsModule } from '@stratio/egeo';
 
 import { StButtonDemoComponent } from './st-button-demo.component';
+import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
 
 @NgModule({
    imports: [
       CommonModule,
       StDemoGeneratorModule.withComponents({ components: [StButtonDemoComponent] }),
-      StDocsModule
+      StDocsModule,
+      CssPropertyTableModule
    ],
    declarations: [StButtonDemoComponent],
    providers: []
