@@ -70,7 +70,8 @@ describe('StDynamicTableComponent', () => {
          }
       }
    };
-   const items: { key: string, value: any }[] = [];
+
+   const items: any[] = [{ cores: 8, memory: 512, home: '/desktop' }];
 
    beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -114,6 +115,7 @@ describe('StDynamicTableComponent', () => {
          expect(component.hasHoverMenu).toBeFalsy();
       });
    });
+
    describe('It should be able to apply some styles from outside', () => {
       it('If uiDefinitions input is introduced and there is a field with styles properties, there are added to the right field', () => {
          component.uiDefinitions = {
@@ -124,7 +126,7 @@ describe('StDynamicTableComponent', () => {
             },
             home: {
                styles: {
-                  color: '#DF2935'
+                  color: 'green'
                }
             }
          };
@@ -132,11 +134,11 @@ describe('StDynamicTableComponent', () => {
          fixture.detectChanges();
 
          const rows = fixture.nativeElement.querySelectorAll('tbody tr');
-         for (let i = 0; rows.length; ++i) {
-            const cells = rows[i].nativeElement.querySelectorAll('td');
+         for (let i = 0; i < rows.length; ++i) {
+            const cells = rows[i].querySelectorAll('td');
 
-            expect(cells[0].styles.width).toEqual('25%');
-            expect(cells[2].styles.color).toEqual('#DF2935');
+            expect(cells[0].style.width).toEqual('25%');
+            expect(cells[2].style.color).toEqual('green');
          }
       });
 
@@ -228,7 +230,6 @@ describe('StDynamicTableComponent', () => {
       expect(headerItems[2].querySelector('.icon-arrow4_down')).not.toBeNull();
       expect(headerItems[2].classList).toContain('st-table__header-item--filterable');
    });
-
 
    describe('When user clicks on a field in the table header, order is changed', () => {
       beforeEach(() => {
@@ -406,5 +407,19 @@ describe('StDynamicTableComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.nativeElement.querySelector('table').classList).toContain('separated-rows');
+   });
+
+   it('When user leaves a row, an event is emitted to hide active hover menu', () => {
+      spyOn(component.showHoverMenu, 'emit');
+      component.hasHoverMenu = true;
+      fixture.detectChanges();
+      const rows = fixture.nativeElement.querySelectorAll('tbody tr');
+      rows[0].querySelector('.icon.icon-ellipsis').click();
+      fixture.detectChanges();
+
+      expect(component.showHoverMenu.emit).toHaveBeenCalledWith(0);
+
+      rows[0].dispatchEvent(new Event('mouseleave'));
+      expect(component.showHoverMenu.emit).toHaveBeenCalledWith(undefined);
    });
 });

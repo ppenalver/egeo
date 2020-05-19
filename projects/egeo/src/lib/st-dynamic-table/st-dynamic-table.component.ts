@@ -200,6 +200,10 @@ export class StDynamicTableComponent {
       this.showHoverMenu.emit(row);
    }
 
+   public onLeaveRow(): void {
+      this.showHoverMenu.emit(undefined);
+   }
+
    public getCellClasses(field: StDynamicTableHeader): { clickable?: boolean } {
       let classes: { clickable?: boolean } = {};
 

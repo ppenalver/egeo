@@ -31,7 +31,7 @@
           (selectFilters)="onSelectedFilters($event)"
           (clickFilter)="onFilterClick($event)">
    <tbody>
-   <tr st-table-row *ngFor="let item of items; let row = index" [selected]="selected[row]">
+   <tr st-table-row *ngFor="let item of items; let row = index" [selected]="selected[row]" (mouseleave)="onLeaveRow()">
       <td st-table-cell st-table-row-content
           *ngFor="let field of fields; let cell = index"
           [ngClass]="getCellClasses(fields[cell])"
