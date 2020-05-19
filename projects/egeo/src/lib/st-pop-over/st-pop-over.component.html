@@ -10,14 +10,18 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<st-pop [hidden]="hidden" [placement]="placement" [openToLeft]="true" [offset]="popOffset" class="test">
+<st-pop [hidden]="hidden" [placement]="placement" [openToLeft]="openToLeft" [offset]="popOffset" class="test">
    <div pop-button>
       <ng-content select=[pop-over-button]></ng-content>
    </div>
 
-   <div pop-content [style.z-index]="9" class="content st-pop-over__content" [ngClass]="{'st-pop-over__content--with-arrow': showArrow}">
-      <div class="st-pop-over__header" [ngClass]="{'st-pop-over__header--underlined': title}"  *ngIf="title || showSettingBtn">
-         <span  *ngIf="title" class="title">{{title}}</span>
+   <div pop-content [style.z-index]="9" class="content st-pop-over__content"
+        [ngClass]="{
+           'st-pop-over__content--with-arrow': showArrow,
+            'st-pop-over__content--to-right': showArrow && !openToLeft}">
+      <div class="st-pop-over__header" [ngClass]="{'st-pop-over__header--underlined': title}"
+           *ngIf="title || showSettingBtn">
+         <span *ngIf="title" class="title">{{title}}</span>
          <button class="button st-pop-over__setting-action" *ngIf="showSettingBtn" (click)="clickConfig.emit($event)">
             <i class="icon-settings2"></i>
          </button>

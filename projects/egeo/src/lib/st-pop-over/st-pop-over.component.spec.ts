@@ -126,4 +126,21 @@ describe('StPopOverComponent', () => {
       });
 
    });
+
+   describe('Offset has to be calculated', () => {
+      it('If openToLeft is true, offset is calculated adding to the default offset the introduced one by input', () => {
+         component.openToLeft = true;
+         component.offset = { x: 20, y: 50 };
+
+         expect(component.popOffset).toEqual({ x: component.offset.x + 21, y: component.offset.y + 8 });
+      });
+
+      it('If openToLeft is false, offset in axis X is equals to the introduced by input minus the default value and offset in axis Y ' +
+         'is calculated adding to the default offset the introduced one by input', () => {
+         component.openToLeft = false;
+         component.offset = { x: 20, y: 50 };
+
+         expect(component.popOffset).toEqual({ x: component.offset.x - 21, y: component.offset.y + 8 });
+      });
+   });
 });

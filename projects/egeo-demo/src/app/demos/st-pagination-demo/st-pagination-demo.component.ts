@@ -10,6 +10,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Paginate } from '@stratio/egeo';
+import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
 
 @Component({
    selector: 'st-pagination-demo',
@@ -26,6 +27,13 @@ export class StPaginationDemoComponent implements OnInit {
    public perPage: number = 50;
    public title: string = 'pagination';
    public items: Array<any> = [];
+   public cssProperties: CssProperty[] = [
+      {
+         name: '--egeo-st-pagination--font-size',
+         description: 'Label font size',
+         default: '$egeo-font-size-14'
+      }
+   ];
 
    constructor(
    ) { }

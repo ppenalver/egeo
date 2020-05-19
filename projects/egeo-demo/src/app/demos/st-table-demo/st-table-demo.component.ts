@@ -37,12 +37,7 @@ export class StTableDemoComponent implements OnInit {
       { id: 'completedProfile', label: 'Completed profile' }];
 
    public filterFields: StTableHeader[] = [
-      { id: 'id', label: 'Id' },
-      { id: 'name', label: 'Name' },
-      {
-         id: 'lastName',
-         label: 'Last Name',
-         filters: {
+      { id: 'id', label: 'Id',  filters: {
             filterConfig: [
                {
                   id: '0',
@@ -55,7 +50,11 @@ export class StTableDemoComponent implements OnInit {
             ],
             title: 'Filter By',
             buttonText: 'Apply'
-         }
+         }},
+      { id: 'name', label: 'Name' },
+      {
+         id: 'lastName',
+         label: 'Last Name'
       },
       {
          id: 'phone',

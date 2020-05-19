@@ -13,11 +13,13 @@ import { CommonModule } from '@angular/common';
 import { StDemoGeneratorModule, StDocsModule, StPaginationModule } from '@stratio/egeo';
 
 import { StPaginationDemoComponent } from './st-pagination-demo.component';
+import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
 
 @NgModule({
    imports: [
       CommonModule,
       StPaginationModule,
+      CssPropertyTableModule,
       StDemoGeneratorModule.withComponents({
          components: [StPaginationDemoComponent]
       }),

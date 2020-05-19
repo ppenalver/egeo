@@ -36,7 +36,7 @@ export class StPopOverComponent {
 
    /** @input {string} [qaTag=''] For set id for tests */
    @Input() qaTag: string;
-   /** @input {string} title Title of the pop over */
+   /** @input {string} [title] Title of the pop over */
    @Input() title: string;
    /** @input {boolean} [hidden=false] Show or hide the pop over */
    @Input() hidden: boolean = false;
@@ -46,14 +46,17 @@ export class StPopOverComponent {
    @Input() showSettingBtn?: boolean = false;
    /** @Input {boolean} [showArrow=true] when true, arrow icon is displayed    */
    @Input() showArrow?: boolean = true;
+   /** @Input {boolean} [openToLeft=true] when true, modal is placed from left corner of button    */
+   @Input() openToLeft?: boolean = true;
+   /** @Input {StPopPlacement} [placement=StPopPlacement.BOTTOM] Define position of content relative to button */
+   @Input() placement: StPopPlacement = StPopPlacement.BOTTOM;
 
    /** @Output {Event} [click] Notify event click */
    @Output() clickConfig: EventEmitter<Event> = new EventEmitter<Event>();
 
-   public placement: StPopPlacement = StPopPlacement.BOTTOM;
    private defaultOffset: StPopOffset = { x: 21, y: 8 };
 
    get popOffset(): StPopOffset {
-      return { x: (this.offset.x + this.defaultOffset.x), y: (this.offset.y + this.defaultOffset.y) };
+      return { x:  this.offset.x + (this.defaultOffset.x * (this.openToLeft ? 1 : -1)), y: (this.offset.y + this.defaultOffset.y) };
    }
 }
