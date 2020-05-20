@@ -16,25 +16,28 @@
    color: var(--egeo-theme-neutral-full, $neutral-full);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   font-size: var(--egeo-st-button__label--font-size, $egeo-font-size-14);
-   line-height: var(--egeo-st-button__label--line-height, $egeo-line-height-18);
-   height: 40px;
+   font-size: var(--egeo-st-button--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-button--line-height, $egeo-line-height-18);
+   height: var(--egeo-st-button--height, 40px);
+
 }
 
 %button-label-small {
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   font-size: var(--egeo-st-button__label--font-size, $egeo-font-size-14);
-   line-height: var(--egeo-st-button__label--line-height, $egeo-line-height-18);
-   height: 25px;
+   font-size: var(--egeo-st-button__small--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-button__small--line-height, $egeo-line-height-18);
+   height: var(--egeo-st-button__small--height, 25px);
 }
 
 %button-label-large {
    color: var(--egeo-theme-neutral-full, $neutral-full);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
    font-weight: normal;
-   line-height: var(--egeo-st-button__large-label--line-height, $egeo-line-height-22);
-   height: 50px;
+   font-size: var(--egeo-st-button__large--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-button__large--line-height, $egeo-line-height-22);
+   height: var(--egeo-st-button__large--height, 50px);
+
    &[disabled] {
       color: var(--egeo-theme-neutral-20, $neutral-20);
    }
@@ -70,8 +73,8 @@
    }
 
    &.small {
-      font-size: var(--egeo-st-button__small-label--font-size, $egeo-font-size-12);
-      line-height: var(--egeo-st-button__small-label--line-height, $egeo-line-height-18);
+      font-size: var(--egeo-st-button__link__small--font-size, $egeo-font-size-12);
+      line-height: var(--egeo-st-button__link__small--line-height, $egeo-line-height-18);
    }
 }
 
@@ -84,6 +87,7 @@
    overflow: hidden;
    max-width: 100%;
    vertical-align: middle;
+   border-width: 0;
 
    &:not([disabled]) {
       cursor: pointer;

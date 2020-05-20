@@ -24,17 +24,32 @@ export class StButtonDemoComponent {
    };
    public cssProperties: CssProperty[] = [
       {
-         name: '--egeo-st-button__label--font-size',
+         name: '--egeo-st-button--font-size',
          description: 'Button font size',
          default: '$egeo-font-size-14'
       },
       {
-         name: '--egeo-st-button__label--line-height',
+         name: '--egeo-st-button--line-height',
          description: 'Button line height',
          default: '$egeo-line-height-18'
       },
       {
-         name: '--egeo-st-button__large-label--line-height',
+         name: '--egeo-st-button__small--font-size',
+         description: 'Small button font size',
+         default: '$egeo-font-size-14'
+      },
+      {
+         name: '--egeo-st-button__small--line-height',
+         description: 'Small button line height',
+         default: '$egeo-line-height-18'
+      },
+      {
+         name: '--egeo-st-button__large--font-size',
+         description: 'Large button font size',
+         default: '$egeo-font-size-14'
+      },
+      {
+         name: '--egeo-st-button__large--line-height',
          description: 'Large button line height',
          default: '$egeo-line-height-22'
       },
@@ -59,14 +74,29 @@ export class StButtonDemoComponent {
          default: '$egeo-line-height-20'
       },
       {
-         name: '--egeo-st-button__small-label--font-size',
-         description: 'Small button font size',
+         name: '--egeo-st-button__link__small--font-size',
+         description: 'Small button link font size',
          default: '$egeo-font-size-12'
       },
       {
-         name: '--egeo-st-button__small-label--line-height',
-         description: 'Small button line height',
+         name: '--egeo-st-button__link__small--line-height',
+         description: 'Small button link line height',
          default: '$egeo-line-height-18'
+      },
+      {
+         name: '--egeo-st-button--height',
+         description: 'Button line height',
+         default: '40px'
+      },
+      {
+         name: '--egeo-st-button__small--height',
+         description: 'Small button line height',
+         default: '25px'
+      },
+      {
+         name: '--egeo-st-button__large--height',
+         description: 'Large button line height',
+         default: '50px'
       }
    ];
 

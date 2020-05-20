@@ -13,10 +13,10 @@
 
 .st-label {
    display: inline-block;
-   font-weight: 400;
+   font-weight: var(--egeo-st-label--font-weight, 400);
    font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
-   font-size: $egeo-font-size-12;
-   line-height: $egeo-line-height-18;
+   font-size: var(--egeo-st-label--font-size, $egeo-font-size-12);
+   line-height: var(--egeo-st-label--line-height, $egeo-line-height-18);
    margin-bottom: 5px;
 }
 
@@ -31,11 +31,11 @@
    input,
    textarea {
       &:focus {
-         border-color: $input-field-onfocus;
+         border-color: var(--egeo-theme-action, $action);
       }
       &:disabled {
          border-color: var(--egeo-theme-neutral-20, $neutral-20);
-         background-color: $neutral-14;
+         background-color: var(--egeo-theme-neural-14, $neutral-14);
          color: var(--egeo-theme-neutral-30, $neutral-30);
          overflow: auto;
          resize: none;
@@ -62,10 +62,10 @@
    top: 0;
    display: inline-block;
    right: -30px;
-   line-height: 45px;
+   line-height: var(--egeo-st-form-control__reset-button--line-height, 45px);
    height: 100%;
    cursor: pointer;
-   font-size: $egeo-font-size-18;
+   font-size: var(--egeo-st-form-control__reset-button--font-size, $egeo-font-size-18);
    color: var(--egeo-theme-neutral-50, $neutral-50);
 
    &:hover {

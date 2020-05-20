@@ -58,9 +58,10 @@
    &__order-arrow {
       position: absolute;
       left: -20px;
-      bottom: 4px;
+      bottom: 0;
       font-weight: bold;
       font-size: var(--egeo-st-table__header--font-size, var(---egeo-theme-font-size-12, $egeo-font-size-12));
+      line-height: var(---egeo-theme-line-height-18, $egeo-line-height-18);
       color: var(--egeo-theme-space-80, $space-80);
       vertical-align: middle;
    }
