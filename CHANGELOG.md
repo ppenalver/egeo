@@ -16,6 +16,7 @@
 * st-pagination: Allow to customize icon classes of previous and next page buttons using input "iconClasses"
 * st-pop-over: Allow to choose placement and added input 'openToLeft' to be displayed from the button left side 
 * st-button: Allow to customize its style from outside using css variables
+* st-button: Updated button colors
 
 **Breaking changes:**
 

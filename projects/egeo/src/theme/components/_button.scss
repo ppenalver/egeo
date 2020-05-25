@@ -135,8 +135,8 @@
       }
 
       &[disabled] {
-         background-color: var(--egeo-theme-action-10, $action-10);
-         color: var(--egeo-theme-action-60, $action-60);
+         background-color: var(--egeo-theme-space-10, $space-10);
+         color: var(--egeo-theme-action-30, $space-30);
       }
    }
 
@@ -151,8 +151,8 @@
       }
 
       &[disabled] {
-         color: var(--egeo-theme-action-60, $action-60);
-         border-color: var(--egeo-theme-action-40, $action-40);
+         color: var(--egeo-theme-action-30, $space-30);
+         border-color: var(--egeo-theme-action-20, $space-20);
       }
 
       &.large {
@@ -178,7 +178,7 @@
       }
 
       &[disabled] {
-         background-color: var(--egeo-theme-error-10, $error-10);
+         background-color: var(--egeo-theme-space-10, $space-10);
          color: var(--egeo-theme-space-30, $space-30);
       }
    }
@@ -198,7 +198,7 @@
       }
 
       &[disabled] {
-         background-color: var(--egeo-theme-space-5, $space-5);
+         background-color: var(--egeo-theme-space-10, $space-10);
          color: var(--egeo-theme-space-30, $space-30);
       }
 
