@@ -19,6 +19,7 @@
 * st-button: Updated button colors
 * st-form: Allow to customize some styles from outside using css variables and error messages
 * st-fullscreen-layout: Added close button and changed background-color
+* st-form: Allow to display a link before field if it is defined on ui block
 
 **Breaking changes:**
 
