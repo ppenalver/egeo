@@ -4,7 +4,7 @@
 
 * st-form: added .small class to affect form inner inputs or input components individually.
 
-## 21.0.0 (upcoming)
+## 21.0.0 (June 01, 2020)
 
 **New features:**
 
