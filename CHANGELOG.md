@@ -2,7 +2,7 @@
 
 ## 21.1.0 (upcoming)
 
-* Pending changelog
+* st-form: added .small class to affect form inner inputs or input components individually.
 
 ## 21.0.0 (upcoming)
 
