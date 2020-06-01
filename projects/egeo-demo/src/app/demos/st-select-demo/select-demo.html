@@ -12,6 +12,7 @@
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="container-liquid">
+
       <st-select placeholder="Select option" [options]="options" [disabled]="disabled" [keyBoardMove]="true"
                  [default]="options[2].value">
       </st-select>
@@ -20,7 +21,7 @@
       <button class="button button-primary" (click)="changeOptions()">Change options</button>
 
       <div class="separator"></div>
-
+      <br><br>
       <h1>TEMPLATE DRIVEN EXAMPLE</h1>
       <form #templateDrivenForm="ngForm" novalidate autocomplete="off" class="col-md-3">
          <div class="form-group">
@@ -74,9 +75,8 @@
          <p>Form status: {{ reactiveForm.status | json }}</p>
       </form>
 
-
+      <br><br>
       <h1>TEMPLATE DRIVEN EXAMPLE</h1>
-      <br>
       <br>
       <button class="button button-primary" (click)="changeDisabled()">Change disable</button>
 
@@ -98,5 +98,16 @@
       </st-select>
 
       <div class="separator"></div>
+
+      <h1>WITHOUT FORM</h1>
+
+      <st-select class="st-pagination__selector"
+         [options]="options"
+         label="Select option"
+         [selected]="options[1]"
+         [attr.id]="selectId"
+         (select)="onChangePerPage($event)"></st-select>
+      <br>
+      <br>
    </section>
 </st-docs>
