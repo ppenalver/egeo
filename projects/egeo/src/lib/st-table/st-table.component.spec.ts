@@ -380,6 +380,26 @@ describe('StTableComponent', () => {
       });
    });
 
+   describe('it should fix the hover menu of the current focused row in order to be displayed although table width is larger than screen´s one', () => {
+      it('if input "stickyHoverMenu" is not specified, hover menu is not fixed', () => {
+         expect(fixture.nativeElement.classList).not.toContain('sticky-hover-menu');
+      });
+
+      it('if input "stickyHoverMenu" is true, hover menu is fixed', () => {
+         component.stickyHoverMenu = true;
+         fixture.detectChanges();
+
+         expect(fixture.nativeElement.classList).toContain('sticky-hover-menu');
+      });
+
+      it('if input "stickyHoverMenu" is false, hover menu is not fixed', () => {
+         component.stickyHoverMenu = false;
+         fixture.detectChanges();
+
+         expect(fixture.nativeElement.classList).not.toContain('sticky-hover-menu');
+      });
+   });
+
    it('Custom classes can be added to the table', () => {
       let fakeClass = 'separated-rows';
       expect(fixture.nativeElement.querySelector('table').classList).not.toContain(fakeClass);

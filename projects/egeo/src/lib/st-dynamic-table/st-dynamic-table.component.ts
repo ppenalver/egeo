@@ -102,6 +102,8 @@ export class StDynamicTableComponent {
 
    /** @Input {boolean} [fixedHeader=false] Boolean to fix the table header */
    @Input() fixedHeader: boolean = false;
+   /** @Input {boolean} [stickyHoverMenu=false] Boolean to fix hover menu always visible */
+   @Input() stickyHoverMenu: boolean = false;
    /** @Input {StTableIconClasses} [iconClasses=''] List of icon classes */
    @Input() iconClasses?: StTableIconClasses = new StTableIconClasses();
 

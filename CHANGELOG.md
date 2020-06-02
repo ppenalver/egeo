@@ -6,6 +6,7 @@
 
 * st-form: added .small class to affect form inner inputs or input components individually.
 * st-dynamic-table: Allow to hide a field using the UI definitions
+* st-table: Allow to display "sticky" the hover menu
 
 **Fixed bugs:**
 

@@ -114,6 +114,17 @@ export class StTableComponent implements OnInit {
       this._fixedHeader = newValue;
    }
 
+
+   /** @Input {boolean} [stickyHoverMenu=false] Boolean to fix hover menu always visible */
+   @Input()
+   @HostBinding('class.sticky-hover-menu')
+   get stickyHoverMenu(): boolean {
+      return this._stickyHoverMenu;
+   }
+   set stickyHoverMenu(newValue: boolean) {
+      this._stickyHoverMenu = newValue;
+   }
+
    /** @Input {string} [customClasses=] Classes for adding styles to table tag from outside. These can be: separated-rows */
    @Input()
    get customClasses(): string {
@@ -167,6 +178,7 @@ export class StTableComponent implements OnInit {
    public visibleFilter: number = -1;
 
    private _fixedHeader: boolean = false;
+   private _stickyHoverMenu: boolean = false;
    private _selectedAll: boolean;
    private _hasHoverMenu: boolean = false;
    private _customClasses: string;

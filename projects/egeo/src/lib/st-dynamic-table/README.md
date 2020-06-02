@@ -7,7 +7,6 @@
 | Property              | Type                              | Req   | Description                                                                                                                                                                   | Default         |
 | --------------------- | --------------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | items                 | Object(key: string, value: any)[] | False | Item list displayed as table rows                                                                                                                                             | ''              |
-| uiDefinitions         | StDynamicTableUserInterface       | False | UI definition for each field                                                                                                                                                  | ''              |
 | qaTag                 | String                            | False | Prefix used to generate the id values for qa tests                                                                                                                            | ''              |
 | header                | Boolean                           | False | Boolean to show or hide the header                                                                                                                                            | true            |
 | sortable              | Boolean                           | False | Boolean to make sortable the table, To enable sorting of columns use the new "sortable" field inside stTableHeader model                                                      | true            |
@@ -18,6 +17,7 @@
 | currentOrder          | Order                             | False | It specifies what is the current order applied to the table                                                                                                                   | ''              |
 | customClasses         | String                            | False | Classes for adding styles to table tag from outside. These can be: separated-rows                                                                                             |                 |
 | fixedHeader           | Boolean                           | False | Boolean to fix the table header                                                                                                                                               | false           |
+| stickyHoverMenu       | Boolean                           | False | Boolean to fix hover menu always visible                                                                                                                                      | false           |
 | iconClasses           | StTableIconClasses                | False | List of icon classes                                                                                                                                                          | ''              |
 | templateContentFilter | TemplateRef                       | False | Reference to paint a custom template inside popover content                                                                                                                   | undefined       |
 | statusFilter          | Boolean[]                         | False | List of status filter by column, needed with templateContentFilter                                                                                                            |                 |
@@ -26,6 +26,7 @@
 | hoverButton           | String                            | False | It specifies the icon class of the hover button displayed when user puts mouse over a row                                                                                     | 'icon-ellipsis' |
 | selectedAll           | Boolean                           | False | It specifies if all rows are selected                                                                                                                                         |                 |
 | jsonSchema            | JSONSchema4                       | False | Json schema to define its structure                                                                                                                                           |                 |
+| uiDefinitions         | StDynamicTableUserInterface       | False | UI definition for each field                                                                                                                                                  | ''              |
 
 ## Outputs
 
@@ -39,6 +40,7 @@
 | showHoverMenu | EventEmitter&lt;number                | Event emitted when user clicks on hover button of a row                             |
 | selectRow     | Object(checked: boolean, row: number) | Event emitted when user clicks on checkbox of a row                                 |
 | clickCell     | Object(checked: boolean, row: number) | Event emitted when user clicks on checkbox of a row                                 |
+| clickFk       | StDynamicTableFkEvent                 | Event emitted when user clicks on Fk cell                                           |
 
 ## Example
 

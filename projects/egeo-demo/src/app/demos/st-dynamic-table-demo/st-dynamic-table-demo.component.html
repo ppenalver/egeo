@@ -41,7 +41,7 @@
                               (selectRow)="onSelectRow($event, 0)"
                               (showHoverMenu)="onShowHoverMenu($event, 0)">
                <st-dropdown-menu st-dynamic-table-hover-menu
-                                 class="hover-menu"
+                                 class="row-menu"
                                  [items]="rowActions"
                                  [active]="activeHoverMenuPosition[0] !== undefined"
                                  [visualMode]="1">
@@ -52,7 +52,8 @@
 
       <h2 class="subtitle">Sortable table</h2>
       <p class="paragraph">Table can be configured as sortable or not. Moreover, it allows to configure only specific
-         fields as sortable using <b>uiDefinition</b> input. In this example, we have marked "company" column as not sortable.</p>
+         fields as sortable using <b>uiDefinition</b> input. In this example, we have marked "company" column as not
+         sortable.</p>
       <st-dynamic-table [jsonSchema]="jsonSchema"
                         [items]="sortedUsers"
                         [sortable]="true"
@@ -64,7 +65,7 @@
                         (changeOrder)="onSortTable($event)"
                         (showHoverMenu)="onShowHoverMenu($event, 1)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[1] !== undefined"
                            [visualMode]="1">
@@ -84,7 +85,7 @@
                         (changeOrder)="onSortTable($event)"
                         (showHoverMenu)="onShowHoverMenu($event, 2)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[2] !== undefined"
                            [visualMode]="1">
@@ -123,7 +124,7 @@
                         (changeOrder)="onSortTable($event)"
                         (showHoverMenu)="onShowHoverMenu($event, 3)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[3] !== undefined"
                            [visualMode]="1">
@@ -143,7 +144,28 @@
                         [templateContentFilter]="filterContent"
                         (showHoverMenu)="onShowHoverMenu($event, 4)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
+                           [items]="rowActions"
+                           [active]="activeHoverMenuPosition[4] !== undefined"
+                           [visualMode]="1">
+         </st-dropdown-menu>
+      </st-dynamic-table>
+
+
+      <h2 class="subtitle">Table with fixed header and sticky hover menu</h2>
+
+      <st-dynamic-table class="fixed-header-table"
+                        style="max-width: 60%"
+                        [jsonSchema]="jsonSchema"
+                        [items]="users"
+                        [hasHoverMenu]="true"
+                        [fixedHeader]="true"
+                        [stickyHoverMenu]="true"
+                        [activeHoverMenu]="activeHoverMenuPosition[4]"
+                        [templateContentFilter]="filterContent"
+                        (showHoverMenu)="onShowHoverMenu($event, 4)">
+         <st-dropdown-menu st-dynamic-table-hover-menu
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[4] !== undefined"
                            [visualMode]="1">
@@ -153,15 +175,15 @@
 
       <h2 class="subtitle">Table without header</h2>
       <st-dynamic-table
-                        [jsonSchema]="jsonSchema"
-                        [items]="users"
-                        [hasHoverMenu]="true"
-                        [header]="false"
-                        [activeHoverMenu]="activeHoverMenuPosition[5]"
-                        [templateContentFilter]="filterContent"
-                        (showHoverMenu)="onShowHoverMenu($event, 5)">
+         [jsonSchema]="jsonSchema"
+         [items]="users"
+         [hasHoverMenu]="true"
+         [header]="false"
+         [activeHoverMenu]="activeHoverMenuPosition[5]"
+         [templateContentFilter]="filterContent"
+         (showHoverMenu)="onShowHoverMenu($event, 5)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[5] !== undefined"
                            [visualMode]="1">
@@ -170,17 +192,17 @@
 
       <h2 class="subtitle">Table with custom class 'separated rows'</h2>
       <st-dynamic-table
-                        [jsonSchema]="jsonSchema"
-                        [items]="users"
-                        [hasHoverMenu]="true"
-                        [header]="true"
-                        [sortable]="false"
-                        customClasses="separated-rows"
-                        [activeHoverMenu]="activeHoverMenuPosition[4]"
-                        [templateContentFilter]="filterContent"
-                        (showHoverMenu)="onShowHoverMenu($event, 4)">
+         [jsonSchema]="jsonSchema"
+         [items]="users"
+         [hasHoverMenu]="true"
+         [header]="true"
+         [sortable]="false"
+         customClasses="separated-rows"
+         [activeHoverMenu]="activeHoverMenuPosition[4]"
+         [templateContentFilter]="filterContent"
+         (showHoverMenu)="onShowHoverMenu($event, 4)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[4] !== undefined"
                            [visualMode]="1">
@@ -189,18 +211,18 @@
 
       <h2 class="subtitle">Table with custom css definitions</h2>
       <st-dynamic-table
-                        [jsonSchema]="jsonSchema"
-                        [uiDefinitions]="uiDefinition"
-                        [currentOrder]="currentOrder"
-                        [items]="sortedUsers"
-                        [hasHoverMenu]="true"
-                        [header]="true"
-                        [activeHoverMenu]="activeHoverMenuPosition[4]"
-                        [templateContentFilter]="filterContent"
-                        (showHoverMenu)="onShowHoverMenu($event, 4)"
-                        (changeOrder)="onSortTable($event)">
+         [jsonSchema]="jsonSchema"
+         [uiDefinitions]="uiDefinition"
+         [currentOrder]="currentOrder"
+         [items]="sortedUsers"
+         [hasHoverMenu]="true"
+         [header]="true"
+         [activeHoverMenu]="activeHoverMenuPosition[4]"
+         [templateContentFilter]="filterContent"
+         (showHoverMenu)="onShowHoverMenu($event, 4)"
+         (changeOrder)="onSortTable($event)">
          <st-dropdown-menu st-dynamic-table-hover-menu
-                           class="hover-menu"
+                           class="row-menu"
                            [items]="rowActions"
                            [active]="activeHoverMenuPosition[4] !== undefined"
                            [visualMode]="1">
@@ -211,11 +233,12 @@
       <div class="row">
          <div class="col-sm-12 col-lg-12 col-xs-12">
             <st-dynamic-table [jsonSchema]="jsonSchemaFk" [items]="fks" [sortable]="false" [filterable]="true"
-               [selectable]="true" [selectableAll]="true" [hasHoverMenu]="true" [activeHoverMenu]="activeHoverMenuPosition[0]"
-               (selectAll)="onSelectAll($event, 0)" (selectRow)="onSelectRow($event, 0)"
-               (showHoverMenu)="onShowHoverMenu($event, 0)">
-               <st-dropdown-menu st-dynamic-table-hover-menu class="hover-menu" [items]="rowActions"
-                  [active]="activeHoverMenuPosition[0] !== undefined" [visualMode]="1">
+                              [selectable]="true" [selectableAll]="true" [hasHoverMenu]="true"
+                              [activeHoverMenu]="activeHoverMenuPosition[0]"
+                              (selectAll)="onSelectAll($event, 0)" (selectRow)="onSelectRow($event, 0)"
+                              (showHoverMenu)="onShowHoverMenu($event, 0)">
+               <st-dropdown-menu st-dynamic-table-hover-menu class="row-menu" [items]="rowActions"
+                                 [active]="activeHoverMenuPosition[0] !== undefined" [visualMode]="1">
                </st-dropdown-menu>
             </st-dynamic-table>
          </div>
