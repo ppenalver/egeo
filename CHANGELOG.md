@@ -11,6 +11,7 @@
 **Fixed bugs:**
 
 * st-select: Fix bug when select is used without being part of a form
+* st-table: Fix wrong css variable name
 
 
 ## 21.0.0 (June 01, 2020)
