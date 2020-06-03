@@ -193,6 +193,9 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    writeValue(newValue: any): void {
       if (!this.selected || this.selected.value !== newValue) {
          this.selected = this.findByProperty('value', newValue);
+         if (this.selected) {
+            this.inputFormControl.setValue(this.selected.label);
+         }
          this._cd.markForCheck();
       }
    }

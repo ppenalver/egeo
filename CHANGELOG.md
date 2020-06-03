@@ -11,6 +11,7 @@
 
 **Fixed bugs:**
 
+* st-select: Fix bug when select has initial value given by reactive form in angular 9
 * st-select: Fix bug when select is used without being part of a form
 * st-table: Fix wrong css variable name
 * st-pagination: Remove duplicated event emitted when items per page are changed
