@@ -2,7 +2,15 @@
 
 ## 22.0.0 (upcoming)
 
-* Pending changelog
+**New features:**
+
+* st-form: Allow to render selects with integer value
+* st-form: Allow to customize select option labels using the UI Definition object
+
+**Fixed bugs:**
+
+* st-dynamic-table: Fix bug in foreign key management when property does not exist on row
+
 
 ## 21.1.0 (upcoming)
 
@@ -16,8 +24,6 @@
 * st-table: Filter menus are displayed aligned to the left side of their cell
 * st-checkbox: Allow to customize checked icon from outside using css variables
 * st-zero-page: Allow to customize some styles from outside using css variables
-* st-form: Allow to render selects with integer value
-* st-form: Allow to customize select option labels using the UI Definition object
 
 **Fixed bugs:**
 
