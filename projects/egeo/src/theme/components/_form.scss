@@ -160,6 +160,7 @@
             border: var(--egeo-st-form-field__read-only--border, none);
             color: var(--egeo-theme-space-110, $space-110);
             padding: var(--egeo-st-form-field__read-only--padding, 0);
+            cursor: text;
          }
 
          .st-select {
