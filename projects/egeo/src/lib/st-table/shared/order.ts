@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-export enum ORDER_TYPE { ASC, DESC }
+export enum ORDER_TYPE { ASC = 'asc', DESC = 'desc' }
 
 export class Order {
    constructor(
@@ -16,3 +16,5 @@ export class Order {
       public type: ORDER_TYPE
    ) { }
 }
+
+

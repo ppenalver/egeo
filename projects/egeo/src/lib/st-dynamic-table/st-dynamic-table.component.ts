@@ -257,20 +257,7 @@ export class StDynamicTableComponent {
 
    private _manageFieldsUpdate(): void {
       this.fields = StDynamicTableUtils.getHeaderFieldsFromJsonSchema(this._jsonSchema, this._uiDefinitions);
-      this._setDefaultSort();
       this.updateFields.emit(this.fields);
       this._cd.markForCheck();
    }
-
-   private _setDefaultSort(): void {
-      const defaultSortedField = this.fields.find(_field => _field.sortedByDefault);
-      if (defaultSortedField) {
-         const order: Order = {
-            orderBy: defaultSortedField.id,
-            type: ORDER_TYPE[defaultSortedField.sortedByDefault]
-         };
-         this.onChangeOrder(order);
-      }
-   }
-
 }

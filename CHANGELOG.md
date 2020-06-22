@@ -7,10 +7,15 @@
 * st-form: Allow to render selects with integer value
 * st-form: Allow to customize select option labels using the UI Definition object
 * st-bubble: Allow to customize the right margin of arrow, text font size and padding
+* st-dynamic-table: Remove management of the default sort
 
 **Fixed bugs:**
 
 * st-dynamic-table: Fix bug in foreign key management when property does not exist on row
+
+**Breaking changes:**
+
+* st-table: Give default values to ORDER_TYPE as 'asc' and 'desc'
 
 
 ## 21.1.0 (upcoming)
