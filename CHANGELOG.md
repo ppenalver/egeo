@@ -9,6 +9,8 @@
 * st-bubble: Allow to customize the right margin of arrow, text font size and padding
 * st-dynamic-table: Remove management of the default sort
 * st-table: Close filter menu when enter key is pressed
+* st-sidebar: add dynamic icons
+* st-sidebar: minor change styles after UX suggestions
 
 **Fixed bugs:**
 

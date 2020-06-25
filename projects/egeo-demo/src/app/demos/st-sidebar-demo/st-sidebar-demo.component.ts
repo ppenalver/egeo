@@ -147,11 +147,6 @@ export class StSidebarDemoComponent {
          default: '$brand'
       },
       {
-         name: '--egeo-st-sidebar__item--margin-bottom',
-         description: 'Item margin bottom',
-         default: '15px'
-      },
-      {
          name: '--egeo-st-sidebar__warning--color',
          description: 'Warning icon color',
          default: '$error'
@@ -180,6 +175,21 @@ export class StSidebarDemoComponent {
          name: '--egeo-st-sidebar__disabled-item--color',
          description: 'Disabled item color',
          default: '$neutral-30'
+      },
+      {
+         name: '--egeo-st-sidebar__chevron-right-icon--content',
+         description: 'Chevron right icon',
+         default: '\E605'
+      },
+      {
+         name: '--egeo-st-sidebar__chevron-down-icon--content',
+         description: 'Chevron down icon',
+         default: '\E63F'
+      },
+      {
+         name: '--egeo-st-sidebar__warning-icon--content',
+         description: 'Warning icon',
+         default: '\E613'
       }
    ];
 

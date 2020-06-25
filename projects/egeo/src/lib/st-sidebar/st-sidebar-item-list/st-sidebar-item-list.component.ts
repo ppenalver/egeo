@@ -43,6 +43,8 @@ import { StSidebarVisualMode } from '../st-sidebar-visual-mode';
 export class StSidebarItemListComponent implements OnInit {
    /** @Input {StSidebarItem[]} [items=''] List of items displayed on the menu */
    @Input() items: StSidebarItem[] = [];
+   /** @Input {boolean} [defaultActive=true] Unset first item as active by default if false */
+   @Input() defaultActive: boolean = true;
    /** @Input {number} [deep=0] Deep of the item list in the sidebar */
    @Input() deep: number = 0;
    /** @Input {StSidebarVisualMode} [visualMode='StSidebarVisualMode.normal'] Visual mode used to display the item list */
@@ -61,7 +63,7 @@ export class StSidebarItemListComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      if (!this._active && this.items && this.items.length) {
+      if (this.defaultActive && !this._active && this.items && this.items.length) {
          this._active = this.items[0];
       }
 

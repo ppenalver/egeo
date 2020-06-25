@@ -47,6 +47,8 @@ export class StSidebarComponent {
    @Input() active: StSidebarItem;
    /** @Input {StSidebarItem[]} [items=''] List of items displayed on the menu */
    @Input() items: StSidebarItem[] = [];
+   /** @Input {boolean} [defaultActive=true] Unset first item as active by default if false */
+   @Input() defaultActive: boolean = true;
    /** @Input {boolean} [searchMode=''] Boolean to enable or disable the search mode. By default, it is disabled */
    @Input() searchMode: boolean = false;
    /** @Input {StSidebarVisualMode} [visualMode='StSidebarVisualMode.normal'] Visual mode used to display the item list */
