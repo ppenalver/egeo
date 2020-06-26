@@ -22,7 +22,7 @@
 * st-table: Give default values to ORDER_TYPE as 'asc' and 'desc'
 
 
-## 21.1.0 (upcoming)
+## 21.1.0 (June 26, 2020)
 
 **New features:**
 
