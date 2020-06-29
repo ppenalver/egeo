@@ -125,4 +125,4 @@ const routes: Routes = [
 // tslint:enable
 
 
-export const routing: ModuleWithProviders = RouterModule.forChild(routes);
+export const routing: ModuleWithProviders<RouterModule> = RouterModule.forChild(routes);

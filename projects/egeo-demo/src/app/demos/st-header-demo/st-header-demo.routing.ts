@@ -15,7 +15,7 @@ import { StHeaderDemoComponent } from './st-header-demo.component';
 import { StFakePageComponent } from './fake-page.component';
 import { LONG_CONTENT } from './st-header-demo.model';
 
-export const routing: ModuleWithProviders = RouterModule.forChild([
+export const routing: ModuleWithProviders<RouterModule> = RouterModule.forChild([
    {
       path: '', component: StHeaderDemoComponent, children: [
          { path: 'test1', redirectTo: 'test1/subtest1', pathMatch: 'full' },
