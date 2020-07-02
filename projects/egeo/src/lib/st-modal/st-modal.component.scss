@@ -36,11 +36,36 @@
          width: 100%;
 
          .container {
+            display: flex;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
             align-items: center;
             flex-wrap: nowrap;
 
             .status-icon {
                padding-right: 1.05rem;
+
+               &.delete {
+                  &:before {
+                     content: var(--egeo-st-modal__delete-icon--content, "\e043");
+                  }
+               }
+
+               &.alert {
+                  &:before {
+                     content: var(--egeo-st-modal__warning-icon--content, "\e613");
+                  }
+               }
+            }
+
+            .close-button {
+               font-size: var(--egeo-st-button__close-icon--font-size, inherit);
+               color: var(--egeo-st-button__close-icon--color, inherit);
+
+               &:before {
+                  content: var(--egeo-st-button__close-icon--content, "\e117");
+               }
             }
          }
       }

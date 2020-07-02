@@ -15,6 +15,7 @@
 * st-form: Allow to hide a fields without depending on another one
 * st-sidebar: Display an optional message when search does not have any results
 * st-dropdown-menu: Allow to customize some styles from outside using css variables
+* st-modal: add optional and customizable close button to basic modal
 
 **Fixed bugs:**
 

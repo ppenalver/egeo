@@ -287,8 +287,8 @@ describe('StModal', () => {
          comp.component = ModalTestComponent;
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.icon-cross')).not.toBeNull();
-         fixture.nativeElement.querySelector('.icon-cross').click();
+         expect(fixture.nativeElement.querySelector('.close-button')).not.toBeNull();
+         fixture.nativeElement.querySelector('.close-button').click();
 
          expect(comp.click.emit).toHaveBeenCalledWith({response: StModalResponse.CLOSE, close: true});
       });
@@ -299,7 +299,7 @@ describe('StModal', () => {
 
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.icon-cross')).toBeNull();
+         expect(fixture.nativeElement.querySelector('.close-button')).toBeNull();
       });
 
 

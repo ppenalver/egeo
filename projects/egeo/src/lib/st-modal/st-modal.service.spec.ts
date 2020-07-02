@@ -186,7 +186,8 @@ describe('StModal', () => {
             maxWidth: 600,
             minWidth: 400,
             empty: false,
-            iconStatus: 'icon-circle-cross'
+            showCloseBtn: false,
+            iconStatus: 'delete'
          };
 
          service.showBasicModal(StModalBasicType.DELETE, deleteModalTitle, deleteMessageTitle, deleteMessage, okButton, cancelButton, 600, 400);
@@ -221,7 +222,8 @@ describe('StModal', () => {
             maxWidth: 600,
             minWidth: 400,
             empty: false,
-            iconStatus: 'icon-alert'
+            showCloseBtn: false,
+            iconStatus: 'alert'
          };
 
          service.showBasicModal(StModalBasicType.WARNING, warningModalTitle, warningMessageTitle, warningMessage, okButton, cancelButton, 600, 400);

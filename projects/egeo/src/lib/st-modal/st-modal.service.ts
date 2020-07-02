@@ -62,7 +62,8 @@ export class StModalService {
       cancelButton: string = '',
       maxWidth: number = 600,
       minWidth: number = 400,
-      icon: string = ''
+      icon: string = '',
+      showCloseBtn: boolean = false
    ): Observable<StModalResponse> {
       let iconStatus: string;
 
@@ -84,10 +85,10 @@ export class StModalService {
 
       switch (type) {
          case StModalBasicType.DELETE:
-            iconStatus = 'icon-circle-cross';
+            iconStatus = 'delete';
             break;
          case StModalBasicType.WARNING:
-            iconStatus = 'icon-alert';
+            iconStatus = 'alert';
             break;
          default:
             iconStatus = icon;
@@ -102,6 +103,7 @@ export class StModalService {
          buttons,
          maxWidth,
          minWidth,
+         showCloseBtn,
          iconStatus
       });
    }

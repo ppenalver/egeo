@@ -22,10 +22,12 @@ import { StModalDemoTestComponent } from './st-modal-test-demo.component';
 import { StModalDemoTestButtonsComponent } from './st-modal-test-buttons-demo.component';
 import { StModalDemoTestFullscreenLayoutComponent } from './st-modal-test-fullscreen-layout.component';
 import { StDemoLoggerService } from '../shared/st-demo-logger/st-demo-logger.service';
+import { CssProperty } from '../../shared/css-property-table/css-property-table.model';
 
 @Component({
    selector: 'modal-example',
-   templateUrl: './st-modal-demo.component.html'
+   templateUrl: './st-modal-demo.component.html',
+   styleUrls: ['./st-modal-demo.component.scss']
 })
 
 export class StModalDemoComponent implements AfterViewInit {
@@ -35,6 +37,34 @@ export class StModalDemoComponent implements AfterViewInit {
       ts: 'demo/st-modal-demo/st-modal-demo.component.ts',
       component: 'lib/st-modal/st-modal.component.ts'
    };
+
+   public cssProperties: CssProperty[] = [
+      {
+         name: '--egeo-st-modal__delete-icon--content',
+         description: 'Delete modal icon',
+         default: '\e043'
+      },
+      {
+         name: '--egeo-st-modal__warning-icon--content',
+         description: 'Warning delete icon',
+         default: '\e613'
+      },
+      {
+         name: '--egeo-st-button__close-icon--content',
+         description: 'Close button icon',
+         default: '\e117'
+      },
+      {
+         name: '--egeo-st-button__close-icon--font-size',
+         description: 'Close button icon font size',
+         default: 'inherit'
+      },
+      {
+         name: '--egeo-st-button__close-icon--color',
+         description: 'Close button icon color',
+         default: 'inherit'
+      }
+   ];
 
    private buttons: StModalButton[] = [
       { label: 'Cancel', classes: 'button-secondary', responseValue: StModalResponse.NO, closeOnClick: true },

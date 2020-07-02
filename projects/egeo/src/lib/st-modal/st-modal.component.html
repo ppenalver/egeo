@@ -18,7 +18,7 @@
       <div class="st-modal-header">
          <div class="container">
             <span class="status-icon" [ngClass]="hasIcon" *ngIf="hasIcon"></span>
-            <p class="title">{{title}}</p> <span class="icon-cross close-button" *ngIf="showCloseBtn" (click)="onClose()"></span>
+            <p class="title">{{title}}</p> <span class="close-button" *ngIf="showCloseBtn" (click)="onClose()"></span>
 
             <st-modal-buttons *ngIf="isFullscreen" [buttonConfig]="buttons" [fullscreen]="isFullscreen" (click)="click.emit($event)"></st-modal-buttons>
          </div>
@@ -42,4 +42,3 @@
       </footer>
    </section>
 </div>
-

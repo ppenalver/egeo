@@ -68,12 +68,16 @@
             margin-left: auto;
          }
 
-         .status-icon.icon-circle-cross {
-            color: var(--egeo-theme-error, $error);
-         }
+         .status-icon {
+            font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
 
-         .status-icon.icon-alert {
-            color: var(--egeo-theme-warning, $warning);
+            &.delete {
+               color: var(--egeo-theme-error, $error);
+            }
+
+            &.alert {
+               color: var(--egeo-theme-warning, $warning);
+            }
          }
       }
 

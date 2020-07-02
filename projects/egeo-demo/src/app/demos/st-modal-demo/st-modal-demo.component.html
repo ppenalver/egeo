@@ -13,6 +13,11 @@
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="container-fluid col-md-24">
       <div class="st-live-example">
+         <h1 class="title">Theme customization</h1>
+         <p class="paragraph">You can customize some styles using the following css variables</p>
+         <demo-css-property-table [cssProperties]="cssProperties" class="separator"></demo-css-property-table>
+      </div>
+      <div class="st-live-example">
          <h1 class="st-live-example-title">Modals by type of content:</h1>
 
          <button class="button button-primary" (click)="showModal()">
@@ -25,8 +30,8 @@
             <span>Modal with component</span>
          </button>
          <button class="button button-primary" (click)="showModalWithComponentAndIcon()">
-               <span>Modal with component and custom icon</span>
-            </button>
+            <span>Modal with component and custom icon</span>
+         </button>
          <button class="button button-primary" (click)="showModalWithoutButtons()">
             <span>Modal without buttons</span>
          </button>

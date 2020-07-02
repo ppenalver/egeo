@@ -23,6 +23,7 @@ import { StModalDemoTestComponent } from './st-modal-test-demo.component';
 import { StModalDemoTestButtonsComponent } from './st-modal-test-buttons-demo.component';
 import { StModalDemoTestFullscreenLayoutComponent } from './st-modal-test-fullscreen-layout.component';
 import { StDemoLoggerModule } from '../shared/st-demo-logger/st-demo-logger.module';
+import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
 
 @NgModule({
    imports: [
@@ -37,6 +38,7 @@ import { StDemoLoggerModule } from '../shared/st-demo-logger/st-demo-logger.modu
       StDemoGeneratorModule.withComponents({
          components: [StModalDemoComponent]
       }),
+      CssPropertyTableModule,
       StDocsModule
    ],
    declarations: [
