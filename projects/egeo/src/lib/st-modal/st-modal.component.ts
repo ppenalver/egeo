@@ -19,8 +19,9 @@ import {
    AfterViewInit,
    Output,
    ViewChild,
-   ViewContainerRef
-} from '@angular/core';
+   ViewContainerRef} from '@angular/core';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 import { StModalButton, StModalButtonResponse, StModalConfig, StModalResponse } from './st-modal.model';
 import { StWindowRefService } from '../utils/window-service';
@@ -29,12 +30,28 @@ import { StWindowRefService } from '../utils/window-service';
    selector: 'st-modal',
    templateUrl: './st-modal.component.html',
    styleUrls: ['./st-modal.component.scss'],
-   changeDetection: ChangeDetectionStrategy.OnPush
+   changeDetection: ChangeDetectionStrategy.OnPush,
+   animations: [
+      trigger('state', [
+         state('void, hidden', style({opacity: 0})),
+         state('visible', style({opacity: 1})),
+         transition('* => visible', [
+            style({opacity: 0}),
+            animate(300 )
+            ]),
+         transition('* => hidden', [
+            style({opacity: 1}),
+            animate(300 )
+            ])
+      ])
+  ]
 })
 export class StModalComponent implements OnDestroy, AfterViewInit {
    @Input() modalConfig: StModalConfig;
    @Input() component: any;
+   @Input() disabledAnimation: boolean = false;
    @Output() click: EventEmitter<StModalButtonResponse> = new EventEmitter<StModalButtonResponse>();
+   @Output() endAnimation: EventEmitter<boolean>  = new EventEmitter<boolean>();
    @ViewChild('stModalBody', { read: ViewContainerRef, static: false }) targetContent: ViewContainerRef;
    @ViewChild('stModalBodyEmpty', { read: ViewContainerRef, static: false }) targetEmpty: ViewContainerRef;
 
@@ -42,8 +59,10 @@ export class StModalComponent implements OnDestroy, AfterViewInit {
    readonly defaultMinWidth: number = 400;
 
    target: ViewContainerRef;
+   visibility: string = 'visible';
 
    private componentRef: ComponentRef<any>;
+   private _subscriptions: Array<Subscription> = [];
 
    constructor(
       private cfr: ComponentFactoryResolver,
@@ -101,11 +120,31 @@ export class StModalComponent implements OnDestroy, AfterViewInit {
       return this.modalConfig.showCloseBtn;
    }
 
+   animationDone(event: AnimationEvent): void {
+      if (event.toState === 'hidden') {
+         this.endAnimation.emit(true);
+      }
+   }
+
+   onClickButtons(event: any): void  {
+      this.visibility = 'hidden';
+      this._subscriptions.push(this.endAnimation.subscribe((data) => {
+         if (data) {
+            this.click.emit(event);
+         }
+      }));
+   }
+
    onClose(): void {
-      this.click.emit({
-         response: StModalResponse.CLOSE,
-         close: true
-      });
+      this.visibility = 'hidden';
+      this._subscriptions.push(this.endAnimation.subscribe((data) => {
+         if (data) {
+            this.click.emit({
+               response: StModalResponse.CLOSE,
+               close: true
+            });
+         }
+      }));
    }
 
    /** DYNAMIC MODAL BODY COMPONENT LOAD */
@@ -122,6 +161,13 @@ export class StModalComponent implements OnDestroy, AfterViewInit {
          this.componentRef.destroy();
       }
       this.windowRef.nativeWindow.document.body.classList.remove('st-modal-overlay');
+      if (this._subscriptions.length > 0) {
+         this._subscriptions.forEach((subscription) => {
+            if (subscription) {
+               subscription.unsubscribe();
+            }
+         });
+      }
    }
 
    private getModalActualWidth(maxWidth: number, minWidth?: number): number {

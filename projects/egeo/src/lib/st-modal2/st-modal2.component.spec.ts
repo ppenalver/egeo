@@ -11,6 +11,8 @@
 import { DebugElement, Component, ViewChild } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 import { StModal2Component } from './st-modal2.component';
 
 
@@ -41,6 +43,7 @@ describe('StModal2', () => {
 
       beforeEach(async(() => {
          TestBed.configureTestingModule({
+            imports: [NoopAnimationsModule],
             declarations: [Modal2TestComponent, StModal2Component],
             schemas: [NO_ERRORS_SCHEMA]
          }).compileComponents();  // compile template and css
@@ -84,7 +87,7 @@ describe('StModal2', () => {
       });
 
 
-      it('should emit close event when pressing escape if the option is activated', () => {
+      it('should emit close event when pressing escape if the option is activated', async(() => {
          comp.closeOnEscape = true;
          fixture.detectChanges();
 
@@ -95,9 +98,14 @@ describe('StModal2', () => {
          event.keyCode = 27;
          event.initEvent('keydown');
          document.dispatchEvent(event);
+         spyOn(comp.modalComponent, 'animationDone').and.callThrough();
+         spyOn(comp.modalComponent.endAnimation, 'emit').and.callThrough();
+         fixture.detectChanges();
 
-         expect(onCloseEmitter.emit).toHaveBeenCalled();
-      });
+         fixture.whenStable().then(() => {
+            expect(onCloseEmitter.emit).toHaveBeenCalled();
+         });
+      }));
 
       it('should emit an event when enter is pressed', () => {
          fixture.detectChanges();

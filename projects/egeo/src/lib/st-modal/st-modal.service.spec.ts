@@ -45,7 +45,8 @@ describe('StModal', () => {
          instanceObj = {
             click: notifySubject.asObservable(),
             modalConfig: '',
-            component: ''
+            component: '',
+            subscriptions: []
          };
 
          containerRef = {
@@ -58,24 +59,23 @@ describe('StModal', () => {
          };
       });
 
-      it('should be close modal', () => {
+      it('should be close modal', (() => {
          const responseFunction = jasmine.createSpy('response');
+
          service = new StModalService(cfr);
          service.container = containerRef;
-
          service.show({ message: 'message' }).subscribe(responseFunction);
 
          service.close();
          expect(responseFunction).toHaveBeenCalled();
          expect(responseFunction).toHaveBeenCalledWith(StModalResponse.CLOSE);
-
          expect(clearFunction).toHaveBeenCalled();
          expect(containerRef.createComponent).toHaveBeenCalled();
          expect(destroyFunction).toHaveBeenCalled();
 
          service.container = undefined;
          service.close();
-      });
+      }));
 
       it('should be thrown an error when init twice', () => {
          service = new StModalService(cfr);
@@ -160,7 +160,7 @@ describe('StModal', () => {
          expect(instanceObj.modalConfig).toEqual(Object.assign({}, defaultConfig, minConfig));
       });
 
-      it('should generate a delete confirmation modal config', () => {
+     it('should generate a delete confirmation modal config', () => {
          const okButton: string = 'Delete';
          const cancelButton: string = 'Cancel';
          const deleteModalTitle: string = 'delete modal title';

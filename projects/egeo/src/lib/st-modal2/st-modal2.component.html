@@ -10,7 +10,7 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-modal-container">
+<div class="st-modal-container" [@state]="visibility" (@state.done)="animationDone($event)" [@.disabled]="disabledAnimation">
   <section class="st-modal" [style.width.px]="width">
     <ng-container *ngIf="emptyModal">
       <ng-content></ng-content>
@@ -20,9 +20,9 @@
         <div class="container">
           <p class="title" *ngIf="modalTitle && modalTitle.length">{{modalTitle}}</p>
           <ng-content select=[st-modal-title]></ng-content>
-          <span class="icon-cross close-button" 
+          <span class="icon-cross close-button"
             *ngIf="!hideCloseBtn"
-            (click)="onClose.emit()"></span>
+            (click)="onCloseButton()"></span>
         </div>
       </div>
       <div class="st-modal-body">

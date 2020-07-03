@@ -16,7 +16,7 @@
 * st-sidebar: Display an optional message when search does not have any results
 * st-dropdown-menu: Allow to customize some styles from outside using css variables
 * st-modal: add optional and customizable close button to basic modal
-* st-search: Allow to customize icon styles from outside using css variables
+* st-search: Allow to customize icon styles from outside using css
 
 **Fixed bugs:**
 
@@ -29,7 +29,8 @@
 **Breaking changes:**
 
 * st-table: Give default values to ORDER_TYPE as 'asc' and 'desc'
-
+* st-modal: include fadein fadeout animation
+* st-modal2: include fadein fadeout animation
 
 ## 21.1.0 (June 26, 2020)
 

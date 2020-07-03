@@ -13,6 +13,7 @@ import { Component, EventEmitter, Input, Output, NO_ERRORS_SCHEMA } from '@angul
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StWindowRefService } from '../utils/window-service';
 
@@ -87,6 +88,7 @@ describe('StModal', () => {
 
       beforeEach(async(() => {
          TestBed.configureTestingModule({
+            imports: [NoopAnimationsModule],
             declarations: [StModalComponent, ModalTestComponent],
             schemas: [NO_ERRORS_SCHEMA],
             providers: [
@@ -279,7 +281,7 @@ describe('StModal', () => {
          expect(messageDE.nativeElement.textContent).toEqual('Hello World');
       });
 
-      it('should display a cross button if "showCloseBtn" is true', () => {
+      it('should display a cross button if "showCloseBtn" is true', async(() => {
          spyOn(comp.click, 'emit');
 
          comp.modalConfig = Object.assign({}, defaultConfig);
@@ -288,10 +290,16 @@ describe('StModal', () => {
          fixture.detectChanges();
 
          expect(fixture.nativeElement.querySelector('.close-button')).not.toBeNull();
-         fixture.nativeElement.querySelector('.close-button').click();
+         spyOn(comp, 'animationDone').and.callThrough();
+         spyOn(comp.endAnimation, 'emit').and.callThrough();
+         fixture.detectChanges();
+            fixture.nativeElement.querySelector('.close-button').click();
+         fixture.detectChanges();
 
-         expect(comp.click.emit).toHaveBeenCalledWith({response: StModalResponse.CLOSE, close: true});
-      });
+         fixture.whenStable().then(() => {
+            expect(comp.click.emit).toHaveBeenCalledWith({response: StModalResponse.CLOSE, close: true});
+         });
+      }));
 
       it('should not display a cross button if "showCloseBtn" is false', () => {
          comp.modalConfig = Object.assign({}, defaultConfig);

@@ -16,8 +16,7 @@ import {
    Type,
    ViewContainerRef
 } from '@angular/core';
-import { Observable ,  Subject } from 'rxjs';
-
+import { Observable , Subject } from 'rxjs';
 /* local dependencies */
 import { StModalComponent } from './st-modal.component';
 import {
@@ -43,13 +42,13 @@ export class StModalService {
    }
 
    // - Public methods
-   show(config: StModalConfig, component?: Type<any>): Observable<StModalResponse> {
+   show(config: StModalConfig, component?: Type<any>, disabledAnimation?: boolean): Observable<StModalResponse> {
       let errors: string[] = this.canCreateModal(config, component);
       if (errors && errors.length > 0) {
          throw new Error(errors.join(' '));
       }
       this.notifyButtonInteraction = new Subject<StModalResponse>();
-      this.createModal(this.createConfig(config), component);
+      this.createModal(this.createConfig(config), component, disabledAnimation);
       return this.notifyButtonInteraction.asObservable();
    }
 
@@ -113,12 +112,12 @@ export class StModalService {
    }
 
    /* INTERNAL METHODS FOR WORK WITH MODALS */
-   private createModal(modalConfig: StModalConfig, component?: Type<any>): void {
+   private createModal(modalConfig: StModalConfig, component?: Type<any>, disabledAnimation?: boolean): void {
       let stModalFactory: ComponentFactory<StModalComponent> = this._cfr.resolveComponentFactory(StModalComponent);
       if (stModalFactory) {
          this._containerRef.clear();
          this.dynamicModal = this._containerRef.createComponent<StModalComponent>(stModalFactory);
-         this.bindVars(modalConfig, component);
+         this.bindVars(modalConfig, component, disabledAnimation);
       }
    }
 
@@ -131,11 +130,12 @@ export class StModalService {
       }
    }
 
-   private bindVars(modalConfig: StModalConfig, component: Type<any>): void {
+   private bindVars(modalConfig: StModalConfig, component: Type<any>, disabledAnimation: boolean): void {
       this.dynamicModal.instance.component = component;
 
       this.dynamicModal.instance.click.subscribe(this.notify.bind(this));
       this.dynamicModal.instance.modalConfig = modalConfig;
+      this.dynamicModal.instance.disabledAnimation = disabledAnimation;
 
       this.dynamicModal.changeDetectorRef.detectChanges();
    }

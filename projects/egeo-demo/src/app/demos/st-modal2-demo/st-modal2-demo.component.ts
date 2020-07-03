@@ -22,6 +22,7 @@ export class StModal2DemoComponent {
   public modal1: boolean = false;
   public modal2: boolean = false;
   public modal3: boolean = false;
+  public modal4: boolean = false;
   public configDoc: any = {
     html: 'demo/st-modal2-demo/st-modal2-demo.component.html',
     ts: 'demo/st-modal2-demo/st-modal2-demo.component.ts',

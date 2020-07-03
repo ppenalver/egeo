@@ -10,7 +10,7 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-modal-container">
+<div class="st-modal-container" [@state]="visibility" (@state.done)="animationDone($event)" [@.disabled]="disabledAnimation">
    <section *ngIf="emptyModal" class="st-modal" [ngClass]="{'st-modal-fullscreen': isFullscreen}" [ngStyle]="modalStyles" [hidden]="emptyModal">
       <div #stModalBodyEmpty></div>
    </section>
@@ -20,7 +20,7 @@
             <span class="status-icon" [ngClass]="hasIcon" *ngIf="hasIcon"></span>
             <p class="title">{{title}}</p> <span class="close-button" *ngIf="showCloseBtn" (click)="onClose()"></span>
 
-            <st-modal-buttons *ngIf="isFullscreen" [buttonConfig]="buttons" [fullscreen]="isFullscreen" (click)="click.emit($event)"></st-modal-buttons>
+            <st-modal-buttons *ngIf="isFullscreen" [buttonConfig]="buttons" [fullscreen]="isFullscreen" (click)="onClickButtons($event)"></st-modal-buttons>
          </div>
       </div>
       <div class="st-modal-body">
@@ -37,7 +37,7 @@
       </div>
       <footer class="st-modal-footer" *ngIf="buttons && buttons.length > 0">
          <div class="container">
-            <st-modal-buttons *ngIf="!isFullscreen" [buttonConfig]="buttons" (click)="click.emit($event)"></st-modal-buttons>
+            <st-modal-buttons *ngIf="!isFullscreen" [buttonConfig]="buttons" (click)="onClickButtons($event)"></st-modal-buttons>
          </div>
       </footer>
    </section>
