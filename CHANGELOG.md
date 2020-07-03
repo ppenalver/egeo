@@ -24,6 +24,7 @@
 * st-table: Do not close filter menu when user clicks on filter menu container
 * st-dropdown-menu: Fix functionality to change the focused option with arrow keys
 * st-sidebar: Do not emit change event after searching something
+* st-header: Fix margin between shortcut buttons
 
 **Breaking changes:**
 
