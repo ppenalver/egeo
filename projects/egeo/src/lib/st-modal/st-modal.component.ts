@@ -14,6 +14,7 @@ import {
    ComponentFactoryResolver,
    ComponentRef,
    EventEmitter,
+   HostBinding,
    Input,
    OnDestroy,
    AfterViewInit,
@@ -49,6 +50,7 @@ import { StWindowRefService } from '../utils/window-service';
 export class StModalComponent implements OnDestroy, AfterViewInit {
    @Input() modalConfig: StModalConfig;
    @Input() component: any;
+   @HostBinding('@.disabled')
    @Input() disabledAnimation: boolean = false;
    @Output() click: EventEmitter<StModalButtonResponse> = new EventEmitter<StModalButtonResponse>();
    @Output() endAnimation: EventEmitter<boolean>  = new EventEmitter<boolean>();
