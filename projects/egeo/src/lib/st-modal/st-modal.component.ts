@@ -51,7 +51,7 @@ export class StModalComponent implements OnDestroy, AfterViewInit {
    @Input() modalConfig: StModalConfig;
    @Input() component: any;
    @HostBinding('@.disabled')
-   @Input() disabledAnimation: boolean = false;
+   @Input() disabledAnimation: boolean = true;
    @Output() click: EventEmitter<StModalButtonResponse> = new EventEmitter<StModalButtonResponse>();
    @Output() endAnimation: EventEmitter<boolean>  = new EventEmitter<boolean>();
    @ViewChild('stModalBody', { read: ViewContainerRef, static: false }) targetContent: ViewContainerRef;

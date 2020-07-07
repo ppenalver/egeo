@@ -53,12 +53,12 @@
 
     </div>
     <div class="st-live-example">
-      <h1 class="st-live-example-title">Simple Modal without animation:</h1>
+      <h1 class="st-live-example-title">Simple Modal with animation:</h1>
       <button class="button button-primary" (click)="modal4 = true">
         <span>Simple Message Modal</span>
       </button>
 
-      <st-modal2 modalTitle="Modal title" [disabledAnimation]="true"
+      <st-modal2 modalTitle="Modal title" [disabledAnimation]="false"
         (onClose)="modal4 = false"
         *ngIf="modal4">
         <div>

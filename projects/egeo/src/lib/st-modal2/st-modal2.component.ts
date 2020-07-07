@@ -35,7 +35,7 @@ import { Subscription } from 'rxjs';
 })
 export class StModal2Component implements OnDestroy {
 
-   @Input() disabledAnimation: boolean = false;
+   @Input() disabledAnimation: boolean = true;
    @Input() emptyModal: boolean;
    @Input() width: number = 600;
    @Input() modalTitle: string = '';

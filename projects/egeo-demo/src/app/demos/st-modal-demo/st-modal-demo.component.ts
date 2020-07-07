@@ -140,13 +140,13 @@ export class StModalDemoComponent implements AfterViewInit {
       }, StModalDemoTestComponent)
          .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
    }
-   showModalWithoutAnimation(): void {
+   showModalWithAnimation(): void {
       this._modalService.show({
          modalTitle: 'With component',
          maxWidth: 600,
          minWidth: 400,
          outputs: { close: this.onCloseModalWithoutButtons.bind(this) }
-      }, StModalDemoTestButtonsComponent, true)
+      }, StModalDemoTestButtonsComponent, false)
          .subscribe((response) => this._logger.notifyAlert(StDemoLoggerSeverity.INFO, this.evaluateResponse(response)));
    }
 
