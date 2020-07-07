@@ -88,7 +88,7 @@ export class StRadioGroupComponent implements ControlValueAccessor {
    }
 
    // tslint:disable-next-line:no-use-before-declare
-   @ContentChildren(forwardRef(() => StRadioComponent))
+   @ContentChildren(forwardRef(() => StRadioComponent), { descendants: true })
    _radios: QueryList<StRadioComponent> = null;
 
    _value: any = null;
