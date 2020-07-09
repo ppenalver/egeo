@@ -50,19 +50,39 @@ export class StModalDemoComponent implements AfterViewInit {
          default: '\e613'
       },
       {
-         name: '--egeo-st-button__close-icon--content',
-         description: 'Close button icon',
+         name: '--egeo-st-modal__close-icon--content',
+         description: 'Close modal button icon',
          default: '\e117'
       },
       {
-         name: '--egeo-st-button__close-icon--font-size',
-         description: 'Close button icon font size',
+         name: '--egeo-st-modal__close-icon--font-size',
+         description: 'Close modal button icon font size',
          default: 'inherit'
       },
       {
-         name: '--egeo-st-button__close-icon--color',
-         description: 'Close button icon color',
+         name: '--egeo-st-modal__close-icon--color',
+         description: 'Close modal button icon color',
          default: 'inherit'
+      },
+      {
+         name: '--egeo-st-modal__header--padding',
+         description: 'Modal header padding',
+         default: '0 30px'
+      },
+      {
+         name: '--egeo-st-modal__body--padding',
+         description: 'Modal body padding',
+         default: '0 30px'
+      },
+      {
+         name: '--egeo-st-modal__footer--padding',
+         description: 'Modal footer padding',
+         default: '30px'
+      },
+      {
+         name: '--egeo-st-modal__button--margin-left',
+         description: 'Modal button margin left',
+         default: '30px'
       }
    ];
 

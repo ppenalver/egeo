@@ -44,7 +44,7 @@
       .st-modal-header {
          background-color: var(--egeo-theme-neutral-full, $neutral-full);
          border-radius: 4px 4px 0 0;
-         padding: 0 30px;
+         padding: var(--egeo-st-modal__header--padding, 0 30px);
 
          .title {
             color: var(--egeo-theme-neutral, $neutral);
@@ -82,7 +82,7 @@
       }
 
       .st-modal-body {
-         padding: 30px;
+         padding: var(--egeo-st-modal__body--padding, 30px);
 
          .message {
             width: 100%;
@@ -108,11 +108,11 @@
       }
 
       .st-modal-footer {
-         padding: 30px;
+         padding: var(--egeo-st-modal__footer--padding, 30px);
       }
       .st-modal-buttons {
          button {
-            margin-left: 30px;
+            margin-left: var(--egeo-st-modal__button--margin-left, 30px);
          }
       }
    }

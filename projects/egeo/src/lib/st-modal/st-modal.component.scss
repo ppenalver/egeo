@@ -60,11 +60,11 @@
             }
 
             .close-button {
-               font-size: var(--egeo-st-button__close-icon--font-size, inherit);
-               color: var(--egeo-st-button__close-icon--color, inherit);
+               font-size: var(--egeo-st-modal__close-icon--font-size, inherit);
+               color: var(--egeo-st-modal__close-icon--color, inherit);
 
                &:before {
-                  content: var(--egeo-st-button__close-icon--content, "\e117");
+                  content: var(--egeo-st-modal__close-icon--content, "\e117");
                }
             }
          }

@@ -17,6 +17,7 @@
 * st-dropdown-menu: Allow to customize some styles from outside using css variables
 * st-modal: add optional and customizable close button to basic modal
 * st-search: Allow to customize icon styles from outside using css
+* st-modal: add optional and customizable css padding variables to basic modal
 
 **Fixed bugs:**
 
