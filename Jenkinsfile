@@ -8,6 +8,7 @@ hose {
     REPOSITORY = 'github.com/egeo'
     LANG = 'typescript'
     FOSS = true
+    DOWNLOADS_USER = "egeodownload"
 
     DEV = { config ->
 
@@ -21,5 +22,7 @@ hose {
         }, DEPLOY: {
             doDeploy(config)
         }, failFast: config.FAILFAST)
+
+	doPublishStatics(config, "dist/egeo-demo", "egeo",true)
     }
 }
