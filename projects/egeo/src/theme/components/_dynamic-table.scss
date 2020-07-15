@@ -24,4 +24,8 @@
          font-size: var(--egeo-st-dynamic-table__hover-button--font-size, $egeo-font-size-20);
       }
    }
+
+   .clickable {
+      color: var(--egeo-theme-action, $action);
+   }
 }

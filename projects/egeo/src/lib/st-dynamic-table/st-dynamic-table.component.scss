@@ -9,7 +9,6 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-@import '../../theme/constants/colors';
 :host {
    width: 100%;
 
@@ -22,8 +21,8 @@
       cursor: pointer;
    }
 
-   .hasFk {
-      color: var(--egeo-theme-action, $action);
+   .clickable {
       cursor: pointer;
    }
+
 }

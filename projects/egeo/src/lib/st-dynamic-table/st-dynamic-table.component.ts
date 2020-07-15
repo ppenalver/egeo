@@ -10,11 +10,12 @@
  */
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { JSONSchema4 } from 'json-schema';
+import { formatDate } from '@angular/common';
 
 import { StEgeo, StRequired } from '../decorators/require-decorators';
 import { Order } from '../st-table/shared/order';
 import { StDynamicTableUtils } from './utils/st-dynamic-table.utils';
-import { StDynamicTableHeader, StDynamicTableUserInterface, StDynamicTableFkEvent } from './st-dynamic-table.model';
+import { StDynamicTableClickCellEvent, StDynamicTableHeader, StDynamicTableUserInterface } from './st-dynamic-table.model';
 import { StTableIconClasses } from '../st-table/st-table.interface';
 
 /**
@@ -64,7 +65,6 @@ import { StTableIconClasses } from '../st-table/st-table.interface';
 export class StDynamicTableComponent {
    /** @Input {Object([key: string]: any)[]} [items=''] Item list displayed as table rows */
    @Input() @StRequired() items: { [key: string]: any }[];
-
    /** @Input {string} [qaTag=''] Prefix used to generate the id values for qa tests */
    @Input() qaTag: string;
    /** @Input {boolean} [header=true] Boolean to show or hide the header */
@@ -88,39 +88,22 @@ export class StDynamicTableComponent {
     *  deselect all rows
     */
    @Input() selectableAll: boolean = false;
-
    /** @Input {boolean[]} [selected=''] Boolean list to indicate if a row is selected */
    @Input() selected?: boolean[] = [];
-
    /** @Input {Order} [currentOrder=''] It specifies what is the current order applied to the table */
    @Input() currentOrder: Order;
-
    /** @Input {string} [customClasses=] Classes for adding styles to table tag from outside. These can be: separated-rows */
    @Input() customClasses: string;
-
    /** @Input {boolean} [fixedHeader=false] Boolean to fix the table header */
    @Input() fixedHeader: boolean = false;
    /** @Input {boolean} [stickyHoverMenu=false] Boolean to fix hover menu always visible */
    @Input() stickyHoverMenu: boolean = false;
    /** @Input {StTableIconClasses} [iconClasses=''] List of icon classes */
    @Input() iconClasses?: StTableIconClasses = new StTableIconClasses();
-
-   /** @Input {TemplateRef} [templateContentFilter=undefined] Reference to paint a custom template inside popover content */
-   @Input()
-   get templateContentFilter(): TemplateRef<any> {
-      return this._templateContentFilter;
-   }
-
-   set templateContentFilter(_templateRef: TemplateRef<any>) {
-      this._templateContentFilter = _templateRef;
-   }
-
    /** @Input {boolean[]} [statusFilter=] List of status filter by column, needed with templateContentFilter */
    @Input() statusFilter?: boolean[] = [];
-
    /** @Input {number} [activeHoverMenu=] Position of the current active hover menu */
    @Input() activeHoverMenu?: number;
-
    /** @Input {boolean} [hasHoverMenu=] It specifies if a menu has to be displayed when user puts the mouse over
     * the rows. Remember to add a cell with the selector st-table-row-hover for adding content to the menu
     */
@@ -128,10 +111,8 @@ export class StDynamicTableComponent {
    /** @Input {string} [hoverButton='icon-ellipsis'] It specifies the icon class of the hover button displayed when user puts mouse over a row
     */
    @Input() hoverButton: string = 'icon-ellipsis';
-
    /** @Input {boolean} [selectedAll=] It specifies if all rows are selected */
    @Input() selectedAll?: boolean;
-
    /** @Output {Order} [changeOrder=''] Event emitted with the new order which has to be applied to the table rows */
    @Output() changeOrder: EventEmitter<Order> = new EventEmitter<Order>();
    /** @Output {boolean} [selectAll=''] Event emitted  when user interacts with the checkbox to select or deselect
@@ -140,20 +121,18 @@ export class StDynamicTableComponent {
    @Output() selectAll: EventEmitter<boolean> = new EventEmitter<boolean>();
    /** @Output {EventEmitter<StTableHeader[]>} [fields=] Event emitted when header fields are being loaded */
    @Output() updateFields: EventEmitter<StDynamicTableHeader[]> = new EventEmitter<StDynamicTableHeader[]>();
-
    /** @Output {string} [clickFilter=] Event emitted when using filters custom template  */
    @Output() clickFilter: EventEmitter<StDynamicTableHeader> = new EventEmitter();
-
    /** @Output {StTableHeader[]} [selectFilters=] Event emitted  when user interacts with filter button without a custom template */
    @Output() selectFilters: EventEmitter<StDynamicTableHeader[]> = new EventEmitter<StDynamicTableHeader[]>();
    /** @Output {EventEmitter<number} [showHoverMenu=] Event emitted when user clicks on hover button of a row */
    @Output() showHoverMenu: EventEmitter<number> = new EventEmitter<number>();
    /** @Output {Object(checked: boolean, row: number)} [selectRow=] Event emitted when user clicks on checkbox of a row */
    @Output() selectRow: EventEmitter<{ checked: boolean, row: number }> = new EventEmitter<{ checked: boolean, row: number }>();
-   /** @Output {Object(checked: boolean, row: number)} [clickCell=] Event emitted when user clicks on checkbox of a row */
-   @Output() clickCell: EventEmitter<{ row: number, fieldId: string, label: string }> = new EventEmitter<{ row: number, fieldId: string, label: string }>();
-   /** @Output {StDynamicTableFkEvent} [clickFk=] Event emitted when user clicks on Fk cell */
-   @Output() clickFk: EventEmitter<StDynamicTableFkEvent> = new EventEmitter<StDynamicTableFkEvent>();
+   /** @Output {StDynamicTableClickCellEvent} [clickCell=] Event emitted when user clicks on a cell */
+   @Output() clickCell: EventEmitter<StDynamicTableClickCellEvent> = new EventEmitter<StDynamicTableClickCellEvent>();
+   /** @Input {string} [locale=en-US] Locale used to format dates */
+   @Input() locale: string = 'en-US';
 
    public fields: StDynamicTableHeader[] = [];
 
@@ -188,6 +167,16 @@ export class StDynamicTableComponent {
       this._manageFieldsUpdate();
    }
 
+   /** @Input {TemplateRef} [templateContentFilter=undefined] Reference to paint a custom template inside popover content */
+   @Input()
+   get templateContentFilter(): TemplateRef<any> {
+      return this._templateContentFilter;
+   }
+
+   set templateContentFilter(_templateRef: TemplateRef<any>) {
+      this._templateContentFilter = _templateRef;
+   }
+
    public onFilterClick(selectedFilter: any): void {
       this.clickFilter.emit(selectedFilter);
    }
@@ -214,31 +203,28 @@ export class StDynamicTableComponent {
       this.showHoverMenu.emit(undefined);
    }
 
-   public onClickFk(item: any, field: StDynamicTableHeader): void {
-      this.clickFk.emit({
-         fk: field.fk,
-         value: item[field.id]
-      });
+   public onClickCell(value: any, field: StDynamicTableHeader): void {
+      if (field.clickable) {
+         this.clickCell.emit({
+            header: field,
+            value: value
+         });
+      }
    }
 
-   public getCellContent(item: { [key: string]: any}, field: StDynamicTableHeader): string {
-      if (field.group) {
+   public getCellContent(item: { [key: string]: any }, field: StDynamicTableHeader): string {
+      if (field.fk && field.group) {
          const groupLabel = field.group.split(this._fkSeparator)
             .map(_groupKey => item[_groupKey])
             .join(this._fkSeparator);
          return groupLabel.length > this._fkSeparator.length ? groupLabel : item[field.id];
       }
-      return item[field.id];
-   }
+      const uiDefinition = this.uiDefinitions && this.uiDefinitions[field.id];
 
-   public getCellClasses(field: StDynamicTableHeader): { clickable?: boolean } {
-      let classes: { clickable?: boolean } = {};
-
-      if (field.reference) {
-         classes.clickable = true;
+      if (uiDefinition && uiDefinition.dateFormat) {
+         return formatDate(<string> item[field.id], uiDefinition.dateFormat, this.locale);
       }
-
-      return classes;
+      return item[field.id];
    }
 
    public getCellStyles(field: StDynamicTableHeader): any {
@@ -248,10 +234,6 @@ export class StDynamicTableComponent {
 
    public onSelectRow(checkboxEvent: { checked: boolean, value: any }, row: number): void {
       this.selectRow.emit({ checked: checkboxEvent.checked, row: row });
-   }
-
-   public onClickCellLabel(row: number, fieldId: string, label: string): void {
-      this.clickCell.emit({ row, fieldId, label });
    }
 
    private _manageFieldsUpdate(): void {

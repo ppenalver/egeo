@@ -33,14 +33,13 @@ export class StDynamicTableUtils {
                      fields.push({
                         id: _propertyKey,
                         label: _property.title || _propertyKey,
-                        reference: _property.$ref,
                         fk: uiDefinition && uiDefinition.fk,
                         group: uiDefinition && uiDefinition.group_field ? uiDefinition.group_field.view : null,
                         filters: filters,
                         filterable: filters && (filters.templateRef !== undefined || (filters.filterConfig && filters.filterConfig.length > 0)),
                         sortable: isSortable,
-                        sortedByDefault: uiDefinition && uiDefinition.sort ? uiDefinition.sort.toUpperCase() : null,
-                        type: _property.type ? this._getTypes(_propertyKey, _property.type.toString(), jsonSchema, uiDefinition) : null
+                        type: _property.type ? this._getTypes(_propertyKey, _property.type.toString(), jsonSchema, uiDefinition) : null,
+                        clickable: uiDefinition && uiDefinition.clickable
                      });
                   }
                }

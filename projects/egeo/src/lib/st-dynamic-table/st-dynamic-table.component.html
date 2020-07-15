@@ -35,7 +35,6 @@
    <tr st-table-row *ngFor="let item of items; let row = index" [selected]="selected[row]" (mouseleave)="onLeaveRow()">
       <td st-table-cell st-table-row-content
           *ngFor="let field of fields; let cell = index"
-          [ngClass]="getCellClasses(fields[cell])"
           [ngStyle]="getCellStyles(fields[cell])">
 
          <st-checkbox *ngIf="selectable && !cell"
@@ -43,12 +42,11 @@
                       [checked]="selected[row]"
                       (change)="onSelectRow($event, row)">
          </st-checkbox>
-         <span (click)="onClickCellLabel(row, field.id, item[field.id])" *ngIf="!field.fk; else hasFk">
-            {{item[field.id]}}
+         <span
+            [ngClass]="{clickable: field.clickable}"
+            (click)="onClickCell(item[field.id], field)">
+            {{getCellContent(item, field)}}
          </span>
-         <ng-template #hasFk>
-            <a (click)="onClickFk(item, field)" class="hasFk">{{getCellContent(item, field)}}</a>
-         </ng-template>
       </td>
       <td st-table-row-hover class="st-table-hover" *ngIf="hasHoverMenu">
          <i class="icon {{hoverButton}}" (click)="onShowHoverMenu(row)"></i>

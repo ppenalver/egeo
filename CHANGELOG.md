@@ -18,6 +18,7 @@
 * st-modal: add optional and customizable close button to basic modal
 * st-search: Allow to customize icon styles from outside using css
 * st-modal: add optional and customizable css padding variables to basic modal
+* st-dynamic-table: Allow to visualize date with a specific format using "dateFormat" of uiDefinitions
 
 **Fixed bugs:**
 
@@ -33,6 +34,7 @@
 * st-table: Give default values to ORDER_TYPE as 'asc' and 'desc'
 * st-modal: include fadein fadeout animation
 * st-modal2: include fadein fadeout animation
+* st-dynamic-table: Unify outputs for clicking cell and foreign key. Now, only emit "clickCell" event
 
 ## 21.1.0 (June 26, 2020)
 

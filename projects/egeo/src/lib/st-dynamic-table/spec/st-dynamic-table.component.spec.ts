@@ -67,11 +67,14 @@ describe('StDynamicTableComponent', () => {
                   'type': 'integer'
                }
             }
+         },
+         'fecha_creacion': {
+            'type': 'string'
          }
       }
    };
 
-   const items: any[] = [{ cores: 8, memory: 512, home: '/desktop' }];
+   const items: any[] = [{ cores: 8, memory: 512, home: '/desktop', fecha_creacion: '2020-04-15T19:50:30' }];
 
    beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -116,7 +119,7 @@ describe('StDynamicTableComponent', () => {
       });
    });
 
-   describe('It should be able to apply some styles from outside', () => {
+   describe('It should be able to apply some styles and configuration from outside using uiDefinition input', () => {
       it('If uiDefinitions input is introduced and there is a field with styles properties, there are added to the right field', () => {
          component.uiDefinitions = {
             cores: {
@@ -174,6 +177,20 @@ describe('StDynamicTableComponent', () => {
          expect(headerItems[0].classList).not.toContain('st-table__header-item--sortable');
          expect(headerItems[1].classList).toContain('st-table__header-item--sortable');
          expect(headerItems[2].classList).not.toContain('st-table__header-item--sortable');
+      });
+
+      it('if a property has defined dateFormat, its value is converted to this format', () => {
+         component.uiDefinitions = {
+            fecha_creacion: {
+               dateFormat: 'yyyy-MM-d / HH:mm'
+            }
+         };
+         component.jsonSchema = jsonSchema;
+         fixture.detectChanges();
+
+         let rows: HTMLTableRowElement[] = fixture.nativeElement.querySelectorAll('tbody tr');
+
+         expect(rows[0].querySelectorAll('td')[3].innerText).toContain('2020-04-15 / 19:50');
       });
    });
 

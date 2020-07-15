@@ -304,7 +304,7 @@ export {
    StDynamicTableUISpecification,
    StDynamicTableUserInterface,
    StDynamicTableFk,
-   StDynamicTableFkEvent
+   StDynamicTableClickCellEvent
 } from './st-dynamic-table/st-dynamic-table.model';
 
 // Tag

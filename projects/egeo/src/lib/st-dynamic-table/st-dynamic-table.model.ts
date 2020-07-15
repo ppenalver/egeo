@@ -2,21 +2,19 @@ import { StTableHeader } from '../';
 
 
 export interface StDynamicTableHeader extends StTableHeader {
-   reference: string;
    fk?: StDynamicTableFk;
    group?: string;
-   type?: Array<{field: string; type: string}>;
-   sortedByDefault?: string;
+   type?: Array<{ field: string; type: string }>;
+   clickable?: boolean;
 }
 
-export interface StDynamicTableFkEvent {
-   fk?: StDynamicTableFk;
-   value: string | number;
+export interface StDynamicTableClickCellEvent {
+   value: any;
+   header: StDynamicTableHeader;
 }
 
 export interface StDynamicTableUISpecification {
    sortable?: boolean;
-   sort?: string;
    styles?: {
       [key: string]: string;
    };
@@ -27,6 +25,8 @@ export interface StDynamicTableUISpecification {
    };
    templateRef?: string;
    visible?: boolean;
+   dateFormat?: string;
+   clickable?: boolean;
 }
 
 

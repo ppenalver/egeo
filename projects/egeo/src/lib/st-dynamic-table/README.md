@@ -25,6 +25,7 @@
 | hasHoverMenu          | Boolean                      | False | It specifies if a menu has to be displayed when user puts the mouse over the rows. Remember to add a cell with the selector st-table-row-hover for adding content to the menu |                 |
 | hoverButton           | String                       | False | It specifies the icon class of the hover button displayed when user puts mouse over a row                                                                                     | 'icon-ellipsis' |
 | selectedAll           | Boolean                      | False | It specifies if all rows are selected                                                                                                                                         |                 |
+| locale                | String                       | False | Locale used to format dates                                                                                                                                                   | en-US           |
 | jsonSchema            | JSONSchema4                  | False | Json schema to define its structure                                                                                                                                           |                 |
 | uiDefinitions         | StDynamicTableUserInterface  | False | UI definition for each field                                                                                                                                                  | ''              |
 
@@ -39,8 +40,7 @@
 | selectFilters | StTableHeader[]                       | Event emitted  when user interacts with filter button without a custom template     |
 | showHoverMenu | EventEmitter&lt;number                | Event emitted when user clicks on hover button of a row                             |
 | selectRow     | Object(checked: boolean, row: number) | Event emitted when user clicks on checkbox of a row                                 |
-| clickCell     | Object(checked: boolean, row: number) | Event emitted when user clicks on checkbox of a row                                 |
-| clickFk       | StDynamicTableFkEvent                 | Event emitted when user clicks on Fk cell                                           |
+| clickCell     | StDynamicTableClickCellEvent          | Event emitted when user clicks on a cell                                            |
 
 ## Example
 
@@ -77,18 +77,20 @@
 
 ```typescript
 export interface StDynamicTableUISpecification {
-      sortable?: boolean;
-      sort?: string;
-      styles?: {
-         [key: string]: string;
-      };
-      fk?: StDynamicTableFk;
-      group_field?: {
-         view: string;
-         fkTable: string;
-      };
-      templateRef?: string;
-      visible?: boolean;
+     sortable?: boolean;
+       styles?: {
+          [key: string]: string;
+       };
+       fk?: StDynamicTableFk;
+       group_field?: {
+          view: string;
+          fkTable: string;
+       };
+       templateRef?: string;
+       visible?: boolean;
+       dateFormat?: string;
+       clickable?: boolean;
+}
 ```
 
 *StDynamicTableUserInterface* (StDynamicTableUserInterface)

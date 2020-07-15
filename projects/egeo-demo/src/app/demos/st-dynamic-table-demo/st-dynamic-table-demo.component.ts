@@ -67,7 +67,8 @@ export class StDynamicTableDemoComponent {
             'type': 'string',
             'description': 'User status',
             'enum': ['Employed', 'Free', 'Busy']
-         }
+         },
+         'fecha_creacion': { 'title': 'Fecha creacion', 'description': 'fecha_creacion'}
       }
    };
    public jsonSchemaFk: JSONSchema4 = {
@@ -116,18 +117,22 @@ export class StDynamicTableDemoComponent {
             view: 'tipo_id - descripcion',
             fkTable: 'id'
          }
+      },
+      fecha_creacion: {
+         dateFormat: 'yyyy-MM-d / HH:mm'
       }
    };
    public currentOrder: Order;
 
-   public users: Array<{ id: string, name: string, lastName: string, phone: number, company: string, status: string }> = [
+   public users: Array<{ id: string, name: string, lastName: string, phone: number, company: string, status: string, fecha_creacion: string }> = [
       {
          id: '4545-df56-s341',
          name: 'Antonio',
          lastName: 'López',
          phone: 60052520145,
          company: 'Stratio',
-         status: 'Employed'
+         status: 'Employed',
+         fecha_creacion: '2020-04-15T07:19:50'
       },
       {
          id: '4545-df56-s342',
@@ -135,7 +140,8 @@ export class StDynamicTableDemoComponent {
          lastName: 'Lara',
          phone: 600456520145,
          company: 'Stratio',
-         status: 'Free'
+         status: 'Free',
+         fecha_creacion: '2020-04-15T07:19:50'
       },
       {
          id: '4545-df56-s343',
@@ -143,7 +149,8 @@ export class StDynamicTableDemoComponent {
          lastName: 'García',
          phone: 60052320145,
          company: 'Stratio',
-         status: 'Busy'
+         status: 'Busy',
+         fecha_creacion: '2020-04-15T07:19:50'
       },
       {
          id: '4545-df56-s344',
@@ -151,14 +158,16 @@ export class StDynamicTableDemoComponent {
          lastName: 'González',
          phone: 600455640145,
          company: 'Stratio',
-         status: 'Employed'
+         status: 'Employed',
+         fecha_creacion: '2020-04-15T07:19:50'
       }, {
          id: '4545-df56-s345',
          name: 'Pepe',
          lastName: 'Guerrero',
          phone: 6005276845,
          company: 'Stratio',
-         status: 'Employed'
+         status: 'Employed',
+         fecha_creacion: '2020-04-15T07:19:50'
       },
       {
          id: '4545-df56-s346',
@@ -166,7 +175,8 @@ export class StDynamicTableDemoComponent {
          lastName: 'Rodríguez',
          phone: 60065620145,
          company: 'Stratio',
-         status: 'Busy'
+         status: 'Busy',
+         fecha_creacion: '2020-04-15T07:19:50'
       }
    ];
    public sortedUsers: Array<{ id: string, name: string, lastName: string, phone: number, company: string, status: string }> = [];
