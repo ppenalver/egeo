@@ -92,6 +92,13 @@ main {
    overflow-x: hidden;
    height: 100%;
 
+   &:after {
+      content: ' ';
+      display: block;
+      width: 100%;
+      padding-bottom: 50px;
+   }
+
    .container-fnotification {
       .st-header {
          position: static;

@@ -40,6 +40,7 @@ export { StObjectToArrayPipe } from './pipes/st-object-to-array/st-object-to-arr
 
 /**************************** DIRECTIVES ***************************************************/
 export { StInputAdjustable } from './directives/st-input-adjustable/st-input-adjustable';
+export { StInputAdjustableModule } from './directives/st-input-adjustable/st-input-adjustable.module';
 export { StMinValidator } from './directives/form/st-min-validator/st-min-validator';
 export { StMaxValidator } from './directives/form/st-max-validator/st-max-validator';
 export { StFormDirectiveModule } from './directives/form/form-directives.module';
@@ -84,10 +85,6 @@ export { StCheckboxComponent } from './st-checkbox/st-checkbox.component';
 export { StDocsModule } from './st-docs/st-docs.module';
 export { StDocsComponent } from './st-docs/st-docs.component';
 
-// Draggable car
-export { StDraggableCardModule } from './st-draggable-card/st-draggable-card.module';
-export { StDraggableCardComponent } from './st-draggable-card/st-draggable-card.component';
-
 // Dropdown menu
 export {
    StDropDownMenuGroup,
@@ -106,11 +103,6 @@ export { StFilterSelectorComponent } from './st-filter-selector/st-filter-select
 // File button
 export { StFileButtonModule } from './st-file-button/st-file-button.module';
 export { StFileButtonComponent } from './st-file-button/st-file-button.component';
-
-// Footers
-export { StFooterModule } from './st-footer/st-footer.module';
-export { StFooterComponent } from './st-footer/st-footer.component';
-export { StFooterLink } from './st-footer/st-footer.model';
 
 // Foreground notifications
 
@@ -167,29 +159,6 @@ export {
    StInputErrorSchema
 } from './st-input/st-input.error.model';
 
-// Item List
-export {
-   StItemListModule
-} from './st-item-list/st-item-list.module';
-export {
-   StItemListComponent
-} from './st-item-list/st-item-list.component';
-export {
-   StItemListElement,
-   StItemListConfig,
-   StItemListConfigSchema
-} from './st-item-list/st-item-list.model';
-
-// Launcher
-export { StLauncherModule } from './st-launcher/st-launcher.module';
-export { StLauncherComponent } from './st-launcher/st-launcher.component';
-export {
-   StLauncherItem,
-   StLauncherItemSchema,
-   StLauncherGroup,
-   StLauncherGroupSchema
-} from './st-launcher/st-launcher.model';
-
 // Menu
 export { StMenuModule } from './st-menu/st-menu.module';
 export { StMenuComponent } from './st-menu/st-menu.component';
@@ -212,10 +181,6 @@ export { StModalComponent } from './st-modal/st-modal.component';
 // Modal2
 export { StModal2Component } from './st-modal2/st-modal2.component';
 export { StModal2Module } from './st-modal2/st-modal2.module';
-
-// Page Title
-export { StPageTitleModule } from './st-page-title/st-page-title.module';
-export { StPageTitleComponent } from './st-page-title/st-page-title.component';
 
 // Pagination
 export {
@@ -294,7 +259,7 @@ export { StTableRowComponent } from './st-table/shared/st-table-row/st-table-row
 export { StTableCellComponent } from './st-table/shared/st-table-cell/st-table-cell.component';
 export { StTableHeader } from './st-table/shared/table-header.interface';
 export { Order, ORDER_TYPE } from './st-table/shared/order';
-export { StTableIconClasses, StTableFilterIconClasses} from './st-table/st-table.interface';
+export { StTableIconClasses, StTableFilterIconClasses } from './st-table/st-table.interface';
 
 // Dynamic Table
 export { StDynamicTableModule } from './st-dynamic-table/st-dynamic-table.module';
@@ -363,11 +328,6 @@ export { StVerticalTabsComponent } from './st-vertical-tabs/st-vertical-tabs.com
 export { StVerticalIconTabsModule } from './st-vertical-icon-tabs/st-vertical-icon-tabs.module';
 export { StVerticalIconTabsComponent } from './st-vertical-icon-tabs/st-vertical-icon-tabs.component';
 export { StIconTab } from './st-vertical-icon-tabs/st-icon-tabs.model';
-
-// Widget
-export { StWidgetModule } from './st-widget/st-widget.module';
-export { StWidgetComponent } from './st-widget/st-widget.component';
-
 
 // Zero page
 export { StZeroPageModule } from './st-zero-page/st-zero-page.module';

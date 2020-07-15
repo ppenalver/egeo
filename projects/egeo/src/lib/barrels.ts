@@ -14,10 +14,8 @@ import { StBubbleModule } from './st-bubble/st-bubble.module';
 import { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 import { StCheckboxModule } from './st-checkbox/st-checkbox.module';
 import { StDocsModule } from './st-docs/st-docs.module';
-import { StDraggableCardModule } from './st-draggable-card/st-draggable-card.module';
 import { StDropdownMenuModule } from './st-dropdown-menu/st-dropdown-menu.module';
 import { StFileButtonModule } from './st-file-button/st-file-button.module';
-import { StFooterModule } from './st-footer/st-footer.module';
 import { StFormDirectiveModule } from './directives/form/form-directives.module';
 import { StFormModule } from './st-form/st-form.module';
 import { StFormListModule } from './st-form-list/st-form-list.module';
@@ -26,12 +24,9 @@ import { StHeaderModule } from './st-header/st-header.module';
 import { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
 import { StInputModule } from './st-input/st-input.module';
-import { StItemListModule } from './st-item-list/st-item-list.module';
 import { StLabelModule } from './st-label/index';
-import { StLauncherModule } from './st-launcher/st-launcher.module';
 import { StModalModule } from './st-modal/st-modal.module';
 import { StModal2Module } from './st-modal2/st-modal2.module';
-import { StPageTitleModule } from './st-page-title/st-page-title.module';
 import { StPaginationModule } from './st-pagination/st-pagination.module';
 import { StPopModule } from './st-pop/st-pop.module';
 import { StPopOverModule } from './st-pop-over/st-pop-over.module';
@@ -51,7 +46,6 @@ import { StToggleButtonsModule } from './st-toggle-buttons/st-toggle-buttons.mod
 import { StTooltipModule } from './st-tooltip/st-tooltip.module';
 import { StTwoListSelectionModule } from './st-two-list-selection/st-two-list-selection.module';
 import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
-import { StWidgetModule } from './st-widget/st-widget.module';
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 import { StForegroundNotificationsModule } from './st-foreground-notifications/st-foreground-notifications.module';
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
@@ -67,10 +61,8 @@ export const DECLARATIONS: any[] = [
    StCheckboxModule,
    StColorPickerModule,
    StDocsModule,
-   StDraggableCardModule,
    StDropdownMenuModule,
    StFileButtonModule,
-   StFooterModule,
    StForegroundNotificationsModule,
    StFormDirectiveModule,
    StFormModule,
@@ -81,12 +73,9 @@ export const DECLARATIONS: any[] = [
    StHorizontalTabsModule,
    StInfoBoxModule,
    StInputModule,
-   StItemListModule,
    StLabelModule,
-   StLauncherModule,
    StModalModule,
    StModal2Module,
-   StPageTitleModule,
    StPaginationModule,
    StPopModule,
    StPrismModule,
@@ -108,6 +97,5 @@ export const DECLARATIONS: any[] = [
    StTwoListSelectionModule,
    StVerticalIconTabsModule,
    StVerticalTabsModule,
-   StWidgetModule,
    StZeroPageModule
 ];

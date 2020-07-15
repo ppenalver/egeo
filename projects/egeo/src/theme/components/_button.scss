@@ -118,8 +118,16 @@
          padding: 0.3rem 1rem;
       }
 
-      i {
+      > i {
          margin-top: 2px;
+
+         & + span {
+            margin-left: 4px;
+         }
+      }
+
+      > span + i {
+         margin-left: 4px;
       }
    }
 

@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { StHeaderMenuOption, StLauncherGroup, StPopOffset } from '@stratio/egeo';
+import { StHeaderMenuOption } from '@stratio/egeo';
 
-import { HEADER_MENU, LAUNCHER_ITEMS } from './st-header-demo.model';
+import { HEADER_MENU } from './st-header-demo.model';
 
 @Component({
    selector: 'st-header-demo',

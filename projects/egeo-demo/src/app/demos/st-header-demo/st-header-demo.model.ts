@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { StHeaderMenuOption, StLauncherGroup } from '@stratio/egeo';
+import { StHeaderMenuOption } from '@stratio/egeo';
 
 export const HEADER_MENU: Array<StHeaderMenuOption> = [
    {
@@ -62,54 +62,3 @@ export const LONG_CONTENT: string = `
 <br><p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla lobortis fringilla justo a tincidunt. Quisque ut aliquam nibh. Curabitur consequat euismod enim. Vivamus pretium augue non placerat scelerisque. Suspendisse blandit dolor vitae arcu vestibulum, quis pellentesque quam lobortis. Quisque sapien turpis, dignissim vitae tellus at, luctus facilisis magna. Nulla pretium condimentum luctus.</p>
 `;
 
-export const LAUNCHER_ITEMS: StLauncherGroup[] = [
-   {
-      label: 'Egeo',
-      items: [{
-         label: 'Egeo',
-         url: 'https://github.com/Stratio/egeo'
-      },
-      {
-         label: 'Egeo Web (Esta web esta deprecada por lo que ya no tiene mantenimiento)',
-         url: 'https://github.com/Stratio/egeo-web'
-      },
-      {
-         label: 'Egeo.Starter.asdasdas.asdasd.asd.asd.asgfg.df.gdf.gdf.gtw.rtwefds',
-         url: 'https://github.com/Stratio/egeo-starter'
-      }]
-   },
-   {
-      label: 'Angular',
-      items: [{
-         label: 'Docs',
-         url: 'https://angular.io/docs'
-      },
-      {
-         label: 'Github',
-         url: 'https://github.com/angular/angular'
-      }]
-   },
-   {
-      label: 'Stratio',
-      items: [{
-         label: 'Stratio',
-         url: 'http://www.stratio.com/'
-      },
-      {
-         label: 'Linkedn',
-         url: 'https://www.linkedin.com/company/5122962/'
-      },
-      {
-         label: 'Twitter',
-         url: 'https://twitter.com/stratiobd'
-      },
-      {
-         label: 'Youtube',
-         url: 'https://www.youtube.com/channel/UCuzJA_GlT3TQaU5DyRwDOVw'
-      },
-      {
-         label: 'Paradigma Digital',
-         url: 'https://www.paradigmadigital.com'
-      }]
-   }
-];

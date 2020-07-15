@@ -20,6 +20,7 @@
 * st-modal: add optional and customizable css padding variables to basic modal
 * st-dynamic-table: Allow to visualize date with a specific format using "dateFormat" of uiDefinitions
 
+
 **Fixed bugs:**
 
 * st-dynamic-table: Fix bug in foreign key management when property does not exist on row
@@ -35,6 +36,12 @@
 * st-modal: include fadein fadeout animation
 * st-modal2: include fadein fadeout animation
 * st-dynamic-table: Unify outputs for clicking cell and foreign key. Now, only emit "clickCell" event
+* st-widget: Removed component
+* st-page-title: Removed component
+* st-footer: Removed component
+* st-launcher: Removed component
+* st-draggable-card: Removed component
+* st-items-list: Removed component
 
 ## 21.1.0 (June 26, 2020)
 

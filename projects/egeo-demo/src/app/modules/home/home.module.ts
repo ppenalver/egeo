@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
-import { StFooterModule } from '@stratio/egeo';
 
 export const routes: Routes = [
    { path: '', component: HomeComponent }
@@ -22,7 +21,6 @@ export const routes: Routes = [
 @NgModule({
    imports: [
       CommonModule,
-      StFooterModule,
       RouterModule.forChild(routes)
    ],
    declarations: [HomeComponent]

@@ -8,21 +8,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { TranslateableElement } from '../utils/egeo-resolver/egeo-resolve-model';
 
-export interface StItemListElement {
-   id: string | number;
-   name: string;
-   icon?: string;
-   selected?: boolean;
-}
+import { NgModule } from '@angular/core';
+import { StInputAdjustable } from './st-input-adjustable';
 
-export interface StItemListConfig {
-   title: string;
-   searchPlaceholder: string;
-}
-
-export interface StItemListConfigSchema {
-   title: TranslateableElement;
-   searchPlaceholder: TranslateableElement;
-}
+@NgModule({
+   imports: [],
+   declarations: [StInputAdjustable],
+   exports: [StInputAdjustable]
+})
+export class StInputAdjustableModule { }

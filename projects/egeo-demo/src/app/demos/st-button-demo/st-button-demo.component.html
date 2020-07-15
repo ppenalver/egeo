@@ -11,12 +11,8 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid demo-layout">
-      <h1 class="title">Theme customization</h1>
-      <p class="paragraph">You can customize some styles using the following css variables</p>
-      <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
 
-      <h1 class="title">Examples</h1>
+   <section class="container-liquid demo-layout">
       <div class="row">
          <div class="col-md-12">
             <h1>REGULAR BUTTONS:</h1>
@@ -212,6 +208,7 @@
             <i class="temp1">.button.button-borderless[disabled].large</i>
          </div>
       </div>
+      <br><br>
       <div class="row">
          <div class="col-md-12">
             <h1>SMALL VERSION:</h1>
@@ -465,4 +462,12 @@
       </div>
 
    </section>
+
+   <div class="theme-customization">
+      <h1 class="title">Theme customization</h1>
+      <p class="paragraph">You can customize some styles using the following css variables</p>
+      <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   </div>
+
+
 </st-docs>

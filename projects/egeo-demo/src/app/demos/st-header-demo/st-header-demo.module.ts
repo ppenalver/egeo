@@ -15,8 +15,7 @@ import {
    StDemoGeneratorModule,
    StDocsModule,
    StHeaderModule,
-   StPopOverModule,
-   StLauncherModule
+   StPopOverModule
 } from '@stratio/egeo';
 
 import { StHeaderDemoComponent } from './st-header-demo.component';
@@ -31,7 +30,6 @@ import { routing } from './st-header-demo.routing';
       StDocsModule,
       StHeaderModule,
       StPopOverModule,
-      StLauncherModule,
       StDemoGeneratorModule.withComponents({ components: [StHeaderDemoComponent] }),
       routing
    ],

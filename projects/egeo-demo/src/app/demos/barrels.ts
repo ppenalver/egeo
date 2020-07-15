@@ -15,7 +15,6 @@ import { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
 import { StCheckboxDemoModule } from './st-checkbox-demo/st-checkbox-demo.module';
 import { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 import { StFileButtonDemoModule } from './st-file-button-demo/st-file-button-demo.module';
-import { StFooterDemoModule } from './st-footer-demo/st-footer-demo.module';
 import { StForegroundNotificationsDemoModule } from './st-foreground-notifications-demo/st-foreground-notifications-demo.module';
 
 import { StFormDemoModule } from './st-form-demo/st-form-demo.module';
@@ -26,13 +25,10 @@ import { StHeaderDemoModule } from './st-header-demo/st-header-demo.module';
 import { StHorizontalTabsDemoModule } from './st-horizontal-tabs-demo/st-horizontal-tabs-demo.module';
 import { StInfoBoxDemoModule } from './st-info-box-demo/st-info-box-demo.module';
 import { StInputDemoModule } from './st-input-demo/st-input-demo.module';
-import { StItemListDemoModule } from './st-item-list-demo/st-item-list-demo.module';
 import { StLabelDemoModule } from './st-label-demo/st-label-demo.module';
-import { StLauncherDemoModule } from './st-launcher-demo/st-launcher-demo.module';
 import { StMenuDemoModule } from './st-menu-demo/st-menu-demo.module';
 import { StModalDemoModule } from './st-modal-demo/st-modal-demo.module';
 import { StModal2DemoModule } from './st-modal2-demo/st-modal2-demo.module';
-import { StPageTitleDemoModule } from './st-page-title-demo/st-page-title-demo.module';
 import { StPaginationDemoModule } from './st-pagination-demo/st-pagination-demo.module';
 import { StPopOverDemoModule } from './st-pop-over-demo/st-pop-over-demo.module';
 import { StProgressBarDemoModule } from './st-progress-bar-demo/st-progress-bar-demo.module';
@@ -50,8 +46,6 @@ import { StToggleButtonsDemoModule } from './st-toggle-buttons-demo/st-toggle-bu
 import { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
 import { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-two-list-selection-demo.module';
 import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
-import { StWidgetDemoModule } from './st-widget-demo/st-widget-demo.module';
-import { StDraggableCardDemoModule } from './st-draggable-card-demo/st-draggable-card-demo.module';
 import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
 import { StColorPickerDemoModule } from './st-color-picker-demo/st-color-picker-demo.module';
@@ -70,11 +64,9 @@ export const EGEO_DEMO_MODULES: any[] = [
    StButtonDemoModule,
    StCheckboxDemoModule,
    StColorPickerDemoModule,
-   StDraggableCardDemoModule,
    StDropdownMenuDemoModule,
    StFileButtonDemoModule,
    StFilterSelectorDemoModule,
-   StFooterDemoModule,
    StForegroundNotificationsDemoModule,
    StFormDemoModule,
    StFormListDemoModule,
@@ -83,13 +75,10 @@ export const EGEO_DEMO_MODULES: any[] = [
    StHorizontalTabsDemoModule,
    StInfoBoxDemoModule,
    StInputDemoModule,
-   StItemListDemoModule,
    StLabelDemoModule,
-   StLauncherDemoModule,
    StMenuDemoModule,
    StModalDemoModule,
    StModal2DemoModule,
-   StPageTitleDemoModule,
    StPaginationDemoModule,
    StPopOverDemoModule,
    StProgressBarDemoModule,
@@ -110,6 +99,5 @@ export const EGEO_DEMO_MODULES: any[] = [
    StTwoListSelectionDemoModule,
    StVerticalIconTabsModule,
    StVerticalTabsDemoModule,
-   StZeroPageDemoModule,
-   StWidgetDemoModule
+   StZeroPageDemoModule
 ];
