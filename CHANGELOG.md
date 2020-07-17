@@ -41,7 +41,6 @@
 * st-footer: Removed component
 * st-launcher: Removed component
 * st-draggable-card: Removed component
-* st-items-list: Removed component
 
 ## 21.1.0 (June 26, 2020)
 

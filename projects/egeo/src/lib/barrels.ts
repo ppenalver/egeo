@@ -24,6 +24,7 @@ import { StHeaderModule } from './st-header/st-header.module';
 import { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
 import { StInputModule } from './st-input/st-input.module';
+import { StItemListModule } from './st-item-list/st-item-list.module';
 import { StLabelModule } from './st-label/index';
 import { StModalModule } from './st-modal/st-modal.module';
 import { StModal2Module } from './st-modal2/st-modal2.module';
@@ -73,6 +74,7 @@ export const DECLARATIONS: any[] = [
    StHorizontalTabsModule,
    StInfoBoxModule,
    StInputModule,
+   StItemListModule,
    StLabelModule,
    StModalModule,
    StModal2Module,

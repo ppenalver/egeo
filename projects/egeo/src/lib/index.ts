@@ -120,6 +120,20 @@ export { StHeaderModule } from './st-header/st-header.module';
 export { StHeaderComponent } from './st-header/st-header.component';
 export { StHeaderUtils } from './st-header/st-header.utils';
 
+// Item List
+export {
+   StItemListModule
+} from './st-item-list/st-item-list.module';
+export {
+   StItemListComponent
+} from './st-item-list/st-item-list.component';
+export {
+   StItemListElement,
+   StItemListConfig,
+   StItemListConfigSchema
+} from './st-item-list/st-item-list.model';
+
+
 // Dynamic form
 export { StFormModule } from './st-form/st-form.module';
 export { StFormComponent } from './st-form/st-form.component';
