@@ -32,7 +32,7 @@
    },
    "dependencies": {
       "ngx-virtual-scroller": "3.0.2",
-      "lodash": "4.17.13",
+      "lodash": "4.17.19",
       "reflect-metadata": "0.1.10",
       "tslib": "1.7.1"
    },
