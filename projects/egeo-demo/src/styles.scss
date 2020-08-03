@@ -116,7 +116,7 @@ main {
 
 .demo-layout {
 
-  > .introduction {
+   > .introduction {
       font-weight: normal;
       font-size: 25px;
       font-style: normal;
@@ -127,7 +127,7 @@ main {
       height: 100px;
    }
 
-  > .title {
+   .title {
       font-weight: bold;
       font-size: $egeo-font-size-xlarge;
       font-style: normal;
@@ -137,7 +137,16 @@ main {
       color: $neutral;
       padding: 26px 0;
       display: inline-block;
-   }
+
+
+     &--centered {
+        border-bottom: 1px solid $space-20;
+        display: block;
+        margin-bottom: 30px;
+        padding-bottom: 14px;
+        text-align: center;
+     }
+  }
 
   > .subtitle {
       font-weight: 400;

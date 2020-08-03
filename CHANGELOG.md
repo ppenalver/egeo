@@ -5,6 +5,8 @@
 **New features:**
 
 * st-button: Apply new design according to UX specifications
+* st-select: Apply new heights according to UX specifications. Regular (36px) and small (30px)
+* st-input: Apply new heights according to UX specifications. Regular (36px) and small (30px)
 
 **Fixed bugs:**
 
@@ -14,6 +16,7 @@
 
 * st-button: Removed large buttons
 * Remove theme constants in order to import them from egeo-themes dependency
+* st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 
 
 ## 22.0.0 (July 29, 2020)

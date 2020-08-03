@@ -22,11 +22,12 @@
    vertical-align: bottom;
    outline: none;
    width: 100%;
-   height: var(--egeo-st-form-control--height, 40px);
+   height: var(--egeo-st-form-control--height, 36px);
 
    input {
       min-height: $egeo-line-height-20;
    }
+
    &::placeholder {
       color: var(--egeo-theme-neutral-50, $neutral-50);
    }
@@ -52,15 +53,15 @@
 %st-select-small-props {
    .arrow {
       padding: 0;
-      right: 9px;
-      top: 9px;
+      right: 0;
    }
 }
+
 %st-form-small-globals {
    padding: 6px 15px 5px 9px;
-   --egeo-st-form-control--height: 32px;
+   --egeo-st-form-control--height: 30px;
 
-   + i, + i.st-search-icon {
+   + i.st-search-icon {
       top: 9px;
    }
 

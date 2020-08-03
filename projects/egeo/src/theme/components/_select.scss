@@ -11,7 +11,7 @@
 @import '../utils/forms';
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
-st-select.small {
+.st-select.small {
    input {
       @extend %st-form-small-globals;
    }
@@ -29,7 +29,7 @@ st-select.small {
    }
    .arrow {
       background-color: var(--egeo-theme-neutral-full, $neutral-full);
-      margin: var(--egeo-st-select__arrow--margin, 5px 8px 0 0);
+      margin: var(--egeo-st-select__arrow--margin, 5px 10px 0 0);
       font-style: normal;
       color:  var(--egeo-st-select__arrow--color, inherit);
 

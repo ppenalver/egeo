@@ -61,7 +61,8 @@ export class SelectDemoComponent {
    filteredOptions: StDropDownMenuItem[] = [];
 
    model: any = {
-      option1: null
+      option1: null,
+      option2: null
    };
    reactiveForm: FormGroup; // our model driven form
 
@@ -84,25 +85,24 @@ export class SelectDemoComponent {
       this.options[5].selected = true;
       this.filteredOptions = _cloneDeep(this.options);
       this.reactiveForm = this._fb.group({
-         option1: [this.model.option1, Validators.required]
+         option1: [this.model.option1, Validators.required],
+         option2: [this.model.option1, Validators.required]
       });
    }
 
-   onSelect(value: any): void {
-      if (value === undefined) {
-         this.model.option1 = undefined;
-      }
-   }
-
    changeDisabled(): void {
-      const controlName: string = 'option1';
+      const controlNames: string[] = ['option1', 'option2'];
       this.disabled = !this.disabled;
       if (this.disabled) {
-         this.reactiveForm.get(controlName).disable();
-         this.templateDrivenForm.controls[controlName].disable();
+         this.reactiveForm.get(controlNames[0]).disable();
+         this.reactiveForm.get(controlNames[1]).disable();
+         this.templateDrivenForm.controls[controlNames[0]].disable();
+         this.templateDrivenForm.controls[controlNames[1]].disable();
       } else {
-         this.reactiveForm.get(controlName).enable();
-         this.templateDrivenForm.controls[controlName].enable();
+         this.reactiveForm.get(controlNames[0]).enable();
+         this.reactiveForm.get(controlNames[1]).enable();
+         this.templateDrivenForm.controls[controlNames[0]].enable();
+         this.templateDrivenForm.controls[controlNames[1]].enable();
       }
    }
 

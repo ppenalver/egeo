@@ -11,11 +11,12 @@
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 @import '../utils/forms';
 
-st-input.small {
+.st-input.small {
    input, textarea {
       @extend %st-form-small-globals;
    }
 }
+
 .st-input {
    @extend %st-form-control;
 
