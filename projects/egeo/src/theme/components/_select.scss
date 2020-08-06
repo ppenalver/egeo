@@ -32,19 +32,19 @@
       background-color: var(--egeo-theme-neutral-full, $neutral-full);
       margin: var(--egeo-st-select__arrow--margin, 5px 10px 0 0);
       font-style: normal;
-      color:  var(--egeo-st-select__arrow--color, inherit);
+      color:  var(--egeo-st-select__arrow--color, $space-70);
 
       &:before {
          content: var(--egeo-st-select__arrow--content, "\e63f");
          line-height: var(--egeo-st-select__arrow--line-height, 1);
-         font-size: var(--egeo-st-select__arrow--font-size, 14px);
+         font-size: var(--egeo-st-select__arrow--font-size, 12px);
          font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
       }
    }
 
    .arrow[disabled] {
       color: var(--egeo-theme-neutral-30, $neutral-30);
-      background-color: $neutral-14;
+      background-color: var(--egeo-theme-space-5, $space-5);
       cursor: not-allowed;
    }
 
@@ -52,7 +52,7 @@
       .arrow {
          color: var(--egeo-theme-action, $action);
       }
-      .st-input {
+      .button-container .st-input {
          border-bottom-left-radius: 0;
          border-bottom-right-radius: 0;
       }

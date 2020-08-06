@@ -132,7 +132,7 @@
             <div class="row">
                <div class="col-sm-6">
                   <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select [enabledSearcher]="false"
+                  <st-select [enabledSearcher]="true"
                              placeholder="Select option"
                              placeholderSearch="Search..."
                              class="st-form-field"
@@ -143,7 +143,7 @@
                </div>
                <div class="col-sm-6">
                   <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select [enabledSearcher]="false"
+                  <st-select [enabledSearcher]="true"
                              placeholder="Select option"
                              placeholderSearch="Search..."
                              class="st-form-field small"
@@ -198,8 +198,7 @@
                              label="Select option"
                              [selected]="options[1]"
                              [attr.id]="selectId"
-                             [disabled]="disabled"
-                             (select)="onChangePerPage($event)">
+                             [disabled]="disabled">
                   </st-select>
                </div>
                <div class="col-sm-6">
@@ -209,8 +208,7 @@
                              label="Select option"
                              [selected]="options[1]"
                              [attr.id]="selectId"
-                             [disabled]="disabled"
-                             (select)="onChangePerPage($event)">
+                             [disabled]="disabled">
                   </st-select>
                </div>
             </div>

@@ -31,8 +31,7 @@ input {
    }
 
    &-input {
-      padding-left: 12px;
-      padding-right: 40px;
+      padding-right: 30px;
       width: 100%;
    }
 
@@ -46,8 +45,8 @@ input {
 
   &-icon {
       position: absolute;
-      right: 10px;
-      top: 0px;
+      right: 8px;
+      top: 0;
       cursor: pointer;
 
      &:focus {

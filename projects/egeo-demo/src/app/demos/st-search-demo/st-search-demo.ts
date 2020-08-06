@@ -53,7 +53,7 @@ export class StSearchDemoComponent {
       {
          name: '--egeo-st-search__icon--font-size',
          description: 'Icon font size',
-         default: '$egeo-font-size-14'
+         default: '$egeo-font-size-16'
       },
       {
          name: '--egeo-st-search__icon--color',
@@ -68,10 +68,10 @@ export class StSearchDemoComponent {
       {
          name: '--egeo-st-search__icon--margin-top',
          description: 'Icon margin top',
-         default: '13px'
+         default: '10px'
       },
       {
-      name: '--egeo-st-search__icon__focus--color',
+         name: '--egeo-st-search__icon__focus--color',
          description: 'Focus icon color',
          default: '$action'
       },

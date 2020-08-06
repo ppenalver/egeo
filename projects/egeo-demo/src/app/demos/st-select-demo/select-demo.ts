@@ -43,12 +43,12 @@ export class SelectDemoComponent {
       }, {
          name: '--egeo-st-select__arrow--font-size',
          description: 'Arrow icon font size',
-         default: '14px'
+         default: '12px'
       },
       {
          name: '--egeo-st-select__arrow--color',
          description: 'Arrow icon color',
-         default: 'inherit'
+         default: '$space-70'
       },
       {
          name: '--egeo-st-select__arrow--margin',
