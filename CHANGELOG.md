@@ -8,6 +8,8 @@
 * st-select: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
+* theme: Added `.st-label-group` to style a group title label with a `<p>` tag
+* theme: Added `.st-inline-group` css class to set a group of controls as inline, so we get a horizontal disposition
 
 **Fixed bugs:**
 
@@ -19,6 +21,13 @@
 * Remove theme constants in order to import them from egeo-themes dependency
 * st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 
+**Refactor:**
+
+* st-switch: Changed styles to UX definition
+
+**Documentation:**
+
+* st-switch: More functionality added to demo page
 
 ## 22.0.0 (July 29, 2020)
 

@@ -264,6 +264,7 @@ export { StSpinnerComponent } from './st-spinner/st-spinner.component';
 // Switch
 export { StSwitchModule } from './st-switch/st-switch.module';
 export { StSwitchComponent } from './st-switch/st-switch.component';
+export { StSwitchPosition } from './st-switch/st-switch.model';
 
 // Table
 export { StTableModule } from './st-table/st-table.module';

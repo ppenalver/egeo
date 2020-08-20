@@ -23,14 +23,24 @@
 
 h1 {
    font-family: 'Nunito Sans';
-   font-size: 20px;
-   margin-bottom: 20px;
+   font-size: 14px;
+   line-height: 20px;
+   margin-bottom: 8px;
    padding: 0;
-   line-height: 25px;
-   font-weight: bold;
+   color: #0f1b27;
 }
 
-.swicth-demo{
-   display: block;
-   margin-bottom: 15px;
+.demo-container {
+   display: flex;
+   flex-wrap: wrap;
+
+   .demo {
+      max-width: 400px;
+      min-width: 400px;
+      margin-right: 50px;
+   }
+}
+
+.inline-flex {
+   display: inline-flex;
 }

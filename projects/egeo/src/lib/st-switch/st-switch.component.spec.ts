@@ -9,11 +9,11 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { StLabelModule } from './../st-label/st-label.module';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators} from '@angular/forms';
+import {StLabelModule} from './../st-label/st-label.module';
 
-import { StSwitchComponent } from './st-switch.component';
+import {StSwitchComponent} from './st-switch.component';
 
 let fixture: ComponentFixture<StSwitchComponent>;
 let component: StSwitchComponent;
@@ -32,7 +32,7 @@ describe('StSwitchComponent', () => {
 
    beforeEach(() => {
       formGroup = new FormGroup(
-         { requiredSwitch: new FormControl({ value: model, disabled: false }, Validators.required) }
+         {requiredSwitch: new FormControl({value: model, disabled: false}, Validators.required)}
       );
 
       fixture = TestBed.createComponent(StSwitchComponent);
@@ -41,7 +41,7 @@ describe('StSwitchComponent', () => {
       component.qaTag = 'qa tag';
    });
 
-   it ('should be added the class st-switch to the root', () => {
+   it('should be added the class st-switch to the root', () => {
       expect(fixture.nativeElement.classList).toContain('st-switch');
    });
 

@@ -12,8 +12,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
+   StCheckboxModule,
    StDemoGeneratorModule,
    StDocsModule,
+   StRadioMenuModule,
    StSwitchModule
 } from '@stratio/egeo';
 
@@ -23,6 +25,8 @@ import { StSwitchDemoComponent } from './st-switch-demo';
    imports: [
       CommonModule,
       StSwitchModule,
+      StRadioMenuModule,
+      StCheckboxModule,
       ReactiveFormsModule,
       FormsModule,
       StDemoGeneratorModule.withComponents({ components: [StSwitchDemoComponent] }),

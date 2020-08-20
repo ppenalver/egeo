@@ -9,18 +9,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {
-   Component,
-   Input,
    ChangeDetectionStrategy,
+   ChangeDetectorRef,
+   Component,
+   EventEmitter,
    forwardRef,
-   ChangeDetectorRef, Output, EventEmitter
+   Input,
+   Output
 } from '@angular/core';
-import {
-   FormControl,
-   ControlValueAccessor,
-   NG_VALUE_ACCESSOR, NG_VALIDATORS
-} from '@angular/forms';
-import { StEgeo } from '../decorators/require-decorators';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {StEgeo} from '../decorators/require-decorators';
+import {StSwitchPosition} from './st-switch.model';
 
 @Component({
    selector: 'st-switch',
@@ -40,13 +39,18 @@ export class StSwitchComponent implements ControlValueAccessor {
    @Input() label: string;
    @Input() name: string;
    @Input() contextualHelp: string;
+   @Input() position: StSwitchPosition;
    @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+   public stSwitchPosition: typeof StSwitchPosition;
 
    private _value: boolean;
    private _disabled: boolean;
    private registeredOnChange: (_: any) => void;
 
    constructor(private _cd: ChangeDetectorRef) {
+      this.stSwitchPosition = StSwitchPosition;
+      this.position = StSwitchPosition.LEFT;
    }
 
    @Input()

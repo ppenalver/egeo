@@ -11,24 +11,56 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid">
-      <form [formGroup]="form" novalidate autocomplete="off">
-         <h1>Switch with label at left</h1>
-         <st-switch class="swicth-demo" contextualHelp="this is a contextual help" name="switch-1" label="Enabled switch" formControlName="switch"
-             qaTag="enabled-switch-1"></st-switch>
-      </form>
+   <section class="container-liquid demo-container">
+      <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption.value === 'horizontal'}">
+         <p *ngIf="titleLabel" class="st-group-label">Group of st-switch</p>
+         <st-switch class="swicth-demo" name="switch-1" [disabled]="disabled" [position]="activePositionOption.value" [label]="label ? 'Switch 1' : ''" [(ngModel)]="model"></st-switch>
+         <st-switch class="swicth-demo" name="switch-2" [disabled]="disabled" [position]="activePositionOption.value" [label]="label ? 'Switch 2' : ''" [(ngModel)]="model2"></st-switch>
+         <st-switch class="swicth-demo" name="switch-3" [disabled]="disabled" [position]="activePositionOption.value" [label]="label ? 'Switch 3' : ''" [(ngModel)]="model3"></st-switch>
+      </div>
 
-      <button class="button button-primary" (click)="form.controls['switch'].enable()">
-         <span>ENABLE SWITCH</span>
-      </button>
-      <button class="button button-borderless" (click)="form.controls['switch'].disable()">
-         <span>DISABLE SWITCH</span>
-      </button>
-      <br>
-      <br>
-      <br>
-      <h1>Disabled switch without a form control</h1>
-      <st-switch class="swicth-demo" name="switch-2" [disabled]="true" label="Disabled switch" [(ngModel)]="model"></st-switch>
-      <br>
+      <div class="demo-config">
+         <div>
+            <h1>Position</h1>
+            <st-radio-menu class="radio-menu" [activeOption]="positionOptions[0]" [options]="positionOptions" (changedOption)="activePositionOption = $event">
+            </st-radio-menu>
+         </div>
+         <div>
+            <h1>Disposition</h1>
+            <st-radio-menu class="radio-menu" [activeOption]="dispositionOptions[0]" [options]="dispositionOptions" (changedOption)="activeDispositionOption = $event">
+            </st-radio-menu>
+         </div>
+         <div>
+            <h1>Options</h1>
+            <st-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+               <span>Title label</span>
+            </st-checkbox>
+            <st-checkbox name="titleLabel" [(ngModel)]="label">
+               <span>Label</span>
+            </st-checkbox>
+            <st-checkbox name="titleLabel" [(ngModel)]="disabled">
+               <span>Disabled</span>
+            </st-checkbox>
+         </div>
+      </div>
+<!--      <form [formGroup]="form" novalidate autocomplete="off">-->
+<!--         <p class="st-group-label">Switch with label at left</p>-->
+<!--         <st-switch class="swicth-demo" contextualHelp="this is a contextual help" name="switch-1" label="Enabled switch" formControlName="switch"-->
+<!--             qaTag="enabled-switch-1"></st-switch>-->
+<!--      </form>-->
+
+<!--      <button class="button button-primary" (click)="form.controls['switch'].enable()">-->
+<!--         <span>ENABLE SWITCH</span>-->
+<!--      </button>-->
+<!--      <button class="button button-borderless" (click)="form.controls['switch'].disable()">-->
+<!--         <span>DISABLE SWITCH</span>-->
+<!--      </button>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <p class="st-group-label">Disabled switch without a form control</p>-->
+<!--      <st-switch class="swicth-demo" name="switch-2" [disabled]="true" label="Disabled switch" [(ngModel)]="model"></st-switch>-->
+<!--      <st-switch class="swicth-demo" name="switch-2" [disabled]="true" label="Disabled switch" [(ngModel)]="model"></st-switch>-->
+<!--      <br>-->
    </section>
 </st-docs>
