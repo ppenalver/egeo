@@ -15,7 +15,7 @@ import {
    StCheckboxModule,
    StDemoGeneratorModule,
    StDocsModule,
-   StRadioMenuModule,
+   StRadioModule,
    StSwitchModule
 } from '@stratio/egeo';
 
@@ -25,7 +25,7 @@ import { StSwitchDemoComponent } from './st-switch-demo';
    imports: [
       CommonModule,
       StSwitchModule,
-      StRadioMenuModule,
+      StRadioModule,
       StCheckboxModule,
       ReactiveFormsModule,
       FormsModule,

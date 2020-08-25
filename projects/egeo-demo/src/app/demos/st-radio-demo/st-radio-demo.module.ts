@@ -10,8 +10,9 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {
+   StCheckboxModule,
    StDemoGeneratorModule,
    StDocsModule,
    StRadioModule
@@ -23,7 +24,7 @@ import { StRadioDemoComponent } from './st-radio-demo';
    imports: [
       CommonModule,
       StRadioModule,
-      ReactiveFormsModule,
+      StCheckboxModule,
       FormsModule,
       StDemoGeneratorModule.withComponents({ components: [StRadioDemoComponent] }),
       StDocsModule

@@ -10,20 +10,19 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<label [attr.for]="inputId" class="st-radio" [ngClass]="{'disabled': disabled}" #label [attr.id]="qaTag">
-   <input
-      type="radio"
-      [id]="inputId"
-      [attr.id]=""
-      [name]="name"
-      [hidden]="true"
-      [checked]="checked"
-      [disabled]="disabled"
-      (blur)="onInputBlur()"
-      (change)="toggleRadio($event)"
-      (click)="onInputClick($event)"
-      [value]="value">
-
-   <div class="custom-radio" [ngClass]="{'checked' : checked, 'disabled': disabled}"></div>
-   <ng-content></ng-content>
+<input
+   type="radio"
+   [id]="inputId"
+   [attr.id]=""
+   [name]="name"
+   [hidden]="true"
+   [checked]="checked"
+   [disabled]="disabled"
+   (blur)="onInputBlur()"
+   (change)="toggleRadio($event)"
+   [value]="value">
+<label [attr.for]="inputId" class="st-radio" [ngClass]="{'st-radio--disabled': disabled, 'st-radio--checked': checked}" #label [attr.id]="qaTag" (click)="onInputClick($event)">
+   <ng-container *ngIf="showLabel">
+      <ng-content></ng-content>
+   </ng-container>
 </label>

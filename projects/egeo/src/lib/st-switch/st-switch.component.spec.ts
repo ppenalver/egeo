@@ -82,14 +82,14 @@ describe('StSwitchComponent', () => {
          component.setDisabledState(true);
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.st-switch__toggle').classList).toContain('st-switch--disabled');
+         expect(fixture.nativeElement.querySelector('.st-switch').classList).toContain('st-switch--disabled');
       });
 
       it('if it is enabled, class "st-switch--disabled" hos to be removed from toggle', () => {
          component.setDisabledState(false);
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.st-switch__toggle').classList).not.toContain('st-switch--disabled');
+         expect(fixture.nativeElement.querySelector('.st-switch').classList).not.toContain('st-switch--disabled');
       });
    });
 
@@ -115,21 +115,21 @@ describe('StSwitchComponent', () => {
          component.value = false;
          fixture.detectChanges();
 
-         let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch__toggle');
+         let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch');
 
          switchBox.click();
          fixture.detectChanges();
 
          expect(component.value).toBeTruthy();
          expect(component.change.emit).toHaveBeenCalledWith(true);
-         expect(switchBox.classList).toContain('st-switch--on');
+         expect(switchBox.classList).toContain('st-switch--checked');
 
          switchBox.click();
          fixture.detectChanges();
 
          expect(component.value).toBeFalsy();
          expect(component.change.emit).toHaveBeenCalledWith(false);
-         expect(switchBox.classList).toContain('st-switch--off');
+         expect(switchBox.classList).not.toContain('st-switch--checked');
       });
 
       it('if switch is disabled, no changes are executed', () => {
@@ -138,20 +138,20 @@ describe('StSwitchComponent', () => {
          component.value = false;
          fixture.detectChanges();
 
-         let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch__toggle');
+         let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch');
          switchBox.click();
          fixture.detectChanges();
 
          expect(component.value).toBeFalsy();
          expect(component.change.emit).not.toHaveBeenCalled();
-         expect(switchBox.classList).toContain('st-switch--off');
+         expect(switchBox.classList).not.toContain('st-switch--checked');
 
          switchBox.click();
          fixture.detectChanges();
 
          expect(component.value).toBeFalsy();
          expect(component.change.emit).not.toHaveBeenCalled();
-         expect(switchBox.classList).toContain('st-switch--off');
+         expect(switchBox.classList).not.toContain('st-switch--checked');
       });
    });
 
@@ -161,7 +161,7 @@ describe('StSwitchComponent', () => {
       component.value = false;
       fixture.detectChanges();
 
-      let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch__toggle');
+      let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch');
       switchBox.click();
 
       expect(callbackFunction).toHaveBeenCalledWith(true);
@@ -174,20 +174,20 @@ describe('StSwitchComponent', () => {
       fixture.detectChanges();
       fixture.changeDetectorRef.markForCheck();
 
-      let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch__toggle');
+      let switchBox: HTMLDivElement = fixture.nativeElement.querySelector('.st-switch');
 
       expect(component.value).toBeTruthy();
-      expect(switchBox.classList).toContain('st-switch--on');
+      expect(switchBox.classList).toContain('st-switch--checked');
 
       model = false;
       component.value = model;
       fixture.detectChanges();
       fixture.changeDetectorRef.markForCheck();
 
-      switchBox = fixture.nativeElement.querySelector('.st-switch__toggle');
+      switchBox = fixture.nativeElement.querySelector('.st-switch');
 
       expect(component.value).toBeFalsy();
-      expect(switchBox.classList).toContain('st-switch--off');
+      expect(switchBox.classList).not.toContain('st-switch--checked');
    });
 
 });

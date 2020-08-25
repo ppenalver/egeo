@@ -13,6 +13,9 @@
 * st-checkbox: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-checkbox: Added `indeterminate` boolean input to set checkbox as indeterminate. Defaults to false
 * st-tag: Apply new behaviour and design defined by UX
+* st-switch: Added `showLabel` boolean input to show control's label. Defaults to true
+* st-switch: Added `position` input of type `StSwitchPosition` to change switch position. Defaults to left
+* st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
 
 **Fixed bugs:**
 
@@ -29,11 +32,13 @@
 
 * st-switch: Changed styles to UX definition
 * st-checkbox: Changed styles to UX definition
+* st-radio: Changed styles to UX definition
 
 **Documentation:**
 
 * st-switch: More functionality added to demo page
 * st-checkbox: More functionality added to demo page
+* st-radio: More functionality added to demo page
 
 
 ## 22.0.0 (July 29, 2020)

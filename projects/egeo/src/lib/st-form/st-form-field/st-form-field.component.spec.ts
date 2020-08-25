@@ -1173,7 +1173,7 @@ describe('StFormFieldComponent', () => {
       it('field is displayed with a switch when it has boolean type and it enables another fields', () => {
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.st-switch__toggle')).not.toBeNull();
+         expect(fixture.nativeElement.querySelector('.st-switch')).not.toBeNull();
       });
 
       it('label is displayed', () => {

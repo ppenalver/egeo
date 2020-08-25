@@ -25,7 +25,7 @@ import {StSwitchPosition} from './st-switch.model';
    selector: 'st-switch',
    host: {class: 'st-switch'},
    templateUrl: './st-switch.html',
-   styleUrls: ['./st-switch.scss'],
+   styleUrls: ['./st-switch.component.scss'],
    providers: [
       { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => StSwitchComponent), multi: true },
       { provide: NG_VALIDATORS, useExisting: forwardRef(() => StSwitchComponent), multi: true }
@@ -39,6 +39,7 @@ export class StSwitchComponent implements ControlValueAccessor {
    @Input() label: string;
    @Input() name: string;
    @Input() contextualHelp: string;
+   @Input() showLabel: boolean;
    @Input() position: StSwitchPosition;
    @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -49,6 +50,7 @@ export class StSwitchComponent implements ControlValueAccessor {
    private registeredOnChange: (_: any) => void;
 
    constructor(private _cd: ChangeDetectorRef) {
+      this.showLabel = true;
       this.stSwitchPosition = StSwitchPosition;
       this.position = StSwitchPosition.LEFT;
    }

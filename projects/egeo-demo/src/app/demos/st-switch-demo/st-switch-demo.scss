@@ -45,11 +45,15 @@ h1 {
    .demo {
       max-width: 400px;
       min-width: 400px;
-      margin-right: 50px;
+      margin-right: 80px;
    }
 
    .demo-config {
       flex: 1;
+
+      & > * {
+         margin-bottom: 24px;
+      }
    }
 }
 

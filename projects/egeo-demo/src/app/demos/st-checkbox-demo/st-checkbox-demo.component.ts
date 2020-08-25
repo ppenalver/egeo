@@ -44,7 +44,7 @@ export class StCheckboxDemoComponent {
    ];
 
    public dispositionOptions: Array<StRadioMenuOption>;
-   public activeDispositionOption: StRadioMenuOption;
+   public activeDispositionOption: string;
    public titleLabel: boolean;
    public label: boolean;
    public disabled: boolean;
@@ -66,7 +66,7 @@ export class StCheckboxDemoComponent {
             value: 'vertical'
          }
       ];
-      this.activeDispositionOption = this.dispositionOptions[1];
+      this.activeDispositionOption = this.dispositionOptions[1].value;
    }
 
    selectAll(event: {checked: boolean; value: any}): void {

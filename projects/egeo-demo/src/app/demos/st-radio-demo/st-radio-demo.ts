@@ -10,10 +10,12 @@
  */
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import {StRadioMenuOption} from '@stratio/egeo';
 
 @Component({
    selector: 'st-radio-demo',
    templateUrl: './st-radio-demo.html',
+   styleUrls: ['./st-radio-demo.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -23,15 +25,28 @@ export class StRadioDemoComponent {
       ts: 'demo/st-radio-demo/st-radio-demo.ts',
       component: 'lib/st-radio/st-radio.component.ts'
    };
-   public loading: boolean;
-   public model: boolean = false;
-   public form: FormGroup;
+   public dispositionOptions: Array<StRadioMenuOption>;
+   public activeDispositionOption: string;
+   public titleLabel: boolean;
+   public label: boolean;
    public disabled: boolean;
+   public model: boolean;
+   public model2: boolean;
+   public model3: boolean;
 
    constructor() {
-      this.loading = true;
-      this.form = new FormGroup({
-         radio: new FormControl({ value: this.model, disabled: false }, Validators.required)
-      });
+      this.titleLabel = true;
+      this.label = true;
+      this.dispositionOptions = [
+         {
+            label: 'Horizontal',
+            value: 'horizontal'
+         },
+         {
+            label: 'Vertical',
+            value: 'vertical'
+         }
+      ];
+      this.activeDispositionOption = this.dispositionOptions[1].value;
    }
 }

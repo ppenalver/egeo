@@ -11,24 +11,31 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid">
-      <form [formGroup]="form" novalidate autocomplete="off">
-         <h1>Radio buttons in horizontal</h1>
-
-         <st-radio-group class="radio-inline">
-            <st-radio value="1">Enabled 1</st-radio>
-            <st-radio value="2" [disabled]="false">Enabled 2</st-radio>
-            <st-radio value="3" [checked]="true" [disabled]="true">Disabled checked</st-radio>
-         </st-radio-group>
-         <br>
-         <br>
-         <h1>Radio buttons in vertical</h1>
-
-         <st-radio-group class="radio-flex">
-            <st-radio value="1">Enabled 1</st-radio>
-            <st-radio value="2" [disabled]="false">Enabled 2</st-radio>
-            <st-radio value="3" [checked]="true" [disabled]="true">Disabled checked</st-radio>
-         </st-radio-group>
-      </form>
-   </section>
+   <p class="demo-label">Demo</p>
+   <div class="demo-container">
+      <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption === 'horizontal'}">
+         <p *ngIf="titleLabel" class="st-group-label">Group of st-radio</p>
+         <st-radio value="1" [showLabel]="label" [disabled]="disabled">Option 1</st-radio>
+         <st-radio value="2" [showLabel]="label" [disabled]="disabled">Option 2</st-radio>
+         <st-radio value="3" [showLabel]="label" [disabled]="disabled">Option 3</st-radio>
+      </div>
+      <div class="demo-config">
+         <div class="st-inline-group">
+            <h1>Disposition</h1>
+            <st-radio name="dispositionOptions" *ngFor="let dispositionOption of dispositionOptions" [value]="dispositionOption.value" (change)="activeDispositionOption = $event.value" [checked]="dispositionOption.value === 'vertical'">{{dispositionOption.label}}</st-radio>
+         </div>
+         <div>
+            <h1>Options</h1>
+            <st-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+               <span>Title label</span>
+            </st-checkbox>
+            <st-checkbox name="titleLabel" [(ngModel)]="label">
+               <span>Label</span>
+            </st-checkbox>
+            <st-checkbox name="titleLabel" [(ngModel)]="disabled">
+               <span>Disabled</span>
+            </st-checkbox>
+         </div>
+      </div>
+   </div>
 </st-docs>

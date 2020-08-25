@@ -20,14 +20,12 @@
 }
 
 .st-inline-group {
-   & > .st-switch {
+   & > st-radio, & > st-checkbox, & > st-switch {
       display: inline-flex;
-      margin-bottom: 0;
       margin-right: 20px;
    }
 
-   & > st-checkbox {
-      display: inline-flex;
-      margin-right: 20px;
+   & > .st-switch {
+      margin-bottom: 0;
    }
 }

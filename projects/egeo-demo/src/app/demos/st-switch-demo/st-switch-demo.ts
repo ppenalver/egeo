@@ -10,7 +10,7 @@
  */
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import {StRadioMenuOption, StSwitchPosition} from '@stratio/egeo';
+import {RadioChange, StRadioMenuOption, StSwitchPosition} from '@stratio/egeo';
 
 @Component({
    selector: 'st-switch-demo',
@@ -31,9 +31,9 @@ export class StSwitchDemoComponent {
    public model3: boolean = false;
 
    public positionOptions: Array<StRadioMenuOption>;
-   public activePositionOption: StRadioMenuOption;
+   public activePositionOption: RadioChange;
    public dispositionOptions: Array<StRadioMenuOption>;
-   public activeDispositionOption: StRadioMenuOption;
+   public activeDispositionOption: RadioChange;
    public titleLabel: boolean;
    public label: boolean;
    public disabled: boolean;
@@ -52,7 +52,6 @@ export class StSwitchDemoComponent {
             value: StSwitchPosition.RIGHT
          }
       ];
-      this.activePositionOption = this.positionOptions[0];
       this.dispositionOptions = [
          {
             label: 'Horizontal',
@@ -63,6 +62,5 @@ export class StSwitchDemoComponent {
             value: 'vertical'
          }
       ];
-      this.activeDispositionOption = this.dispositionOptions[0];
    }
 }

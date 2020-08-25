@@ -200,6 +200,8 @@ export class StRadioComponent implements OnInit {
    @Input() qaTag: string = `st-radio-${idUnique++}`;
    /** @Input {string} [name=''] Input name value */
    @Input() name: string;
+   /** @Input {boolean} [showLabel=''] If true, shows control's label. Defaults to true */
+   @Input() showLabel: boolean;
    /** @Input {boolean} [checked=''] Boolean to check the radio button */
    @Input()
    get checked(): boolean {
@@ -266,7 +268,7 @@ export class StRadioComponent implements OnInit {
       @Optional() radioGroup: StRadioGroupComponent,
       private _radioDispatcher: SelectOneDispatcher
    ) {
-
+      this.showLabel = true;
       this.radioGroup = radioGroup;
       _radioDispatcher.listen((id: string, name: string) => {
          if (id !== this.id && name === this.name) {

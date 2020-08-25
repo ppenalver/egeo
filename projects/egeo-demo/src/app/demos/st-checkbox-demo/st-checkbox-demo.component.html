@@ -18,26 +18,25 @@
 
       <p class="demo-label">Demo</p>
       <div class="demo-container">
-         <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption.value === 'horizontal'}">
+         <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption === 'horizontal'}">
             <p *ngIf="titleLabel" class="st-group-label">Group of st-checkbox</p>
-            <st-checkbox name="nameA" value="1" (change)="selectAll($event)" [showLabel]="label" [disabled]="disabled" [(ngModel)]="allChecked" [indeterminate]="(model || model2 || model3) && !(model && model2 && model3)">
+            <st-checkbox name="selectAll" value="1" (change)="selectAll($event)" [showLabel]="label" [disabled]="disabled" [(ngModel)]="allChecked" [indeterminate]="(model || model2 || model3) && !(model && model2 && model3)">
                Select all
             </st-checkbox>
-            <st-checkbox name="nameA" value="1" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model">
+            <st-checkbox name="optionA" value="1" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model">
                Option A
             </st-checkbox>
-            <st-checkbox name="nameA" value="2" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model2">
+            <st-checkbox name="optionB" value="2" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model2">
                Option B
             </st-checkbox>
-            <st-checkbox name="nameA" value="3" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model3">
+            <st-checkbox name="optionC" value="3" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model3">
                Option C
             </st-checkbox>
          </div>
          <div class="demo-config">
-            <div>
+            <div class="st-inline-group">
                <h1>Disposition</h1>
-               <st-radio-menu class="radio-menu" [activeOption]="dispositionOptions[1]" [options]="dispositionOptions" (changedOption)="activeDispositionOption = $event">
-               </st-radio-menu>
+               <st-radio *ngFor="let dispositionOption of dispositionOptions" [value]="dispositionOption.value" [checked]="dispositionOption.value === 'vertical'" (change)="activeDispositionOption = $event.value">{{dispositionOption.label}}</st-radio>
             </div>
             <div>
                <h1>Options</h1>

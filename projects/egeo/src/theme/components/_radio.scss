@@ -10,21 +10,17 @@
  */
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
-.st-radio {
-   font-weight: 400;
-   font-size: $egeo-font-size-xsmall;
+.radio-group-label {
+   font-size: $egeo-font-size-12;
+   color: var(--egeo-theme-space-80, $space-80);
    line-height:  $egeo-line-height-20;
-   color: var(--egeo-theme-space-110, $space-110);
-}
-
-.st-radio.disabled {
-   color: var(--egeo-theme-neutral-20, $neutral-20);
-   cursor: default !important;
+   margin-bottom: 8px;
+   font-weight: 300;
 }
 
 .radio-flex > * {
    display: flex;
-   margin-bottom: 10px;
+   margin-bottom: 8px;
 }
 
 .radio-flex > .st-radio:last-of-type {
@@ -33,33 +29,9 @@
 
 .radio-inline > * {
    display: inline-block;
-   margin-right: 16px;
+   margin-right: 20px;
 }
 
 .radio-inline > .st-radio:last-of-type {
    margin-bottom: 0;
-}
-
-.custom-radio {
-   background-color: var(--egeo-theme-neutral-full, $neutral-full);
-   border: 1px solid var(--egeo-theme-neutral-30, $neutral-30);
-
-   &.checked {
-      background-color: var(--egeo-theme-action, $action);
-      border-color: var(--egeo-theme-action, $action);
-
-      &:before {
-         background-color: var(--egeo-theme-neutral-full, $neutral-full);
-      }
-   }
-
-   &.disabled {
-      border-color: var(--egeo-theme-neutral-20, $neutral-20);
-      color: var(--egeo-theme-neutral-20, $neutral-20);
-      background-color: $neutral-14;
-      &.checked {
-         background-color: var(--egeo-theme-neutral-20, $neutral-20);
-      }
-   }
-
 }

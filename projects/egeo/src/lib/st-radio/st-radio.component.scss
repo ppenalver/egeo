@@ -8,44 +8,86 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
+:host {
+   display: flex;
+}
+
 .st-radio {
    box-sizing: border-box;
    display: flex;
    align-content: center;
    align-items: center;
    cursor: pointer;
+   position: relative;
+   padding: 4px 0 4px 20px;
+   height: 25px;
 
-   &.disabled {
-      .custom-radio {
-         cursor: default;
-      }
-   }
+   font-weight: 300;
+   font-size: var(--egeo-theme-font-size-14, $egeo-font-size-14);
+   line-height:  var(--egeo-theme-line-height-18, $egeo-line-height-18);
+   color: var(--egeo-theme-space-110, $space-110);
 
-   .custom-radio {
-      width: 15px;
-      height: 15px;
+   &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 16px;
       cursor: pointer;
       display: inline-block;
       border-radius: 100%;
       text-align: center;
-      position: relative;
       box-sizing: border-box;
-      margin-right: 5px;
+      margin-right: 8px;
 
-      &.checked {
+      background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      border: 1px solid var(--egeo-theme-neutral-30, $neutral-30);
+   }
+
+   &--checked {
+
+      &:before {
+         background-color: var(--egeo-theme-action, $action);
+         border-color: var(--egeo-theme-action, $action);
+      }
+
+      &:after {
+         content: '';
+         display: block;
+         position: absolute;
+         border-radius: 100%;
+         height: 6px;
+         width: 6px;
+         left: 5px;
+         margin: auto;
+         box-sizing: border-box;
+
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      }
+   }
+
+   &--disabled {
+      color: var(--egeo-theme-space-50, $space-50);
+      cursor: not-allowed;
+
+      &:before {
+         cursor: not-allowed;
+         border-color: var(--egeo-theme-space-40, $space-40);
+         background-color: var(--egeo-theme-space-5, $space-5);
+      }
+
+      &.st-radio--checked {
+
          &:before {
-            display: block;
-            position: absolute;
-            content: '';
-            border-radius: 100%;
-            height: 5px;
-            width: 5px;
-            top: 4px;
-            left: 4px;
-            margin: auto;
-            box-sizing: border-box;
+            background-color: var(--egeo-theme-action-40, $action-40);
+            border: 1px solid transparent;
          }
       }
    }
 
+   &:hover:not(&--disabled):not(&--checked):before {
+      border-color: var(--egeo-theme-space-70, $space-70);
+   }
 }
