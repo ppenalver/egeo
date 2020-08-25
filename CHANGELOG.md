@@ -12,6 +12,7 @@
 * theme: Added `.st-inline-group` css class to set a group of controls as inline, so we get a horizontal disposition
 * st-checkbox: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-checkbox: Added `indeterminate` boolean input to set checkbox as indeterminate. Defaults to false
+* st-tag: Apply new behaviour and design defined by UX
 
 **Fixed bugs:**
 
@@ -22,6 +23,7 @@
 * st-button: Removed large buttons
 * Remove theme constants in order to import them from egeo-themes dependency
 * st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
+* st-tag: Removed input 'removable' and output 'remove'. Changed to property 'rightIcon' in StTagItem model and output 'clickButton'
 
 **Refactor:**
 
@@ -32,6 +34,7 @@
 
 * st-switch: More functionality added to demo page
 * st-checkbox: More functionality added to demo page
+
 
 ## 22.0.0 (July 29, 2020)
 

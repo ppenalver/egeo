@@ -10,7 +10,7 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { StTagComponent } from './st-tag.component';
 import { StTagItem } from './st-tag.model';
@@ -36,6 +36,9 @@ describe('StTagComponent', () => {
          providers: [],
          schemas: [NO_ERRORS_SCHEMA]
       })
+         .overrideComponent(StTagComponent, {
+            set: { changeDetection: ChangeDetectionStrategy.Default }
+         })
          .compileComponents();
    }));
 
@@ -46,30 +49,31 @@ describe('StTagComponent', () => {
       fixture.detectChanges();
    });
 
-   describe('If tag can be removed', () => {
-      beforeEach(() => {
-         component.removable = true;
-         fixture.detectChanges();
-      });
 
-      it('When user clicks on the cross icon, an event is emitted', () => {
-         spyOn(component.remove, 'emit');
+   describe('An icon can be displayed on the right', () => {
 
-         const removeButton = fixture.nativeElement.querySelector('.st-tag__remove-button');
-         removeButton.click();
+      describe('if property rightIcon is defined', () => {
+         beforeEach(() => {
+            component.tag.rightIcon = 'icon-edit-2';
+            fixture.detectChanges();
+         });
 
-         expect(component.remove.emit).toHaveBeenCalledWith(component.tag);
-      });
-   });
+         it('icon is displayed to the right', () => {
+            expect(fixture.nativeElement.querySelector('.st-tag__right-button .icon-edit-2')).not.toBeNull();
+         });
 
-   describe('If tag can not be removed', () => {
-      beforeEach(() => {
-         component.removable = false;
-         fixture.detectChanges();
-      });
+         it('if user clicks on it, event is emitted if tag is not clickable', () => {
+            spyOn(component.clickButton, 'emit');
+            component.clickable = true;
+            fixture.nativeElement.querySelector('.st-tag__right-button .icon-edit-2').click();
 
-      it('Cross icon is not displayed', () => {
-         expect(fixture.nativeElement.querySelector('.st-tag__remove-button')).toBeNull();
+            expect(component.clickButton.emit).not.toHaveBeenCalled();
+
+            component.clickable = false;
+            fixture.nativeElement.querySelector('.st-tag__right-button .icon-edit-2').click();
+
+            expect(component.clickButton.emit).toHaveBeenCalled();
+         });
       });
    });
 
@@ -77,7 +81,7 @@ describe('StTagComponent', () => {
       component.tag = tagWithIcon;
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.querySelector('.st-tag__icon.' +  component.tag.icon)).not.toBeNull();
+      expect(fixture.nativeElement.querySelector('.st-tag__icon.' + component.tag.icon)).not.toBeNull();
    });
 
 });

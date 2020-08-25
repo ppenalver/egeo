@@ -4,18 +4,18 @@
 
 ## Inputs
 
-| Property  | Type      | Req   | Description                                            | Default |
-| --------- | --------- | ----- | ------------------------------------------------------ | ------- |
-| tag       | StTagItem | False | Item that contains the tag info                        |         |
-| removable | Boolean   | False | Boolean to display or not the cross icon to remove tag |         |
-| clickable | Boolean   | False | Boolean to set tag as clicklable or not                | true    |
+| Property  | Type      | Req   | Description                                | Default |
+| --------- | --------- | ----- | ------------------------------------------ | ------- |
+| tag       | StTagItem | False | Item that contains the tag info            |         |
+| class     | String    | False | Classes applied from outside               |         |
+| clickable | Boolean   | False | Boolean to specify if tag can be clickable |         |
 
 ## Outputs
 
-| Property | Type      | Description                             |
-| -------- | --------- | --------------------------------------- |
-| remove   | StTagItem | Even emitted when cross icon is clicked |
-| click    | StTagItem | Event emitted when tag is clicked       |
+| Property    | Type      | Description                             |
+| ----------- | --------- | --------------------------------------- |
+| clickButton | Boolean   | Even emitted when right icon is clicked |
+| click       | StTagItem | Event emitted when tag is clicked       |
 
 ## Example
 
@@ -36,6 +36,7 @@ export class StTagItem {
     text: string;
     icon ? : string;
     bubble ? : string;
+    rightIcon ? : string;
     [key: string]: any;
 }
 ```
