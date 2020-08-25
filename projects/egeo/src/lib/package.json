@@ -33,7 +33,7 @@
    "dependencies": {
       "ngx-virtual-scroller": "3.0.2",
       "lodash": "4.17.19",
-      "reflect-metadata": "0.1.10",
+      "reflect-metadata": "0.1.13",
       "tslib": "1.7.1"
    },
    "main": "bundles/stratio-egeo.umd.js",

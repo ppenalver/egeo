@@ -41,6 +41,11 @@
 * st-radio: More functionality added to demo page
 
 
+**Others:**
+
+* Removed required polyfill "reflect-metadata" when Egeo is imported as dependency
+
+
 ## 22.0.0 (July 29, 2020)
 
 **New features:**

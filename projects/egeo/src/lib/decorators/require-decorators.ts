@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import * as ReflectMetadata from 'reflect-metadata';
+import 'reflect-metadata';
 
 import { EgeoUtils } from '../utils/egeo-utils';
 
