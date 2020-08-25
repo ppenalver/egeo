@@ -8,3 +8,34 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+.demo-container {
+   margin-top: 30px;
+   display: flex;
+
+   .demo {
+      min-width: 400px;
+      max-width: 400px;
+      margin-right: 50px;
+   }
+
+   .demo-config {
+      flex: 1;
+   }
+}
+
+.demo-label {
+   font-size: 21px;
+   line-height: 33.6px;
+   letter-spacing: normal;
+   color: #0f1b27;
+   margin: 32px 0 20px 0;
+}
+
+h1 {
+   font-family: 'Nunito Sans';
+   font-size: 14px;
+   line-height: 20px;
+   margin-bottom: 8px;
+   padding: 0;
+   color: #0f1b27;
+}

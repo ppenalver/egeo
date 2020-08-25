@@ -11,6 +11,7 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <p class="demo-label">Demo</p>
    <section class="container-liquid demo-container">
       <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption.value === 'horizontal'}">
          <p *ngIf="titleLabel" class="st-group-label">Group of st-switch</p>

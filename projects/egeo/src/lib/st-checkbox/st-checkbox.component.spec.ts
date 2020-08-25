@@ -70,7 +70,7 @@ describe('StCheckboxComponent', () => {
 
    describe('When clicked about the component', () => {
       it('Should mark as checked the input', () => {
-         compiled.querySelector('input').click();
+         compiled.querySelector('.st-checkbox').click();
          fixture.detectChanges();
          expect(compiled.querySelector('input').checked).toBeTruthy();
       });
@@ -80,7 +80,7 @@ describe('StCheckboxComponent', () => {
       it('Should not be checked when disabled', () => {
          component.disabled = true;
          component.checked = false;
-         compiled.querySelector('input').click();
+         compiled.querySelector('.st-checkbox').click();
          fixture.detectChanges();
          expect(compiled.querySelector('input').checked).toBeFalsy();
       });

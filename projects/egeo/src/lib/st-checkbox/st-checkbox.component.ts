@@ -37,6 +37,7 @@ export const CHECKBOX_CONTROL_ACCESSOR: any = {
 @Component({
    selector: 'st-checkbox',
    templateUrl: './st-checkbox.component.html',
+   styleUrls: ['./st-checkbox.component.scss'],
    providers: [CHECKBOX_CONTROL_ACCESSOR],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -61,6 +62,10 @@ export class StCheckboxComponent implements ControlValueAccessor {
    @Input() disabled: boolean;
    /** @Input {boolean} [required=''] It converts the component into a mandatory field in a form */
    @Input() required: boolean;
+   /** @Input {boolean} [indeterminate=''] If true, set checkbox as indeterminate */
+   @Input() indeterminate: boolean;
+   /** @Input {boolean} [showLabel=''] If true, shows checkbox's label */
+   @Input() showLabel: boolean;
    /** @Input {boolean} [readonly=''] This parameter disables the checkbox and it can not be modified by the user */
    @Input() readonly: boolean;
    /** @Input {any} [value=''] The value of the checkbox */
@@ -75,7 +80,8 @@ export class StCheckboxComponent implements ControlValueAccessor {
    constructor(
       private _changeDetectorRef: ChangeDetectorRef
    ) {
-
+      this.indeterminate = false;
+      this.showLabel = true;
    }
 
    _controlValueAccessorChangeFn: (value: any) => void = (value) => { };

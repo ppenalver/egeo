@@ -16,36 +16,42 @@
       <p class="paragraph">You can customize some styles using the following css variables</p>
       <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
 
-      <h1 class="title">Inline</h1>
-      <div class="col-md-6">
-         <form>
-            <st-checkbox name="nameA" value="1"><span>Option A</span>
+      <p class="demo-label">Demo</p>
+      <div class="demo-container">
+         <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption.value === 'horizontal'}">
+            <p *ngIf="titleLabel" class="st-group-label">Group of st-checkbox</p>
+            <st-checkbox name="nameA" value="1" (change)="selectAll($event)" [showLabel]="label" [disabled]="disabled" [(ngModel)]="allChecked" [indeterminate]="(model || model2 || model3) && !(model && model2 && model3)">
+               Select all
             </st-checkbox>
-            <st-checkbox name="nameA" value="2"><span>Option B</span>
+            <st-checkbox name="nameA" value="1" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model">
+               Option A
             </st-checkbox>
-            <st-checkbox name="nameA" value="3" [disabled]="true"><span>Option C (disabled)</span>
+            <st-checkbox name="nameA" value="2" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model2">
+               Option B
             </st-checkbox>
-            <st-checkbox name="nameA" value="3" [disabled]="true" [checked]="true">
-               <span>Option C (disabled and checked)</span>
+            <st-checkbox name="nameA" value="3" (change)="checkAllSelected()" [showLabel]="label" [disabled]="disabled" [(ngModel)]="model3">
+               Option C
             </st-checkbox>
-         </form>
-      </div>
-
-      <div class="row">
-         <div class="col-md-12">
-            <h1 class="title">Block</h1>
          </div>
-         <div class="col-md-6">
-            <form class="checkbox-flex">
-               <st-checkbox name="nameB" value="1"><span>Option A</span>
+         <div class="demo-config">
+            <div>
+               <h1>Disposition</h1>
+               <st-radio-menu class="radio-menu" [activeOption]="dispositionOptions[1]" [options]="dispositionOptions" (changedOption)="activeDispositionOption = $event">
+               </st-radio-menu>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <st-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+                  <span>Title label</span>
                </st-checkbox>
-               <st-checkbox name="nameB" value="2"><span>Option B</span>
+               <st-checkbox name="titleLabel" [(ngModel)]="label">
+                  <span>Label</span>
                </st-checkbox>
-               <st-checkbox name="nameB" value="3"><span>Option C</span>
+               <st-checkbox name="titleLabel" [(ngModel)]="disabled">
+                  <span>Disabled</span>
                </st-checkbox>
-            </form>
+            </div>
          </div>
       </div>
-
    </section>
 </st-docs>

@@ -10,20 +10,23 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StCheckboxModule, StDocsModule } from '@stratio/egeo';
+import {StDemoGeneratorModule, StCheckboxModule, StDocsModule, StRadioMenuModule} from '@stratio/egeo';
 
 import { StCheckboxDemoComponent } from './st-checkbox-demo.component';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
    imports: [
       CommonModule,
       StCheckboxModule,
+      StRadioMenuModule,
       CssPropertyTableModule,
       StDemoGeneratorModule.withComponents({
          components: [StCheckboxDemoComponent]
       }),
-      StDocsModule
+      StDocsModule,
+      FormsModule
    ],
    declarations: [StCheckboxDemoComponent],
    providers: []

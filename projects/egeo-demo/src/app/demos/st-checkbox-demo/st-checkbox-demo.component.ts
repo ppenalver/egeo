@@ -10,6 +10,7 @@
  */
 import { Component } from '@angular/core';
 import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
+import { StRadioMenuOption } from '@stratio/egeo';
 
 @Component({
    selector: 'st-checkbox-demo',
@@ -42,4 +43,39 @@ export class StCheckboxDemoComponent {
       }
    ];
 
+   public dispositionOptions: Array<StRadioMenuOption>;
+   public activeDispositionOption: StRadioMenuOption;
+   public titleLabel: boolean;
+   public label: boolean;
+   public disabled: boolean;
+   public model: boolean;
+   public model2: boolean;
+   public model3: boolean;
+   public allChecked: boolean;
+
+   constructor() {
+      this.titleLabel = true;
+      this.label = true;
+      this.dispositionOptions = [
+         {
+            label: 'Horizontal',
+            value: 'horizontal'
+         },
+         {
+            label: 'Vertical',
+            value: 'vertical'
+         }
+      ];
+      this.activeDispositionOption = this.dispositionOptions[1];
+   }
+
+   selectAll(event: {checked: boolean; value: any}): void {
+      this.model = event.checked;
+      this.model2 = event.checked;
+      this.model3 = event.checked;
+   }
+
+   checkAllSelected(): void {
+      this.allChecked = this.model && this.model2 && this.model3;
+   }
 }

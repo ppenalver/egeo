@@ -10,6 +10,8 @@
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * theme: Added `.st-label-group` to style a group title label with a `<p>` tag
 * theme: Added `.st-inline-group` css class to set a group of controls as inline, so we get a horizontal disposition
+* st-checkbox: Added `showLabel` boolean input to show control's label. Defaults to true
+* st-checkbox: Added `indeterminate` boolean input to set checkbox as indeterminate. Defaults to false
 
 **Fixed bugs:**
 
@@ -24,10 +26,12 @@
 **Refactor:**
 
 * st-switch: Changed styles to UX definition
+* st-checkbox: Changed styles to UX definition
 
 **Documentation:**
 
 * st-switch: More functionality added to demo page
+* st-checkbox: More functionality added to demo page
 
 ## 22.0.0 (July 29, 2020)
 

@@ -330,7 +330,7 @@ describe('StDynamicTableComponent', () => {
          expect(headerItem[2].querySelector('.icon-arrow4_down')).not.toBeNull();
 
          (<jasmine.Spy> component.selectFilters.emit).calls.reset();
-         popover.querySelector('st-checkbox').querySelector('input').click();
+         popover.querySelector('st-checkbox').querySelector('.st-checkbox').click();
          popover.querySelector('.st-table__popover-button').click();
          const expectedHeader: StTableHeader = _cloneDeep(component.fields[2]);
          expectedHeader.filters.filterConfig = [{ id: '/root', name: '/root', selected: true }];
@@ -365,7 +365,7 @@ describe('StDynamicTableComponent', () => {
          it('When user clicks on the checkbox, an event is emitted with its current status', () => {
             spyOn(component.selectAll, 'emit');
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('input');
+               .querySelector('st-checkbox').querySelector('.st-checkbox');
 
             selectedAllCheckbox.click();
 

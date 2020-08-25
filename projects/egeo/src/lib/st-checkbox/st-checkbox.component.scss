@@ -1,0 +1,121 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
+:host {
+   display: flex;
+}
+
+/// STYLES:
+.st-checkbox {
+   position: relative;
+   cursor: pointer;
+   width: fit-content;
+   padding: 4px 0 4px 24px;
+   line-height: 17px;
+
+   &:before {
+      content: '';
+      border: 1px solid var(--egeo-theme-neutral-30, $neutral-30);
+      background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      border-radius: .125rem;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      position: absolute;
+      margin-right: 5px;
+      left: 0
+   }
+
+   &:after {
+      font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+      font-size: var(--egeo-st-checkbox__icon--font-size, 14px);
+      color: var(--egeo-theme-neutral-full, $neutral-full);
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 0;
+      top: 2px;
+      border: 1px solid transparent;
+   }
+
+   &:not(&--checked):not(&--disabled):hover:before {
+      border-color: var(--egeo-theme-space-70, $space-70);
+   }
+
+   &--checked {
+      &:before {
+         background-color: var(--egeo-theme-action, $action);
+         border: 1px solid var(--egeo-theme-action, $action);
+      }
+
+      &:after {
+         content: var(--egeo-st-checkbox__icon--content, "\e64c");
+      }
+   }
+
+   &--indeterminate {
+      &:before {
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
+         border: 1px solid var(--egeo-theme-action, $action);
+      }
+
+      &:after {
+         content: '';
+         width: 10px;
+         height: 0;
+         top: 11px;
+         left: 3px;
+         border: 1px solid var(--egeo-theme-action, $action);
+      }
+   }
+
+   &--disabled {
+      cursor: not-allowed;
+
+      &.st-label {
+         color: var(--egeo-theme-space-50, $space-50);
+      }
+
+      &.st-checkbox--checked:before {
+         background-color: var(--egeo-theme-action-40, $action-40);
+         border-color: var(--egeo-theme-action-40, $action-40);
+      }
+
+      &.st-checkbox--indeterminate:before {
+         border-color: var(--egeo-theme-action-40, $action-40);
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      }
+
+      &.st-checkbox--indeterminate:after {
+         border-color: var(--egeo-theme-action-40, $action-40);
+      }
+
+      &:before {
+         border-color: var(--egeo-theme-space-40, $space-40);
+         background-color: var(--egeo-theme-space-5, $space-5);
+      }
+   }
+
+   &.st-label {
+      font-size: $egeo-font-size-14;
+      font-weight: 300;
+      margin-bottom: 0;
+   }
+
+   &:not(&--disabled).st-label {
+      color: var(--egeo-theme-space-110, $space-110);
+   }
+}
+
+
+
+

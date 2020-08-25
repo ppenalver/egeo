@@ -21,6 +21,14 @@
    line-height: 400px;
 }
 
+.demo-label {
+   font-size: 21px;
+   line-height: 33.6px;
+   letter-spacing: normal;
+   color: #0f1b27;
+   margin: 32px 0 20px 0;
+}
+
 h1 {
    font-family: 'Nunito Sans';
    font-size: 14px;
@@ -38,6 +46,10 @@ h1 {
       max-width: 400px;
       min-width: 400px;
       margin-right: 50px;
+   }
+
+   .demo-config {
+      flex: 1;
    }
 }
 

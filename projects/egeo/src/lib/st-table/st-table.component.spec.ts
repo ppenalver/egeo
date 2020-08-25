@@ -280,7 +280,7 @@ describe('StTableComponent', () => {
          fixture.detectChanges();
          expect(headerItems[4].querySelector('.icon-arrow4_down')).not.toBeNull();
 
-         popover.querySelector('st-checkbox').querySelector('input').click();
+         popover.querySelector('st-checkbox').querySelector('.st-checkbox').click();
          (<HTMLButtonElement> headerItems[4].querySelector('.st-table__popover-button')).click();
          fixture.detectChanges();
 
@@ -357,7 +357,7 @@ describe('StTableComponent', () => {
          it('When user clicks on the checkbox, an event is emitted with its current status', () => {
             spyOn(component.selectAll, 'emit');
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('input');
+               .querySelector('st-checkbox').querySelector('.st-checkbox');
 
             selectedAllCheckbox.click();
 

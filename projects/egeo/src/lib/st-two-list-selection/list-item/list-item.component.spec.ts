@@ -128,7 +128,7 @@ describe('StTwoListSelectionComponent', () => {
             fixture.detectChanges();
             let checkbox: DebugElement = fixture.debugElement.query(By.css('.st-checkbox'));
             expect(checkbox).toBeDefined();
-            expect(checkbox.nativeElement.classList).toContain('disabled');
+            expect(checkbox.nativeElement.classList).toContain('st-checkbox--disabled');
 
             let input: DebugElement = fixture.debugElement.query(By.css('input'));
             (input.nativeElement as HTMLInputElement).click();
