@@ -25,9 +25,9 @@
    align-items: center;
    position: relative;
    line-height: var(--egeo-theme-line-height-22, $egeo-line-height-22);
-   color: var(--egeo-theme-space-80, $space-80);
+   color: var(--egeo-theme-space-110, $space-110);
    font-size: var(--egeo-theme-font-size-14, $egeo-font-size-14);
-   font-weight: 300;
+   font-weight: 400;
 
    &:not(&--right):before {
       content: '';
