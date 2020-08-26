@@ -7,7 +7,6 @@ hose {
     RELEASETIMEOUT = 30
     REPOSITORY = 'github.com/egeo'
     LANG = 'typescript'
-    FOSS = true
     DOWNLOADS_USER = "egeodownload"
 
     DEV = { config ->
