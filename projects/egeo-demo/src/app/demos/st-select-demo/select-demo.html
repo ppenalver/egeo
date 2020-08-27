@@ -96,7 +96,7 @@
       </div>
       <div class="row">
          <div class="col-sm-6">
-            <h1 class="title title--centered">Keyboard listener</h1>
+            <h1 class="title title--centered">With default value</h1>
             <div class="row">
                <div class="col-sm-6">
                   <h1 class="title title--centered">Regular (36px)</h1>
@@ -105,7 +105,6 @@
                              class="st-form-field"
                              [options]="options"
                              [disabled]="disabled"
-                             [keyBoardMove]="true"
                              [default]="options[2].value">
                   </st-select>
                </div>
@@ -116,13 +115,8 @@
                              class="st-form-field small"
                              [options]="options"
                              [disabled]="disabled"
-                             [keyBoardMove]="true"
                              [default]="options[2].value">
                   </st-select>
-               </div>
-               <div class="col-sm-12">
-                  <br>
-                  <p><b>Selected value:</b> {{ options[2].value }}</p>
                </div>
             </div>
          </div>
@@ -212,11 +206,6 @@
                   </st-select>
                </div>
             </div>
-         </div>
-
-         <div class="col-sm-12">
-            <br>
-            <p><b>Selected value:</b> {{ options[1].value }}</p>
          </div>
       </div>
    </section>

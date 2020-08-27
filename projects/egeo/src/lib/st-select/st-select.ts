@@ -56,15 +56,15 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    @Input() forceValidations: boolean = false;
 
    @Input() placeholderSearch?: string = 'Search...';
-   @Input() keyBoardMove: boolean = false;
+   @Input() keyBoardMove: boolean = true;
 
    @Output() expand: EventEmitter<boolean> = new EventEmitter<boolean>();
    @Output() select: EventEmitter<any> = new EventEmitter<any>();
    @Output() scrollAtBottom: EventEmitter<any> = new EventEmitter<any>();
    @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-   @ViewChild('input', {static: false}) inputElement: ElementRef;
-   @ViewChild('button', {static: false}) buttonElement: ElementRef;
+   @ViewChild('input', { static: false }) inputElement: ElementRef;
+   @ViewChild('button', { static: false }) buttonElement: ElementRef;
 
    @HostBinding('class.st-select-opened')
 
@@ -215,12 +215,12 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    onButtonClick(): void {
       if (!this._isDisabled) {
          this.toggleButton();
-         this.expandedMenu ? this._inputHTMLElement.focus() : this._inputHTMLElement.blur();
       }
    }
 
    onButtonKeyPress(event: KeyboardEvent): void {
-      if (event.code === 'Enter') {
+      if ((event.code === 'Enter' || event.code === 'Space') || (event.code === 'Escape' && this.expandedMenu)) {
+         event.preventDefault();
          this.toggleButton();
       }
    }
@@ -254,6 +254,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       if (this.onChange) {
          this.onChange(value);
       }
+      this.inputFormControl.markAsTouched();
       if (this.onTouched) {
          this.onTouched();
       }
@@ -262,6 +263,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       if (value || (option && option.hasOwnProperty('value') && !option.value)) {
          this.onClickOutside();
       }
+      this._inputHTMLElement.focus();
       this._cd.markForCheck();
    }
 
@@ -295,6 +297,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    private toggleButton(): void {
       this.expandedMenu = !this.expandedMenu;
       this.expand.emit(this.expandedMenu); // Notify expand change
+      this._inputHTMLElement.focus();
       this._cd.markForCheck();
    }
 

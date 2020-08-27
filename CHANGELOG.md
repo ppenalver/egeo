@@ -16,6 +16,7 @@
 * st-switch: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-switch: Added `position` input of type `StSwitchPosition` to change switch position. Defaults to left
 * st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
+* st-select: Enable keyboard listener by default to open, close and move across menu options
 
 **Fixed bugs:**
 
@@ -39,7 +40,6 @@
 * st-switch: More functionality added to demo page
 * st-checkbox: More functionality added to demo page
 * st-radio: More functionality added to demo page
-
 
 **Others:**
 

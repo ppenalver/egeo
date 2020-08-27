@@ -32,7 +32,7 @@
       background-color: var(--egeo-theme-neutral-full, $neutral-full);
       margin: var(--egeo-st-select__arrow--margin, 5px 10px 0 0);
       font-style: normal;
-      color:  var(--egeo-st-select__arrow--color, $space-70);
+      color: var(--egeo-st-select__arrow--color, $space-70);
 
       &:before {
          content: var(--egeo-st-select__arrow--content, "\e63f");
@@ -49,13 +49,19 @@
    }
 
    &.st-select-opened {
+      input {
+         @extend %st-form-control--focused;
+      }
+
       .arrow {
          color: var(--egeo-theme-action, $action);
       }
+
       .button-container .st-input {
          border-bottom-left-radius: 0;
          border-bottom-right-radius: 0;
       }
+
       .st-dropdown-menu {
          border-top-left-radius: 0;
          border-top-right-radius: 0;
@@ -67,6 +73,7 @@
       .dropdown-content {
          width: 100%;
       }
+
       .content {
          position: relative;
       }

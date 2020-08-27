@@ -20,6 +20,7 @@ import { StSelectModule } from './st-select.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StDropdownMenuComponent } from '../st-dropdown-menu/st-dropdown-menu.component';
 import { StClickOutside } from '../directives/st-click-outside/st-click-outside.directive';
+import { StDropdownMenuItemComponent } from '../st-dropdown-menu/st-dropdown-menu-item/st-dropdown-menu-item.component';
 
 
 const simpleItems: StDropDownMenuItem[] = [
@@ -63,10 +64,13 @@ describe('StSelectComponent', () => {
       })
       // remove this block when the issue #12313 of Angular is fixed
          .overrideComponent(StSelectComponent, {
-            set: { changeDetection: ChangeDetectionStrategy.OnPush }
+            set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .overrideComponent(StDropdownMenuComponent, {
-            set: { changeDetection: ChangeDetectionStrategy.OnPush }
+            set: { changeDetection: ChangeDetectionStrategy.Default }
+         })
+         .overrideComponent(StDropdownMenuItemComponent, {
+            set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
    }));
@@ -208,7 +212,7 @@ describe('StSelectComponent', () => {
       expect(component.expand.emit).toHaveBeenCalled();
    });
 
-   it('Should change active on press enter', () => {
+   it('Should change active on press enter or space', () => {
       spyOn(component.expand, 'emit');
       (fixture.elementRef.nativeElement as HTMLElement).id = id;
       component.options = simpleItems;
@@ -218,12 +222,16 @@ describe('StSelectComponent', () => {
       expect(component.expand.emit).not.toHaveBeenCalled();
       const div: DebugElement = fixture.debugElement.query(By.css('.button-container'));
 
-      div.triggerEventHandler('keypress', { code: 'Enter' });
+      div.triggerEventHandler('keypress', new KeyboardEvent('keypress', { code: 'Enter' }));
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
       expect(component.expand.emit).toHaveBeenCalled();
 
-      div.triggerEventHandler('keypress', { code: 'Space' });
+      component.expandedMenu = false;
+      (<jasmine.Spy> component.expand.emit).calls.reset();
+      fixture.detectChanges();
+
+      div.triggerEventHandler('keypress', new KeyboardEvent('keypress', { code: 'Space' }));
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
       expect(component.expand.emit).toHaveBeenCalled();
@@ -255,7 +263,7 @@ describe('StSelectComponent', () => {
    it('Should change input focus on click on label', () => {
       const input: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
       spyOn(input, 'focus');
-      spyOn(input, 'blur');
+
       (fixture.elementRef.nativeElement as HTMLElement).id = id;
       component.label = 'Test';
       component.options = simpleItems;
@@ -263,18 +271,12 @@ describe('StSelectComponent', () => {
 
       expect(component.expandedMenu).toBeFalsy();
       expect(input.focus).not.toHaveBeenCalled();
-      expect(input.blur).not.toHaveBeenCalled();
 
       const label: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
       label.click();
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
       expect(input.focus).toHaveBeenCalled();
-      expect(input.blur).not.toHaveBeenCalled();
-
-      label.click();
-      fixture.detectChanges();
-      expect(input.blur).toHaveBeenCalled();
    });
 
    it('Should preselect an option with selected property', () => {
@@ -473,21 +475,21 @@ describe('StSelectComponent', () => {
          const label: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
          label.click();
          fixture.detectChanges();
-         items = fixture.debugElement.queryAll(By.css('st-dropdown-menu-item>li'));
 
          expect(fixture.nativeElement.querySelector('.st-form-control-reset-button')).toBeNull();
 
-         label.click();
+         items = fixture.debugElement.queryAll(By.css('st-dropdown-menu-item>li'));
          (items[0].nativeElement as HTMLElement).click(); // empty option
-         fixture.detectChanges();
 
          label.click();
+         fixture.detectChanges();
+
+         expect(fixture.nativeElement.querySelector('.st-form-control-reset-button')).not.toBeNull();
          fixture.nativeElement.querySelector('.st-form-control-reset-button').click();
          fixture.detectChanges();
 
          expect(component.selected.value).toEqual(fakeDefault);
       });
-
    });
 
    describe('Error message should be displayed', () => {
@@ -531,6 +533,78 @@ describe('StSelectComponent', () => {
          expect(fixture.nativeElement.querySelector('.st-input-error-message')).toBeNull();
       });
    });
+
+   describe('Should be able to listen keyboard events', () => {
+      describe('When it is focused and menu is closed', () => {
+         beforeEach(() => {
+            component.expandedMenu = false;
+            fixture.detectChanges();
+            component.inputElement.nativeElement.focus();
+         });
+
+         it('if user presses SPACE key, menu has to be opened', () => {
+            const keyPressEvent = new Event('keypress');
+            (<any> keyPressEvent).code = 'Space';
+            component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
+
+            expect(component.expandedMenu).toBeTruthy();
+         });
+
+         it('if user presses ENTER key, menu has to be opened', () => {
+            const keyPressEvent = new Event('keypress');
+            (<any> keyPressEvent).code = 'Enter';
+            component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
+
+            expect(component.expandedMenu).toBeTruthy();
+         });
+
+         it('if user presses ESCAPE key, menu is not opened', () => {
+            const keyDownEvent = new Event('keydown');
+            (<any> keyDownEvent).code = 'Escape';
+            fixture.nativeElement.querySelector('.st-select-menu').dispatchEvent(keyDownEvent);
+
+            expect(component.expandedMenu).toBeFalsy();
+
+            const keyPressEvent = new Event('keypress');
+            (<any> keyPressEvent).code = 'Escape';
+            component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
+            expect(component.expandedMenu).toBeFalsy();
+         });
+      });
+
+      describe('When it is focused and menu is open', () => {
+         beforeEach(() => {
+            component.options = [<StDropDownMenuItem>{ label: 'select one', value: undefined }, ...simpleItems];
+            component.expandedMenu = true;
+            fixture.detectChanges();
+            component.inputElement.nativeElement.focus();
+         });
+
+         it('if user presses ENTER key, menu is closed', () => {
+            const keyPressEvent = new Event('keypress');
+            (<any> keyPressEvent).code = 'Enter';
+            component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
+
+            expect(component.expandedMenu).toBeFalsy();
+         });
+
+         it('if user presses SPACE key, menu is closed', () => {
+            const keyPressEvent = new Event('keypress');
+            (<any> keyPressEvent).code = 'Space';
+            component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
+
+            expect(component.expandedMenu).toBeFalsy();
+         });
+
+         it('if user presses ESCAPE key, menu is closed', () => {
+            const keyDownEvent = new Event('keydown.escape');
+            (<any> keyDownEvent).code = 'Escape';
+            fixture.debugElement.query(By.css('.st-select-menu')).triggerEventHandler('keydown.escape', keyDownEvent);
+
+            expect(component.expandedMenu).toBeFalsy();
+         });
+      });
+   });
 });
 
 @Component({
@@ -562,7 +636,7 @@ class StSelectTestReactiveComponent {
    enabledSearcher: boolean = false;
    reactiveForm: FormGroup;
    model: any = { option: undefined };
-   @ViewChild('select', {static: true}) select: StSelectComponent;
+   @ViewChild('select', { static: true }) select: StSelectComponent;
 
    constructor(private _fb: FormBuilder) {
       this.reactiveForm = this._fb.group({
@@ -744,8 +818,8 @@ class StSelectTestTemplateComponent {
    selected: StDropDownMenuItem = null;
    options: StDropDownMenuItem[];
    model: number;
-   @ViewChild('select', {static: true}) select: StSelectComponent;
-   @ViewChild('templateDrivenForm', {static: true}) templateDrivenForm: NgForm;
+   @ViewChild('select', { static: true }) select: StSelectComponent;
+   @ViewChild('templateDrivenForm', { static: true }) templateDrivenForm: NgForm;
 
    onSelect(element: StDropDownMenuItem): void {
       this.selected = element;

@@ -42,8 +42,7 @@
    }
 
    &:focus {
-      border-color: var(--egeo-theme-action, $action);
-      box-shadow: 0 0 4px 0 rgba(18, 139, 221, 0.2);
+      @extend %st-form-control--focused;
    }
 }
 

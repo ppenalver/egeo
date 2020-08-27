@@ -22,10 +22,11 @@
    (scrollAtBottom)="onScrollAtBottom()"
    [isLoading]="isLoading"
    [itemsBeforeScroll]="itemsBeforeScroll"
+   (keydown.escape)="onButtonKeyPress($event)"
 >
-   <div (click)="onButtonClick()" (keypress)="onButtonKeyPress($event)" #button class="button-container"
+   <div (click)="onButtonClick()" #button class="button-container"
+        (keypress)="onButtonKeyPress($event)"
         (clickOutside)="onClickOutside()">
-      <div>
          <label *ngIf="hasLabel" [ngClass]="{disabled: disabled, error: showError(), active: expandedMenu}"
                 st-label
                 for="inputId"
@@ -55,7 +56,6 @@
             </span>
             <i class="arrow" [attr.disabled]="disableValue"></i>
          </div>
-      </div>
    </div>
    <div dropdown-header *ngIf="enabledSearcher"
         (click)="onSearchClick($event)"
