@@ -36,7 +36,8 @@ import { StTagItem } from './st-tag.model';
    selector: 'st-tag',
    templateUrl: 'st-tag.component.template.html',
    styleUrls: ['st-tag.component.scss'],
-   changeDetection: ChangeDetectionStrategy.OnPush})
+   changeDetection: ChangeDetectionStrategy.OnPush
+})
 
 export class StTagComponent {
    /** @Input {StTagItem} [tag=] Item that contains the tag info  */
@@ -47,8 +48,6 @@ export class StTagComponent {
    @Input() clickable: boolean;
    /** @Output {boolean} [clickButton=] Even emitted when right icon is clicked  */
    @Output() clickButton: EventEmitter<boolean> = new EventEmitter<boolean>();
-   /** @Output {StTagItem} [click=] Event emitted when tag is clicked */
-   @Output() click: EventEmitter<StTagItem> = new EventEmitter<StTagItem>();
 
    showBubble: boolean;
    @HostBinding('class')
@@ -67,14 +66,11 @@ export class StTagComponent {
       this._cd.markForCheck();
    }
 
-   onClickButton(): void {
+   onClickButton(event: Event): void {
       if (!this.clickable) {
          this.clickButton.emit(true);
+         event.stopPropagation();
       }
-   }
-
-   onClick(filter: StTagItem): void {
-      this.click.emit(filter);
    }
 
    onChangeBubbleVisibility(visible: boolean): void {

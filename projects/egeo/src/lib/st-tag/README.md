@@ -12,10 +12,9 @@
 
 ## Outputs
 
-| Property    | Type      | Description                             |
-| ----------- | --------- | --------------------------------------- |
-| clickButton | Boolean   | Even emitted when right icon is clicked |
-| click       | StTagItem | Event emitted when tag is clicked       |
+| Property    | Type    | Description                             |
+| ----------- | ------- | --------------------------------------- |
+| clickButton | Boolean | Even emitted when right icon is clicked |
 
 ## Example
 

@@ -94,14 +94,16 @@
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="small"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="small"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="small"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="small"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)"></st-tag>
                      <st-tag class="st-tag--selected small" [tag]="simpleTag"></st-tag>
                      <st-tag [tag]="simpleTag" class="small" [attr.disabled]="true"></st-tag>
                   </div>
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="small"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="small"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="small"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="small"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)"></st-tag>
                      <st-tag [tag]="simpleTag" class="small st-tag--selected"></st-tag>
                      <st-tag [tag]="simpleTag" class="small" [attr.disabled]="true"></st-tag>
                   </div>
@@ -117,14 +119,18 @@
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="medium"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="medium"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="medium"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="medium"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)">
+                     </st-tag>
                      <st-tag [tag]="simpleTag" class="medium st-tag--selected"></st-tag>
                      <st-tag [tag]="simpleTag" class="medium" [attr.disabled]="true"></st-tag>
                   </div>
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="medium"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="medium"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="medium"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="medium"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)">
+                     </st-tag>
                      <st-tag [tag]="tagWithIcon" class="medium st-tag--selected"></st-tag>
                      <st-tag [tag]="simpleTag" class="medium" disabled></st-tag>
                   </div>
@@ -138,14 +144,16 @@
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="large"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="large"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="medium"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="large"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)"></st-tag>
                      <st-tag [tag]="simpleTag" class="large st-tag--selected"></st-tag>
                      <st-tag [tag]="simpleTag" class="large" disabled></st-tag>
                   </div>
                   <div class="column">
                      <st-tag [tag]="simpleTag" class="large"></st-tag>
                      <st-tag [tag]="tagWithIcon" class="large"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" class="medium"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" class="large"
+                             (clickButton)="onClickTagButton(tagWithRightIcon)"></st-tag>
                      <st-tag [tag]="simpleTag" class="large st-tag--selected"></st-tag>
                      <st-tag [tag]="simpleTag" class="large" [attr.disabled]="true"></st-tag>
                   </div>
@@ -170,18 +178,29 @@
 
                <div class="tag-row">
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true" class="small"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="small"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="small"></st-tag>
-                     <st-tag class="st-tag--selected small" [tag]="simpleTag" [clickable]="true" ></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="small"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="small"
+                             (click)="onClickTag(tagWithIcon)"
+                     ></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="small"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag class="st-tag--selected small" [tag]="simpleTag" [clickable]="true"
+                             (click)="onClickTag(simpleTag)"></st-tag>
                      <st-tag [tag]="simpleTag" class="small" [attr.disabled]="true" [clickable]="true"></st-tag>
                   </div>
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="small"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="small"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="small"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="small st-tag--selected"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="small" [attr.disabled]="true"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="small"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="small"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="small"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="small st-tag--selected"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="small" [attr.disabled]="true"></st-tag>
                   </div>
                </div>
 
@@ -193,18 +212,28 @@
             <div class="tag-container">
                <div class="tag-row">
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium st-tag--selected"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="medium" [attr.disabled]="true"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium st-tag--selected"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium" [attr.disabled]="true"></st-tag>
                   </div>
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="medium st-tag--selected"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="medium" disabled></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="medium st-tag--selected"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="medium" disabled></st-tag>
                   </div>
                </div>
             </div>
@@ -214,18 +243,28 @@
             <div class="tag-container">
                <div class="tag-row">
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="large"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large st-tag--selected"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large" disabled></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="large"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large st-tag--selected"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large" disabled></st-tag>
                   </div>
                   <div class="column">
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large"></st-tag>
-                     <st-tag [tag]="tagWithIcon" [clickable]="true"  class="large"></st-tag>
-                     <st-tag [tag]="tagWithRightIcon" [clickable]="true"  class="medium"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large st-tag--selected"></st-tag>
-                     <st-tag [tag]="simpleTag" [clickable]="true"  class="large" [attr.disabled]="true"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="tagWithIcon" [clickable]="true" class="large"
+                             (click)="onClickTag(tagWithIcon)"></st-tag>
+                     <st-tag [tag]="tagWithRightIcon" [clickable]="true" class="medium"
+                             (click)="onClickTag(tagWithRightIcon)">
+                     </st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large st-tag--selected"
+                             (click)="onClickTag(simpleTag)"></st-tag>
+                     <st-tag [tag]="simpleTag" [clickable]="true" class="large" [attr.disabled]="true"></st-tag>
                   </div>
                </div>
             </div>

@@ -11,9 +11,6 @@
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
 %tag-events {
-   &--clickable:not([disabled]) {
-      cursor: pointer;
-   }
 
    &:not([disabled]):hover {
       background-color: var(--egeo-theme-action-10, $action-10);
@@ -23,6 +20,7 @@
    &[disabled] {
       background-color: var(--egeo-theme-space-10, $space-10);
       color: var(--egeo-theme-space-50, $space-50);
+      cursor: default;
    }
 }
 

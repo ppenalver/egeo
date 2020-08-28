@@ -46,5 +46,11 @@ export class StTagDemoComponent {
       bubble: 'This is the bubble for this tag with icon'
    };
 
+   onClickTag(tag: StTagItem): void {
+      console.log('clicked tag:', tag);
+   }
 
+   onClickTagButton(tag: StTagItem): void {
+      console.log('clicked button of tag:', tag);
+   }
 }

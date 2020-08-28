@@ -10,14 +10,14 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div class="st-tag__container" (click)="onClick(tag)"
+<div class="st-tag__container"
      (mouseenter)="onChangeBubbleVisibility(true)"
      (mouseleave)="onChangeBubbleVisibility(false)">
 
    <i *ngIf="tag.icon" class="st-tag__icon {{tag.icon}}"></i>
    <div class="st-tag__text">{{tag.text}}</div>
 
-   <span *ngIf="tag.rightIcon" (click)="onClickButton()"
+   <span *ngIf="tag.rightIcon" (click)="onClickButton($event)"
          class="st-tag__right-button"><i class="{{ tag.rightIcon }}"></i>
    </span>
 </div>
