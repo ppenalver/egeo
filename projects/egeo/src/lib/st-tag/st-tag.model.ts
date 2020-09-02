@@ -17,11 +17,3 @@ export class StTagItem {
    rightIcon?: string;
    [key: string]: any;
 }
-
-export class STagClasses {
-   removable?: boolean;
-   info?: boolean;
-   clickable?: boolean;
-   selectable?: boolean;
-   [key: string]: boolean;
-}

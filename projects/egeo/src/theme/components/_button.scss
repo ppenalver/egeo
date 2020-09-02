@@ -98,8 +98,13 @@
          @extend %button-label-small;
       }
 
+      &:not(.button-toolbar) {
+         > i {
+            font-size: 15px;
+         }
+      }
+
       > i {
-         font-size: 16px;
          vertical-align: top;
 
          & + span {
@@ -137,21 +142,21 @@
       color: var(--egeo-theme-space-70, $space-70);
 
       &:hover {
-         border-color: var(--egeo-theme-space-50, $space-50);
          background-color: var(--egeo-theme-action-10, $action-10);
+         border-color: var(--egeo-theme-space-50, $space-50);
          color: var(--egeo-theme-space-80, $space-80);
       }
 
       &:active {
-         border-color: var(--egeo-theme-space-80, $space-80);
          background-color: var(--egeo-theme-space-10, $space-10);
+         border-color: var(--egeo-theme-space-80, $space-80);
          color: var(--egeo-theme-space, $space);
       }
 
       &[disabled], &[disabled]:hover {
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
          border-color: var(--egeo-theme-space-20, $space-20);
          color: var(--egeo-theme-space-30, $space-30);
-         background-color: var(--egeo-theme-neutral-full, $neutral-full);
       }
    }
 
@@ -194,6 +199,7 @@
 
       i {
          display: block;
+         font-size: 16px;
       }
    }
 }
