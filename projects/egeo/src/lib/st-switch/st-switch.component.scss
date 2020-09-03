@@ -119,8 +119,16 @@
       }
    }
 
-   &:not(&--disabled) {
-      cursor: pointer;
+   &:not(&--disabled):not(&--right) {
+      &:after {
+         cursor: pointer;
+      }
+   }
+
+   &.st-switch--right:not(&--disabled) {
+      &:before {
+         cursor: pointer;
+      }
    }
 
    &--checked:not(&--right) {

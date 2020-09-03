@@ -11,36 +11,51 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <p class="demo-label">Demo</p>
-   <section class="container-liquid demo-container">
-      <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption?.value === 'horizontal'}">
-         <p *ngIf="titleLabel" class="st-group-label">Group of st-switch</p>
-         <st-switch class="swicth-demo" name="switch-1" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 1' : ''" [(ngModel)]="model"></st-switch>
-         <st-switch class="swicth-demo" name="switch-2" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 2' : ''" [(ngModel)]="model2"></st-switch>
-         <st-switch class="swicth-demo" name="switch-3" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 3' : ''" [(ngModel)]="model3"></st-switch>
-      </div>
 
-      <div class="demo-config">
-         <div class="st-inline-group">
-            <h1>Position</h1>
-            <st-radio *ngFor="let positionOption of positionOptions" name="position-options" [value]="positionOption.value" [checked]="positionOption.value === 'left'" (change)="activePositionOption = $event">{{positionOption.label}}</st-radio>
+   <section class="demo-layout">
+      <p class="introduction">A Switch changes the state of single setting between on and off. The switch must be used when the action of switching is applied instantaneously.</p>
+      <p class="demo-label">Demo</p>
+      <section class="container-liquid demo-container">
+         <div class="demo" [ngClass]="{'st-inline-group': activeDispositionOption?.value === 'horizontal'}">
+            <p *ngIf="titleLabel" class="st-group-label">Group of st-switch</p>
+            <st-switch class="swicth-demo" name="switch-1" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 1' : ''" [(ngModel)]="model"></st-switch>
+            <st-switch class="swicth-demo" name="switch-2" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 2' : ''" [(ngModel)]="model2"></st-switch>
+            <st-switch class="swicth-demo" name="switch-3" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 3' : ''" [(ngModel)]="model3"></st-switch>
          </div>
-         <div class="st-inline-group">
-            <h1>Disposition</h1>
-            <st-radio *ngFor="let dispositionOption of dispositionOptions" name="disposition-options" [value]="dispositionOption.value" [checked]="dispositionOption.value === 'vertical'" (change)="activeDispositionOption = $event">{{dispositionOption.label}}</st-radio>
+
+         <div class="demo-config">
+            <div class="st-inline-group">
+               <h1>Position</h1>
+               <st-radio *ngFor="let positionOption of positionOptions" name="position-options" [value]="positionOption.value" [checked]="positionOption.value === 'left'" (change)="activePositionOption = $event">{{positionOption.label}}</st-radio>
+            </div>
+            <div class="st-inline-group">
+               <h1>Disposition</h1>
+               <st-radio *ngFor="let dispositionOption of dispositionOptions" name="disposition-options" [value]="dispositionOption.value" [checked]="dispositionOption.value === 'vertical'" (change)="activeDispositionOption = $event">{{dispositionOption.label}}</st-radio>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <st-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+                  <span>Title label</span>
+               </st-checkbox>
+               <st-checkbox name="titleLabel" [(ngModel)]="label">
+                  <span>Label</span>
+               </st-checkbox>
+               <st-checkbox name="titleLabel" [(ngModel)]="disabled">
+                  <span>Disabled</span>
+               </st-checkbox>
+            </div>
          </div>
-         <div>
-            <h1>Options</h1>
-            <st-checkbox name="titleLabel" [(ngModel)]="titleLabel">
-               <span>Title label</span>
-            </st-checkbox>
-            <st-checkbox name="titleLabel" [(ngModel)]="label">
-               <span>Label</span>
-            </st-checkbox>
-            <st-checkbox name="titleLabel" [(ngModel)]="disabled">
-               <span>Disabled</span>
-            </st-checkbox>
-         </div>
-      </div>
+      </section>
+      <h1 class="title">Design and behaviour</h1>
+      <p class="paragraph">Switches are used for binary actions that occur immediately after the user “flips” the Switch. They are commonly used for “On/Off”, “Activate/Deactivate” situations.</p>
+      <p class="paragraph">Switches take up less space than an “on/off” radio button group and communicate their intended purpose better than a checkbox that toggles functionality.</p>
+      <h1 class="title">Usage and best practices</h1>
+      <p class="paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="list">
+         <li> A heading may accompany a Switch to further clarify on the action the Switch will perform.</li>
+         <li> Use labels with a Switch so the action is clear. Labels should be three words or less and can appear on both sides of a Switch although left part of the Switch it’s preferred.</li>
+         <li> Switches should take immediate effect and should not require the user to click Save or Submit to apply the new state.</li>
+         <li> Use a checkbox instead if the user would have to press a submit button to run the chosen option.</li>
+      </ul>
    </section>
 </st-docs>

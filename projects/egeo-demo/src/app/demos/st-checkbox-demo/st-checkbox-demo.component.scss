@@ -8,9 +8,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
 .demo-container {
    margin-top: 30px;
    display: flex;
+   border-bottom: 1px solid $space-20;
 
    .demo {
       min-width: 400px;
