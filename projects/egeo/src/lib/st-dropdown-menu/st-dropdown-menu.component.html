@@ -22,9 +22,9 @@
          <ng-content select=[dropdown-header]></ng-content>
 
          <ul *ngIf="!isItemGroup && ((items && items.length) || emptyListMessage)"
+             class="st-custom-scrollbar"
              #itemList
              aria-label="submenu"
-             [ngClass]="{'st-custom-scrollbar': displayAsMenuList()}"
              [attr.aria-hidden]="!active"
              [style.maxHeight]="menuMaxHeight"
              [attr.id]="menuId"
@@ -50,7 +50,9 @@
          </ul>
 
          <div *ngIf="isItemGroup">
-            <ul [attr.aria-hidden]="!active" aria-label="submenu" [style.maxHeight]="menuMaxHeight"
+            <ul [attr.aria-hidden]="!active" aria-label="submenu"
+                class="st-custom-scrollbar"
+                [style.maxHeight]="menuMaxHeight"
                 [attr.id]="menuId" #itemList>
                <li class="st-dropdown-menu-parent" *ngFor="let group of items">
                   <h3>

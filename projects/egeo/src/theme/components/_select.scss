@@ -56,17 +56,6 @@
       .arrow {
          color: var(--egeo-theme-action, $action);
       }
-
-      .button-container .st-input {
-         border-bottom-left-radius: 0;
-         border-bottom-right-radius: 0;
-      }
-
-      .st-dropdown-menu {
-         border-top-left-radius: 0;
-         border-top-right-radius: 0;
-         margin-top: -1px;
-      }
    }
 
    .st-select-menu {
@@ -76,12 +65,6 @@
 
       .content {
          position: relative;
-      }
-   }
-
-   &.ng-dirty.ng-invalid .st-select-menu {
-      .st-dropdown-menu {
-         border-color: var(--egeo-theme-error, $error);
       }
    }
 }

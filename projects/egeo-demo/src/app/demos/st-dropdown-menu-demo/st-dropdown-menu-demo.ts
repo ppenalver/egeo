@@ -36,7 +36,7 @@ export class StDropdownMenuDemoComponent {
       {
          name: '--egeo-st-dropdown-menu__title--font-weight',
          description: 'Title font weight',
-         default: 'bold'
+         default: 'normal'
       },
       {
          name: '--egeo-st-dropdown-menu__title--font-size',
@@ -46,8 +46,14 @@ export class StDropdownMenuDemoComponent {
       {
          name: '--egeo-st-dropdown-menu__title--line-height',
          description: 'Title line height',
-         default: '$egeo-line-height-xxxsmall'
-      }, {
+         default: '$egeo-line-height-22'
+      },
+      {
+         name: '--egeo-st-dropdown-menu__title--padding',
+         description: 'Title padding',
+         default: '4px 20px'
+      },
+      {
          name: '--egeo-st-dropdown-menu--color',
          description: 'Text color',
          default: '$space-110'
@@ -73,11 +79,6 @@ export class StDropdownMenuDemoComponent {
          default: '$neutral-full'
       },
       {
-         name: '--egeo-st-dropdown-menu--border-color',
-         description: 'Menu border color',
-         default: '$neutral-30'
-      },
-      {
          name: '--egeo-st-dropdown-menu--border-radius',
          description: 'Menu border radius',
          default: '4px'
@@ -85,7 +86,7 @@ export class StDropdownMenuDemoComponent {
       {
          name: '--egeo-st-dropdown-menu__item--padding',
          description: 'Item padding',
-         default: '9px 15px'
+         default: '9px 20px'
       },
       {
          name: '--egeo-st-dropdown-menu__item--font-weight',
@@ -93,14 +94,9 @@ export class StDropdownMenuDemoComponent {
          default: '400'
       },
       {
-         name: '--egeo-st-dropdown-menu__active--border-color',
-         description: 'Active menu border color',
-         default: '$action'
-      },
-      {
          name: '--egeo-st-dropdown-menu__item__hover--bg-color',
          description: 'Hover item background color',
-         default: '$space-5'
+         default: '$action-10'
       },
       {
          name: '--egeo-st-dropdown-menu__item__selected--bg-color',
@@ -110,7 +106,12 @@ export class StDropdownMenuDemoComponent {
       {
          name: '--egeo-st-dropdown-menu__item__disabled--color',
          description: 'Disabled item color',
-         default: '$space-40'
+         default: '$space-50'
+      },
+      {
+         name: '--egeo-st-dropdown-menu__item__selected__disabled--bg-color',
+         description: 'Disabled selected item background color',
+         default: '$space-10'
       },
       {
          name: '--egeo-st-dropdown-menu__separator--color',
@@ -165,61 +166,36 @@ export class StDropdownMenuDemoComponent {
       {
          name: '--egeo-st-dropdown-menu__without-results--padding',
          description: 'Without results label padding',
-         default: ' 20px'
+         default: '20px'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list--bg-color',
-         description: 'Menu list background color',
-         default: '$neutral-full'
+         name: '--egeo-st-dropdown-menu--box-shadow',
+         description: 'Menu box shadow',
+         default: '0 3px 9px 0 rgba($space-110, 0.2)'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list--border-radius',
-         description: 'Menu list border radius',
-         default: '4px'
+         name: '--egeo-st-dropdown-menu--padding',
+         description: 'Menu padding',
+         default: '8px 0'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list--box-shadow',
-         description: 'Menu list box shadow',
-         default: '0 3px 9px 0 rgba(17, 17, 17, 0.25)'
-      },
-      {
-         name: '--egeo-st-dropdown-menu__menu-list--padding',
-         description: 'Menu list padding',
-         default: '4px 0'
-      },
-      {
-         name: '--egeo-st-dropdown-menu__menu-list__item--color',
-         description: 'Menu list item color',
+         name: '--egeo-st-dropdown-menu__item--color',
+         description: 'Menu item color',
          default: '$space-110'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list__item--font-size',
+         name: '--egeo-st-dropdown-menu__item--font-size',
          description: 'Menu list item font-size',
          default: '$egeo-font-size-14'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list__item--min-height',
+         name: '--egeo-st-dropdown-menu__item--min-height',
          description: 'Menu list item min height',
          default: '40px'
       },
       {
-         name: '--egeo-st-dropdown-menu__menu-list__item--padding',
-         description: 'Menu list item padding',
-         default: '10px 20px'
-      },
-      {
-         name: '--egeo-st-dropdown-menu__menu-list__item__hover--bg-color',
-         description: 'Menu list hover item background color',
-         default: '$action-10'
-      },
-      {
-         name: '--egeo-st-dropdown-menu__menu-list__item--font-size',
-         description: 'Menu list item font size',
-         default: '$egeo-font-size-14'
-      },
-      {
-         name: '--egeo-st-dropdown-menu__menu-list__item--line-height',
-         description: 'Menu list item line height',
+         name: '--egeo-st-dropdown-menu__item--line-height',
+         description: 'Menu item line height',
          default: '$egeo-line-height-22'
       }
    ];
