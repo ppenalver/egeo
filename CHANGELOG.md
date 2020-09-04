@@ -17,6 +17,7 @@
 * st-switch: Added `position` input of type `StSwitchPosition` to change switch position. Defaults to left
 * st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-select: Enable keyboard listener by default to open, close and move across menu options
+* st-modal2: Added "fullWindow" input to apply full size to the modal
 
 **Fixed bugs:**
 

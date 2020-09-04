@@ -41,6 +41,7 @@ export class StModal2Component implements OnDestroy {
    @Input() modalTitle: string = '';
    @Input() closeOnEscape: boolean;
    @Input() hideCloseBtn: boolean;
+   @Input() fullWindow: boolean;
 
    @Output() endAnimation: EventEmitter<boolean> = new EventEmitter<boolean>();
    @Output() onClose: EventEmitter<void> = new EventEmitter<void>();

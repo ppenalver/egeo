@@ -11,7 +11,7 @@
 
 -->
 <div class="st-modal-container" [@state]="visibility" (@state.done)="animationDone($event)" [@.disabled]="disabledAnimation">
-  <section class="st-modal" [style.width.px]="width">
+  <section class="st-modal" [style.width]="fullWindow ? '100%' : (width + 'px')" [style.height]="fullWindow && '100%'">
     <ng-container *ngIf="emptyModal">
       <ng-content></ng-content>
     </ng-container>

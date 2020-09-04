@@ -67,5 +67,20 @@
       </st-modal2>
 
     </div>
+     <div class="st-live-example">
+        <h1 class="st-live-example-title">Simple Modal full window:</h1>
+        <button class="button button-primary" (click)="modal5 = true">
+           <span>Simple Message Modal</span>
+        </button>
+
+        <st-modal2 modalTitle="Modal title" [fullWindow]="true" [disabledAnimation]="false"
+                   (onClose)="modal5 = false"
+                   *ngIf="modal5">
+           <div>
+              Modal content
+           </div>
+        </st-modal2>
+
+     </div>
   </section>
 </st-docs>
