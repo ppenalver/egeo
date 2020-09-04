@@ -28,6 +28,8 @@
 * Remove theme constants in order to import them from egeo-themes dependency
 * st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 * st-tag: Removed input 'removable' and output 'remove'. Changed to property 'rightIcon' in StTagItem model and output 'clickButton'
+* st-select: Removed integrated searcher 
+* st-select, st-dropdown: Removed 'loading' status (spinner)
 
 **Refactor:**
 

@@ -13,11 +13,10 @@ import { NgModule } from '@angular/core';
 
 import { StDropdownMenuComponent } from './st-dropdown-menu.component';
 import { StPopModule } from '../st-pop/st-pop.module';
-import { StSpinnerModule } from '../st-spinner/st-spinner.module';
 import { StDropdownMenuItemModule } from './st-dropdown-menu-item/st-dropdown-menu-item.module';
 
 @NgModule({
-   imports: [CommonModule, StPopModule, StSpinnerModule, StDropdownMenuItemModule],
+   imports: [CommonModule, StPopModule, StDropdownMenuItemModule],
    declarations: [StDropdownMenuComponent],
    exports: [StDropdownMenuComponent]
 })

@@ -122,67 +122,6 @@
          </div>
          <div class="col-sm-6">
 
-            <h1 class="title title--centered">Integrated Search</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select [enabledSearcher]="true"
-                             placeholder="Select option"
-                             placeholderSearch="Search..."
-                             class="st-form-field"
-                             [options]="filteredOptions"
-                             [disabled]="disabled"
-                             (search)="onSearch($event)">
-                  </st-select>
-               </div>
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select [enabledSearcher]="true"
-                             placeholder="Select option"
-                             placeholderSearch="Search..."
-                             class="st-form-field small"
-                             [options]="filteredOptions"
-                             [disabled]="disabled"
-                             (search)="onSearch($event)">
-                  </st-select>
-               </div>
-            </div>
-
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title title--centered">Scroll with spinner option</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select [enabledSearcher]="true"
-                             placeholder="Select option"
-                             placeholderSearch="Search..."
-                             class="st-form-field"
-                             [options]="filteredOptions"
-                             [disabled]="disabled" [isLoading]="isLoading"
-                             (scrollAtBottom)="onScrollAtBottom()"
-                             (search)="onSearch($event)">
-                  </st-select>
-               </div>
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select [enabledSearcher]="true"
-                             placeholder="Select option"
-                             placeholderSearch="Search..."
-                             class="st-form-field small"
-                             [options]="filteredOptions"
-                             [disabled]="disabled"
-                             [isLoading]="isLoading"
-                             (scrollAtBottom)="onScrollAtBottom()"
-                             (search)="onSearch($event)">
-                  </st-select>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-6">
-
             <h1 class="title title--centered">Without form</h1>
             <div class="row">
                <div class="col-sm-6">
@@ -209,6 +148,8 @@
          </div>
       </div>
    </section>
-   <button class="button button-primary disable-button" (click)="changeDisabled()">{{disabled? 'Enable' : 'Disable'}} All</button>
+   <button class="button button-primary disable-button" (click)="changeDisabled()">{{disabled? 'Enable' : 'Disable'}}
+      All
+   </button>
 
 </st-docs>

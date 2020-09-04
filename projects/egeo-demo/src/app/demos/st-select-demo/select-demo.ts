@@ -8,9 +8,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { cloneDeep as _cloneDeep } from 'lodash';
 import { StDropDownMenuItem } from '@stratio/egeo';
 import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
 
@@ -57,21 +56,17 @@ export class SelectDemoComponent {
       }
    ];
 
-   options: StDropDownMenuItem[] = [];
-   filteredOptions: StDropDownMenuItem[] = [];
+   public options: StDropDownMenuItem[] = [];
 
-   model: any = {
+   public model: any = {
       option1: null,
       option2: null
    };
-   reactiveForm: FormGroup; // our model driven form
+   public reactiveForm: FormGroup; // our model driven form
+   public disabled: boolean = false;
+   public formControl: FormControl = new FormControl('', [Validators.required]);
 
-   disabled: boolean = false;
-   isLoading: boolean = false;
-
-   formControl: FormControl = new FormControl('', [Validators.required]);
-
-   constructor(private _fb: FormBuilder, private _cd: ChangeDetectorRef) {
+   constructor(private _fb: FormBuilder) {
       this.formControl.markAsDirty();
       this.options.push({ label: 'Select an option', value: undefined });
       for (let i: number = 0; i < 10; i++) {
@@ -83,7 +78,6 @@ export class SelectDemoComponent {
       this.model.option1 = 3;
 
       this.options[5].selected = true;
-      this.filteredOptions = _cloneDeep(this.options);
       this.reactiveForm = this._fb.group({
          option1: [this.model.option1, Validators.required],
          option2: [this.model.option1, Validators.required]
@@ -103,41 +97,6 @@ export class SelectDemoComponent {
          this.reactiveForm.get(controlNames[1]).enable();
          this.templateDrivenForm.controls[controlNames[0]].enable();
          this.templateDrivenForm.controls[controlNames[1]].enable();
-      }
-   }
-
-   onScrollAtBottom(): void {
-      this.isLoading = true;
-      setTimeout(() => {
-         this.options = [...this.options, ...this.generateOptions(this.options.length)];
-         this.isLoading = false;
-         this._cd.markForCheck();
-      }, 2000);
-   }
-
-   generateOptions(optionsLength: number = 0): StDropDownMenuItem[] {
-      return Array.from(Array<StDropDownMenuItem>(10)).map((_value, i) => ({
-         label: `Option ${optionsLength + i}`,
-         value: `option-${optionsLength + i}`
-      }));
-   }
-
-   onSearch(search: string): void {
-      this.filteredOptions = _cloneDeep(this.options);
-      this.filteredOptions.forEach(option => option.selected = false);
-      if (search) {
-         this.filteredOptions = this.filteredOptions.filter(option => option.label.indexOf(search) !== -1);
-      }
-      this._cd.markForCheck();
-   }
-
-   changeOptions(): void {
-      this.options = [];
-      for (let i: number = 0; i < 10; i++) {
-         this.options.push({
-            label: `new options-${i}`,
-            value: (10 + i)
-         });
       }
    }
 }

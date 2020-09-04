@@ -50,18 +50,13 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    @Input() errorMessage: string;
    @Input() selected: StDropDownMenuItem = undefined;
    @Input() default: any;
-   @Input() itemsBeforeScroll: number = 8;
-   @Input() enabledSearcher: boolean = false;
-   @Input() isLoading: boolean = false;
+   @Input() itemsBeforeScroll: number = 10;
    @Input() forceValidations: boolean = false;
-
-   @Input() placeholderSearch?: string = 'Search...';
    @Input() keyBoardMove: boolean = true;
 
    @Output() expand: EventEmitter<boolean> = new EventEmitter<boolean>();
    @Output() select: EventEmitter<any> = new EventEmitter<any>();
    @Output() scrollAtBottom: EventEmitter<any> = new EventEmitter<any>();
-   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
    @ViewChild('input', { static: false }) inputElement: ElementRef;
    @ViewChild('button', { static: false }) buttonElement: ElementRef;
@@ -69,7 +64,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    @HostBinding('class.st-select-opened')
 
    public expandedMenu: boolean = false;
-   public searchInput: FormControl = new FormControl();
    public inputFormControl: FormControl = new FormControl();
 
    onChange: (_: any) => void;
@@ -164,16 +158,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
     ****** Control value accessor && validate methods ******
     */
 
-   onSearch(): void {
-      this.search.emit(this.searchInput.value);
-      this._cd.markForCheck();
-   }
-
-   onSearchClick(event: Event): void {
-      event.preventDefault();
-      event.stopPropagation();
-   }
-
    // Set the function to be called when the control receives a change event.
    registerOnChange(fn: (_: any) => void): void {
       this.onChange = fn;
@@ -223,11 +207,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
          event.preventDefault();
          this.toggleButton();
       }
-   }
-
-   clearSearchInput(): void {
-      this.searchInput.setValue('');
-      this.search.emit('');
    }
 
    createResetButton(): boolean {

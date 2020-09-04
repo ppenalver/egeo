@@ -40,22 +40,4 @@
          </ng-container>
       </div>
    </section>
-   <section class="container-liquid demo-layout">
-      <div>
-         <h1 class="title">Scroll with Loading more spinner</h1>
-         <br>
-         <st-dropdown-menu [keyBoardMove]="true" [items]="menus[5]" [active]="active[5]"
-                           [selectedItem]="selectedValue[5]"
-                           [attr.id]="'dropdown-' + 5" (change)="onChange($event, 5)"
-                           (scrollAtBottom)="onScrollAtBottom()" [isLoading]="isLoading">
-            <button class="button button-primary" (click)="changeActive(5)">Show
-               with Loading more spinner
-            </button>
-         </st-dropdown-menu>
-         <br>
-         <p>Value: {{selectedValue[5] | json}}</p>
-         <br>
-         <br>
-      </div>
-   </section>
 </st-docs>

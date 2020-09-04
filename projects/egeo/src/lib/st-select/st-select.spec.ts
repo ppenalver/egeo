@@ -622,7 +622,6 @@ describe('StSelectComponent', () => {
                     [errorMessage]="errorMessage"
                     [selected]="selected"
                     [itemsBeforeScroll]="itemsBeforeScroll"
-                    [enabledSearcher]="enabledSearcher"
                     class="st-form-field">
          </st-select>
       </form>
@@ -633,7 +632,6 @@ class StSelectTestReactiveComponent {
    errorMessage: string | undefined = null;
    selected: StDropDownMenuItem = null;
    options: StDropDownMenuItem[];
-   enabledSearcher: boolean = false;
    reactiveForm: FormGroup;
    model: any = { option: undefined };
    @ViewChild('select', { static: true }) select: StSelectComponent;
@@ -669,55 +667,6 @@ describe('StSelectComponent', () => {
 
       afterEach(() => {
          fixture.destroy();
-      });
-
-      describe('Should be able to enable a search box', () => {
-
-         it('If "enabledSearcher" is true, a search box is displayed on top and event is emitted when user types something on it', () => {
-            spyOn(component.select.search, 'emit');
-            component.enabledSearcher = true;
-            compSelect.expandedMenu = false;
-            compSelect.searchInput.setValue('example 4');
-            fixture.detectChanges();
-            component.options = [<StDropDownMenuItem>{ label: 'select one', value: undefined }, ...simpleItems];
-            component.selected = component.options[4];
-            fixture.detectChanges();
-            input.click();
-            input.focus();
-            fixture.detectChanges();
-
-            inputSearch = fixture.debugElement.query(By.css('.search-input input')).nativeElement;
-            inputSearch.click();
-            inputSearch.focus();
-            compSelect.searchInput.setValue('example 4');
-            inputSearch.dispatchEvent(new Event('input'));
-            fixture.detectChanges();
-
-            expect(component.select.search.emit).toHaveBeenCalledWith('example 4');
-         });
-
-         it('Should clean search input when user clicks on cross button', () => {
-            component.enabledSearcher = true;
-            compSelect.expandedMenu = false;
-            compSelect.searchInput.setValue('example 4');
-            fixture.detectChanges();
-            component.options = [<StDropDownMenuItem>{ label: 'select one', value: undefined }, ...simpleItems];
-            component.selected = component.options[4];
-            fixture.detectChanges();
-            input.click();
-            input.focus();
-            fixture.detectChanges();
-
-            inputSearch = fixture.debugElement.query(By.css('.search-input input')).nativeElement;
-            inputSearch.click();
-            inputSearch.focus();
-            compSelect.searchInput.setValue('example 4');
-            fixture.detectChanges();
-            (<HTMLElement> fixture.nativeElement.querySelector('.icon-cross')).click();
-            fixture.detectChanges();
-
-            expect(compSelect.searchInput.value).toEqual('');
-         });
       });
 
       it('Should be possible to set disabled', () => {

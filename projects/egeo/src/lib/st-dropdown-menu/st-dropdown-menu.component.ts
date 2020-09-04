@@ -72,8 +72,6 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    @Input() moveSelected: boolean = true;
    /** @Input {boolean} [styleSelected=true] If true, apply class selected to selected item */
    @Input() styleSelected: boolean = true;
-   /** @Input {boolean} [isLoading=true] If true, show loader at the end of the list */
-   @Input() isLoading: boolean = false;
    /** @Input {StPopOffset} [offset={x: 0 , y: 0}] For position with offset in x o y axis */
    @Input() offset: StPopOffset = { x: 0, y: 0 };
    /** @Input {boolean} [openToLeft=false] For calculating all positions from the right corner */
@@ -174,7 +172,7 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
 
    onHandleScroll(): void {
       const element = this.itemListElement.nativeElement;
-      if (element.scrollHeight - element.scrollTop === element.clientHeight && !this.isLoading) {
+      if (element.scrollHeight - element.scrollTop === element.clientHeight) {
          this.scrollAtBottom.emit();
       }
    }

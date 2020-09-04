@@ -40,9 +40,7 @@
                (mouseenter)="onMouseEnter(item)"
                (mouseleave)="onMouseLeave(item)">
             </st-dropdown-menu-item>
-            <div *ngIf="isLoading" class="spinner-container">
-               <st-spinner class="spinner"></st-spinner>
-            </div>
+
             <div *ngIf="!items || !items.length" class="without-results st-dropdown-menu-without-results"
                  [style.maxWidth]='widthMenu'>
                {{emptyListMessage}}
@@ -77,9 +75,6 @@
                      </div>
                   </ul>
                </li>
-               <div *ngIf="isLoading" class="spinner-container">
-                  <st-spinner class="spinner"></st-spinner>
-               </div>
             </ul>
          </div>
          <ng-content select=[dropdown-footer]></ng-content>

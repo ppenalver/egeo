@@ -20,7 +20,6 @@
    [selectedItem]="selected"
    (change)="onChangeOption($event)"
    (scrollAtBottom)="onScrollAtBottom()"
-   [isLoading]="isLoading"
    [offset]="{x: 0, y: 4}"
    [itemsBeforeScroll]="itemsBeforeScroll"
    (keydown.escape)="onButtonKeyPress($event)"
@@ -58,28 +57,6 @@
             <i class="arrow" [attr.disabled]="disableValue"></i>
          </div>
    </div>
-   <div dropdown-header *ngIf="enabledSearcher"
-        (click)="onSearchClick($event)"
-        class="search-input">
-      <input
-         id="searchInput"
-         autocomplete="off"
-         aria-haspopup="true"
-         class="st-input"
-         type="text"
-         [attr.aria-expanded]="expandedMenu"
-         [attr.disabled]="disableValue"
-         [attr.id]="searchInput"
-         [placeholder]="placeholderSearch"
-         [formControl]="searchInput"
-         (focus)="enabledSearcher"
-         (input)="onSearch()"
-      />
-      <i class="st-search-icon sth-search-icon icon-search" tabindex="0" *ngIf="!searchInput.value?.length"></i>
-      <i class="st-search-icon sth-search-icon icon-cross" tabindex="0" *ngIf="searchInput.value?.length"
-         (click)="clearSearchInput()" (keyup.enter)="clearSearchInput()"></i>
-   </div>
-
 </st-dropdown-menu>
 
 <div class="st-input-error-layout" *ngIf="showError()">
