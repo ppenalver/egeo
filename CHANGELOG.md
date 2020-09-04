@@ -28,6 +28,8 @@
 * Remove theme constants in order to import them from egeo-themes dependency
 * st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 * st-tag: Removed input 'removable' and output 'remove'. Changed to property 'rightIcon' in StTagItem model and output 'clickButton'
+* st-foreground-notification: Removed old component's inputs and added "config" and "hotRender" as new inputs.
+* st-foreground-notification: Removed old component's outputs and added "close" and "autoClose" as new inputs.
 * st-select: Removed integrated searcher 
 * st-select, st-dropdown: Removed 'loading' status (spinner)
 
@@ -36,12 +38,14 @@
 * st-switch: Changed styles to UX definition
 * st-checkbox: Changed styles to UX definition
 * st-radio: Changed styles to UX definition
+* st-foreground-notification: Changed styles to UX definition
 
 **Documentation:**
 
 * st-switch: More functionality added to demo page
 * st-checkbox: More functionality added to demo page
 * st-radio: More functionality added to demo page
+* st-foreground-notification: More functionality added to demo page
 
 **Others:**
 

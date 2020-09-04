@@ -12,6 +12,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { StForegroundNotificationsComponent } from './st-foreground-notifications';
+import {StForegroundNotificationsService} from './st-foreground-notifications.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
    imports: [
@@ -20,7 +22,8 @@ import { StForegroundNotificationsComponent } from './st-foreground-notification
    declarations: [
       StForegroundNotificationsComponent
    ],
-   exports: [StForegroundNotificationsComponent]
+   exports: [StForegroundNotificationsComponent],
+   providers: [StForegroundNotificationsService]
 })
 
 export class StForegroundNotificationsModule {

@@ -143,11 +143,6 @@ export { StFormSchema } from './st-form/st-form.model';
 export { StFormListModule } from './st-form-list/st-form-list.module';
 export { StFormListComponent } from './st-form-list/st-form-list.component';
 
-
-// Foreground notifications
-
-export { StNotificationElement } from './st-foreground-notifications/st-foreground-notifications.model';
-
 // Fullscreen layout
 export { StFullscreenLayoutModule } from './st-fullscreen-layout/st-fullscreen-layout.module';
 export { StFullscreenLayoutComponent } from './st-fullscreen-layout/st-fullscreen-layout';

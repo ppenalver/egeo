@@ -10,21 +10,84 @@
  */
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
-.st-fn-demo-container {
-   width: 614px;
-
-   st-foreground-notifications {
-      margin-bottom: 15px;
-   }
-}
-
-.button {
-   width: 210px;
-   margin-bottom: 30px;
-}
-
 :host {
-   .header-container {
-      width: 100%;
+   display: block;
+}
+
+.close-pressed-message {
+   font-size: 18px;
+   opacity: 1;
+   transition: opacity .4s ease-in-out;
+}
+
+.input-container {
+   display: flex;
+   align-items: center;
+
+   st-input {
+      flex: 1;
+      max-width: 300px;
+   }
+
+   span {
+      margin-left: 20px;
+      margin-top: 20px;
    }
 }
+
+.demo-container {
+   margin-top: 30px;
+   display: flex;
+   flex-wrap: wrap;
+
+   .demo {
+      width: 400px;
+      margin-right: 80px;
+      margin-bottom: 80px;
+
+      .button-container {
+         margin: 48px 0;
+      }
+   }
+
+   .demo-config {
+      flex: 1;
+
+      & > * {
+         margin-bottom: 24px;
+      }
+
+      .position-options {
+         width: 400px;
+         display: grid;
+         grid-template-rows: 1fr 1fr 1fr;
+         grid-template-columns: 1fr 1fr 1fr;
+      }
+   }
+}
+
+.demo-label {
+   font-size: 21px;
+   line-height: 33.6px;
+   letter-spacing: normal;
+   color: #0f1b27;
+   margin: 32px 0 20px 0;
+}
+
+h1 {
+   font-family: 'Nunito Sans';
+   font-size: 14px;
+   line-height: 20px;
+   margin-bottom: 8px;
+   padding: 0;
+   color: #0f1b27;
+}
+
+.changed-input-message {
+   color: $action;
+}
+
+st-foreground-notifications {
+   --egeo-st-foreground-notifications--position: relative;
+}
+

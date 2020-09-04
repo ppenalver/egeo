@@ -8,18 +8,54 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { AfterViewInit, ChangeDetectorRef, Component, Input, EventEmitter, Output, ElementRef, OnInit, Renderer2,
-   OnChanges, ChangeDetectionStrategy } from '@angular/core';
-
-import { StatusNotification, StNotificationElement } from './st-foreground-notifications.model';
+import {
+   ChangeDetectionStrategy,
+   ChangeDetectorRef,
+   Component,
+   ElementRef,
+   EventEmitter,
+   HostListener,
+   Input,
+   OnChanges,
+   OnInit,
+   Output,
+   Renderer2,
+   SimpleChanges,
+   ViewChild
+} from '@angular/core';
+import {
+   StNotificationDisplayOptions,
+   StNotificationIcon,
+   StNotificationPosition,
+   StNotificationState,
+   StNotificationTriggerOptions,
+   StNotificationType
+} from './st-foreground-notifications.model';
+import {Subject} from 'rxjs';
+import {StForegroundNotificationsService} from './st-foreground-notifications.service';
+import {takeUntil} from 'rxjs/operators';
+import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
    selector: 'st-foreground-notifications',
    templateUrl: 'st-foreground-notifications.html',
    styleUrls: ['st-foreground-notifications.scss'],
-   host: {
-      '[class.visible]': '_visible'
-   },
+   animations: [
+      trigger('notificationFade', [
+         state('show', style({opacity: 1})),
+         state('hot_render', style({opacity: 1})),
+         state('hide_close', style({opacity: 0})),
+         state('hide_autoclose', style({opacity: 0})),
+         transition('hide_close => show, hide_autoclose => show', [
+            style({opacity: 0}),
+            animate(400, style({opacity: 1}))
+         ]),
+         transition('show => hide_close, show => hide_autoclose', [
+            style({opacity: 1}),
+            animate(400, style({opacity: 0}))
+         ])
+      ])
+   ],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 /**
@@ -32,214 +68,243 @@ import { StatusNotification, StNotificationElement } from './st-foreground-notif
  * {html}
  *
  * ```
- * <st-foreground-notifications [notifications]="notifications" [(visible)]="true" [autoCloseTime]="1000"></st-foreground-notifications>
+ * <st-foreground-notifications [config]="config" [hotRender]="false"></st-foreground-notifications>
  *
  * ```
  */
 
 
-export class StForegroundNotificationsComponent implements AfterViewInit, OnChanges, OnInit {
+export class StForegroundNotificationsComponent implements OnInit, OnChanges {
 
-   /** @Input {boolean} [visible=false] When true the notification is shown */
-   @Input()
-   set visible(value: boolean) {
-      if (value !== undefined) {
-         this._visible = value;
-         this.visibleChange.emit(this._visible);
+   /** @Input {hotRender} [hotRender=false'] If true, renders the notification directly and without animation */
+   @Input() hotRender: boolean;
+
+   /** @Input {config} [config={}'] Notification's config */
+   @Input() config: StNotificationDisplayOptions;
+
+   /** @output {autoClose} [EventEmitter] Event emitted when user clicks on close icon */
+   @Output() autoClose: EventEmitter<boolean> = new EventEmitter();
+
+   /** @output {close} [EventEmitter] Event emitted when notification was closed by timeout */
+   @Output() close: EventEmitter<boolean> = new EventEmitter();
+
+   @ViewChild('stNotification', {static: true}) stNotification: ElementRef;
+
+   public message: string;
+   public closeIcon: boolean;
+   public notificationType: StNotificationType;
+   public notificationIcon: StNotificationIcon | string;
+   public position: StNotificationPosition;
+   public positionReference: string;
+   public infoTimeout: number;
+   public successTimeout: number;
+   public warningTimeout: number;
+   public criticalTimeout: number;
+   public multipleTimeout: number;
+   public margin: number;
+   public width: string;
+   public showNotification: boolean;
+   public notificationState: StNotificationState;
+   public stNotificationType: typeof StNotificationType;
+   public stNotificationIcon: typeof StNotificationIcon;
+
+   private isMultiple: boolean;
+   private visibilityTimeout: number;
+   private componentDestroyed$: Subject<void>;
+
+   @HostListener('mouseover')
+   public onMouseOver(): void {
+      if (this.visibilityTimeout) {
+         clearTimeout(this.visibilityTimeout);
+         this.visibilityTimeout = null;
       }
-      this.cd.markForCheck();
-   }
-   get visible(): boolean {
-      return this._visible;
    }
 
-   /** @Input {autoCloseTime} [autoCloseTime='1000'] Defines the time in milliseconds for autoclose the notification.
-    *  The autoclose only applies if only have one notification and status is success
-    */
-   @Input() autoCloseTime: number;
-
-   /** @Input {StNotificationElement []} [notifications='[]'] Array of notifications */
-   @Input() notifications?: StNotificationElement[] = [];
-
-    /** @output {clickLinkTemplate} [click] Event emitted when user click in a href link */
-   @Output() clickLinkTemplate: EventEmitter<any> = new EventEmitter();
-
-   /** @output {visibleChange} [click] Event emitted when set param visible */
-   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter();
-
-   public currentNotification: number = 1;
-   public statusIconValue: string;
-   public statusNotificationsValue: string;
-   public statusValue: string;
-   public showLinkMore: boolean = false;
-   public status: string = 'default';
-
-   public _visible: boolean = false;
-   public listStatusNotifications: Array<StatusNotification> = [];
-
-   constructor(private cd: ChangeDetectorRef, private elemRef: ElementRef, private renderer: Renderer2) { }
-
-   ngOnInit(): void {
-      if (this.autoCloseTime) {
-         if ( this.notifications.length === 1 && this.notifications[0].status === 'success') {
-            setTimeout(() => this.onClose(), this.autoCloseTime);
+   @HostListener('mouseout')
+   public onMouseOut(): void {
+      if (!this.hotRender) {
+         const timeout = this.getTimeoutToApply(this.isMultiple);
+         if (timeout) {
+            this.setNotificationsTimeout(timeout);
          }
       }
-      this.fillStatusNotifications();
    }
 
-   ngAfterViewInit(): void {
-      let htmlElement = this.elemRef.nativeElement.querySelector('.foreground-notification__html');
-      if (htmlElement !== null) {
-         this.addStyleLinks(htmlElement);
-      }
-      if ( this.notifications && this.notifications.length > 0) {
-         this.checkOneLine();
-      }
-
-      this.cd.detectChanges();
+   constructor(
+      private cd: ChangeDetectorRef,
+      private elemRef: ElementRef,
+      private renderer: Renderer2,
+      private _notifications: StForegroundNotificationsService
+   ) {
+      this.stNotificationIcon = StNotificationIcon;
+      this.stNotificationType = StNotificationType;
+      this.config = {};
+      this.hotRender = false;
+      this.showNotification = false;
+      this.notificationState = StNotificationState.HIDE_CLOSE;
+      this.componentDestroyed$ = new Subject();
    }
 
-   ngOnChanges(): void {
-      if (this.notifications && this.notifications.length < this.currentNotification) {
-         this.currentNotification = this.notifications.length;
+   public ngOnInit(): void {
+      this.processConfiguration();
+      if (this.hotRender) {
+         this.notificationState = StNotificationState.HOT_RENDER;
+      } else {
+         this.initTriggerSubscription();
+         this.initCancelTimeoutSubscription();
       }
-      this.listStatusNotifications = [];
-      this.fillStatusNotifications();
    }
 
-   addStyleLinks(htmlElement: any): void {
-      let links = htmlElement.querySelectorAll('a');
-      if (links.constructor !== Array) {
-         links = (<any>Object).values(links);
+   public ngOnChanges(changes: SimpleChanges): void {
+      if (this.hotRender && changes && changes.config && changes.config.currentValue) {
+         this.processConfiguration(changes.config.currentValue);
       }
-      links.forEach((element: any, index: any) => {
-         let nameEventEmitter = (this.notifications[this.getIndexCurrentNotification()]).nameEvents[index];
-         if (nameEventEmitter) {
-            element.addEventListener('click', this.onClickLinkHtmlTemplate.bind(this, nameEventEmitter));
-            this.renderer.setStyle(element, 'text-decoration', 'underline');
-            this.renderer.setStyle(element, 'cursor', 'pointer');
-         }
-      });
    }
 
-   checkOneLine(): void {
-      let element = this.elemRef.nativeElement.querySelectorAll('.foreground-notification__content');
-      let currentIndex = this.getIndexCurrentNotification();
+   public onCloseClick(): void {
+      if (!this.hotRender) {
+         clearTimeout(this.visibilityTimeout);
+         this.visibilityTimeout = null;
+         this.notificationState = StNotificationState.HIDE_CLOSE;
+      } else {
+         this.close.emit();
+      }
+   }
 
-      if (this.listStatusNotifications && this.listStatusNotifications.length > 0) {
-         if (element[currentIndex].offsetHeight > 40) {
-            this.listStatusNotifications[currentIndex].showMore = !this.listStatusNotifications[currentIndex].completeText;
+   public onNotificationStateChanged(event: AnimationEvent): void {
+      if (event.toState === StNotificationState.HIDE_CLOSE || event.toState === StNotificationState.HIDE_AUTOCLOSE) {
+         this._notifications.removeNotification();
+         this.processConfiguration(this.config);
+      }
 
-            if (this.listStatusNotifications[currentIndex].showMore) {
-               this.listStatusNotifications[currentIndex].completeText = false;
-               this.renderer.addClass(element[currentIndex], 'limit-one-line');
+      if (event.toState === StNotificationState.HIDE_CLOSE) {
+         this.close.emit();
+      }
+
+      if (event.toState === StNotificationState.HIDE_AUTOCLOSE) {
+         this.autoClose.emit();
+      }
+   }
+
+   private initTriggerSubscription(): void {
+      this._notifications.trigger$
+         .pipe(takeUntil(this.componentDestroyed$))
+         .subscribe(this.triggerNotification.bind(this));
+   }
+
+   private initCancelTimeoutSubscription(): void {
+      this._notifications.cancelTimeout$
+         .pipe(takeUntil(this.componentDestroyed$))
+         .subscribe(() => {
+            this.isMultiple = true;
+
+            const timeout = this.getTimeoutToApply(this.isMultiple);
+            clearTimeout(this.visibilityTimeout);
+            this.visibilityTimeout = null;
+
+            if (timeout) {
+               this.setNotificationsTimeout(timeout);
             }
-         } else {
-            this.listStatusNotifications[currentIndex].completeText = true;
-            if (!this.listStatusNotifications[currentIndex].showMore) {
-               this.removeStyleNotification();
-            }
-         }
-      }
-      this.checkStatus();
+         });
    }
 
-   checkStatus(): void {
-      this.statusValue = this.getStatus();
-      this.statusIconValue = this.getStatusIcon();
-      this.statusNotificationsValue = this.getStatusNotifications();
-
+   private triggerNotification(triggerOptions: StNotificationTriggerOptions): void {
+      const {notificationOptions, isMultiple} = triggerOptions;
+      this.isMultiple = isMultiple;
+      this.notificationState = StNotificationState.SHOW;
       this.cd.detectChanges();
+
+      if (!!notificationOptions) {
+         this.processConfiguration(notificationOptions);
+      }
+
+      const timeoutToApply = this.getTimeoutToApply(this.isMultiple);
+      if (timeoutToApply) {
+         this.setNotificationsTimeout(timeoutToApply);
+      }
    }
 
-   decrementPage(): void {
-      this.currentNotification = this.getIndexCurrentNotification();
-      setTimeout(() => {
-         this.checkOneLine();
+   private setNotificationsTimeout(timeout: number): void {
+      this.visibilityTimeout = <any>setTimeout(() => {
+         this.notificationState = StNotificationState.HIDE_AUTOCLOSE;
          this.cd.detectChanges();
-      });
-      this.status = this.notifications[this.getIndexCurrentNotification()].status;
+      }, timeout);
    }
 
-   fillStatusNotifications(): void {
-      if (this.notifications && this.notifications.length > 0) {
-         this.status = this.notifications[this.getIndexCurrentNotification()].status;
-         this.checkStatus();
-      }
-
-      this.notifications.forEach(() => {
-         this.listStatusNotifications.push(new StatusNotification(false, false));
-      });
+   private setNotificationPosition(): void {
+      const referenceElement = document.querySelector(this.positionReference);
+      const [verticalPosition, horizontalPosition] = this.position.split('_');
+      const topValue = this.getTopValue(verticalPosition, referenceElement);
+      const leftValue = this.getLeftValue(horizontalPosition, referenceElement);
+      this.renderer.setStyle(this.stNotification.nativeElement, 'top', (this.margin + topValue) + 'px');
+      this.renderer.setStyle(this.stNotification.nativeElement, 'left', (this.margin + leftValue) + 'px');
    }
 
-   getIndexCurrentNotification(): number {
-      return this.currentNotification - 1;
-   }
+   private getTopValue(position: string, reference: Element): number {
+      const stNotification = this.stNotification.nativeElement;
+      const referenceClientRect = (reference as Element).getBoundingClientRect();
+      const stNotificationClientRect = stNotification.getBoundingClientRect() as ClientRect;
+      const height = referenceClientRect.height > window.innerHeight ? window.innerHeight : referenceClientRect.height;
 
-   getStatus(): string {
-      switch (this.status) {
-         case 'success':
-         case 'warning':
-         case 'critical':
-         case 'running':
-            return this.status;
-         default:
-            return 'default';
+      if (position === 'top') {
+         return referenceClientRect.top;
+      } else if (position === 'bottom') {
+         return referenceClientRect.bottom - stNotificationClientRect.height;
+      } else if (position === 'center') {
+         return referenceClientRect.top + (height / 2) - stNotificationClientRect.height;
       }
    }
 
-   getStatusIcon(): string {
-      switch (this.status) {
-         case 'success':
-            return 'icon-circle-check';
-         case 'warning':
-            return 'icon-alert';
-         case 'critical':
-            return 'icon-info1';
-         case 'running':
-            return 'icon-info1';
-         default:
-            return 'default';
+   private getLeftValue(position: string, reference: Element): number {
+      const stNotification = this.stNotification.nativeElement;
+      const referenceClientRect = (reference as Element).getBoundingClientRect();
+      const stNotificationClientRect = stNotification.getBoundingClientRect() as ClientRect;
+      const width = referenceClientRect.width > window.innerWidth ? window.innerWidth : referenceClientRect.width;
+
+      if (position === 'left') {
+         return referenceClientRect.left;
+      } else if (position === 'right') {
+         return referenceClientRect.right - stNotificationClientRect.width;
+      } else if (position === 'center') {
+         return referenceClientRect.left + (width / 2) - (stNotificationClientRect.width / 2);
       }
    }
 
-   getStatusNotifications(): string {
-      return (this.notifications.length > 1) ? 'more-lines' : '';
-   }
+   private processConfiguration(config: StNotificationDisplayOptions = this.config): void {
+      const defaultConfig = this._notifications.DEFAULT_CONFIG;
 
-   incrementPage(): void {
-      this.currentNotification = this.currentNotification + 1;
-      setTimeout(() => {
-         this.checkOneLine();
-         this.cd.detectChanges();
-      });
-      this.status = this.notifications[this.getIndexCurrentNotification()].status;
-   }
+      this.message = config.message ? config.message : defaultConfig.message;
+      this.notificationType = config.notificationType ? config.notificationType : defaultConfig.notificationType;
+      this.notificationIcon = config.notificationIcon ? config.notificationIcon : defaultConfig.notificationIcon;
+      this.closeIcon = config.closeIcon ? config.closeIcon : defaultConfig.closeIcon;
+      this.position = config.position ? config.position : defaultConfig.position;
+      this.positionReference = config.positionReference ? config.positionReference : defaultConfig.positionReference;
+      this.infoTimeout = config.infoTimeout ? config.infoTimeout : defaultConfig.infoTimeout;
+      this.successTimeout = config.successTimeout ? config.successTimeout : defaultConfig.successTimeout;
+      this.warningTimeout = config.warningTimeout ? config.warningTimeout : defaultConfig.warningTimeout;
+      this.criticalTimeout = config.criticalTimeout ? config.criticalTimeout : defaultConfig.criticalTimeout;
+      this.multipleTimeout = config.multipleTimeout ? config.multipleTimeout : defaultConfig.multipleTimeout;
+      this.margin = config.margin ? config.margin : defaultConfig.margin;
+      this.width = config.width ? config.width : defaultConfig.width;
 
-   onClickLinkHtmlTemplate(event: string): void {
-      this.clickLinkTemplate.emit(event);
-   }
-
-   onClose(): void {
-      this.visible = false;
-      this.cd.markForCheck();
-   }
-
-   removeStyleNotification(): void {
-      let element = this.elemRef.nativeElement.querySelectorAll('.foreground-notification__content');
-      this.renderer.removeClass(element[this.getIndexCurrentNotification()], 'limit-one-line');
-      this.cd.markForCheck();
-   }
-
-   showTextComplete(): void {
-      let currentIndex = this.getIndexCurrentNotification();
-      if (this.listStatusNotifications && this.listStatusNotifications.length > 0) {
-         this.listStatusNotifications[currentIndex].showMore = false;
-         this.listStatusNotifications[currentIndex].completeText = true;
+      if (!this.hotRender) {
+         this.renderer.setStyle(this.stNotification.nativeElement, 'max-width', this.width);
+         this.setNotificationPosition();
       }
-      this.removeStyleNotification();
-      this.cd.markForCheck();
+   }
+
+   private getTimeoutToApply(isMultiple: boolean): number {
+      if (isMultiple) {
+         return this.multipleTimeout;
+      }
+
+      const auxMap = {
+         [StNotificationType.INFO]: this.infoTimeout,
+         [StNotificationType.SUCCESS]: this.successTimeout,
+         [StNotificationType.WARNING]: this.warningTimeout,
+         [StNotificationType.CRITICAL]: this.criticalTimeout
+      };
+      return auxMap[this.notificationType];
    }
 }
 

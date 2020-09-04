@@ -1,28 +1,29 @@
-# Foreground notifications (Component)
+# Notification (Component)
 
-   Foreground notifications are made to let the user know info about a process she is performing in real time.
+   Notification is made to let the user know info about a process she is performing in real time.
 
 ## Inputs
 
-| Property      | Type                     | Req   | Description                                                                                                                                     | Default |
-| ------------- | ------------------------ | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| visible       | Boolean                  | False | When true the notification is shown                                                                                                             | false   |
-| autoCloseTime | AutoCloseTime            | False | Defines the time in milliseconds for autoclose the notification. The autoclose only applies if only have one notification and status is success | '1000'  |
-| notifications | StNotificationElement [] | False | '] Array of notifications                                                                                                                       | '[      |
+| Property      | Type                         | Req   | Description                                                                                                                                     | Default |
+| ------------- | ---------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| hotRender     | Boolean                      | False | When true the notification is shown as a demo                                                                                                             | false   |
+| config        | StNotificationDisplayOptions | False | The notification's config 
+
 
 ## Outputs
 
 | Property | Type              | Description                                  |
 | -------- | ----------------- | -------------------------------------------- |
-| click    | ClickLinkTemplate | Event emitted when user click in a href link |
-| click    | VisibleChange     | Event emitted when set param visible         |
+| close    | EventEmitter      | Event emitted when user click in close icon |
+| autoClose| EventEmitter      | Event emitted when notification is closed by timeout         |
 
 ## Example
 
 
 ```html
-<st-foreground-notifications [notifications]="notifications"
-      [(visible)]="true"
-      [autoCloseTime]="1000"></st-foreground-notifications>
+<st-foreground-notifications 
+  [config]="config"
+  [hotRender]="false">
+</st-foreground-notifications>
 ```
 

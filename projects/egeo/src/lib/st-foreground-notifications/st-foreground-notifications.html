@@ -6,27 +6,22 @@
     See the terms of the License for more details.
     SPDX-License-Identifier: Apache-2.0.
 -->
-<div class="foreground-notification__component">
-   <div class="foreground-notification__pagination" [ngClass]="statusValue" *ngIf="notifications.length > 1">
-      <button class="decrement-notification" [disabled]="currentNotification === 1" (click)="decrementPage()"><i class="icon-arrow2_left"></i></button>
-      <span>{{currentNotification}}</span>
-      <span>of</span>
-      <span>{{notifications.length}}</span>
-      <button class="increment-notification" [disabled]="currentNotification === notifications.length " (click)="incrementPage()"><i class="icon-arrow2_right"></i></button>
-   </div>
+<div
+   #stNotification
+   [@notificationFade]="notificationState"
+   (@notificationFade.done)="onNotificationStateChanged($event)"
+   class="st-notification"
+   [ngClass]="[
+      'st-notification--' + (notificationType ? notificationType : stNotificationType.INFO)]
+   ">
+   <div class="st-notification__inner-container">
+      <i
+         *ngIf="notificationIcon !== stNotificationIcon.NONE"
+         class="st-notification__status-icon"
+         [ngClass]="notificationIcon">
+      </i>
 
-   <div *ngIf="notifications.length > 0" class="foreground-notification" [ngClass]="[statusValue, statusNotificationsValue]">
-      <div class="foreground-notification__container">
-         <i class="status" [ngClass]="statusIconValue"></i>
-         <div class="foreground-notification__content" *ngFor="let notification of notifications; let index=index">
-            <span class="foreground-notification__html" *ngIf="notification.html && index === currentNotification - 1" [innerHtml]="notifications[currentNotification - 1].html"></span>
-            <span  *ngIf="!notification.html && index === getIndexCurrentNotification()">
-               {{notifications[getIndexCurrentNotification()].text}}
-            </span>
-            <a class="link-more" *ngIf="listStatusNotifications[index] && listStatusNotifications[index].showMore && index === currentNotification - 1" (click)="showTextComplete()">...More</a>
-         </div>
-      </div>
-
-      <i class="close icon-cross" (click)="onClose()"></i>
+      <span class="st-notification__message" [innerHTML]="message"></span>
    </div>
+   <i *ngIf="closeIcon" class="st-notification__close-icon icon-cross" (click)="onCloseClick()"></i>
 </div>

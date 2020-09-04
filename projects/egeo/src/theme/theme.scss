@@ -8,8 +8,26 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
 @import 'utils/index';
 @import 'components/index';
+
+st-foreground-notifications .st-notification {
+   A {
+      text-decoration: underline;
+      color: $neutral-full;
+      font-size: $egeo-font-size-14;
+      line-height: $egeo-line-height-22;
+
+      &:hover {
+         text-decoration: none;
+      }
+   }
+
+   &--info A {
+      color: $space-110;
+   }
+}
 
 .st-group-label {
    font-size: $egeo-font-size-12;

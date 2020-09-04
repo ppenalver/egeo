@@ -8,89 +8,50 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ComponentFixture, async, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { Component, DebugElement, NO_ERRORS_SCHEMA, ViewChild, EventEmitter } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {Component, EventEmitter, ViewChild} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {StForegroundNotificationsComponent} from './st-foreground-notifications';
+import {StForegroundNotificationsModule} from './st-foreground-notifications.module';
 
-import { StProgressBarModule } from '../st-progress-bar/st-progress-bar.module';
-import { StForegroundNotificationsComponent } from './st-foreground-notifications';
-import { StForegroundNotificationsModule } from './st-foreground-notifications.module';
-
-import { StatusNotification, StNotificationElement } from './st-foreground-notifications.model';
+import {
+   StNotificationDisplayOptions,
+   StNotificationPosition,
+   StNotificationType
+} from './st-foreground-notifications.model';
+import {StForegroundNotificationsService} from './st-foreground-notifications.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
    template: `
-      <st-foreground-notifications #notification
-         [notifications]="notifications"
-         [(visible)]="visible"
-         [autoCloseTime]="autoCloseTime"
-         id="tes-id"
-         (clickLinkTemplate)="clickLinkTemplate.emit($event)">
-      </st-foreground-notifications>`
+      <div class="test-container">
+         <st-foreground-notifications
+            (close)="onClose.emit()"
+            (autoClose)="onAutoClose.emit()">
+         </st-foreground-notifications>
+      </div>`
 })
 class TestStFNComponent {
-   notifications: StNotificationElement[] = [];
-   text: string;
-   visible: boolean;
-   autoCloseTime: number;
-   clickLinkTemplate: EventEmitter<any> = new EventEmitter();
-   @ViewChild('notification', {static: false}) dropdownItem: StForegroundNotificationsComponent;
+   config: StNotificationDisplayOptions = {
+      message: 'The request is understood <a>Check the database</a> <a>Check the database2</a>'
+   };
+   onClose: EventEmitter<void> = new EventEmitter();
+   onAutoClose: EventEmitter<void> = new EventEmitter();
+   @ViewChild(StForegroundNotificationsComponent, {static: true}) notification: StForegroundNotificationsComponent;
 
-   generateHtmlNotifications(): StNotificationElement[] {
-      return [
-         {
-            html: `<p>The request is understood <a>Check the database</a> <a>Check the database2</a>  </p>`,
-            nameEvents: ['doCheckDatabase', 'doCheckDatabaseTwo']
-         }];
-   }
-
-   generateSimpleNotifications(): StNotificationElement[] {
-      return [
-         {
-            text: `The request is understood`
-         }];
-   }
-
-   generateMultiLineNotification(): StNotificationElement[] {
-      return [{
-         text: `Stratio audit failed to connect to Postgres database / second page.The request is understood, but it has been refused
-         or access is not allowed. An accompanying error message will explain why.
-         This code is used when requests are being denied due to update limits . Other reasons for this status being returned are listed
-         alongside the error codes in the table below.The request is understood, but it has been refused or access is not allowed.
-         An accompanying error message will explain why. This code is used when requests are being denied due to update limits .`,
-         status: 'success'
-      },
-      {
-         text: `Stratio audit failed to connect to Postgres database / second page.The request is understood, but it has been refused
-         or access is not allowed. An accompanying error message will explain why.
-         This code is used when requests are being denied due to update limits . Other reasons for this status being returned are listed
-         alongside the error codes in the table below.The request is understood, but it has been refused or access is not allowed.
-         An accompanying error message will explain why. This code is used when requests are being denied due to update limits .`,
-         status: 'running'
-      }];
-   }
-
-   generatePaginationNotification(): StNotificationElement[] {
-      return [{
-         text: `notification one`,
-         status: 'success'
-      },
-      {
-         text: `notification two`,
-         status: 'running'
-      }];
+   constructor() {
    }
 }
 
 let comp: TestStFNComponent;
+let _notifications: StForegroundNotificationsService;
 let fixture: ComponentFixture<TestStFNComponent>;
 let nativeElement: HTMLElement;
 
 describe('StForegroundNotificationsComponent', () => {
    beforeEach(async(() => {
       TestBed.configureTestingModule({
-         imports: [StForegroundNotificationsModule],
+         imports: [StForegroundNotificationsModule, BrowserAnimationsModule],
          declarations: [TestStFNComponent],
          providers: [
             {
@@ -99,7 +60,8 @@ describe('StForegroundNotificationsComponent', () => {
                   sanitize: () => '<p>The request is understood <a>Check the database</a> <a>Check the database2</a>  </p>',
                   bypassSecurityTrustHtml: () => 'safeString'
                }
-            }
+            },
+            StForegroundNotificationsService
          ]
       }).compileComponents();
    }));
@@ -107,153 +69,96 @@ describe('StForegroundNotificationsComponent', () => {
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStFNComponent);
       comp = fixture.componentInstance;
-      comp.notifications = comp.generateSimpleNotifications();
+      _notifications = TestBed.get(StForegroundNotificationsService);
       nativeElement = fixture.nativeElement;
+      comp.notification.ngOnInit();
    });
 
-   describe('When visible is true ', () => {
-      it('And status is defined as default, The element should contain "default" class', async(() => {
-         comp.visible = true;
-         comp.notifications[0].status = 'default';
-         fixture.detectChanges();
+   describe('When component is visible ', () => {
+      it('And notificationType is defined as info, The element should contain "st-notification--info" class', fakeAsync(() => {
+         _notifications.addNotification({
+            notificationType: StNotificationType.INFO
+         });
+         tick(6500);
 
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-         expect(nativeElement.querySelector('.foreground-notification').classList).toContain('default');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('warning');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('success');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('critical');
+         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--info');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
       }));
 
-      it('And status is defined as sucess, element should contain "success" class', async(() => {
-         comp.visible = true;
-         comp.notifications[0].status = 'success';
-         fixture.detectChanges();
+      it('And status is defined as sucess, element should contain "st-notification--success" class', fakeAsync(() => {
+         _notifications.addNotification({
+            notificationType: StNotificationType.SUCCESS
+         });
+         tick(6500);
 
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-         expect(nativeElement.querySelector('.foreground-notification').classList).toContain('success');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('warning');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('default');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('critical');
+         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--success');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
       }));
 
-      it('And status is defined as warning, element should contain "warning" class', async(() => {
-         comp.visible = true;
-         comp.notifications[0].status = 'warning';
-         fixture.detectChanges();
+      it('And status is defined as warning, element should contain "st-notification--warning" class', fakeAsync(() => {
+         _notifications.addNotification({
+            notificationType: StNotificationType.WARNING
+         });
+         tick(6500);
 
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-         expect(nativeElement.querySelector('.foreground-notification').classList).toContain('warning');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('default');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('success');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('critical');
+         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--warning');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
       }));
 
-      it('And status is defined as critical, element should contain "critical" class', async(() => {
-         comp.visible = true;
-         comp.notifications[0].status = 'critical';
-         fixture.detectChanges();
+      it('And status is defined as critical, element should contain "st-notification--critical" class', fakeAsync(() => {
+         _notifications.addNotification({
+            notificationType: StNotificationType.CRITICAL,
+            criticalTimeout: 6000
+         });
+         tick(6500);
 
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-         expect(nativeElement.querySelector('.foreground-notification').classList).toContain('critical');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('warning');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('success');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('default');
+         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--critical');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
       }));
 
-      it('And status is not defined, element should contain "default" class', async(() => {
-         comp.visible = true;
-         fixture.detectChanges();
+      it('And "notificationType" is not defined, element should contain "st-notification--info" class', fakeAsync(() => {
+         _notifications.addNotification();
+         tick(6500);
 
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-         expect(nativeElement.querySelector('.foreground-notification').classList).toContain('default');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('warning');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('success');
-         expect(nativeElement.querySelector('.foreground-notification').classList).not.toContain('critical');
+         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--info');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
+         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
       }));
 
       it('And user click on the close icon, the element should fade out and then hidden', fakeAsync(() => {
-         fixture.detectChanges();
-         let closeButton: HTMLElement = fixture.debugElement.query(By.css('.close')).nativeElement;
-         comp.notifications[0].status = 'success';
-         comp.visible = true;
-         fixture.detectChanges();
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-
+         _notifications.addNotification({
+            notificationType: StNotificationType.INFO,
+            margin: 0,
+            positionReference: '.test-container',
+            position: StNotificationPosition.CENTER_CENTER
+         });
+         tick(6500);
+         let closeButton: HTMLElement = nativeElement.querySelector('.st-notification__close-icon');
          closeButton.click();
-         fixture.detectChanges();
-         expect(nativeElement.querySelector('st-foreground-notifications').classList).not.toContain('visible');
+         tick(1000);
+         expect((nativeElement.querySelector('.st-notification') as HTMLElement).style.opacity).not.toBe('1');
       }));
 
-      it(`when the property autoCloseTime is set and only have one notification with status success,
-          the element should fade out and then hidden in the time set`, fakeAsync(() => {
-            comp.autoCloseTime = 1000;
-            comp.visible = true;
-            comp.notifications[0].status = 'success';
-            fixture.detectChanges();
-            expect(nativeElement.querySelector('st-foreground-notifications').classList).toContain('visible');
-            tick(2000);
-            fixture.detectChanges();
+      it(`when the config option "timeout" is set as 6000ms the element should fade out and then
+         hidden in the time set`, fakeAsync(() => {
+         _notifications.addNotification({
+            notificationType: StNotificationType.INFO,
+            margin: 0,
+            positionReference: '.test-container',
+            position: StNotificationPosition.CENTER_CENTER
+         });
 
-            expect(nativeElement.querySelector('st-foreground-notifications').classList).not.toContain('visible');
-         }));
-
-      it(`a notification defined with html must be able to control the a href links`, async(() => {
-         comp.notifications = comp.generateHtmlNotifications();
-         fixture.detectChanges();
-         spyOn(comp.clickLinkTemplate, 'emit');
-         comp.visible = true;
-         comp.notifications[0].status = 'success';
-         fixture.detectChanges();
-         let hrefLink: HTMLElement = <HTMLElement><any> nativeElement.querySelectorAll('.foreground-notification__html > p > a')[0];
-         hrefLink.click();
-         fixture.detectChanges();
-
-         expect(comp.clickLinkTemplate.emit).toHaveBeenCalled();
+         tick(6500);
+         expect((nativeElement.querySelector('.st-notification') as HTMLElement).style.opacity).not.toBe('1');
       }));
-
-      it(`A multiline notification must be shown in a single line, when clicking you must display the complete detail`, async(() => {
-         comp.notifications = comp.generateMultiLineNotification();
-         fixture.detectChanges();
-         let showMoreButton: HTMLElement = fixture.debugElement.query(By.css('.link-more')).nativeElement;
-         fixture.detectChanges();
-
-         expect(nativeElement.querySelector('.foreground-notification__content').classList).toContain('limit-one-line');
-
-         showMoreButton.click();
-         fixture.detectChanges();
-
-         expect(nativeElement.querySelector('.foreground-notification__content').classList).not.toContain('limit-one-line');
-      }));
-
-      it(`when we have various notifcations must be able to page`, async(() => {
-         comp.notifications = comp.generatePaginationNotification();
-         fixture.detectChanges();
-         let incrementButton: HTMLElement = fixture.debugElement.query(By.css('.increment-notification')).nativeElement;
-         let decrementButton: HTMLElement = fixture.debugElement.query(By.css('.decrement-notification')).nativeElement;
-         fixture.detectChanges();
-
-         incrementButton.click();
-         fixture.detectChanges();
-
-         expect(nativeElement.querySelectorAll('.foreground-notification__content > span')[0].textContent).toEqual(' notification two ');
-
-         decrementButton.click();
-         fixture.detectChanges();
-
-         expect(nativeElement.querySelectorAll('.foreground-notification__content > span')[0].textContent).toEqual(' notification one ');
-      }));
-
-      it(`when a notification is removed, if currentNotification page is greater than the current number of notifications,
-         this is setted to show the last one`, () => {
-         comp.notifications = comp.generatePaginationNotification();
-         fixture.detectChanges();
-         let incrementButton: HTMLElement = fixture.debugElement.query(By.css('.increment-notification')).nativeElement;
-         incrementButton.click();
-         fixture.detectChanges();
-         // remove the last notification
-         comp.notifications = comp.notifications.slice(0, -1);
-         fixture.detectChanges();
-         expect(nativeElement.querySelectorAll('.foreground-notification__content > span')[0].textContent).toEqual(' notification one ');
-      });
    });
 });

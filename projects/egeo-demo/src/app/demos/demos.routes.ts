@@ -30,7 +30,7 @@ export const EGEO_DEMO_MENU: EgeoDemoMenu[] = [
    { id: 'st-dynamic-table', name: 'Dynamic Table', path: 'dynamic-table-demo', moduleLazyLoad: 'StDynamicTableDemoModule' },
    { id: 'st-file-button', name: 'File button', path: 'file-button-demo', moduleLazyLoad: 'StFileButtonDemoModule' },
    { id: 'st-filter-selector', name: 'Filter selector', path: 'filter-selector-demo', moduleLazyLoad: 'StFilterSelectorDemoModule' },
-   { id: 'st-foreground-notifications', name: 'Foreground Notifications',
+   { id: 'st-foreground-notifications', name: 'Notification',
       path: 'foreground-notifications-demo', moduleLazyLoad: '@StForegroundNotificationsModule' },
    { id: 'st-form', name: 'Form', path: 'form-demo', moduleLazyLoad: 'StFormDemoModule' },
    { id: 'st-form-list', name: 'Form List', path: 'form-list-demo', moduleLazyLoad: 'StFormListDemoModule' },
