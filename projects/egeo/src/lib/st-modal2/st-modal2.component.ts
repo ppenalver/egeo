@@ -9,7 +9,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, HostListener, OnDestroy } from '@angular/core';
+import {
+   Component,
+   ChangeDetectionStrategy,
+   Input,
+   Output,
+   EventEmitter,
+   HostListener,
+   OnDestroy,
+   ElementRef,
+   ViewChild
+} from '@angular/core';
 import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 
@@ -34,6 +44,7 @@ import { Subscription } from 'rxjs';
    ]
 })
 export class StModal2Component implements OnDestroy {
+   @ViewChild('modalContainer', {static: true}) modalContainer: ElementRef;
 
    @Input() disabledAnimation: boolean = true;
    @Input() emptyModal: boolean;
@@ -86,5 +97,11 @@ export class StModal2Component implements OnDestroy {
             this.onClose.emit();
          }
       }));
+   }
+
+   onClickOutside(event: MouseEvent): void {
+      if (event.target === this.modalContainer.nativeElement) {
+         this.onCloseButton();
+      }
    }
 }

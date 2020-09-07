@@ -12,7 +12,7 @@
 -->
 <div class="content">
    <demo-menu [options]="demoMenu" (selected)="updateDemoTitle($event)"></demo-menu>
-   <div class="main-content">
+   <div #mainContent class="main-content">
       <egeo-title [title]="title"></egeo-title>
 
       <router-outlet></router-outlet>

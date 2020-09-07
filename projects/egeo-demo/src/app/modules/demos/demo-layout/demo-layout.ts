@@ -8,22 +8,53 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component } from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { EGEO_DEMO_MENU, EgeoDemoMenu } from '@app/demos/demos.routes';
 
 import { DemoSideMenu } from '../../../shared/menu/menu.model';
+import {ActivationEnd, Router} from '@angular/router';
+import {Subject} from 'rxjs';
+import {filter, takeUntil} from 'rxjs/operators';
 
 @Component({
    selector: 'demo-layout',
    templateUrl: './demo-layout.html',
    styleUrls: ['./demo.layout.scss']
 })
-export class DemoLayoutComponent {
+export class DemoLayoutComponent implements OnInit, OnDestroy {
+   @ViewChild('mainContent', {static: true}) mainContent: ElementRef;
+
    public menu: EgeoDemoMenu[] = EGEO_DEMO_MENU || [];
    public title: string;
+   private componentDestroyed$: Subject<void>;
+
+   constructor(private _router: Router) {
+      this.componentDestroyed$ = new Subject<void>();
+   }
+
+   public ngOnInit(): void {
+      this._router.events
+         .pipe(
+            filter(e => e instanceof ActivationEnd),
+            takeUntil(this.componentDestroyed$)
+         )
+         .subscribe(() => {
+            if (this.mainContent) {
+               this.mainContent.nativeElement.scrollTo(0, 0);
+            }
+         });
+   }
+
+   public ngOnDestroy(): void {
+      this.componentDestroyed$.next();
+      this.componentDestroyed$.complete();
+      this.componentDestroyed$.unsubscribe();
+   }
 
    public get demoMenu(): DemoSideMenu[] {
-      return EGEO_DEMO_MENU.map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
+      return EGEO_DEMO_MENU
+         .sort((a, b) => a.name > b.name ? 1 : -1)
+         .map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
    }
 
    public updateDemoTitle(demoPosition: number): void {

@@ -18,6 +18,8 @@
 * st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-select: Enable keyboard listener by default to open, close and move across menu options
 * st-modal2: Added "fullWindow" input to apply full size to the modal
+* st-modal2: st-modal2 was renamed externally (not in code) as st-modal
+* st-modal2: Added functionality to close modal when clicking outside
 
 **Fixed bugs:**
 
@@ -33,6 +35,10 @@
 * st-foreground-notification: Removed old component's outputs and added "close" and "autoClose" as new inputs.
 * st-select: Removed integrated searcher 
 * st-select, st-dropdown: Removed 'loading' status (spinner)
+
+**Deprecated:**
+
+* st-modal: st-modal is deprecated and will be removed in a future release
 
 **Refactor:**
 

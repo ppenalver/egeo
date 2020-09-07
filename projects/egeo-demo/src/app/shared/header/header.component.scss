@@ -10,6 +10,8 @@
  */
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
+$egeo-header-demo--color: #28abf8;
+
 .main-header-stratio {
    position: fixed;
    top: 0;
@@ -20,16 +22,31 @@
    align-items: center;
    width: 100%;
    height: 50px;
-   background-color: $space-110;
+   background-color: $space;
    z-index: $header-z-index;
+
+   i {
+      font-size: 22px;
+      color: $egeo-header-demo--color;
+   }
+
+   img:not(&__design-label) {
+      height: 17px;
+      margin-left: 10px;
+   }
+
+   img.main-header-stratio__design-label {
+      margin-top: 6.5px;
+      margin-left: 9px;
+   }
 
    .title {
       color: white;
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-left: 30px;
-      margin-right: 30px;
+      margin-left: 25px;
+      margin-right: 25px;
 
       a {
          display: flex;
