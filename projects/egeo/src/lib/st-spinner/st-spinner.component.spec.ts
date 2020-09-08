@@ -36,18 +36,7 @@ describe('StSpinnerComponent', () => {
       comp = fixture.componentInstance;
    });
 
-   describe('Its theme can be configured', () => {
-      it('by default, theme is "primary"', () => {
-         fixture.detectChanges();
-         expect(comp.theme).toEqual('primary');
-         expect(fixture.nativeElement.querySelector('.path.path--primary')).not.toBeNull();
-      });
-
-      it ('theme introduced as input is added to svg path', () => {
-         comp.theme = 'secondary';
-         fixture.detectChanges();
-
-         expect(fixture.nativeElement.querySelector('.path.path--secondary')).not.toBeNull();
-      });
+   it('should create', () => {
+      expect(comp).toBeTruthy();
    });
 });

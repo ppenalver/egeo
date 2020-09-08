@@ -12,40 +12,89 @@
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="container-liquid demo-layout">
-
+      <p class="introduction">
+         Spinners are used when retrieving data or performing slow computations and help to notify users that loading is underway. Spinners indicate that content will process for an indeterminate amount of time.
+      </p>
       <h1 class="title">Theme customization</h1>
       <p class="paragraph">You can customize some table styles using the following css variables</p>
       <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
-      <br>
-      <h2 class="subtitle">Size of spinner</h2>
-      <st-input class="st-form-field size-input" type="number" [(ngModel)]="size" placeholder="Enter a size for the spinner" label="Size of spinner">
-      </st-input>
-      <br>
-      <h2 class="subtitle">Spinner with theme 'primary'</h2>
-
-      <st-spinner [style.width.px]="size" [style.height.px]="size" class="spinner">
-      </st-spinner>
-
-      <h2 class="subtitle">Spinner with theme 'secondary'</h2>
-      <div class="secondary-theme-container">
-         <st-spinner theme="secondary" class="spinner" [style.width.px]="size" [style.height.px]="size">
-         </st-spinner>
-      </div>
-      <br>
-
-      <h2 class="subtitle">Spinner inside a button</h2>
-      <div class="col-md-3">
-         <button class="button button-primary">
-            <st-spinner theme="secondary" class="spinner">
-            </st-spinner>
-         </button>
-      </div>
-      <br>
-      <div class="col-md-3">
-         <button class="button button-primary large">
-            <st-spinner theme="secondary" class="spinner">
-            </st-spinner>
-         </button>
-      </div>
+      <p class="demo-label">
+         Demo
+      </p>
+      <section class="container-liquid demo-container">
+         <div class="demo">
+            <div
+              class="spinner-container"
+              [ngClass]="{
+                'show-background': spinnerBackground,
+                'flex-container': spinnerDisplay === 3,
+                'inverse': spinnerColor === 2
+              }">
+                <st-spinner
+                   [ngClass]="{
+                  'st-spinner--20': spinnerSize === 2,
+                  'st-spinner--16': spinnerSize === 3,
+                  'st-spinner--12': spinnerSize === 4,
+                  'st-spinner--inline': spinnerDisplay === 2,
+                  'st-spinner--inherit': spinnerDisplay === 3,
+                  'st-spinner--inverse': spinnerColor === 2
+                }">
+                </st-spinner>
+            </div>
+         </div>
+         <div class="demo-config">
+            <div>
+               <h1>Size</h1>
+               <st-radio-group [(ngModel)]="spinnerSize" class="st-inline-group">
+                  <st-radio name="size-options" [value]="1" [checked]="true">Default</st-radio>
+                  <st-radio name="size-options" [value]="2">Button standard</st-radio>
+                  <st-radio name="size-options" [value]="3">Button small</st-radio>
+                  <st-radio name="size-options" [value]="4">Text</st-radio>
+               </st-radio-group>
+            </div>
+            <div>
+               <h1>Display</h1>
+               <st-radio-group [(ngModel)]="spinnerDisplay" class="st-inline-group">
+                  <st-radio name="display-options" [value]="1" [checked]="true">Block</st-radio>
+                  <st-radio name="display-options" [value]="2">Inline</st-radio>
+                  <st-radio name="display-options" [value]="3">Container display</st-radio>
+               </st-radio-group>
+            </div>
+            <div>
+               <h1>Color</h1>
+               <st-radio-group [(ngModel)]="spinnerColor" class="st-inline-group">
+                  <st-radio name="color-options" [value]="1" [checked]="true">Standard</st-radio>
+                  <st-radio name="color-options" [value]="2">Inverse</st-radio>
+               </st-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <st-checkbox name="titleLabel" [disabled]="spinnerColor === 2" [(ngModel)]="spinnerBackground">
+                  <span>Background</span>
+               </st-checkbox>
+            </div>
+         </div>
+      </section>
+      <h1 class="title">Design and behaviour</h1>
+      <p class="paragraph">Spinners are used to give feedback to the users about some action it triggers clicking or acting on someplace in the UI.</p>
+      <p class="paragraph">This type of feedback is mandatory when the user can suffer a potential long-wait process. Keep in mind that server requests always are potential long-wait processes due to lag or connection problems.</p>
+      <p class="paragraph">With spinners, we avoid user doubts about if the action was triggered and, at the same time, avoid potential clicking retries.</p>
+      <p class="paragraph">A spinner can be used in different places due to different situations along the app use lifecycle. So, must be flexible and adaptable on its design.</p>
+      <p class="paragraph">Some sample uses of the same spinners could be:</p>
+      <ul class="list">
+         <li>Full-screen when the whole page must be blocked until the process ends.</li>
+         <li>Inside a button when the user triggers a long-wait action clicking on the button.</li>
+         <li>Inside a table row when the user triggers a long-wait action clicking somewhere on the table row.</li>
+         <li>Over a table when the user triggers a long-wait action that blocks the full table.</li>
+         <li>etc.</li>
+      </ul>
+      <h1 class="title">Usage and best practices</h1>
+      <p class="paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="list">
+         <li>Use the spinner always the user can potentially wait for long times waiting (more than 1 second).</li>
+         <li>Combine the use of the spinner with disabled modes or overlay blockers to give the user the right feedback about what items on your UI are blocked due to the action triggered.</li>
+         <li>Control potential connection problems to avoid eternal spinners, giving the user a message about the problem.</li>
+         <li>When an action could take several minutes or more, it must include regular changing messages to give the user the feeling that its process is running. Try always to complete messages with percentage information.</li>
+      </ul>
    </section>
 </st-docs>

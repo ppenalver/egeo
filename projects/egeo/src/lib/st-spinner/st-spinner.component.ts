@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * @description {Component} Spinner
@@ -31,25 +31,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StSpinnerComponent implements OnInit {
-   /** @input {string} [theme='primary'] Name of the spinner theme. By default it is 'primary' */
-   @Input() theme: string = 'primary';
-
-   public classesValue: any;
-
-   constructor(private _cd: ChangeDetectorRef) {}
-
-   ngOnInit(): void {
-      this.classesValue = this.getClasses();
-      this._cd.markForCheck();
-   }
-
-   getClasses(): any {
-      const result: any = {path: true};
-      if (this.theme) {
-         const themeClass = 'path--' + this.theme;
-         result[themeClass] = true;
-      }
-      return result;
-   }
+export class StSpinnerComponent {
+   constructor() {}
 }

@@ -22,6 +22,10 @@
 * st-toggle-buttons: Added "st-toggle-buttons--large" css class for bigger buttons
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
 * st-modal2: Added functionality to close modal when clicking outside
+* st-spinner: Added "st-spinner--12", "st-spinner--16" and "st-spinner--20" to apply different sizes
+* st-spinner: Added "st-spinner--inverse" to apply inverse color to the spinner
+* st-spinner: Added "st-spinner--inline" to apply display inline to the spinner
+* st-spinner: Added "st-spinner--inherit" to take parent display value
 
 **Fixed bugs:**
 
@@ -37,6 +41,8 @@
 * st-foreground-notification: Removed old component's outputs and added "close" and "autoClose" as new inputs.
 * st-select: Removed integrated searcher 
 * st-select, st-dropdown: Removed 'loading' status (spinner)
+* st-spinner: removed "theme" input
+* st-spinner: changed implementation (see demo)
 
 **Deprecated:**
 
@@ -49,6 +55,7 @@
 * st-radio: Changed styles to UX definition
 * st-foreground-notification: Changed styles to UX definition
 * st-toggle-buttons: Changed styles to UX definition
+* st-spinner: Changed styles to UX definition
 
 **Documentation:**
 
@@ -57,6 +64,7 @@
 * st-radio: More functionality added to demo page
 * st-foreground-notification: More functionality added to demo page
 * st-toggle-buttons: More functionality added to demo page
+* st-spinner: More functionality added to demo page
 
 **Others:**
 

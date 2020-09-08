@@ -8,12 +8,71 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-
-:host {
-   width: 100%;
-   height: 100%;
-}
+@import '~@stratio/egeo-themes/dist/stratio/constants';
 
 .st-spinner {
-   display: inline;
+   position: relative;
+   display: var(--egeo-st-spinner--display, block);
+   margin: 0 auto;
+   width: var(--egeo-st-spinner--size, 80px);
+
+   &:before {
+      display: block;
+      content: '';
+      padding-top: 100%;
+   }
+
+   .st-spinner__circular {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      animation: rotate 2s linear infinite;
+      transform-origin: center center;
+
+      .st-spinner__path {
+         stroke-width: var(--egeo-st-spinner--line-width, 3px);
+         stroke-dasharray: 1, 200;
+         stroke-dashoffset: 0;
+         animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+         stroke-linecap: round;
+      }
+   }
+
+   @keyframes rotate {
+      100% {
+         transform: rotate(360deg);
+      }
+   }
+
+   @keyframes dash {
+      0% {
+         stroke-dasharray: 1, 200;
+         stroke-dashoffset: 0;
+      }
+
+      50% {
+         stroke-dasharray: 89, 200;
+         stroke-dashoffset: -35px;
+      }
+
+      100% {
+         stroke-dasharray: 89, 200;
+         stroke-dashoffset: -124px;
+      }
+   }
+
+   @keyframes color {
+      100%, 0% {
+         stroke: var(--egeo-st-spinner--color, $action);
+      }
+
+      50% {
+         stroke: var(--egeo-st-spinner--color, $action);
+      }
+   }
 }

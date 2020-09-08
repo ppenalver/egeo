@@ -29,6 +29,36 @@ st-foreground-notifications .st-notification {
    }
 }
 
+st-spinner {
+   --egeo-st-spinner--display: block;
+   --egeo-st-spinner--size: 80px;
+   --egeo-st-spinner--line-width: 3px;
+   --egeo-st-spinner--color: var(--egeo-theme-action, #{$action});
+
+
+   &.st-spinner--inline {
+      --egeo-st-spinner--display: inline-flex;
+   }
+   &.st-spinner--inherit {
+      --egeo-st-spinner--display: inherit;
+   }
+   &.st-spinner--12 {
+      --egeo-st-spinner--size: 12px;
+      --egeo-st-spinner--line-width: 7px;
+   }
+   &.st-spinner--16 {
+      --egeo-st-spinner--size: 16px;
+      --egeo-st-spinner--line-width: 6px;
+   }
+   &.st-spinner--20 {
+      --egeo-st-spinner--size: 20px;
+      --egeo-st-spinner--line-width: 5px;
+   }
+   &.st-spinner--inverse {
+      --egeo-st-spinner--color: var(--egeo-theme-neutral-full, #{$neutral-full});
+   }
+}
+
 .st-group-label {
    font-size: $egeo-font-size-12;
    color: var(--egeo-theme-space-80, $space-80);

@@ -11,7 +11,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { StDemoGeneratorModule, StDocsModule, StSpinnerModule, StInputModule } from '@stratio/egeo';
+import {
+   StDemoGeneratorModule,
+   StDocsModule,
+   StSpinnerModule,
+   StInputModule,
+   StCheckboxModule,
+   StRadioModule
+} from '@stratio/egeo';
 
 import { StSpinnerDemoComponent } from './st-spinner-demo';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
@@ -19,6 +26,9 @@ import { CssPropertyTableModule } from '@app/shared/css-property-table/css-prope
 @NgModule({
    imports: [
       CommonModule,
+      FormsModule,
+      StCheckboxModule,
+      StRadioModule,
       StSpinnerModule,
       StInputModule,
       FormsModule,

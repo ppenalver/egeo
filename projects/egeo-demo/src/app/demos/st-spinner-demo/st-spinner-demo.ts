@@ -17,6 +17,11 @@ import { CssProperty } from '@app/shared/css-property-table/css-property-table.m
    styleUrls: ['./st-spinner-demo.component.scss']
 })
 export class StSpinnerDemoComponent {
+   public spinnerBackground: number = 1;
+   public spinnerDisplay: number = 1;
+   public spinnerColor: number = 1;
+   public spinnerSize: number = 1;
+
    public configDoc: any = {
       html: 'demo/st-spinner-demo/st-spinner-demo.html',
       ts: 'demo/st-spinner-demo/st-spinner-demo.ts',
@@ -26,14 +31,24 @@ export class StSpinnerDemoComponent {
 
    public cssProperties: CssProperty[] = [
       {
-         name: '--egeo-st-spinner__primary-color--stroke',
-         description: 'Stroke primary color',
-         default: '$brand'
+         name: '--egeo-st-spinner--display',
+         description: 'Spinner display',
+         default: 'block'
       },
       {
-         name: '--egeo-st-spinner__secondary-color--stroke',
-         description: 'Stroke secondary color',
-         default: '$neutral-full'
+         name: '--egeo-st-spinner--size',
+         description: 'Spinner width',
+         default: '80px'
+      },
+      {
+         name: '--egeo-st-spinner--line-width',
+         description: 'Spinner stroke width',
+         default: '3px'
+      },
+      {
+         name: '--egeo-st-spinner--color',
+         description: 'Spinner stroke color',
+         default: '$action'
       }
    ];
 
