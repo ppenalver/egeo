@@ -29,6 +29,10 @@
    font-size: var(--egeo-theme-font-size-14, $egeo-font-size-14);
    font-weight: 400;
 
+   &:not(&--disabled) {
+      cursor: pointer;
+   }
+
    &:not(&--right):before {
       content: '';
       display: block;
@@ -120,14 +124,14 @@
    }
 
    &:not(&--disabled):not(&--right) {
-      &:after {
-         cursor: pointer;
+      &:before {
+         cursor: default;
       }
    }
 
    &.st-switch--right:not(&--disabled) {
-      &:before {
-         cursor: pointer;
+      &:after {
+         cursor: default;
       }
    }
 
