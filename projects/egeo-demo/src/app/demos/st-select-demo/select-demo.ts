@@ -10,7 +10,7 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { StDropDownMenuItem } from '@stratio/egeo';
+import { StDropDownMenuGroup, StDropDownMenuItem } from '@stratio/egeo';
 import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
 
 
@@ -56,7 +56,44 @@ export class SelectDemoComponent {
       }
    ];
 
-   public options: StDropDownMenuItem[] = [];
+   public options: StDropDownMenuItem[] = [
+      {label: 'Select an option', value: undefined},
+      { label: 'Afghanistan', value: 'afghanistan' },
+      { label: 'Albania', value: 'albania' },
+      { label: 'Australia', value: 'australia'  },
+      { label: 'Brazil', value: 'brazil' },
+      { label: 'Chile', value: 'chile' },
+      { label: 'Costa Rica', value:  'costa_rica' },
+      { label: 'Cuba', value: 'cuba' },
+      { label: 'Czechia', value: 'czechia' },
+      { label: 'Eritrea', value: 'eritrea' },
+      { label: 'Estonia', value: 'estonia'  },
+      { label: 'Ethiopia', value: 'ethiopia' },
+      { label: 'Fiji', value: 'fiji' },
+      { label: 'Finland', value: 'finland' },
+      { label: 'France', value: 'france' },
+      { label: 'Georgia', value: 'georgia' },
+      { label: 'Germany', value: 'germany' },
+      { label: 'Ghana', value: 'ghana' },
+      { label: 'Honduras', value: 'honduras' },
+      { label: 'Iceland', value: 'iceland' },
+      { label: 'Italy', value: 'italy' },
+      { label: 'Jamaica', value: 'jamaica' }
+   ];
+   public groupedOptions: StDropDownMenuGroup[] =  [
+      {
+         title: 'Severity', items: [
+            { label: 'Critical Error', value: 'critical' },
+            { label: 'Warning', value: 'Warning' }
+         ]
+      },
+      {
+         title: 'Status', items: [
+            { label: 'Active', value: 'active' },
+            { label: 'Inactive', value: 'inactive' }
+         ]
+      }
+   ];
 
    public model: any = {
       option1: null,
@@ -68,15 +105,7 @@ export class SelectDemoComponent {
 
    constructor(private _fb: FormBuilder) {
       this.formControl.markAsDirty();
-      this.options.push({ label: 'Select an option', value: undefined });
-      for (let i: number = 0; i < 10; i++) {
-         this.options.push({
-            label: `option-${i}`,
-            value: i
-         });
-      }
-      this.model.option1 = 3;
-
+      this.model.option1 = 1;
       this.options[5].selected = true;
       this.reactiveForm = this._fb.group({
          option1: [this.model.option1, Validators.required],

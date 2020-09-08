@@ -237,15 +237,6 @@ export class StDropdownMenuDemoComponent {
       return menuId % 2 ? StDropDownVisualMode.OPTION_LIST : StDropDownVisualMode.MENU_LIST;
    }
 
-   onScrollAtBottom(): void {
-      this.isLoading = true;
-      setTimeout(() => {
-         this.menus[1].push.apply(this.menus[5], this.generateWithScroll(this.menus[5].length));
-         this.isLoading = false;
-         this._cd.markForCheck();
-      }, 2000);
-   }
-
    private generateNormal(): StDropDownMenuItem[] {
       return [
          {

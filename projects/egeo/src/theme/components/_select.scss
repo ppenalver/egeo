@@ -48,7 +48,7 @@
       cursor: not-allowed;
    }
 
-   &.st-select-opened {
+   &.st-select-opened, .input-container:focus-within {
       input {
          @extend %st-form-control--focused;
       }

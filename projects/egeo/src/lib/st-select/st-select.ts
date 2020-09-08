@@ -27,7 +27,7 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
 import { cloneDeep as _cloneDeep, flatten as _flatten, has as _has } from 'lodash';
 
 import { StCheckValidationsDirective } from './st-check-validations';
-import { StDropDownMenuGroup, StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
+import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
 
 @Component({
    selector: 'st-select',
@@ -60,6 +60,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
 
    @ViewChild('input', { static: false }) inputElement: ElementRef;
    @ViewChild('button', { static: false }) buttonElement: ElementRef;
+   @ViewChild('hiddenTypedText', { static: false }) hiddenTypedText: ElementRef;
 
    @HostBinding('class.st-select-opened')
 
@@ -72,7 +73,8 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    private _inputHTMLElement: HTMLInputElement | undefined = undefined;
    private _isDisabled: boolean = false;
    private _options: StDropDownMenuItem[] | StDropDownMenuGroup[] = [];
-
+   private _lastKeyTimestamp: number;
+   private _flatOptions: StDropDownMenuItem[] = [];
 
    constructor(private _selectElement: ElementRef,
                private _injector: Injector,
@@ -111,6 +113,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       if (selectedItem) {
          this.selected = selectedItem;
       }
+      this._updateFlatOptions();
    }
 
    get options(): StDropDownMenuItem[] | StDropDownMenuGroup[] {
@@ -203,9 +206,49 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    }
 
    onButtonKeyPress(event: KeyboardEvent): void {
-      if ((event.code === 'Enter' || event.code === 'Space') || (event.code === 'Escape' && this.expandedMenu)) {
+      if (this.keyBoardMove) {
+         if ((event.code === 'Enter' || event.code === 'Space') || (event.code === 'Escape' && this.expandedMenu)) {
+            event.preventDefault();
+            this.toggleButton();
+         } else {
+            if (event.code === ARROW_KEY_CODE.ARROW_DOWN || event.code === ARROW_KEY_CODE.ARROW_UP) {
+               const selectedPosition: number = this.getSelectedOptionPosition();
+               let newSelectedPosition: number = event.code === ARROW_KEY_CODE.ARROW_DOWN ? selectedPosition + 1 : selectedPosition - 1;
+               newSelectedPosition = newSelectedPosition < 0 ? this._flatOptions.length - 1 :
+                  (newSelectedPosition >= this._flatOptions.length ? 0 : newSelectedPosition);
+               this.onChangeOption(this._flatOptions[newSelectedPosition], false, true);
+               this._cd.markForCheck();
+            }
+         }
+      }
+   }
+
+   moveSelectedOption(event: KeyboardEvent): void {
+      if (this.keyBoardMove && event.key !== ARROW_KEY_CODE.ARROW_DOWN && event.key !== ARROW_KEY_CODE.ARROW_UP) {
          event.preventDefault();
-         this.toggleButton();
+         const typedText: string = this.hiddenTypedText.nativeElement.innerText;
+         if (typedText) {
+            let foundOption: StDropDownMenuItem = this.searchFirstMatchedOption(typedText);
+            if (!foundOption && typedText.length > 1 && typedText[typedText.length - 2] === typedText[typedText.length - 1]) {
+               this.hiddenTypedText.nativeElement.innerText = typedText.substring(0, 1);
+               this.moveSelectedOption(event);
+            }
+            if (foundOption) {
+               this.onChangeOption(foundOption, false, false);
+            }
+            this._cd.markForCheck();
+         }
+      }
+   }
+
+   saveTypedText(event: KeyboardEvent): void {
+      if (this.keyBoardMove) {
+         if (!this._lastKeyTimestamp || event.timeStamp - this._lastKeyTimestamp < 1000) {
+            this._lastKeyTimestamp = event.timeStamp;
+         } else {
+            this.hiddenTypedText.nativeElement.innerText = '';
+            this._lastKeyTimestamp = undefined;
+         }
       }
    }
 
@@ -227,8 +270,8 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       this.expand.emit(this.expandedMenu); // Notify expand change
    }
 
-   onChangeOption(option: StDropDownMenuItem): void {
-      this.selected = option && option.value !== undefined ? option : undefined;
+   onChangeOption(option: StDropDownMenuItem, close: boolean = true, cleanSearch: boolean = true): void {
+      this.selected = option;
       const value: any = option && option.value !== undefined ? option.value : undefined;
       if (this.onChange) {
          this.onChange(value);
@@ -239,10 +282,14 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       }
       this.select.emit(value);
 
-      if (value || (option && option.hasOwnProperty('value') && !option.value)) {
+      if ((value || (option && option.hasOwnProperty('value') && !option.value)) && close) {
          this.onClickOutside();
       }
-      this._inputHTMLElement.focus();
+      if (cleanSearch) {
+         this.hiddenTypedText.nativeElement.innerText = '';
+         this._lastKeyTimestamp = undefined;
+      }
+      this.hiddenTypedText.nativeElement.focus();
       this._cd.markForCheck();
    }
 
@@ -253,6 +300,19 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    /*
     ****** Util component methods ******
     */
+
+   private _updateFlatOptions(): void {
+      this._flatOptions = [];
+      if (this._options) {
+         this._options.forEach(_option => {
+            if (_option.items) {
+               this._flatOptions = this._flatOptions.concat(_option.items);
+            } else {
+               this._flatOptions.push(_option);
+            }
+         });
+      }
+   }
 
    // Search element by property in option list
    private findByProperty(propName: 'value' | 'selected', propValue: any): StDropDownMenuItem | undefined {
@@ -276,24 +336,40 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    private toggleButton(): void {
       this.expandedMenu = !this.expandedMenu;
       this.expand.emit(this.expandedMenu); // Notify expand change
-      this._inputHTMLElement.focus();
+      this.hiddenTypedText.nativeElement.focus();
+      this.hiddenTypedText.nativeElement.innerText = '';
+      this._lastKeyTimestamp = undefined;
       this._cd.markForCheck();
    }
 
    // TODO: Remove when remove from StDropDownMenuItem model the selected property
    private removeAllSelected(): void {
       if (this.isStDropdownItemList(this.options)) {
-         return this.options.forEach(item => {
+         return this._options.forEach(item => {
             if (item.selected) {
                delete item.selected;
             }
          });
       } else if (this.isStDropdownGroupList(this.options)) {
-         this.options.forEach(group => group.items.forEach(item => {
+         this._options.forEach(group => group.items.forEach(item => {
             if (item.selected) {
                delete item.selected;
             }
          }));
       }
+   }
+
+   private getSelectedOptionPosition(): number {
+      return this._flatOptions && this.selected ? this._flatOptions.findIndex(_option => _option.value === this.selected.value) : -1;
+   }
+
+   private searchFirstMatchedOption(searchText: string): StDropDownMenuItem {
+      const selectedPosition: number = this.getSelectedOptionPosition();
+      const sortedOptions: StDropDownMenuItem[] = [
+         ...this._flatOptions.slice(selectedPosition + 1, this._flatOptions.length),
+         ...this._flatOptions.slice(0, selectedPosition)
+      ];
+
+      return sortedOptions.find(_option => _option.label.substring(0, searchText.length).toLowerCase() === searchText.toLowerCase());
    }
 }

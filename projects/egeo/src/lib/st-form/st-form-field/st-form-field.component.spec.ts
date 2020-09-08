@@ -1057,7 +1057,6 @@ describe('StFormFieldComponent', () => {
          });
       });
 
-
       it('if user clicks on the first option, model is empty', () => {
          fixture.nativeElement.querySelector('#log_level-input').click();
          fixture.detectChanges();
@@ -1065,7 +1064,8 @@ describe('StFormFieldComponent', () => {
          (<HTMLLIElement> options[0]).click();
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('#log_level-input').value).toEqual('');
+         expect(fixture.nativeElement.querySelector('#log_level-input').value).toEqual('Select one option');
+         expect(component.value).toEqual(undefined);
          expect(component.valueChange.emit).toHaveBeenCalledWith(undefined);
       });
 

@@ -147,6 +147,61 @@
             </div>
          </div>
       </div>
+      <div class="row">
+         <div class="col-sm-6">
+            <h1 class="title title--centered">Grouped options</h1>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Regular (36px)</h1>
+
+                  <st-select placeholder="Select option"
+                             class="st-form-field"
+                             [options]="groupedOptions"
+                             [disabled]="disabled"
+                             [default]="options[2].value">
+                  </st-select>
+               </div>
+
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Small (30px)</h1>
+                  <st-select placeholder="Select option"
+                             class="st-form-field small"
+                             [options]="groupedOptions"
+                             [disabled]="disabled"
+                             [default]="options[2].value">
+                  </st-select>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6">
+            <h1 class="title title--centered">Disabled keyboard</h1>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Regular (36px)</h1>
+
+                  <st-select placeholder="Select option"
+                             class="st-form-field"
+                             [options]="groupedOptions"
+                             [disabled]="disabled"
+                             [keyBoardMove]="false"
+                             [default]="options[2].value">
+                  </st-select>
+               </div>
+
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Small (30px)</h1>
+                  <st-select placeholder="Select option"
+                             class="st-form-field small"
+                             [options]="groupedOptions"
+                             [disabled]="disabled"
+                             [keyBoardMove]="false"
+                             [default]="options[2].value">
+                  </st-select>
+               </div>
+            </div>
+         </div>
+
+      </div>
    </section>
    <button class="button button-primary disable-button" (click)="changeDisabled()">{{disabled? 'Enable' : 'Disable'}}
       All

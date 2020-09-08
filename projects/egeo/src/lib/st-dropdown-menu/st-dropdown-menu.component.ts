@@ -146,16 +146,16 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-      if (changes && changes.active && changes.active.currentValue && this.selectedItem && this.moveSelected) {
+      if (this.active && this.selectedItem && this.moveSelected) {
          // Only can do this functionality with timeout because we need to wait for angular to load new DOM
          // with items before move scroll
          setTimeout(() => {
             if (this.itemListElement) {
                const parent: HTMLElement = this.itemListElement.nativeElement;
-               const listOfElements: any = parent.getElementsByClassName('selected');
-               if (listOfElements && listOfElements.length > 0) {
-                  const target: HTMLElement = (listOfElements.item(0) as HTMLElement);
-                  parent.scrollTop = target.offsetTop - parent.offsetTop;
+               const selectedItem: HTMLElement = parent.querySelector('.selected');
+               if (selectedItem && !this.elementIsVisible(selectedItem, parent)) {
+                  parent.scrollTop = selectedItem.offsetTop - parent.offsetTop;
+                  this.cd.markForCheck();
                }
             }
          });
@@ -164,6 +164,16 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
             this._focusedOptionPos = -1;
          }
       }
+   }
+
+   elementIsVisible(option: HTMLElement, menu: HTMLElement): boolean {
+      let menuTop: number = menu.scrollTop;
+      let menuBottom: number = menuTop + menu.clientHeight;
+
+      let optionTop: number = option.offsetTop - menu.offsetTop;
+      let optionBottom: number = optionTop + option.clientHeight;
+
+      return  optionTop >= menuTop && optionBottom <= menuBottom;
    }
 
    onChange(value: StDropDownMenuItem): void {
