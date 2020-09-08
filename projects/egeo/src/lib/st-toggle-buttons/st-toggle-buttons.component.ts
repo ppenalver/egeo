@@ -21,6 +21,7 @@ export class StToggleButtonsComponent {
 
    @Input() description: string;
    @Input() qaTag: string;
+   @Input() disabled: boolean;
    @Output() select: EventEmitter<StToggleButton> = new EventEmitter<StToggleButton>();
 
    public parsedTabs: StParsedToggleButton[];

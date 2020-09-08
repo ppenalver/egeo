@@ -10,13 +10,23 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule, StToggleButtonsModule } from '@stratio/egeo';
+import {
+   StCheckboxModule,
+   StDemoGeneratorModule,
+   StDocsModule,
+   StRadioModule,
+   StToggleButtonsModule
+} from '@stratio/egeo';
 
 import { StToggleButtonsDemoComponent } from './st-toggle-buttons-demo';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
    imports: [
       CommonModule,
+      FormsModule,
+      StCheckboxModule,
+      StRadioModule,
       StToggleButtonsModule,
       StDemoGeneratorModule.withComponents({ components: [StToggleButtonsDemoComponent] }),
       StDocsModule

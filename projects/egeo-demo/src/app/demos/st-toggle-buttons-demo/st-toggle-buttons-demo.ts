@@ -24,6 +24,9 @@ export class StToggleButtonsDemoComponent {
       component: 'lib/st-toggle-buttons/st-toggle-buttons.component.ts'
    };
    public tabs: StToggleButton[];
+   public sizeOptions: any;
+   public activeSizeOption: any;
+   public disabled: boolean;
    public description: string = 'My tabs: ';
 
    constructor() {
@@ -36,8 +39,25 @@ export class StToggleButtonsDemoComponent {
             label: 'Tab2',
             number: 10,
             active: false
+         }, {
+            label: 'Tab3',
+            number: 1,
+            active: false
+         }
+
+      ];
+
+      this.sizeOptions = [
+         {
+            label: 'Small',
+            value: 'small'
+         },
+         {
+            label: 'Large',
+            value: 'large'
          }
       ];
+      this.activeSizeOption = this.sizeOptions[0];
    }
 
    onSelectTab(tab: StToggleButton): void {

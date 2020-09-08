@@ -14,14 +14,16 @@
    <div *ngIf="description" class="st-toggle-buttons__description sth-toggle-buttons__description">
       {{description}}
    </div>
-   <ul class="st-toggle-buttons__buttons sth-toggle-buttons__buttons">
-      <li *ngFor="let tab of parsedTabs; let i = index;"
-         (click)="onClick(tab)">
-         <button [attr.id]="qaTag + '-' + tab.trimLabel" class="st-toggle-buttons__button sth-toggle-buttons__button"
+   <div class="st-toggle-buttons__buttons sth-toggle-buttons__buttons">
+      <button
+         *ngFor="let tab of parsedTabs; let i = index;"
+         (click)="onClick(tab)"
+         [attr.id]="qaTag + '-' + tab.trimLabel"
+         [disabled]="disabled"
+         class="st-toggle-buttons__button sth-toggle-buttons__button"
          [ngClass]="{'st-toggle-buttons__button--active': tab.active, 'sth-toggle-buttons__button--active': tab.active}">
             {{tab.label}}
             <span *ngIf="tab.number?.toFixed">({{tab.number}})</span>
-         </button>
-      </li>
-   </ul>
+      </button>
+   </div>
 </section>

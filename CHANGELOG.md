@@ -18,6 +18,8 @@
 * st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-select: Enable keyboard listener by default to open, close and move across menu options
 * st-modal2: Added "fullWindow" input to apply full size to the modal
+* st-toggle-buttons: Added "disabled" input
+* st-toggle-buttons: Added "st-toggle-buttons--large" css class for bigger buttons
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
 * st-modal2: Added functionality to close modal when clicking outside
 
@@ -46,6 +48,7 @@
 * st-checkbox: Changed styles to UX definition
 * st-radio: Changed styles to UX definition
 * st-foreground-notification: Changed styles to UX definition
+* st-toggle-buttons: Changed styles to UX definition
 
 **Documentation:**
 
@@ -53,6 +56,7 @@
 * st-checkbox: More functionality added to demo page
 * st-radio: More functionality added to demo page
 * st-foreground-notification: More functionality added to demo page
+* st-toggle-buttons: More functionality added to demo page
 
 **Others:**
 
