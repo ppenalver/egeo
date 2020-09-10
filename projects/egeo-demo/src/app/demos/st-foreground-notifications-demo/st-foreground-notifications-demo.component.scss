@@ -24,7 +24,11 @@
    display: flex;
    align-items: center;
 
-   st-input {
+   .input-number {
+      max-width: 200px;
+   }
+
+   st-input, st-select {
       flex: 1;
       max-width: 300px;
    }

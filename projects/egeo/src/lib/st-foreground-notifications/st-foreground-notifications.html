@@ -6,10 +6,12 @@
     See the terms of the License for more details.
     SPDX-License-Identifier: Apache-2.0.
 -->
+{{showNotification}}
 <div
    #stNotification
-   [@notificationFade]="notificationState"
-   (@notificationFade.done)="onNotificationStateChanged($event)"
+   *ngIf="showNotification"
+   [@notificationFade]
+   [@.disabled]="hotRender"
    class="st-notification"
    [ngClass]="[
       'st-notification--' + (notificationType ? notificationType : stNotificationType.INFO)]

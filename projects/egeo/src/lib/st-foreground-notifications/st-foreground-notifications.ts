@@ -27,7 +27,6 @@ import {
    StNotificationDisplayOptions,
    StNotificationIcon,
    StNotificationPosition,
-   StNotificationState,
    StNotificationTriggerOptions,
    StNotificationType
 } from './st-foreground-notifications.model';
@@ -42,15 +41,13 @@ import {animate, AnimationEvent, state, style, transition, trigger} from '@angul
    styleUrls: ['st-foreground-notifications.scss'],
    animations: [
       trigger('notificationFade', [
-         state('show', style({opacity: 1})),
-         state('hot_render', style({opacity: 1})),
-         state('hide_close', style({opacity: 0})),
-         state('hide_autoclose', style({opacity: 0})),
-         transition('hide_close => show, hide_autoclose => show', [
+         state('*', style({opacity: 1})),
+         state('void', style({opacity: 0})),
+         transition(':enter', [
             style({opacity: 0}),
             animate(400, style({opacity: 1}))
          ]),
-         transition('show => hide_close, show => hide_autoclose', [
+         transition(':leave', [
             style({opacity: 1}),
             animate(400, style({opacity: 0}))
          ])
@@ -83,28 +80,28 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
    @Input() config: StNotificationDisplayOptions;
 
    /** @output {autoClose} [EventEmitter] Event emitted when user clicks on close icon */
-   @Output() autoClose: EventEmitter<boolean> = new EventEmitter();
+   @Output() autoClose: EventEmitter<void> = new EventEmitter();
 
    /** @output {close} [EventEmitter] Event emitted when notification was closed by timeout */
-   @Output() close: EventEmitter<boolean> = new EventEmitter();
+   @Output() close: EventEmitter<void> = new EventEmitter();
 
-   @ViewChild('stNotification', {static: true}) stNotification: ElementRef;
+   @ViewChild('stNotification', {static: false}) stNotification: ElementRef;
 
+   public showNotification: boolean;
    public message: string;
    public closeIcon: boolean;
    public notificationType: StNotificationType;
    public notificationIcon: StNotificationIcon | string;
    public position: StNotificationPosition;
    public positionReference: string;
+   public timeout: number;
    public infoTimeout: number;
    public successTimeout: number;
    public warningTimeout: number;
    public criticalTimeout: number;
    public multipleTimeout: number;
    public margin: number;
-   public width: string;
-   public showNotification: boolean;
-   public notificationState: StNotificationState;
+   public maxWidth: string;
    public stNotificationType: typeof StNotificationType;
    public stNotificationIcon: typeof StNotificationIcon;
 
@@ -139,16 +136,16 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
       this.stNotificationIcon = StNotificationIcon;
       this.stNotificationType = StNotificationType;
       this.config = {};
-      this.hotRender = false;
       this.showNotification = false;
-      this.notificationState = StNotificationState.HIDE_CLOSE;
+      this.hotRender = false;
       this.componentDestroyed$ = new Subject();
    }
 
    public ngOnInit(): void {
       this.processConfiguration();
       if (this.hotRender) {
-         this.notificationState = StNotificationState.HOT_RENDER;
+         this.showNotification = true;
+         this.cd.detectChanges();
       } else {
          this.initTriggerSubscription();
          this.initCancelTimeoutSubscription();
@@ -165,25 +162,29 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
       if (!this.hotRender) {
          clearTimeout(this.visibilityTimeout);
          this.visibilityTimeout = null;
-         this.notificationState = StNotificationState.HIDE_CLOSE;
+         this.removeNotification(this.close);
       } else {
          this.close.emit();
       }
+
+
    }
 
-   public onNotificationStateChanged(event: AnimationEvent): void {
-      if (event.toState === StNotificationState.HIDE_CLOSE || event.toState === StNotificationState.HIDE_AUTOCLOSE) {
+   private removeNotification(emitter: EventEmitter<void>): void {
+      this.showNotification = false;
+      this.cd.detectChanges();
+
+      if (this.visibilityTimeout) {
+         clearTimeout(this.visibilityTimeout);
+         this.visibilityTimeout = null;
+      }
+
+      // This timeout is needed because we must wait until notification dissapear.
+      setTimeout(() => {
          this._notifications.removeNotification();
+         emitter.emit();
          this.processConfiguration(this.config);
-      }
-
-      if (event.toState === StNotificationState.HIDE_CLOSE) {
-         this.close.emit();
-      }
-
-      if (event.toState === StNotificationState.HIDE_AUTOCLOSE) {
-         this.autoClose.emit();
-      }
+      }, 400);
    }
 
    private initTriggerSubscription(): void {
@@ -211,7 +212,7 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
    private triggerNotification(triggerOptions: StNotificationTriggerOptions): void {
       const {notificationOptions, isMultiple} = triggerOptions;
       this.isMultiple = isMultiple;
-      this.notificationState = StNotificationState.SHOW;
+      this.showNotification = true;
       this.cd.detectChanges();
 
       if (!!notificationOptions) {
@@ -226,48 +227,77 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
 
    private setNotificationsTimeout(timeout: number): void {
       this.visibilityTimeout = <any>setTimeout(() => {
-         this.notificationState = StNotificationState.HIDE_AUTOCLOSE;
-         this.cd.detectChanges();
+         this.removeNotification(this.autoClose);
       }, timeout);
    }
 
    private setNotificationPosition(): void {
+      const notificationClientRect = this.stNotification.nativeElement.getBoundingClientRect();
       const referenceElement = document.querySelector(this.positionReference);
+      const referenceClientRect = (referenceElement as Element).getBoundingClientRect();
       const [verticalPosition, horizontalPosition] = this.position.split('_');
-      const topValue = this.getTopValue(verticalPosition, referenceElement);
-      const leftValue = this.getLeftValue(horizontalPosition, referenceElement);
-      this.renderer.setStyle(this.stNotification.nativeElement, 'top', (this.margin + topValue) + 'px');
-      this.renderer.setStyle(this.stNotification.nativeElement, 'left', (this.margin + leftValue) + 'px');
+      let resizedHeight = false;
+      let resizedWidth = false;
+
+      if (notificationClientRect.height >= referenceClientRect.height) {
+         const width = referenceClientRect.height - (this.margin * 2);
+         this.renderer.setStyle(this.stNotification.nativeElement, 'height', width + 'px');
+         resizedHeight = true;
+      }
+
+      if (notificationClientRect.width >= referenceClientRect.width) {
+         const width = referenceClientRect.width - (this.margin * 2);
+         this.renderer.setStyle(this.stNotification.nativeElement, 'width', width + 'px');
+         resizedWidth = true;
+      }
+
+      const topValue = this.getTopValue(verticalPosition, referenceClientRect, resizedHeight);
+      const leftValue = this.getLeftValue(horizontalPosition, referenceClientRect, resizedWidth);
+      this.renderer.setStyle(this.stNotification.nativeElement, 'top', topValue + 'px');
+      this.renderer.setStyle(this.stNotification.nativeElement, 'left', leftValue + 'px');
    }
 
-   private getTopValue(position: string, reference: Element): number {
+   private getTopValue(position: string, referenceClientRect: ClientRect, resized: boolean): number {
       const stNotification = this.stNotification.nativeElement;
-      const referenceClientRect = (reference as Element).getBoundingClientRect();
       const stNotificationClientRect = stNotification.getBoundingClientRect() as ClientRect;
       const height = referenceClientRect.height > window.innerHeight ? window.innerHeight : referenceClientRect.height;
+      let topValue = 0;
 
       if (position === 'top') {
-         return referenceClientRect.top;
+         topValue = referenceClientRect.top + this.margin;
       } else if (position === 'bottom') {
-         return referenceClientRect.bottom - stNotificationClientRect.height;
+         topValue = referenceClientRect.bottom - stNotificationClientRect.height - this.margin;
       } else if (position === 'center') {
-         return referenceClientRect.top + (height / 2) - stNotificationClientRect.height;
+         topValue = referenceClientRect.top + (height / 2) - (stNotificationClientRect.height / 2);
+
+         if (!resized) {
+            topValue += this.margin;
+         }
       }
+
+      return topValue;
    }
 
-   private getLeftValue(position: string, reference: Element): number {
+   private getLeftValue(position: string, referenceClientRect: ClientRect, resized: boolean): number {
       const stNotification = this.stNotification.nativeElement;
-      const referenceClientRect = (reference as Element).getBoundingClientRect();
       const stNotificationClientRect = stNotification.getBoundingClientRect() as ClientRect;
-      const width = referenceClientRect.width > window.innerWidth ? window.innerWidth : referenceClientRect.width;
+      const windowWidth = window.innerWidth - (this.margin * 2);
+      const width = referenceClientRect.width > window.innerWidth ? windowWidth : referenceClientRect.width;
+      let leftValue = 0;
 
       if (position === 'left') {
-         return referenceClientRect.left;
+         leftValue = referenceClientRect.left + this.margin;
       } else if (position === 'right') {
-         return referenceClientRect.right - stNotificationClientRect.width;
+         leftValue = referenceClientRect.right - stNotificationClientRect.width - this.margin;
       } else if (position === 'center') {
-         return referenceClientRect.left + (width / 2) - (stNotificationClientRect.width / 2);
+         leftValue = referenceClientRect.left + (width / 2) - (stNotificationClientRect.width / 2);
+
+         if (!resized) {
+            leftValue += this.margin;
+         }
       }
+
+      return leftValue;
    }
 
    private processConfiguration(config: StNotificationDisplayOptions = this.config): void {
@@ -276,19 +306,24 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
       this.message = config.message ? config.message : defaultConfig.message;
       this.notificationType = config.notificationType ? config.notificationType : defaultConfig.notificationType;
       this.notificationIcon = config.notificationIcon ? config.notificationIcon : defaultConfig.notificationIcon;
-      this.closeIcon = config.closeIcon ? config.closeIcon : defaultConfig.closeIcon;
+      this.closeIcon = !!config.closeIcon;
       this.position = config.position ? config.position : defaultConfig.position;
       this.positionReference = config.positionReference ? config.positionReference : defaultConfig.positionReference;
-      this.infoTimeout = config.infoTimeout ? config.infoTimeout : defaultConfig.infoTimeout;
-      this.successTimeout = config.successTimeout ? config.successTimeout : defaultConfig.successTimeout;
-      this.warningTimeout = config.warningTimeout ? config.warningTimeout : defaultConfig.warningTimeout;
-      this.criticalTimeout = config.criticalTimeout ? config.criticalTimeout : defaultConfig.criticalTimeout;
-      this.multipleTimeout = config.multipleTimeout ? config.multipleTimeout : defaultConfig.multipleTimeout;
       this.margin = config.margin ? config.margin : defaultConfig.margin;
-      this.width = config.width ? config.width : defaultConfig.width;
+      this.maxWidth = config.maxWidth ? config.maxWidth : defaultConfig.maxWidth;
 
-      if (!this.hotRender) {
-         this.renderer.setStyle(this.stNotification.nativeElement, 'max-width', this.width);
+      this.timeout = config.timeout ? config.timeout : defaultConfig.timeout;
+      this.infoTimeout = config.infoTimeout ? config.infoTimeout : this.timeout;
+      this.successTimeout = config.successTimeout ? config.successTimeout : this.timeout;
+      this.warningTimeout = config.warningTimeout ? config.warningTimeout : this.timeout;
+      this.criticalTimeout = config.criticalTimeout ? config.criticalTimeout : 0;
+      this.multipleTimeout = config.multipleTimeout ? config.multipleTimeout : 0;
+
+      this.cd.detectChanges();
+
+      if (!this.hotRender && this.stNotification) {
+         this.renderer.setStyle(this.stNotification.nativeElement, 'max-width', this.maxWidth);
+         this.renderer.removeStyle(this.stNotification.nativeElement, 'width');
          this.setNotificationPosition();
       }
    }

@@ -33,21 +33,15 @@ export enum StNotificationPosition {
    BOTTOM_RIGHT = 'bottom_right'
 }
 
-export enum StNotificationState {
-   SHOW = 'show',
-   HIDE_CLOSE = 'hide_close',
-   HIDE_AUTOCLOSE = 'hide_autoclose',
-   HOT_RENDER = 'hot_render'
-}
-
 export interface StNotificationDisplayOptions {
    message?: string;
    closeIcon?: boolean;
-   width?: string;
+   maxWidth?: string;
    notificationType?: StNotificationType;
    notificationIcon?: StNotificationIcon | string;
    position?: StNotificationPosition;
    positionReference?: string;
+   timeout?: number;
    infoTimeout?: number;
    successTimeout?: number;
    warningTimeout?: number;

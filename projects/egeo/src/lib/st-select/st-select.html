@@ -39,7 +39,7 @@
       <div class="input-container">
          <div class="st-input"
               [ngClass]="{disabled: disabled, error: showError(), active: expandedMenu}">
-            <button #hiddenTypedText class="hidden-stored-text" spellcheck="false" contentEditable="true"
+            <button #hiddenTypedText class="hidden-stored-text" type="button" spellcheck="false" contentEditable="true"
                     (keydown)="saveTypedText($event)" (keyup)="moveSelectedOption($event)">
             </button>
             <input

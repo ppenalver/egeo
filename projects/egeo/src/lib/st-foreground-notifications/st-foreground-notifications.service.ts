@@ -27,13 +27,10 @@ export class StForegroundNotificationsService {
          notificationIcon: StNotificationIcon.DEFAULT,
          closeIcon: true,
          margin: 10,
-         width: '50vw',
+         maxWidth: '50vw',
          position: StNotificationPosition.TOP_CENTER,
          positionReference: 'html',
-         infoTimeout: 6000,
-         successTimeout: 6000,
-         warningTimeout: 6000,
-         criticalTimeout: 0,
+         timeout: 6000,
          multipleTimeout: 0
       };
    }

@@ -10,7 +10,13 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule, StForegroundNotificationsModule, StHeaderModule } from '@stratio/egeo';
+import {
+   StDemoGeneratorModule,
+   StDocsModule,
+   StForegroundNotificationsModule,
+   StHeaderModule,
+   StSelectModule
+} from '@stratio/egeo';
 import { StForegroundNotificationsDemoComponent } from './st-foreground-notifications-demo.component';
 import {StRadioModule, StInputModule, StCheckboxModule} from '@stratio/egeo';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -23,6 +29,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         StHeaderModule,
         StDocsModule,
         StDemoGeneratorModule.withComponents({components: [StForegroundNotificationsDemoComponent]}),
+        StSelectModule,
         StRadioModule,
         StInputModule,
        StCheckboxModule

@@ -19,10 +19,19 @@ import {Subject} from 'rxjs';
 import {StForegroundNotificationsService} from '../../../../../egeo/src/lib/st-foreground-notifications/st-foreground-notifications.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
    selector: 'st-foreground-notifications-demo',
    templateUrl: './st-foreground-notifications-demo.component.html',
+   animations: [
+      trigger('fade', [
+         state('void', style({opacity: 0})),
+         state('*', style({opacity: 1})),
+         transition(':enter', [animate(300)]),
+         transition(':leave', [animate(300)])
+      ])
+   ],
    styleUrls: ['./st-foreground-notifications-demo.component.scss']
 })
 export class StForegroundNotificationsDemoComponent {
@@ -59,7 +68,7 @@ export class StForegroundNotificationsDemoComponent {
       },
       {
          label: 'Custom icon',
-         value: 'icon-cog'
+         value: 'custom'
       },
       {
          label: 'No icon',
@@ -67,6 +76,26 @@ export class StForegroundNotificationsDemoComponent {
       }
    ];
    public activeIconOption: StNotificationType | string = StNotificationIcon.DEFAULT;
+
+   public customIconsOptions: any = [
+      {
+         label: 'Example 1',
+         value: 'icon-mute'
+      },
+      {
+         label: 'Example 2',
+         value: 'icon-plane'
+      },
+      {
+         label: 'Example 3',
+         value: 'icon-cog'
+      },
+      {
+         label: 'Example 4',
+         value: 'icon-user-x'
+      }
+   ];
+   public customIconsOption: string = 'icon-mute';
 
    public positionOptions: any = [
       {
@@ -106,24 +135,24 @@ export class StForegroundNotificationsDemoComponent {
          value: StNotificationPosition.BOTTOM_RIGHT
       }
    ];
-   public activePositionOption: StNotificationPosition = StNotificationPosition.TOP_CENTER;
 
    public positionReferenceOptions: any = [
       {
-         label: 'Body tag element',
-         value: 'body'
-      },
-      {
          label: 'Content component element',
          value: '.main-content'
+      },
+      {
+         label: 'Main tag element',
+         value: '#main'
       },
       {
          label: 'Window',
          value: 'html'
       }
    ];
-   public activePositionReference: string = 'body';
+   public activePositionReference: string = '.main-content';
 
+   public showTimeoutChanged: boolean;
    public showMultipleTimeoutChanged: boolean;
    public showInfoTimeoutChanged: boolean;
    public showSuccessTimeoutChanged: boolean;
@@ -141,20 +170,24 @@ export class StForegroundNotificationsDemoComponent {
       this.componentDestroyed$ = new Subject();
       this.notificationsConfig = this._notifications.DEFAULT_CONFIG;
       this.notificationsConfig.message = 'Testing <a href="https://www.google.es">Ir a google</a>';
+      this.notificationsConfig.positionReference = '.main-content';
       this.configForm = this.fb.group({
          type: this.fb.control(this.notificationsConfig.notificationType),
          message: this.fb.control(this.notificationsConfig.message),
          icon: this.fb.control(this.notificationsConfig.notificationIcon),
+         customIcon: this.fb.control('icon-mute'),
          closeControl: this.fb.control(this.notificationsConfig.closeIcon),
          position: this.fb.control(this.notificationsConfig.position),
-         positionReference: this.fb.control(this.notificationsConfig.positionReference),
-         multipleTimeout: this.fb.control(this.notificationsConfig.multipleTimeout.toString()),
-         infoTimeout: this.fb.control(this.notificationsConfig.infoTimeout),
-         successTimeout: this.fb.control(this.notificationsConfig.successTimeout),
-         warningTimeout: this.fb.control(this.notificationsConfig.warningTimeout),
-         criticalTimeout: this.fb.control(this.notificationsConfig.criticalTimeout.toString()),
+         positionReference: this.fb.control('.main-content'),
+         timeout: this.fb.control(this.notificationsConfig.timeout),
+         multipleTimeout: this.fb.control(null),
+         infoTimeout: this.fb.control(null),
+         successTimeout: this.fb.control(null),
+         warningTimeout: this.fb.control(null),
+         criticalTimeout: this.fb.control(null),
          margin: this.fb.control(this.notificationsConfig.margin),
-         width: this.fb.control(this.notificationsConfig.width)
+         maxWidth: this.fb.control(this.notificationsConfig.maxWidth),
+         showSpecificTimeouts: this.fb.control(false)
       });
 
       this.configForm.valueChanges
@@ -168,6 +201,11 @@ export class StForegroundNotificationsDemoComponent {
                position: this.configForm.get('position').value,
                positionReference: this.configForm.get('positionReference').value
             };
+
+            if (this.configForm.get('icon').value === 'custom') {
+               notificationConfig.notificationIcon = this.configForm.get('customIcon').value;
+            }
+
             this.notificationsConfig = Object.assign({}, this.notificationsConfig, notificationConfig);
          });
    }
@@ -180,13 +218,14 @@ export class StForegroundNotificationsDemoComponent {
          closeIcon: this.notificationsConfig.closeIcon,
          position: this.notificationsConfig.position,
          positionReference: this.notificationsConfig.positionReference,
+         timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
          infoTimeout: this.notificationsConfig.infoTimeout,
          successTimeout: this.notificationsConfig.successTimeout,
          warningTimeout: this.notificationsConfig.warningTimeout,
          criticalTimeout: this.notificationsConfig.criticalTimeout,
          margin: this.notificationsConfig.margin,
-         width: this.notificationsConfig.width
+         maxWidth: this.notificationsConfig.maxWidth
       });
 
       this.configForm.disable();
@@ -205,6 +244,19 @@ export class StForegroundNotificationsDemoComponent {
       if (!this._notifications.getConsumingQueue()) {
          this.configForm.enable();
          this.cd.detectChanges();
+      }
+   }
+
+   public onTimeoutKeyPress(event: KeyboardEvent): void {
+      if (event.key === 'Enter') {
+         const timeout = parseInt(this.configForm.get('timeout').value, 10);
+         this.showTimeoutChanged = true;
+         this.notificationsConfig = Object.assign({}, this.notificationsConfig, {timeout: timeout});
+
+         setTimeout(() => {
+            this.showTimeoutChanged = false;
+            this.cd.detectChanges();
+         }, 2000);
       }
    }
 
@@ -289,7 +341,7 @@ export class StForegroundNotificationsDemoComponent {
    public onWidthKeyPress(event: KeyboardEvent): void {
       if (event.key === 'Enter') {
          this.showWidthChanged = true;
-         this.notificationsConfig = Object.assign({}, this.notificationsConfig, {width: this.configForm.get('width').value});
+         this.notificationsConfig = Object.assign({}, this.notificationsConfig, {maxWidth: this.configForm.get('maxWidth').value});
 
          setTimeout(() => {
             this.showWidthChanged = false;

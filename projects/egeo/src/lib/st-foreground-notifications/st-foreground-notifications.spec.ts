@@ -138,6 +138,7 @@ describe('StForegroundNotificationsComponent', () => {
          _notifications.addNotification({
             notificationType: StNotificationType.INFO,
             margin: 0,
+            closeIcon: true,
             positionReference: '.test-container',
             position: StNotificationPosition.CENTER_CENTER
          });
