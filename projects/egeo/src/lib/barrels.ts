@@ -52,7 +52,6 @@ import { StForegroundNotificationsModule } from './st-foreground-notifications/s
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
 import { StColorPickerModule } from './st-color-picker/st-color-picker.module';
 import { StDynamicTableModule } from './st-dynamic-table/st-dynamic-table.module';
-import { StVerticalIconTabsModule } from './st-vertical-icon-tabs/st-vertical-icon-tabs.module';
 
 export const DECLARATIONS: any[] = [
    PipesModule,
@@ -97,7 +96,6 @@ export const DECLARATIONS: any[] = [
    StToggleButtonsModule,
    StTooltipModule,
    StTwoListSelectionModule,
-   StVerticalIconTabsModule,
    StVerticalTabsModule,
    StZeroPageModule
 ];

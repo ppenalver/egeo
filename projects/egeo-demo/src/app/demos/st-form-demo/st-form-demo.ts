@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component } from '@angular/core';
-import { StIconTab } from '../../../../../egeo/src/lib/st-vertical-icon-tabs/st-icon-tabs.model';
+import { StToggleButton } from '@stratio/egeo';
 
 @Component({
    selector: 'st-form-demo',
@@ -17,34 +17,31 @@ import { StIconTab } from '../../../../../egeo/src/lib/st-vertical-icon-tabs/st-
    styleUrls: ['./st-form-demo.component.scss']
 })
 export class StFormDemoComponent {
-   public activeOption: StIconTab;
+   public activeOption: StToggleButton;
    public configDoc: any = {
       html: 'demo/st-form-demo/st-form-demo.html',
       ts: 'demo/st-form-demo/st-form-demo.ts',
       component: 'lib/st-form/st-form.component.ts'
    };
 
-   public options: StIconTab[] =
+   public options: StToggleButton[] =
       [
          {
             id: 'demo',
-            iconClass: 'icon-edit-3',
-            text: 'Demo'
+            label: 'Demo',
+            active: true
          },
          {
             id: 'cssProperties',
-            iconClass: 'icon-formatter',
-            text: 'Theme Customization'
+            label: 'Theme Customization'
          },
          {
             id: 'visualSectionImprovements',
-            iconClass: 'icon-content-left',
-            text: 'Visual Section improvements'
+            label: 'Visual Section improvements'
          },
          {
             id: 'visualFieldImprovements',
-            iconClass: 'icon-eye2',
-            text: 'Visual Field improvements'
+            label: 'Visual Field improvements'
          }];
 
 
@@ -52,7 +49,7 @@ export class StFormDemoComponent {
       this.activeOption = this.options[0];
    }
 
-   public onChangeOption(selectedOption: StIconTab): void {
+   public onChangeOption(selectedOption: StToggleButton): void {
       this.activeOption = selectedOption;
    }
 }

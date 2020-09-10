@@ -27,6 +27,8 @@
 * st-spinner: Added "st-spinner--inverse" to apply inverse color to the spinner
 * st-spinner: Added "st-spinner--inline" to apply display inline to the spinner
 * st-spinner: Added "st-spinner--inherit" to take parent display value
+* st-horizontal-tabs: Moved theme styles into component stylesheet
+* st-vertical-icon-tabs: Removed internal demo component
 
 **Fixed bugs:**
 

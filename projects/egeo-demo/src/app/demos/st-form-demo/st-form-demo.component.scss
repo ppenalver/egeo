@@ -16,20 +16,11 @@
    display: block;
    height: 100%;
 
-   .vertical-tabs {
-      display: inline-block;
-      height: 100vh;
-      position: fixed;
-      vertical-align: top;
-      width: 82px;
-   }
-
    .tab-container {
       display: inline-block;
       height: 72.5vh;
       overflow: auto;
       overflow-x: hidden;
-      padding-left: 106px;
       padding-right: 20px;
       width: 100%;
    }

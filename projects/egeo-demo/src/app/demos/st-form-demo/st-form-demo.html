@@ -14,19 +14,24 @@
    <section class="container-liquid demo-layout">
 
       <div class="demo-container">
-         <st-vertical-icon-tabs class="vertical-tabs"
-                                [options]="options"
-                                (changeOption)="onChangeOption($event)"
-                                [activeOption]="activeOption">
-         </st-vertical-icon-tabs>
+
+         <st-toggle-buttons
+            class="toggle-buttons"
+            [ngClass]="{'st-toggle-buttons--large': activeSizeOption === 'large'}"
+            [disabled]="disabled"
+            [tabs]="options"
+            [description]="description"
+            (select)="onChangeOption($event)"
+            qaTag="toggle-buttons">
+         </st-toggle-buttons>
 
          <div class="tab-container st-custom-scrollbar">
-            <st-form-editor-demo [hidden]="activeOption !== options[0]"></st-form-editor-demo>
-            <st-theme-customization-demo [hidden]="activeOption !== options[1]"></st-theme-customization-demo>
+            <st-form-editor-demo [hidden]="activeOption.id !== 'demo'"></st-form-editor-demo>
+            <st-theme-customization-demo [hidden]="activeOption.id !== 'cssProperties'"></st-theme-customization-demo>
             <st-visual-section-improvements-demo
-               [hidden]="activeOption !== options[2]"></st-visual-section-improvements-demo>
+               [hidden]="activeOption.id !== 'visualSectionImprovements'"></st-visual-section-improvements-demo>
             <st-visual-field-improvements-demo
-               [hidden]="activeOption !== options[3]"></st-visual-field-improvements-demo>
+               [hidden]="activeOption.id !== 'visualFieldImprovements'"></st-visual-field-improvements-demo>
          </div>
       </div>
    </section>
