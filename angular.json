@@ -67,6 +67,11 @@
                         "output": "/assets/fonts"
                      },
                      {
+                        "glob": "constants.scss",
+                        "input": "node_modules/@stratio/egeo-themes/dist/stratio",
+                        "output": "/assets"
+                     },
+                     {
                         "glob": "stratio-fonticon.css",
                         "input": "node_modules/@stratio/egeo-ui-base",
                         "output": "/assets"

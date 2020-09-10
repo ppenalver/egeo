@@ -21,15 +21,15 @@ export class ColorsService {
    constructor(private http: HttpClient) { }
 
    getColorsList(): Observable<Color[]> {
-      return this.http.get(location.pathname + 'assets/_colors.scss', {responseType: 'text'}).pipe(
+      return this.http.get(location.pathname + 'assets/constants.scss', {responseType: 'text'}).pipe(
          map(text => this.getColors(text))
       );
    }
 
    private getColors(text: string): Color[] {
       const colors: Color[] = [];
-      text = text.replace(/\/\*\*(.|[\r\n])*\*\//g, '');
       const lines: string[] = text.split(/\n/);
+
       let group: string = '';
       const regex: RegExp = /\$(.*?)\:\s*?\#(.*?)\s*\!/;
       let execResult: RegExpExecArray | null;
@@ -40,8 +40,6 @@ export class ColorsService {
             group = line.substring(2, line.length - 1).trim();
          } else if (line.startsWith('$')) {
             execResult = regex.exec(line);
-            let color: string = '';
-            let hex: string = '';
             if (execResult) {
                colors.push({
                   category: group,

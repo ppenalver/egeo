@@ -35,6 +35,7 @@
 **Fixed bugs:**
 
 * st-modal: Fix wrong visualization of large titles
+* egeo-demo: Fixed egeo demo colors doc
 
 **Breaking changes:**
 
