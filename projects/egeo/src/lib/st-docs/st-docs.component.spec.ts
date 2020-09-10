@@ -26,13 +26,13 @@ describe('StDocsComponent', () => {
    let component: StDocsComponent;
    let fixture: ComponentFixture<StDocsComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StHorizontalTabsModule, StDocsModule],
          providers: [StDocsService]
       })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StDocsComponent);

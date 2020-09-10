@@ -46,14 +46,14 @@ function generateData(numData: number): StTwoListSelectionElement[] {
 let list: StTwoListSelectionElement[] = generateData(10);
 
 describe('StTwoListSelectionComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule, VirtualScrollerModule, StCheckboxModule],
          declarations: [ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(ListSelectionComponent);

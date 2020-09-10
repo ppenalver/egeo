@@ -30,13 +30,13 @@ let element: StItemListElement = {
 };
 
 describe('StItemListComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [],
          declarations: [ItemListItemComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(ItemListItemComponent);

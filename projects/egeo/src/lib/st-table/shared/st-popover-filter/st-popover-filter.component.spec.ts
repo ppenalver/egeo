@@ -30,13 +30,13 @@ describe('StPopoverFilterComponent', () => {
    let component: StPopoverFilterComponent;
    let fixture: ComponentFixture<StPopoverFilterComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StCheckboxModule, StPopOverModule],
          declarations: [StPopoverFilterComponent]
       })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StPopoverFilterComponent);

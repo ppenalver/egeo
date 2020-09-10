@@ -8,8 +8,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Injectable, Renderer2 } from '@angular/core';
 
+@Injectable()
 export abstract class EventWindowManager {
    public isActive: boolean;
 
@@ -17,7 +18,7 @@ export abstract class EventWindowManager {
    private globalListener: Function;
    private forceClose: Function;
 
-   constructor(private _renderer: Renderer2, private _cd: ChangeDetectorRef) { }
+   protected constructor(private _renderer: Renderer2, private _cd: ChangeDetectorRef) { }
 
    abstract ngOnDestroy(): void;
 

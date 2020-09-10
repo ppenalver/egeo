@@ -22,13 +22,13 @@ let formGroup: FormGroup;
 
 describe('StSwitchComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule],
          declarations: [StSwitchComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       formGroup = new FormGroup(

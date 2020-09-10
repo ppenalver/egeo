@@ -36,7 +36,7 @@ class TestComponent {
    @Input() hidden: boolean = true;
    @Input() placement: StPopPlacement = StPopPlacement.TOP;
 
-   @ViewChild('popComponent', {static: false}) popComponent: StPopComponent;
+   @ViewChild('popComponent') popComponent: StPopComponent;
 }
 
 describe('StPopComponent', () => {
@@ -44,7 +44,7 @@ describe('StPopComponent', () => {
    let component: TestComponent;
    let fixture: ComponentFixture<TestComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StPopComponent, TestComponent],
          providers: [
@@ -52,7 +52,7 @@ describe('StPopComponent', () => {
          ]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(TestComponent);

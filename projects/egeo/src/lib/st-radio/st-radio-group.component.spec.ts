@@ -47,7 +47,7 @@ describe('StRadioGroup', () => {
    let testComponent: RadioGroupWithModel;
    let groupNgControl: NgControl;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule],
          declarations: [StRadioComponent, StRadioGroupComponent, RadioGroupWithModel],
@@ -56,7 +56,7 @@ describe('StRadioGroup', () => {
          ]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(RadioGroupWithModel);
@@ -135,7 +135,7 @@ describe('StRadioGroup with FormControl', () => {
 
    let compiled: any;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [
             ReactiveFormsModule,
@@ -147,7 +147,7 @@ describe('StRadioGroup with FormControl', () => {
          ]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(RadioGroup);

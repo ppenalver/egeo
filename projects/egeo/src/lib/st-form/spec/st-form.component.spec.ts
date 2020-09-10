@@ -42,7 +42,7 @@ export let getParentElement = (element: HTMLElement, level: number): any => {
 
 describe('StFormComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StInputModule, StCheckboxModule, StFormFieldModule, StTooltipModule, PipesModule, StFormDirectiveModule],
          declarations: [StFormComponent]
@@ -64,12 +64,10 @@ describe('StFormComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
-      spyOn(window, 'setTimeout').and.callFake((func) => {
-         func();
-      });
+
       fixture = TestBed.createComponent(StFormComponent);
       component = fixture.componentInstance;
       component.schema = _cloneDeep(JSON_SCHEMA);
@@ -781,7 +779,7 @@ describe('StFormComponent', () => {
 class FormInTemplateDrivenFormComponent {
    public schema: any = _cloneDeep(JSON_SCHEMA);
    public model: any = {};
-   @ViewChild('formModel', { static: false }) public formModel: NgForm;
+   @ViewChild('formModel') public formModel: NgForm;
 
    constructor() {
       this.schema.properties.security = {
@@ -806,13 +804,13 @@ describe('StFormComponent in templateDriven form', () => {
    let templateDrivenFixture: ComponentFixture<FormInTemplateDrivenFormComponent>;
    let templateDrivenComp: FormInTemplateDrivenFormComponent;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StFormModule, StFormFieldModule, StInputModule, StCheckboxModule],
          declarations: [FormInTemplateDrivenFormComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       templateDrivenFixture = TestBed.createComponent(FormInTemplateDrivenFormComponent);

@@ -49,7 +49,7 @@ let fixture: ComponentFixture<TestStFNComponent>;
 let nativeElement: HTMLElement;
 
 describe('StForegroundNotificationsComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StForegroundNotificationsModule, BrowserAnimationsModule],
          declarations: [TestStFNComponent],
@@ -64,12 +64,12 @@ describe('StForegroundNotificationsComponent', () => {
             StForegroundNotificationsService
          ]
       }).compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStFNComponent);
       comp = fixture.componentInstance;
-      _notifications = TestBed.get(StForegroundNotificationsService);
+      _notifications = TestBed.inject(StForegroundNotificationsService);
       nativeElement = fixture.nativeElement;
       comp.notification.ngOnInit();
    });

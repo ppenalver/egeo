@@ -24,9 +24,9 @@ import { FormControl } from '@angular/forms';
 })
 export class StDynamicTableDemoComponent {
    public configDoc: any = {
-      html: 'demo/st-table-demo/st-dynamic-table-demo.component.html',
-      ts: 'demo/st-table-demo/st-dynamic-table-demo.component.ts',
-      component: 'lib/st-table/st-dynamic-table.component.ts'
+      html: 'demo/st-dynamic-table-demo/st-dynamic-table-demo.component.html',
+      ts: 'demo/st-dynamic-table-demo/st-dynamic-table-demo.component.ts',
+      component: 'lib/st-dynamic-table/st-dynamic-table.component.ts'
    };
 
    public jsonSchema: JSONSchema4 = {

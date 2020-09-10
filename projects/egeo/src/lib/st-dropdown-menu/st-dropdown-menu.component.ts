@@ -94,8 +94,8 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    /** @output {StDropDownMenuItem} [itemMouseLeave] Event emitted when mouse leaves an item */
    @Output() itemMouseLeave: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
 
-   @ViewChild('buttonId', { static: false }) buttonElement: ElementRef;
-   @ViewChild('itemList', { static: false }) itemListElement: ElementRef;
+   @ViewChild('buttonId') buttonElement: ElementRef;
+   @ViewChild('itemList') itemListElement: ElementRef;
 
    widthMenu: string = '0px';
 

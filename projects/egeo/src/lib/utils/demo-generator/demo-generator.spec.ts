@@ -49,7 +49,7 @@ let config: DemoGeneratorProviders = {
 
 describe('DemoGenerator', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [],
          declarations: [StDemoGenerator, DemoGeneratorTestComponent],
@@ -62,7 +62,7 @@ describe('DemoGenerator', () => {
          set: { entryComponents: [DemoGeneratorTestComponent] }
       }).compileComponents();  // compile template and css
 
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StDemoGenerator);

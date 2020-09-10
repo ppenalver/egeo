@@ -26,12 +26,12 @@ describe('StModal', () => {
       let fixture: ComponentFixture<StModalButtonsComponent>;
 
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [StModalButtonsComponent],
             schemas: [NO_ERRORS_SCHEMA]
          }).compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StModalButtonsComponent);

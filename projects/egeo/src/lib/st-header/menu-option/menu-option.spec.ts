@@ -37,7 +37,7 @@ let fixture: ComponentFixture<StHeaderMenuOptionComponent>;
 
 describe('StHeader', () => {
    describe('StHeaderMenuOptionComponent', () => {
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [StHeaderMenuOptionComponent],
             schemas: [NO_ERRORS_SCHEMA],
@@ -50,7 +50,7 @@ describe('StHeader', () => {
                set: { changeDetection: ChangeDetectionStrategy.Default }
             })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StHeaderMenuOptionComponent);

@@ -32,13 +32,13 @@ describe('StAlertsComponent', () => {
    let component: StAlertsComponent;
    let fixture: ComponentFixture<StAlertsComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StAlertsComponent, StAlertBoxComponent],
          providers: [{ provide: StAlertsService, useClass: MockService }]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StAlertsComponent);

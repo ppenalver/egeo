@@ -43,13 +43,13 @@ const realisticClick = new Event('click', { bubbles: true });
 
 describe('StToggleButtonsComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [RouterTestingModule],
          declarations: [StToggleButtonsComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StToggleButtonsComponent);

@@ -47,13 +47,13 @@ function generateData(numData: number): StItemListElement[] {
 let list: StItemListElement[] = generateData(10);
 
 describe('StItemListComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule, VirtualScrollerModule],
          declarations: [StItemListComponent, ItemListItemComponent, ItemListScrollComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StItemListComponent);

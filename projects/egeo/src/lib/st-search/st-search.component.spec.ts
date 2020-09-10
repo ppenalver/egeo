@@ -34,7 +34,7 @@ let placeholder: string = 'search a text';
 
 describe('StSearchComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StDropdownMenuModule, StSelectModule, StInputModule, StDropdownMenuModule],
          declarations: [StSearchComponent]
@@ -50,7 +50,7 @@ describe('StSearchComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StSearchComponent);

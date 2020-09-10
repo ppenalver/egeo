@@ -19,7 +19,7 @@ let fixture: ComponentFixture<StZeroPageComponent>;
 
 describe('StZeroPageComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StZeroPageComponent]
       })
@@ -28,7 +28,7 @@ describe('StZeroPageComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StZeroPageComponent);

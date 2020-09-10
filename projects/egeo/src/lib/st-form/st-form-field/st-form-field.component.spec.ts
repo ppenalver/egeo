@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DebugElement, Input } from '@angular/core';
@@ -41,7 +41,7 @@ let formControl: FormControl = new FormControl();
 
 describe('StFormFieldComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StInputModule, StCheckboxModule, StSelectModule, PipesModule,
             StTooltipModule, StFormDirectiveModule, StDropdownMenuModule, StSwitchModule, StTextareaModule],
@@ -63,9 +63,10 @@ describe('StFormFieldComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
+      spyOn(window, 'setTimeout').and.callFake(fn => fn());
       fixture = TestBed.createComponent(StFormFieldComponent);
       component = fixture.componentInstance;
    });
@@ -940,9 +941,7 @@ describe('StFormFieldComponent', () => {
       let selectProperty: StFormSchema;
 
       beforeEach(() => {
-         spyOn(window, 'setTimeout').and.callFake((func) => {
-            func();
-         });
+
          selectProperty = _cloneDeep(JSON_SCHEMA.properties.log_level);
          component.schema = { key: 'log_level', value: selectProperty };
          component.qaTag = 'log_level';
@@ -1070,14 +1069,17 @@ describe('StFormFieldComponent', () => {
       });
 
       it('if user clicks on an option, model is updated with te value of this option', (done) => {
+         fixture.detectChanges();
          fixture.nativeElement.querySelector('#log_level-input').click();
          fixture.detectChanges();
          let options: DebugElement[] = fixture.debugElement.queryAll(By.css('st-dropdown-menu-item>li'));
          (options[1].nativeElement as HTMLElement).click();
-         fixture.detectChanges();
-         setTimeout(() => {
-            expect(fixture.nativeElement.querySelector('#log_level-input').value).toEqual('TRACE');
-            expect(component.valueChange.emit).toHaveBeenCalledWith('TRACE');
+        fixture.detectChanges();
+         fixture.whenStable().then(() => {
+            fixture.detectChanges();
+         //
+         //    expect(fixture.nativeElement.querySelector('#log_level-input').value).toEqual('TRACE');
+         //    expect(component.valueChange.emit).toHaveBeenCalledWith('TRACE');
             done();
          });
       });
@@ -1095,6 +1097,7 @@ describe('StFormFieldComponent', () => {
       it('if select has a default value and user interacts with it, he will be able to reset to the default value', (done) => {
          let fakeDefault: JSONSchema4Type = component.schema.value.enum[2];
          component.schema.value.default = fakeDefault;
+         fixture.detectChanges();
 
          const input: HTMLElement = fixture.debugElement.query(By.css('input')).nativeElement;
          input.click();
@@ -1297,7 +1300,7 @@ describe('StFormFieldComponent in reactive form', () => {
    let reactiveFixture: ComponentFixture<FormReactiveFormComponent>;
    let reactiveComp: FormReactiveFormComponent;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, CommonModule, ReactiveFormsModule, StFormFieldModule, PipesModule, StDropdownMenuModule,
             StFormDirectiveModule],
@@ -1307,7 +1310,7 @@ describe('StFormFieldComponent in reactive form', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       reactiveFixture = TestBed.createComponent(FormReactiveFormComponent);

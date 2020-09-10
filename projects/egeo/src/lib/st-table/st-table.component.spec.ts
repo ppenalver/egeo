@@ -37,7 +37,7 @@ let fakeFields: StTableHeader[] = [
 
 describe('StTableComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule, RouterTestingModule, StCheckboxModule, StPopOverModule, StClickOutsideModule],
          declarations: [StPopoverFilterComponent, StTableComponent]
@@ -47,7 +47,7 @@ describe('StTableComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTableComponent);

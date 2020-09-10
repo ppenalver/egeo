@@ -18,13 +18,13 @@ let component: StTableCellComponent;
 
 describe('StTableCellComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule, RouterTestingModule],
          declarations: [StTableCellComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTableCellComponent);

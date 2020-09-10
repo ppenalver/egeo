@@ -25,12 +25,12 @@ let qaTag: string = 'vertical-tabs';
 
 
 describe('StVerticaltabsComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StVerticalTabsComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StVerticalTabsComponent);

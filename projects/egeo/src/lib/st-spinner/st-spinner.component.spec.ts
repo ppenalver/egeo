@@ -20,7 +20,7 @@ let comp: StSpinnerComponent;
 
 describe('StSpinnerComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule, RouterTestingModule],
          declarations: [StSpinnerComponent]
@@ -29,7 +29,7 @@ describe('StSpinnerComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StSpinnerComponent);

@@ -17,10 +17,10 @@ const mainRoute = environment.production ? 'home' : '/components/demo/alerts-dem
 
 export const routes: Routes = [
    { path: '', pathMatch: 'full', redirectTo: mainRoute },
-   { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
-   { path: 'general', loadChildren: './modules/general/general.module#GeneralModule' },
-   { path: 'components', loadChildren: './modules/demos/demo.module#DemoModule'},
-   { path: 'theme', loadChildren: './modules/theme/theme.module#ThemeModule'}
+   { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+   { path: 'general', loadChildren: () => import('./modules/general/general.module').then(m => m.GeneralModule)},
+   { path: 'components', loadChildren: () => import('./modules/demos/demo.module').then(m => m.DemoModule)},
+   { path: 'theme', loadChildren: () => import('./modules/theme/theme.module').then(m => m.ThemeModule)}
 ];
 
 @NgModule({

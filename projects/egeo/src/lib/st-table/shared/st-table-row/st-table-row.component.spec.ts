@@ -48,8 +48,8 @@ let component: TestStTableRowComponent;
 })
 
 class TestStTableRowComponent {
-   @ViewChild('row', { static: false }) row: StTableRowComponent;
-   @ViewChild('rowWithHoverMenu', { static: false }) rowWithHoverMenu: StTableRowComponent;
+   @ViewChild('row') row: StTableRowComponent;
+   @ViewChild('rowWithHoverMenu') rowWithHoverMenu: StTableRowComponent;
 
    userData: {} = {
       id: '4545-df56-s345',
@@ -62,7 +62,7 @@ let rowElement: HTMLTableRowElement;
 let rowWithHoverMenuElement: HTMLTableRowElement;
 
 describe('StTableRowComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule, RouterTestingModule],
          declarations: [TestStTableRowComponent, StTableRowComponent]
@@ -72,7 +72,7 @@ describe('StTableRowComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStTableRowComponent);

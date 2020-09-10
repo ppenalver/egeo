@@ -22,12 +22,12 @@ describe('StCheckboxComponent', () => {
    let compiled: any;
    let de: DebugElement;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StCheckboxComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StCheckboxComponent);

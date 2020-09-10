@@ -27,12 +27,12 @@ let fakeFile: File = <File> (new Blob([data], { type: 'json' }));
 let eventData: any;
 
 describe('StFileButtonComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StFileButtonComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StFileButtonComponent);

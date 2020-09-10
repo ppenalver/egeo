@@ -23,7 +23,7 @@ let fakeModel: Array<any> = [
 let realSetTimeout: any = window.setTimeout;
 
 describe('[StFormList]', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, StFormFieldModule, CommonModule,
             FormsModule,
@@ -45,12 +45,9 @@ describe('[StFormList]', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
-      spyOn(window, 'setTimeout').and.callFake((func) => {
-         func();
-      });
       fixture = TestBed.createComponent(StFormListComponent);
       component = fixture.componentInstance;
       component.schema = TWO_INPUTS_JSON_SCHEMA;
@@ -253,7 +250,7 @@ describe('StFormListComponent in reactive form', () => {
    let reactiveFixture: ComponentFixture<FormReactiveFormListComponent>;
    let reactiveComp: FormReactiveFormListComponent;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule,
             FormsModule,
@@ -263,7 +260,7 @@ describe('StFormListComponent in reactive form', () => {
          declarations: [FormReactiveFormListComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       reactiveFixture = TestBed.createComponent(FormReactiveFormListComponent);

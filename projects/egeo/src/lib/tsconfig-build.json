@@ -7,7 +7,7 @@
       "stripInternal": false,
       "experimentalDecorators": true,
       "importHelpers": true,
-      "module": "es2015",
+      "module": "es2020",
       "moduleResolution": "node",
       "outDir": "../../dist/packages/egeo",
       "rootDir": ".",

@@ -17,13 +17,13 @@ describe('StPaginationComponent', () => {
    let component: StPaginationComponent;
    let fixture: ComponentFixture<StPaginationComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StPaginationComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StPaginationComponent);

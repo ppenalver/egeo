@@ -76,7 +76,7 @@ describe('StDynamicTableComponent', () => {
 
    const items: any[] = [{ cores: 8, memory: 512, home: '/desktop', fecha_creacion: '2020-04-15T19:50:30' }];
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [CommonModule, StTableModule, StCheckboxModule],
          declarations: [StDynamicTableComponent]
@@ -92,7 +92,7 @@ describe('StDynamicTableComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StDynamicTableComponent);

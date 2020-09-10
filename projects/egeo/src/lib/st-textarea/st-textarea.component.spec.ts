@@ -23,13 +23,13 @@ let fixture: ComponentFixture<StTextareaComponent>;
 let textarea: HTMLInputElement;
 
 describe('StTextareaComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule],
          declarations: [StTextareaComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTextareaComponent);
@@ -224,13 +224,13 @@ let reactiveFixture: ComponentFixture<FormReactiveComponent>;
 let reactiveComp: FormReactiveComponent;
 
 describe('StTextareaComponent in reactive form', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StTextareaModule],
          declarations: [FormReactiveComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       reactiveFixture = TestBed.createComponent(FormReactiveComponent);

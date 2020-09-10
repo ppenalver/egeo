@@ -73,7 +73,7 @@ class TestDropdownComponent {
    items: StDropDownMenuItem[];
    active: boolean = false;
    selected: StDropDownMenuItem;
-   @ViewChild('dropdown', { static: false }) dropdownItem: StDropdownMenuComponent;
+   @ViewChild('dropdown') dropdownItem: StDropdownMenuComponent;
    dropdownWidth: string = '300px';
    visualMode: StDropDownVisualMode = StDropDownVisualMode.OPTION_LIST;
    keyBoardMove: boolean = false;
@@ -93,7 +93,7 @@ describe('StDropdownMenu', () => {
       let comp: StDropdownMenuComponent;
       let fixture: ComponentFixture<StDropdownMenuComponent>;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [StDropdownMenuComponent, StDropdownMenuItemComponent],
             schemas: [NO_ERRORS_SCHEMA]
@@ -105,7 +105,7 @@ describe('StDropdownMenu', () => {
                set: { changeDetection: ChangeDetectionStrategy.Default }
             })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StDropdownMenuComponent);
@@ -488,7 +488,7 @@ describe('StDropdownMenu', () => {
    describe('Instance', () => {
       let instanceTestFixture: ComponentFixture<TestDropdownComponent>;
       let instanceTestComp: TestDropdownComponent;
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [StDropdownMenuModule],
             declarations: [TestDropdownComponent]
@@ -497,7 +497,7 @@ describe('StDropdownMenu', () => {
                set: { changeDetection: ChangeDetectionStrategy.Default }
             })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          instanceTestFixture = TestBed.createComponent(TestDropdownComponent);

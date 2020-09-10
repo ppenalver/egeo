@@ -31,7 +31,7 @@ import { DECLARATIONS } from './barrels';
    ]
 })
 export class EgeoModule {
-   static forRoot(): ModuleWithProviders {
+   static forRoot(): ModuleWithProviders<EgeoModule> {
       return {
          ngModule: EgeoModule,
          providers: [

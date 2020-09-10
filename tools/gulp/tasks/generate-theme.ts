@@ -11,7 +11,7 @@
 import { task, src, dest, parallel } from 'gulp';
 import { join } from 'path';
 import { writeFileSync, mkdirpSync } from 'fs-extra';
-import { Bundler } from 'scss-bundle';
+import { Bundler, BundleResult } from 'scss-bundle';
 
 import { buildConfig, buildScssFromFileTask } from 'build-tools';
 
@@ -39,17 +39,17 @@ task('styles:copy-fonts', () => src(join(assetsSource, '/**/*')).pipe(dest(join(
 
 task('styles:constants', () => {
    const allScssGlob = join(themeSourceFolder, '**/*.scss');
-   return new Bundler().Bundle(constantsSourceFile, [allScssGlob]).then(result => {
+   return new Bundler().bundle(constantsSourceFile, [allScssGlob]).then((result: BundleResult) => {
       mkdirpSync(packageOut);
-      writeFileSync(join(packageOut, constantsOutputFile), result.bundledContent, { encoding: 'utf-8' });
+      writeFileSync(join(packageOut, constantsOutputFile), <any> result.bundledContent, { encoding: 'utf-8' });
    });
 });
 
 task('styles:theme:scss', () => {
    const allScssGlob = join(themeSourceFolder, '**/*.scss');
-   return new Bundler().Bundle(themeSourceFile, [allScssGlob]).then(result => {
+   return new Bundler().bundle(themeSourceFile, [allScssGlob]).then((result: BundleResult) => {
       mkdirpSync(packageOut);
-      writeFileSync(join(packageOut, themeScssOutputFile), result.bundledContent, { encoding: 'utf-8' });
+      writeFileSync(join(packageOut, themeScssOutputFile), <any> result.bundledContent, { encoding: 'utf-8' });
    });
 });
 

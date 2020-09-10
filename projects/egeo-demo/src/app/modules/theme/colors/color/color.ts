@@ -30,7 +30,7 @@ export class ColorDemoComponent {
 
    @Input() color: Color;
    @Output() copyColorName: EventEmitter<string> = new EventEmitter<string>();
-   @ViewChild('nameEl', {static: false}) textElement: ElementRef;
+   @ViewChild('nameEl') textElement: ElementRef;
 
    onClick(): void {
       const name: string = `$${this.color.name}`;

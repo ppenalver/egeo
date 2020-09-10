@@ -9,8 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import {
    times as _times
@@ -27,12 +26,11 @@ import { PipesModule } from '../pipes/pipes.module';
 import { StSearchModule } from '../st-search/st-search.module';
 import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
 
-// Mdel
+// Model
 import { StTwoListSelectionConfig, StTwoListSelectionElement } from './st-two-list-selection.model';
 
 let comp: StTwoListSelectionViewComponent;
 let fixture: ComponentFixture<StTwoListSelectionViewComponent>;
-let de: DebugElement;
 
 let config: StTwoListSelectionConfig = {
    allElementsListTitle: 'All',
@@ -46,7 +44,7 @@ let config: StTwoListSelectionConfig = {
 };
 let qaTag: string = 'st-two-list-test';
 
-function generateData(numData: number): StTwoListSelectionElement[] {
+function generateData(): StTwoListSelectionElement[] {
    return _times(10, (i) => {
       return {
          id: i,
@@ -56,20 +54,20 @@ function generateData(numData: number): StTwoListSelectionElement[] {
 }
 
 describe('StTwoListSelectionComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule, PipesModule, VirtualScrollerModule, StCheckboxModule],
          declarations: [StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTwoListSelectionViewComponent);
       comp = fixture.componentInstance;
       comp.qaTag = qaTag;
-      comp.allElements = generateData(10);
+      comp.allElements = generateData();
       comp.selectedElements = [];
    });
 

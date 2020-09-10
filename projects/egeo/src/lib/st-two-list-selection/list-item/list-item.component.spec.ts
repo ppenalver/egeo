@@ -34,13 +34,13 @@ let element: StTwoListSelectionElement = {
 let menuOptionList: StDropDownMenuItem[] = [{ label: 'Example test', icon: 'icon-datetime', value: 'test' }];
 
 describe('StTwoListSelectionComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StCheckboxModule, StDropdownMenuModule],
          declarations: [ListItemComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(ListItemComponent);

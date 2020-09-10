@@ -72,6 +72,7 @@
 **Others:**
 
 * Removed required polyfill "reflect-metadata" when Egeo is imported as dependency
+* Update to Angular 10 and upgrade dependencies to the latest versions
 
 
 ## 22.0.0 (July 29, 2020)
@@ -93,7 +94,6 @@
 * st-search: Allow to customize icon styles from outside using css
 * st-modal: add optional and customizable css padding variables to basic modal
 * st-dynamic-table: Allow to visualize date with a specific format using "dateFormat" of uiDefinitions
-
 
 **Fixed bugs:**
 

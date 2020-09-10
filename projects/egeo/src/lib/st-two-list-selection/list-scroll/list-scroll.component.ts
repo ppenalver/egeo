@@ -47,7 +47,7 @@ export class ListScrollComponent implements OnInit {
          timer = setTimeout(callback, ms);
       };
    })();
-   firstEl: number = 0;
+
    scrollItems: StTwoListSelectionElement[] = [];
    showLoading: Boolean = false;
 

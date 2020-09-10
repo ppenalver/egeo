@@ -30,7 +30,7 @@ describe('StTagInputComponent', () => {
    let comp: StTagInputComponent;
    let fixture: ComponentFixture<StTagInputComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule, StClickOutsideModule],
          declarations: [StTagInputComponent],
@@ -40,7 +40,7 @@ describe('StTagInputComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTagInputComponent);
@@ -834,7 +834,7 @@ describe('StTagInputComponent', () => {
       let comp: StTagInputTestReactiveComponent;
       let compTagInput: StTagInputComponent;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [FormsModule, ReactiveFormsModule, StTagInputModule, StClickOutsideModule],
             declarations: [StTagInputTestReactiveComponent]
@@ -843,7 +843,7 @@ describe('StTagInputComponent', () => {
                set: { changeDetection: ChangeDetectionStrategy.Default }
             })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StTagInputTestReactiveComponent);
@@ -1099,12 +1099,12 @@ describe('StTagInputComponent', () => {
       let comp: StTagInputTestTemplateComponent;
       let compTagInput: StTagInputComponent;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [FormsModule, StTagInputModule],
             declarations: [StTagInputTestTemplateComponent]
          }).compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StTagInputTestTemplateComponent);

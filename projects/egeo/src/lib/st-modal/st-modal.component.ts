@@ -54,8 +54,8 @@ export class StModalComponent implements OnDestroy, AfterViewInit {
    @Input() disabledAnimation: boolean = true;
    @Output() click: EventEmitter<StModalButtonResponse> = new EventEmitter<StModalButtonResponse>();
    @Output() endAnimation: EventEmitter<boolean>  = new EventEmitter<boolean>();
-   @ViewChild('stModalBody', { read: ViewContainerRef, static: false }) targetContent: ViewContainerRef;
-   @ViewChild('stModalBodyEmpty', { read: ViewContainerRef, static: false }) targetEmpty: ViewContainerRef;
+   @ViewChild('stModalBody', { read: ViewContainerRef }) targetContent: ViewContainerRef;
+   @ViewChild('stModalBodyEmpty', { read: ViewContainerRef }) targetEmpty: ViewContainerRef;
 
    readonly defaultMaxWidth: number = 600;
    readonly defaultMinWidth: number = 400;

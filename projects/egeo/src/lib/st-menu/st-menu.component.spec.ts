@@ -54,11 +54,11 @@ const longMenuOptions: Array<StMenuModel<string>> = [
 ];
 
 describe('StMenuComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StMenuModule]
       }).compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent<StMenuComponent<string>>(StMenuComponent);
@@ -133,14 +133,14 @@ describe('StMenuComponent', () => {
          });
       });
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          const event: Event = new Event('mouseenter');
          fixture.nativeElement.querySelector(`#${menuOptions[0].name}-option`).dispatchEvent(event);
          fixture.detectChanges();
          fixture.whenStable().then(() => {
             fixture.detectChanges();
          });
-      }));
+      });
 
       it('should show a scroll down button, if the submenu is longer than the window', async(() => {
          fixture.whenStable().then(() => {

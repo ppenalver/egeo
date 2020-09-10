@@ -56,7 +56,7 @@ describe('StSelectComponent', () => {
    let component: StSelectComponent;
    const id: string = 'test-id';
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StDropdownMenuModule, FormsModule, ReactiveFormsModule],
          declarations: [StSelectComponent, StClickOutside],
@@ -73,7 +73,7 @@ describe('StSelectComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StSelectComponent);
@@ -744,13 +744,13 @@ describe('StSelectComponent', () => {
       let compSelect: StSelectComponent;
       let input: HTMLInputElement;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [FormsModule, ReactiveFormsModule, StDropdownMenuModule, StSelectModule],
             declarations: [StSelectTestReactiveComponent]
          })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StSelectTestReactiveComponent);
@@ -876,12 +876,12 @@ describe('StSelectComponent', () => {
       let compSelect: StSelectComponent;
       const optionName: string = 'model';
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [FormsModule, StSelectModule],
             declarations: [StSelectTestTemplateComponent]
          }).compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StSelectTestTemplateComponent);

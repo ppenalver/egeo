@@ -17,7 +17,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 
 
 describe('StHorizontalTabsComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StHorizontalTabsComponent]
       })
@@ -25,7 +25,7 @@ describe('StHorizontalTabsComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    let component: StHorizontalTabsComponent;
    let fixture: ComponentFixture<StHorizontalTabsComponent>;
@@ -35,12 +35,12 @@ describe('StHorizontalTabsComponent', () => {
       {id: 'tab3', text: 'tab 3'}
    ];
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StHorizontalTabsComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StHorizontalTabsComponent);

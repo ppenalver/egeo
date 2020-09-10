@@ -29,7 +29,7 @@ let template: string = '';
 
 describe('StLabel', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [
             StLabelComponent,
@@ -37,7 +37,7 @@ describe('StLabel', () => {
          ],
          imports: [StTooltipModule]
       });
-   }));
+   });
 
    it('Exist an span element that contains label content', async(() => {
       template = '<label st-label>' + labelContent + '</label>';

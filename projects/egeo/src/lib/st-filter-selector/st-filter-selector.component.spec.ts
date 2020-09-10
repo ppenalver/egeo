@@ -33,7 +33,7 @@ describe('FilterSelectorComponent', () => {
          value: 'fastDeploy'
       }];
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StDropdownMenuModule],
          declarations: [StFilterSelectorComponent],
@@ -44,7 +44,7 @@ describe('FilterSelectorComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StFilterSelectorComponent);

@@ -46,7 +46,7 @@ export class StFormFieldComponent implements ControlValueAccessor, OnInit {
    @Output() clickLink: EventEmitter<string> = new EventEmitter<string>();
    @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
    @Output() blur: EventEmitter<any> = new EventEmitter<any>();
-   @ViewChild('templateModel', { static: false }) templateModel: NgModel;
+   @ViewChild('templateModel') templateModel: NgModel;
 
    public disabled: boolean = false; // To check disable
    public focus: boolean = false;

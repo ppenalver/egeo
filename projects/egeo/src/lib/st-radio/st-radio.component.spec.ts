@@ -20,7 +20,7 @@ describe('StRadioComponent', () => {
    let fixture: ComponentFixture<StRadioComponent>;
    let compiled: any;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StRadioComponent],
          providers: [
@@ -28,7 +28,7 @@ describe('StRadioComponent', () => {
          ]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StRadioComponent);

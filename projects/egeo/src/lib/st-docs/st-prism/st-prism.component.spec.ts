@@ -30,11 +30,11 @@ describe('PrismComponent', () => {
   let fixture: ComponentFixture<StPrismComponent>;
   let nativeElement: any;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [StPrismModule]
     }).compileComponents();
-  }));
+  });
 
   // synchronous beforeEach
   beforeEach(() => {

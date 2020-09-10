@@ -97,7 +97,7 @@ export class StFormComponent implements AfterViewInit, AfterViewChecked, Control
    /** @Output {string} [clickLink=] Event emitted when link is clicked. It returns the field path */
    @Output() clickLink: EventEmitter<string> = new EventEmitter<string>();
 
-   @ViewChild('form', { static: false }) form: NgForm;
+   @ViewChild('form') form: NgForm;
 
    public showCollapsedSectionFields: boolean = false;
    public innerValue: any = {};

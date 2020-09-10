@@ -46,13 +46,13 @@ let menu: StHeaderMenuOption[] = [
 
 describe('StHeader', () => {
    describe('StHeaderMenuComponent', () => {
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [StHeaderMenuComponent],
             schemas: [NO_ERRORS_SCHEMA]
          })
             .compileComponents();  // compile template and css
-      }));
+      });
       beforeEach(() => {
          fixture = TestBed.createComponent(StHeaderMenuComponent);
          comp = fixture.componentInstance;

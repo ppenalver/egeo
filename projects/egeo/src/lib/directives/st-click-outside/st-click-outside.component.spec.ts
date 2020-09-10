@@ -30,12 +30,12 @@ class TestStClickOutsideComponent {
 
 describe('StClickOutside', () => {
    beforeEach(
-      async(() => {
+      () => {
          TestBed.configureTestingModule({
             imports: [FormsModule],
             declarations: [TestStClickOutsideComponent, StClickOutside]
          }).compileComponents(); // compile template and css
-      })
+      }
    );
 
    beforeEach(() => {

@@ -86,7 +86,7 @@ describe('StModal', () => {
       let comp: StModalComponent;
       let fixture: ComponentFixture<StModalComponent>;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [NoopAnimationsModule],
             declarations: [StModalComponent, ModalTestComponent],
@@ -99,7 +99,7 @@ describe('StModal', () => {
          TestBed.overrideModule(BrowserDynamicTestingModule, {
             set: { entryComponents: [ModalTestComponent] }
          }).compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StModalComponent);

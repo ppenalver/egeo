@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component, DebugElement, Input } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { StTooltipComponent } from './st-tooltip.component';
@@ -32,7 +32,7 @@ let fixture: ComponentFixture<TestStTooltipComponent>;
 
 describe('StTooltip', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed
       .configureTestingModule({
          declarations: [
@@ -41,7 +41,7 @@ describe('StTooltip', () => {
          ]
       })
       .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStTooltipComponent);
@@ -55,16 +55,6 @@ describe('StTooltip', () => {
       let span: Element = element.query(By.css('span')).nativeElement;
       expect(span.getAttribute('title')).toBe('');
       expect(span.innerHTML).toContain(originalContent);
-   });
-
-   it('It has st-tooltip class only if host element has a title', () => {
-      expect(element.nativeElement.title).toBe(tooltipText);
-      expect(element.nativeElement.className).toBe('st-tooltip');
-
-      component.tooltipText = '';
-      fixture.detectChanges();
-      expect(element.nativeElement.title).toBe('');
-      expect(element.nativeElement.className).toBe('');
    });
 
    it('If showOnClick, st-tooltip-on class is added or removed on click', () => {

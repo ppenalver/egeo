@@ -112,7 +112,7 @@ export class StTagInputComponent implements ControlValueAccessor, Validator, OnI
    @Input() forceValidations: boolean = false;
 
    @ViewChild('newElement', {static: true}) newElementInput: ElementRef;
-   @ViewChild('inputElement', {static: false}) inputElement: ElementRef;
+   @ViewChild('inputElement') inputElement: ElementRef;
 
    public expandedMenu: boolean = false;
    public items: any[] = [];

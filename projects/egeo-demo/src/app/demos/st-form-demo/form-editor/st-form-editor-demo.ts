@@ -27,7 +27,7 @@ export class StFormEditorDemoComponent {
    public schemaChangeTimer: number;
    public errorMessages: StInputError;
 
-   @ViewChild('formModel', { static: false }) public formModel: NgModel;
+   @ViewChild('formModel') public formModel: NgModel;
 
    constructor(private _cd: ChangeDetectorRef) {
       this.jsonSchema = JSON_SCHEMA;

@@ -28,7 +28,7 @@ import { StModal2Component } from './st-modal2.component';
     `
 })
 export class Modal2TestComponent {
-   @ViewChild(StModal2Component, {static: false}) modalComponent: StModal2Component;
+   @ViewChild(StModal2Component) modalComponent: StModal2Component;
    public emptyModal: boolean = false;
    public closeOnEscape: boolean = false;
    public modalTitle: string = '';
@@ -41,13 +41,13 @@ describe('StModal2', () => {
       let fixture: ComponentFixture<Modal2TestComponent>;
       let de: DebugElement;
 
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [NoopAnimationsModule],
             declarations: [Modal2TestComponent, StModal2Component],
             schemas: [NO_ERRORS_SCHEMA]
          }).compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(Modal2TestComponent);

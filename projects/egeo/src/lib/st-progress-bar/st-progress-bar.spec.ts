@@ -20,11 +20,11 @@ let nativeElement: HTMLElement;
 
 describe('ProgressBar', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StProgressBarComponent]
       }).compileComponents();
-   }));
+   });
 
 
    describe('when init component', () => {

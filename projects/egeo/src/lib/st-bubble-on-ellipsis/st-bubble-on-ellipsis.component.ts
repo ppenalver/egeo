@@ -52,7 +52,7 @@ export class StBubbleOnEllipsisComponent {
    /** @Input {string} [lines=1] number of lines where ellipsis is placed  */
    @Input() lines?: number = 1;
 
-   @ViewChild('bubbleTrigger', { static: false }) bubbleTrigger: ElementRef;
+   @ViewChild('bubbleTrigger') bubbleTrigger: ElementRef;
 
    offset: StPopOffset;
    visible: boolean;

@@ -24,12 +24,12 @@ describe('StInfoBoxComponent', () => {
 
     let comp: StInfoBoxComponent;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StInfoBoxComponent]
       })
       .compileComponents();  // compile template and css
-   }));
+   });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(StInfoBoxComponent);

@@ -18,7 +18,7 @@ describe('StSidebarItemList', () => {
    let fixture: ComponentFixture<StSidebarItemListComponent>;
    let itemList: HTMLLIElement[];
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [],
          declarations: [StSidebarItemListComponent]
@@ -29,7 +29,7 @@ describe('StSidebarItemList', () => {
          })
          .compileComponents();  // compile template and css
 
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StSidebarItemListComponent);

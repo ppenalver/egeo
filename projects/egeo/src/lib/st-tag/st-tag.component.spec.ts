@@ -30,7 +30,7 @@ describe('StTagComponent', () => {
       icon: 'icon-lock'
    };
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StTagComponent],
          providers: [],
@@ -40,7 +40,7 @@ describe('StTagComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTagComponent);

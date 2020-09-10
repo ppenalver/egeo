@@ -51,14 +51,14 @@ let allElements: StTwoListSelectionElement[] = generateData();
 let selectedElements: StTwoListSelectionElement[] = _cloneDeep(allElements.slice(0, 2));
 
 describe('StTwoListSelectionComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule, PipesModule, VirtualScrollerModule, StCheckboxModule],
          declarations: [StTwoListSelectionComponent, StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StTwoListSelectionComponent);

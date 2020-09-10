@@ -20,13 +20,13 @@ describe('StPopOverComponent', () => {
    let component: StPopOverComponent;
    let fixture: ComponentFixture<StPopOverComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StPopModule],
          declarations: [StPopOverComponent, StPopOverComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StPopOverComponent);

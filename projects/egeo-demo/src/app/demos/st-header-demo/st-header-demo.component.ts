@@ -31,7 +31,7 @@ export class StHeaderDemoComponent {
    public showUserProfileMenu: boolean = false;
    public activeButton: number;
 
-   @ViewChild('launcher', { static: false }) launcherElement: ElementRef;
+   @ViewChild('launcher') launcherElement: ElementRef;
 
 
    toggleUserProfile(): void {

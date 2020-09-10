@@ -35,14 +35,14 @@ describe('StColorPickerComponent', () => {
       return `rgb(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b})`;
    };
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [StColorPickerComponent],
          imports: [ReactiveFormsModule, FormsModule],
          providers: [],
          schemas: [NO_ERRORS_SCHEMA]
       }).compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StColorPickerComponent);
@@ -93,7 +93,7 @@ describe('Color picker with FormControl', () => {
    let colorPickerInstance: StColorPickerComponent;
    let fixture: ComponentFixture<ColorPicker>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [
             ReactiveFormsModule,
@@ -102,7 +102,7 @@ describe('Color picker with FormControl', () => {
          declarations: [StColorPickerComponent, ColorPicker]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(ColorPicker);

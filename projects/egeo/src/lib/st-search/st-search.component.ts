@@ -121,7 +121,7 @@ export class StSearchComponent extends EventWindowManager implements OnChanges, 
    public searchBox: FormControl = new FormControl();
    public showClear: boolean;
    public filter: string;
-   @ViewChild('buttonId', {static: false}) public _eventElementRef: ElementRef;
+   @ViewChild('buttonId') public _eventElementRef: ElementRef;
 
    private subscriptionSearch: Subscription | undefined = undefined;
    private subscriptionSearchClearButton: Subscription | undefined = undefined;

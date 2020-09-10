@@ -20,7 +20,7 @@ import { StDemoLoggerService } from './st-demo-logger.service';
    exports: [StDemoLoggerComponent]
 })
 export class StDemoLoggerModule {
-   static withService(): ModuleWithProviders {
+   static withService(): ModuleWithProviders<StDemoLoggerModule> {
       return {
          ngModule: StDemoLoggerModule,
          providers: [StDemoLoggerService]

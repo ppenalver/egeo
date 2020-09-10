@@ -66,7 +66,7 @@ class WindowRefMock {
 
 describe('StHeader', () => {
    describe('StHeaderComponent', () => {
-      beforeEach(async(() => {
+      beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [
                StHeaderComponent,
@@ -80,7 +80,7 @@ describe('StHeader', () => {
             ]
          })
             .compileComponents();  // compile template and css
-      }));
+      });
 
       beforeEach(() => {
          fixture = TestBed.createComponent(StHeaderComponent);
@@ -198,7 +198,7 @@ describe('StHeader', () => {
          const userMenuChild = document.createElement('div');
          userMenuChild.appendChild(document.createTextNode('User Menu'));
          userMenu.appendChild(userMenuChild);
-         spyOn(userMenuChild, 'getBoundingClientRect').and.returnValue({ width: 100 });
+         spyOn(userMenuChild, 'getBoundingClientRect').and.returnValue(<DOMRect> { width: 100 });
 
          comp.menu = menu;
          comp.userMenuContainer = new ElementRef(userMenu);

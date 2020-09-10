@@ -24,7 +24,7 @@ export class StTagInputDemoComponent implements OnInit, AfterViewInit {
       ts: 'demo/st-tag-input-demo/st-tag-input-demo.component.ts',
       component: 'lib/st-tag-input/st-tag-input.component.ts'
    };
-   @ViewChild('templateDrivenForm', {static: false}) public templateDrivenForm: NgForm;
+   @ViewChild('templateDrivenForm') public templateDrivenForm: NgForm;
 
    public tags: any = {
       reactive: [],

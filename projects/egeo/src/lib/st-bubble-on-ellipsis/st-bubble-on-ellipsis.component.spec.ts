@@ -34,7 +34,7 @@ let fixture: ComponentFixture<TestStBubbleOnEllipsisComponent>;
 
 describe('StBubbleOnEllipsisComponent', () => {
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed
          .configureTestingModule({
             imports: [CommonModule, StBubbleModule],
@@ -51,7 +51,7 @@ describe('StBubbleOnEllipsisComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStBubbleOnEllipsisComponent);

@@ -20,13 +20,13 @@ describe('StBubbleComponent', () => {
    let component: StBubbleComponent;
    let fixture: ComponentFixture<StBubbleComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StPopModule],
          declarations: [StBubbleComponent, StBubbleComponent]
       })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StBubbleComponent);

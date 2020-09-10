@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component, ElementRef, HostBinding, HostListener, Input, OnChanges, OnInit, ChangeDetectorRef, OnDestroy, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
    selector: '[st-tooltip]',
@@ -31,12 +31,13 @@ export class StTooltipComponent implements OnChanges, OnDestroy, OnInit {
          this._el.nativeElement.removeAttribute('title');
       }
    }
+
    get title(): string {
       return this._title;
    }
 
    constructor(private _el: ElementRef,
-      private _cd: ChangeDetectorRef) {
+               private _cd: ChangeDetectorRef) {
       this._onClick = this._onClick.bind(this);
    }
 
@@ -49,7 +50,7 @@ export class StTooltipComponent implements OnChanges, OnDestroy, OnInit {
       document.removeEventListener('click', this._onClick);
    }
 
-   ngOnChanges(): void {
+   ngOnChanges(changes: SimpleChanges): void {
       if (this._el) {
          this._checkTooltipState();
       }
@@ -63,8 +64,8 @@ export class StTooltipComponent implements OnChanges, OnDestroy, OnInit {
    }
 
    private _checkTooltipState(): void {
-      this.classTooltip = this.title && this.title.length && !this.showOnClick;
-      this.classTooltipOn =  false;
+      this.classTooltip = this._title && this._title.length && !this.showOnClick;
+      this.classTooltipOn = false;
    }
 
    private _onClick(event: Event): void {

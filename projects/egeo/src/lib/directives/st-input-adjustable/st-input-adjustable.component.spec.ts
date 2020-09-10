@@ -25,17 +25,16 @@ let title: string = '';
 })
 class TestStInputAdjustableComponent {
    @Input() title: string;
-   @ViewChild(StInputAdjustable, {static: false}) adjustableInput: StInputAdjustable;
+   @ViewChild(StInputAdjustable) adjustableInput: StInputAdjustable;
 }
 
 describe('StInputAdjustable', () => {
-   beforeEach(
-      async(() => {
+   beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [FormsModule],
             declarations: [TestStInputAdjustableComponent, StInputAdjustable]
          }).compileComponents(); // compile template and css
-      })
+      }
    );
 
    beforeEach(() => {

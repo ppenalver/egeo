@@ -22,7 +22,7 @@ describe('StSidebar', () => {
    let fixture: ComponentFixture<StSidebarComponent>;
    let itemList: HTMLLIElement[];
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule],
          declarations: [StSidebarComponent, StSidebarItemListComponent]
@@ -35,7 +35,7 @@ describe('StSidebar', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StSidebarComponent);
@@ -313,7 +313,7 @@ let usageFixture: ComponentFixture<StSidebarComponentTestComponent>;
 let usageComponent: StSidebarComponentTestComponent;
 
 describe('StSidebarComponentComponent in usage', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StSearchModule],
          declarations: [StSidebarComponent, StSidebarItemListComponent, StSidebarComponentTestComponent]
@@ -322,7 +322,7 @@ describe('StSidebarComponentComponent in usage', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       usageFixture = TestBed.createComponent(StSidebarComponentTestComponent);

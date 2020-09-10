@@ -94,7 +94,12 @@
                      "includePaths": [
                         "./projects/egeo/src/theme"
                      ]
-                  }
+                  },
+                  "allowedCommonJsDependencies": [
+                     "@tweenjs/tween.js",
+                     "lodash",
+                     "markdown-to-html-pipe"
+                  ]
                },
                "configurations": {
                   "production": {
@@ -180,67 +185,73 @@
          "sourceRoot": "projects/egeo-elements/src",
          "prefix": "app",
          "architect": {
-             "build": {
+            "build": {
                "builder": "@angular-builders/custom-webpack:browser",
                "options": {
                   "customWebpackConfig": {
                      "path": "./projects/egeo-elements/elements-webpack.config.js"
                   },
-                     "outputPath": "projects/egeo-elements/dist/tmp",
-                     "index": "projects/egeo-elements/src/index.html",
-                     "main": "projects/egeo-elements/src/main.ts",
-                     "polyfills": "projects/egeo-elements/src/polyfills.ts",
-                     "tsConfig": "projects/egeo-elements/tsconfig.app.json",
-                     "styles": ["projects/egeo-elements/src/styles.scss"],
-                     "scripts": []
-                 },
-                 "configurations": {
+                  "outputPath": "projects/egeo-elements/dist/tmp",
+                  "index": "projects/egeo-elements/src/index.html",
+                  "main": "projects/egeo-elements/src/main.ts",
+                  "polyfills": "projects/egeo-elements/src/polyfills.ts",
+                  "tsConfig": "projects/egeo-elements/tsconfig.app.json",
+                  "styles": [
+                     "projects/egeo-elements/src/styles.scss"
+                  ],
+                  "scripts": []
+               },
+               "configurations": {
                   "production": {
-                       "optimization": true,
-                        "outputHashing": "none",
-                        "sourceMap": false,
-                        "extractCss": true,
-                        "namedChunks": false,
-                        "aot": true,
-                        "extractLicenses": true,
-                        "vendorChunk": false,
-                        "buildOptimizer": true,
-                        "budgets": [
-                              {
-                                 "type": "initial",
-                                 "maximumWarning": "2mb",
-                                 "maximumError": "5mb"
-                              }
-                        ]
+                     "optimization": true,
+                     "outputHashing": "none",
+                     "sourceMap": false,
+                     "extractCss": true,
+                     "namedChunks": false,
+                     "aot": true,
+                     "extractLicenses": true,
+                     "vendorChunk": false,
+                     "buildOptimizer": true,
+                     "budgets": [
+                        {
+                           "type": "initial",
+                           "maximumWarning": "2mb",
+                           "maximumError": "5mb"
+                        }
+                     ]
                   }
-              }
-             },
-             "serve": {
-                 "builder": "@angular-devkit/build-angular:dev-server",
-                 "options": {
-                     "browserTarget": "egeo-elements:build"
-                 },
-                 "configurations": {
-                     "production": {
-                         "browserTarget": "egeo-elements:build:production"
-                     }
-                 }
-             },
-             "extract-i18n": {
-                 "builder": "@angular-devkit/build-angular:extract-i18n",
-                 "options": {
-                     "browserTarget": "egeo-elements:build"
-                 }
-             },
-             "lint": {
-                 "builder": "@angular-devkit/build-angular:tslint",
-                 "options": {
-                     "tsConfig": ["projects/egeo-elements/tsconfig.app.json"],
-                     "exclude": ["**/node_modules/**"]
-                 }
-             }
+               }
+            },
+            "serve": {
+               "builder": "@angular-devkit/build-angular:dev-server",
+               "options": {
+                  "browserTarget": "egeo-elements:build"
+               },
+               "configurations": {
+                  "production": {
+                     "browserTarget": "egeo-elements:build:production"
+                  }
+               }
+            },
+            "extract-i18n": {
+               "builder": "@angular-devkit/build-angular:extract-i18n",
+               "options": {
+                  "browserTarget": "egeo-elements:build"
+               }
+            },
+            "lint": {
+               "builder": "@angular-devkit/build-angular:tslint",
+               "options": {
+                  "tsConfig": [
+                     "projects/egeo-elements/tsconfig.app.json"
+                  ],
+                  "exclude": [
+                     "**/node_modules/**"
+                  ]
+               }
+            }
          }
-     }
+      }
    },
    "defaultProject": "egeo"
 }

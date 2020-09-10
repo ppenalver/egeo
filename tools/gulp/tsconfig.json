@@ -9,7 +9,7 @@
       "strictNullChecks": true,
       "noEmitOnError": true,
       "noImplicitAny": true,
-      "target": "es5",
+      "target": "es2015",
       "baseUrl": ".",
       "paths": {
          "build-tools": ["package-tools/index"]

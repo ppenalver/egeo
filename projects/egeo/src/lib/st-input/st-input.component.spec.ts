@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { ChangeDetectionStrategy, Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -27,7 +27,7 @@ let fixture: ComponentFixture<StInputComponent>;
 let input: HTMLInputElement;
 
 describe('StInputComponent', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule, StDropdownMenuModule, StClickOutsideModule],
          declarations: [StInputComponent]
@@ -36,13 +36,14 @@ describe('StInputComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StInputComponent);
       input = fixture.nativeElement.querySelector('input');
       component = fixture.componentInstance;
       component.qaTag = 'test qaTag';
+      fixture.detectChanges();
    });
 
    it('Input should have a placeholder', () => {
@@ -72,6 +73,7 @@ describe('StInputComponent', () => {
    it('Input has attribute value', () => {
       component.value = 'name';
       fixture.detectChanges();
+
       expect(input.value).toContain('name');
    });
 
@@ -333,7 +335,7 @@ class FormReactiveComponent implements OnInit {
       pattern: 'Invalid value'
    };
 
-   @ViewChild('input', {static: true}) input: StInputComponent;
+   @ViewChild('input', { static: true }) input: StInputComponent;
 
    constructor(private _fb: FormBuilder) {
    }
@@ -370,7 +372,7 @@ let reactiveFixture: ComponentFixture<FormReactiveComponent>;
 let reactiveComp: FormReactiveComponent;
 
 describe('StInputComponent in reactive form', () => {
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StInputModule],
          declarations: [FormReactiveComponent]
@@ -379,7 +381,7 @@ describe('StInputComponent in reactive form', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       reactiveFixture = TestBed.createComponent(FormReactiveComponent);

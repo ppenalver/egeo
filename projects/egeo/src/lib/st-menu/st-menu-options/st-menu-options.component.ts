@@ -49,7 +49,7 @@ export class StMenuOptionsComponent<T> implements AfterViewInit, OnDestroy {
    @Output() searchBox: EventEmitter<string> = new EventEmitter<string>();
    @Output() selectedOption: EventEmitter<StMenuModel<T>> = new EventEmitter<StMenuModel<T>>();
 
-   @ViewChild('childList', {static: false}) childListElement: ElementRef<HTMLElement>;
+   @ViewChild('childList') childListElement: ElementRef<HTMLElement>;
 
    public openedItem: StMenuModel<T>;
    public menuPosition: number;

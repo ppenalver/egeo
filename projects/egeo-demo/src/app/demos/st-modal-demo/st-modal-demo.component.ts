@@ -31,7 +31,7 @@ import { CssProperty } from '../../shared/css-property-table/css-property-table.
 })
 
 export class StModalDemoComponent implements AfterViewInit {
-   @ViewChild('loadModal', { read: ViewContainerRef, static: false }) target: ViewContainerRef;
+   @ViewChild('loadModal', { read: ViewContainerRef }) target: ViewContainerRef;
    public configDoc: any = {
       html: 'demo/st-modal-demo/st-modal-demo.component.html',
       ts: 'demo/st-modal-demo/st-modal-demo.component.ts',

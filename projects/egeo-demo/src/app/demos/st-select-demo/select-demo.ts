@@ -21,7 +21,7 @@ import { CssProperty } from '@app/shared/css-property-table/css-property-table.m
 })
 
 export class SelectDemoComponent {
-   @ViewChild('templateDrivenForm', {static: false}) public templateDrivenForm: NgForm;
+   @ViewChild('templateDrivenForm') public templateDrivenForm: NgForm;
 
    public configDoc: any = {
       html: 'demo/st-select-demo/select-demo.html',

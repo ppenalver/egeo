@@ -30,7 +30,7 @@ export class FontDemoComponent {
 
    @Input() font: Font;
    @Output() copyFontName: EventEmitter<string> = new EventEmitter<string>();
-   @ViewChild('nameEl', {static: false}) textElement: ElementRef;
+   @ViewChild('nameEl') textElement: ElementRef;
 
    onClick(): void {
       const result: boolean = copyToClipboard(this.font.name);

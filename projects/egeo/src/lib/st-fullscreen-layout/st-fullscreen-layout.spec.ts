@@ -28,7 +28,7 @@ describe('StFullscreenLayoutComponent', () => {
       }
    }
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       fakeWindowRefService = new FakeWindowRefService();
 
       TestBed.configureTestingModule({
@@ -38,7 +38,7 @@ describe('StFullscreenLayoutComponent', () => {
          declarations: [StFullscreenLayoutComponent],
          schemas: [NO_ERRORS_SCHEMA]
       }).compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StFullscreenLayoutComponent);

@@ -34,7 +34,7 @@ import { DemoGeneratorProviders } from './demo-generator.interface';
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StDemoGenerator implements OnDestroy, AfterViewInit {
-   @ViewChild('stDemoBody', { read: ViewContainerRef, static: false }) target: ViewContainerRef;
+   @ViewChild('stDemoBody', { read: ViewContainerRef }) target: ViewContainerRef;
 
    inputs: Object;
    outputs: Object;

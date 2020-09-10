@@ -27,7 +27,7 @@ describe('StDropdownMenuItemComponent', () => {
    let comp: StDropdownMenuItemComponent;
    let fixture: ComponentFixture<StDropdownMenuItemComponent>;
 
-   beforeEach(async(() => {
+   beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [StBubbleModule],
          declarations: [StDropdownMenuItemComponent],
@@ -37,7 +37,7 @@ describe('StDropdownMenuItemComponent', () => {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
-   }));
+   });
 
    beforeEach(() => {
       fixture = TestBed.createComponent(StDropdownMenuItemComponent);
@@ -170,14 +170,14 @@ describe('StDropdownMenuItemComponent', () => {
    });
 
    it('label and icon should be displayed with the color specified on the model', () => {
-      comp.item = Object.assign({}, { icon: 'logout-button', iconColor: '#fefefe', labelColor: '#857aba' }, item);
+      comp.item = Object.assign({}, { icon: 'logout-button', iconColor: 'rgb(103, 56, 82)', labelColor: 'rgb(34, 73, 26)' }, item);
       fixture.detectChanges();
 
       const icon: DebugElement = fixture.debugElement.query(By.css('li i.icon'));
       const label: DebugElement = fixture.debugElement.query(By.css('li .label > span'));
 
-      expect(icon.styles.color).toEqual('#fefefe');
-      expect(label.styles.color).toEqual('#857aba');
+      expect(icon.styles.color).toEqual('rgb(103, 56, 82)');
+      expect(label.styles.color).toEqual('rgb(34, 73, 26)');
    });
 
    it('text info should be displayed below the label only if it is provided on the model', () => {
@@ -255,13 +255,13 @@ describe('StDropdownMenuItemComponent', () => {
             label: '<b>A</b> M<b>a</b>n <b>a</b>nd <b>a</b> Wom<b>a</b>n',
             hasHtml: false,
             value: 'info',
-            extraIconColor: '#fefefe',
+            extraIconColor: 'rgb(45, 78, 92)',
             extraIcon: 'icon-info'
          };
          fixture.detectChanges();
 
          expect(fixture.nativeElement.querySelector('.st-dropdown-menu-item i.extra-icon').classList).toContain('icon-info');
-         expect(fixture.debugElement.query(By.css('.st-dropdown-menu-item i.extra-icon')).styles.color).toEqual('#fefefe');
+         expect(fixture.debugElement.query(By.css('.st-dropdown-menu-item i.extra-icon')).styles.color).toEqual('rgb(45, 78, 92)');
       });
 
       describe('If bubble for extra icon is introduced', () => {

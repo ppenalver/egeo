@@ -35,8 +35,7 @@ describe('StBreadCrumbsComponent', () => {
    const expectedIndexShowing5: number[] = [0, -1, 3, 4, 5, 6];
    const expectedIndexShowing10: number[] = [0, 1, 2, 3, 4, 5, 6];
 
-   beforeEach(
-      async(() => {
+   beforeEach(() => {
          TestBed.configureTestingModule({
             declarations: [StBreadCrumbsComponent],
             schemas: [NO_ERRORS_SCHEMA]
@@ -45,7 +44,7 @@ describe('StBreadCrumbsComponent', () => {
                set: { changeDetection: ChangeDetectionStrategy.Default }
             })
             .compileComponents(); // compile template and css
-      })
+      }
    );
 
    beforeEach(() => {

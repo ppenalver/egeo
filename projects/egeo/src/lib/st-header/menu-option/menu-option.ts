@@ -40,7 +40,7 @@ export class StHeaderMenuOptionComponent implements OnDestroy {
 
    @Output() selectMenu: EventEmitter<StHeaderSelection> = new EventEmitter<StHeaderSelection>();
 
-   @ViewChild('menu', { static: false }) menu: ElementRef;
+   @ViewChild('menu') menu: ElementRef;
 
    @HostBinding('class.active')
    public get isCurrentRoute(): boolean {
