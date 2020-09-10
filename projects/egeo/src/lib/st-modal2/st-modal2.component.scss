@@ -8,6 +8,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
  .st-modal-container {
     width: 100%;
     height: 100vh;
@@ -15,28 +17,91 @@
     left: 0;
     top: 0;
     display: flex;
- 
+    align-items: center;
+    justify-content: center;
+
     .st-modal {
-       margin: auto;
-       align-self: center;
-       display: flex;
-       flex-direction: column;
- 
-       .st-modal-header {
+       border-radius: 0;
+       box-shadow: 0 3px 9px 0 rgba(17, 17, 17, 0.25);
+
+       &__header, &__header--full-window {
           display: flex;
-          flex-direction: row;
-          width: 100%;
-          height: 70px;
- 
-          .container {
-             align-items: center;
-             flex-wrap: nowrap;
+          align-items: center;
+          padding: 20.5px 25px;
+          font-size: $egeo-font-size-18;
+          font-weight: bold;
+          line-height: $egeo-line-height-28;
+          color: $space-110;
+       }
+
+       &__header {
+
+          &__title {
+             flex: 1;
+
+             &__status-icon {
+                font-size: 15px;
+                margin-right: 15px;
+             }
+          }
+
+          &__close-control {
+             margin-top: 2px;
+             font-size: 15px;
+             color: $space-110;
+             cursor: pointer;
+          }
+
+          &__close-control:not(.st-modal__header__close-control--full-window) {
+             margin-left: 12px;
+          }
+
+          &__vertical-separator {
+             height: 40px;
+             border-left: 1px solid $space-20;
+             margin: 0 15px;
+          }
+
+          &__cancel, &__action {
+             margin-left: 12px;
           }
        }
- 
-       .container {
-          min-width: auto;
+
+       &__header--full-window {
+          .st-modal__header__title {
+             display: flex;
+             align-items: center;
+          }
+
+       }
+
+       &__actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding: 25px;
+
+          &__cancel {
+             margin-right: 12px;
+          }
+       }
+
+       &--warning, &--error {
+          .st-modal__actions__action {
+             background-color: $error;
+          }
+       }
+
+       &--warning {
+          .st-modal__header__title__status-icon {
+             color: $warning;
+          }
+       }
+
+       &--error {
+          .st-modal__header__title__status-icon {
+             color: $error;
+          }
        }
     }
  }
- 

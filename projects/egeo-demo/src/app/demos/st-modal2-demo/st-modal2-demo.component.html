@@ -1,86 +1,88 @@
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-  <section class="container-fluid col-md-24">
-
-    <div class="st-live-example">
-      <h1 class="st-live-example-title">Simple Modal:</h1>
-      <button class="button button-primary" (click)="modal1 = true">
-        <span>Simple Message Modal</span>
-      </button>
-
-      <st-modal2 modalTitle="Modal title"
-        (onClose)="modal1 = false"
-        *ngIf="modal1">
-        <div>
-          Modal content
+  <section class="container-fluid col-md-24 demo-layout">
+     <p class="demo-label">Demo</p>
+     <div class="demo-container">
+        <div class="demo">
+           <button class="button button-primary" (click)="triggerModal()">
+              <span>Show modal</span>
+           </button>
+           <st-modal2
+              [modalConfig]="modalConfig"
+              [showModal]="showModal"
+              (clickOutside)="showModal = false"
+              (closeEscape)="showModal = false"
+              (closeControl)="showModal = false">
+              <span st-modal-header>Titulo de prueba</span>
+              <span>Esto es un texto de prueba para el modal</span>
+           </st-modal2>
         </div>
-      </st-modal2>
-
-    </div>
-
-    <div class="st-live-example">
-      <h1 class="st-live-example-title">Simple modal with ESC control</h1>
-      <button class="button button-primary" (click)="modal2 = true">
-        <span>Simple message modal with ESC control</span>
-      </button>
-
-      <st-modal2 modalTitle="Modal title"
-        closeOnEscape="true"
-        (onClose)="modal2 = false"
-        *ngIf="modal2">
-        <div>
-          Modal content
-        </div>
-      </st-modal2>
-
-    </div>
-    <div class="st-live-example">
-      <h1 class="st-live-example-title">Simple modal with custom Header</h1>
-      <button class="button button-primary" (click)="modal3 = true">
-        <span>Custom title Modal</span>
-      </button>
-
-      <st-modal2
-        closeOnEscape="true"
-        (onClose)="modal3 = false"
-        *ngIf="modal3">
-        <div st-modal-title>
-          Custom <b>title</b>
-        </div>
-        <div>
-          Modal content
-        </div>
-      </st-modal2>
-
-    </div>
-    <div class="st-live-example">
-      <h1 class="st-live-example-title">Simple Modal with animation:</h1>
-      <button class="button button-primary" (click)="modal4 = true">
-        <span>Simple Message Modal</span>
-      </button>
-
-      <st-modal2 modalTitle="Modal title" [disabledAnimation]="false"
-        (onClose)="modal4 = false"
-        *ngIf="modal4">
-        <div>
-          Modal content
-        </div>
-      </st-modal2>
-
-    </div>
-     <div class="st-live-example">
-        <h1 class="st-live-example-title">Simple Modal full window:</h1>
-        <button class="button button-primary" (click)="modal5 = true">
-           <span>Simple Message Modal</span>
-        </button>
-
-        <st-modal2 modalTitle="Modal title" [fullWindow]="true" [disabledAnimation]="false"
-                   (onClose)="modal5 = false"
-                   *ngIf="modal5">
+        <div class="demo-config">
            <div>
-              Modal content
+              <h1>Modal Type</h1>
+              <st-radio-group class="st-inline-group" [(ngModel)]="modalType">
+                 <st-radio [value]="'basic'" [checked]="true">Basic</st-radio>
+                 <st-radio [value]="'information'">Information</st-radio>
+                 <st-radio [value]="'warning'">Warning</st-radio>
+                 <st-radio [value]="'error'">Error</st-radio>
+              </st-radio-group>
            </div>
-        </st-modal2>
-
+           <div>
+              <h1>Options</h1>
+              <st-checkbox name="clickOutside" [(ngModel)]="closeControl">
+                 <span>Close control</span>
+              </st-checkbox>
+              <st-checkbox name="clickOutside" [(ngModel)]="clickOutside">
+                 <span>Click outside</span>
+              </st-checkbox>
+              <st-checkbox name="fullWindow" [(ngModel)]="fullWindow">
+                 <span>Full window</span>
+              </st-checkbox>
+              <st-checkbox name="enableAnimation" [(ngModel)]="enableAnimation">
+                 <span>Enable animation</span>
+              </st-checkbox>
+              <st-checkbox name="standardHeader" [(ngModel)]="showStandardHeader">
+                 <span>Show standard header</span>
+              </st-checkbox>
+              <st-checkbox name="standardActions" [(ngModel)]="showStandardActions">
+                 <span>Show standard actions</span>
+              </st-checkbox>
+           </div>
+           <div>
+              <div>
+                 <st-input
+                    class="st-form-field"
+                    [fieldType]="'text'"
+                    [(ngModel)]="modalTitle"
+                    label="Modal title"
+                    contextualHelp="Write the title of the modal"></st-input>
+              </div>
+           </div>
+           <div>
+              <st-input
+                 class="st-form-field"
+                 [fieldType]="'number'"
+                 [(ngModel)]="width"
+                 label="Width"
+                 default="600"
+                 contextualHelp="Write width in px"></st-input>
+           </div>
+           <div>
+              <st-input
+                 class="st-form-field"
+                 [fieldType]="'number'"
+                 [(ngModel)]="height"
+                 label="Height"
+                 contextualHelp="Write height in px"></st-input>
+           </div>
+           <div>
+              <st-input
+                 class="st-form-field"
+                 [fieldType]="'number'"
+                 [(ngModel)]="animationTime"
+                 label="Animation time"
+                 contextualHelp="Write animation time in ms"></st-input>
+           </div>
+        </div>
      </div>
   </section>
 </st-docs>

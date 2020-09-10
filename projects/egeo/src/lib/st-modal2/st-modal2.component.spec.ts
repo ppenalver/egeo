@@ -8,29 +8,33 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { DebugElement, Component, ViewChild } from '@angular/core';
+import {DebugElement, Component, ViewChild, EventEmitter} from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StModal2Component } from './st-modal2.component';
+import {StWindowRefService} from '../utils/window-service';
+import {StModal2Config} from './st-modal2.model';
 
 
 @Component({
    selector: 'st-modal2-test',
    template: `
-       <st-modal2 [emptyModal]="emptyModal"
-        [modalTitle]="modalTitle"
-        [hideCloseBtn]="hideCloseBtn"
-        [closeOnEscape]="closeOnEscape">
+       <st-modal2 [modalConfig]="modalConfig" [showModal]="true" (closeEscape)="closeOnEscape.emit()">
         <div>Modal content</div>
        </st-modal2>
     `
 })
 export class Modal2TestComponent {
-   @ViewChild(StModal2Component) modalComponent: StModal2Component;
-   public emptyModal: boolean = false;
-   public closeOnEscape: boolean = false;
+   @ViewChild(StModal2Component, {static: false}) modalComponent: StModal2Component;
+   public modalConfig: StModal2Config = {
+      closeControl: true,
+      title: 'Test title',
+      showStandardHeader: true,
+      showStandardActions: true
+   };
+   public closeOnEscape: EventEmitter<any> = new EventEmitter<any>();
    public modalTitle: string = '';
    public hideCloseBtn: boolean = false;
 }
@@ -45,6 +49,7 @@ describe('StModal2', () => {
          TestBed.configureTestingModule({
             imports: [NoopAnimationsModule],
             declarations: [Modal2TestComponent, StModal2Component],
+            providers: [StWindowRefService],
             schemas: [NO_ERRORS_SCHEMA]
          }).compileComponents();  // compile template and css
       });
@@ -56,70 +61,34 @@ describe('StModal2', () => {
 
 
       it('should be init', () => {
-         const modalTitle: string = 'Modal title';
-         comp.emptyModal = false;
-         comp.modalTitle = modalTitle;
          fixture.detectChanges();
 
-         const title: string = fixture.nativeElement.querySelector('.title').textContent;
-         expect(title).toBe(modalTitle);
+         const title: string = fixture.nativeElement.querySelector('.st-modal__header__title').textContent;
+         expect(title.trim()).toBe(comp.modalConfig.title);
          expect(fixture.nativeElement.querySelector('.close-button')).toBeDefined();
       });
 
       it('should can hide close button', () => {
          comp.hideCloseBtn = true;
          fixture.detectChanges();
-         expect(fixture.nativeElement.querySelector('.close-button')).toBeNull();
+         expect(fixture.nativeElement.querySelector('.st-modal__header__title__status-icon')).toBeDefined();
       });
-
-      it('should not emit close event when pressing escape if the option is not activated', () => {
-         comp.closeOnEscape = false;
-         fixture.detectChanges();
-
-         const onCloseEmitter: any = comp.modalComponent.onClose;
-         spyOn(onCloseEmitter, 'emit');
-         const event: any = document.createEvent('Event');
-         event.keyCode = 27;
-         event.initEvent('keydown');
-         document.dispatchEvent(event);
-
-         expect(onCloseEmitter.emit).not.toHaveBeenCalled();
-      });
-
 
       it('should emit close event when pressing escape if the option is activated', async(() => {
-         comp.closeOnEscape = true;
          fixture.detectChanges();
 
-         const onCloseEmitter: any = comp.modalComponent.onClose;
+         const onCloseEmitter: any = comp.modalComponent.closeEscape;
          spyOn(onCloseEmitter, 'emit');
 
          const event: any = document.createEvent('Event');
          event.keyCode = 27;
          event.initEvent('keydown');
          document.dispatchEvent(event);
-         spyOn(comp.modalComponent, 'animationDone').and.callThrough();
-         spyOn(comp.modalComponent.endAnimation, 'emit').and.callThrough();
          fixture.detectChanges();
 
          fixture.whenStable().then(() => {
             expect(onCloseEmitter.emit).toHaveBeenCalled();
          });
       }));
-
-      it('should emit an event when enter is pressed', () => {
-         fixture.detectChanges();
-
-         const onEnterEmitter: any = comp.modalComponent.onEnter;
-         spyOn(onEnterEmitter, 'emit');
-
-         const event: any = document.createEvent('Event');
-         event.keyCode = 13;
-         event.initEvent('keydown');
-         document.dispatchEvent(event);
-
-         expect(onEnterEmitter.emit).toHaveBeenCalled();
-
-      });
    });
 });

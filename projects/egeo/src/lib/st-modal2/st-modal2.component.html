@@ -10,26 +10,75 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<div #modalContainer class="st-modal-container" [@state]="visibility" (@state.done)="animationDone($event)" [@.disabled]="disabledAnimation" (click)="onClickOutside($event)">
-  <section class="st-modal" [style.width]="fullWindow ? '100%' : (width + 'px')" [style.height]="fullWindow && '100%'">
-    <ng-container *ngIf="emptyModal">
-      <ng-content></ng-content>
-    </ng-container>
-    <ng-container *ngIf="!emptyModal">
-      <div class="st-modal-header">
-        <div class="container">
-          <p class="title" *ngIf="modalTitle && modalTitle.length">{{modalTitle}}</p>
-          <ng-content select=[st-modal-title]></ng-content>
-          <span class="icon-cross close-button"
-            *ngIf="!hideCloseBtn"
-            (click)="onCloseButton()"></span>
+<div
+   #modalContainer
+   *ngIf="showModalHTML"
+   class="st-modal-container"
+   [@state]="{value: visibility, params: {animationTime: _animationTime + 'ms'}}"
+   [@.disabled]="!_enabledAnimation"
+   (@state.done)="animationDone($event)"
+   (click)="onClickOutside($event)">
+  <div
+     #modal
+     class="st-modal"
+     [ngClass]="{
+        'st-modal--basic': _modalType === _modalTypes.BASIC,
+        'st-modal--information': _modalType === _modalTypes.INFORMATION,
+        'st-modal--warning': _modalType === _modalTypes.WARNING,
+        'st-modal--error': _modalType === _modalTypes.ERROR
+     }">
+     <div *ngIf="!_isFullWindow && _showStandardHeader" class="st-modal__header">
+        <div class="st-modal__header__title">
+           <i
+              *ngIf="_modalType === _modalTypes.WARNING || _modalType === _modalTypes.ERROR"
+              class="icon st-modal__header__title__status-icon"
+              [ngClass]="{
+                 'icon-alert': _modalType === _modalTypes.WARNING,
+                 'icon-circle-cross': _modalType === _modalTypes.ERROR}">
+           </i>
+           {{_modalTitle}}
         </div>
-      </div>
-      <div class="st-modal-body">
-        <div class="container">
-          <ng-content></ng-content>
+        <i
+           *ngIf="_showCloseControl"
+           class="icon icon-cross st-modal__header__close-control"
+           (click)="closeControl.emit()">
+        </i>
+     </div>
+
+     <div *ngIf="_isFullWindow && _showStandardHeader" class="st-modal__header--full-window">
+        <div class="st-modal__header__title">
+           <i
+              *ngIf="_showCloseControl"
+              class="icon icon-cross st-modal__header__close-control st-modal__header__close-control--full-window"
+              (click)="closeControl.emit()">
+           </i>
+           <div class="st-modal__header__vertical-separator"></div>
+           {{_modalTitle}}
         </div>
-      </div>
-    </ng-container>
-  </section>
+        <button class="st-modal__header__cancel button button-secondary" (click)="cancelButton.emit()">
+           <span>{{_cancelButtonLabel}}</span>
+        </button>
+        <button class="st-modal__header__action button button-primary" (click)="confirmButton.emit()">
+           <span>{{_actionButtonLabel}}</span>
+        </button>
+     </div>
+     <ng-container *ngIf="!_showStandardHeader">
+        <ng-content select="[st-modal-header]"></ng-content>
+     </ng-container>
+
+
+
+     <div class="st-modal__body">
+        <ng-content></ng-content>
+     </div>
+
+     <div *ngIf="!_isFullWindow && _showStandardActions" class="st-modal__actions">
+        <button class="st-modal__actions__cancel button button-secondary" (click)="cancelButton.emit()">
+           <span>{{_cancelButtonLabel}}</span>
+        </button>
+        <button class="st-modal__actions__action button button-primary" (click)="confirmButton.emit()">
+           <span>{{_actionButtonLabel}}</span>
+        </button>
+     </div>
+  </div>
 </div>
