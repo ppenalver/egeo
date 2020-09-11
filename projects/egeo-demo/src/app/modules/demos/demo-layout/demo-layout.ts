@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { EGEO_DEMO_MENU, EgeoDemoMenu } from '@app/demos/demos.routes';
+import {EGEO_DEMO_MENU, EGEO_DEMO_MENU_SDS, EgeoDemoMenu} from '@app/demos/demos.routes';
 
 import { DemoSideMenu } from '../../../shared/menu/menu.model';
 import {ActivationEnd, Router} from '@angular/router';
@@ -51,13 +51,20 @@ export class DemoLayoutComponent implements OnInit, OnDestroy {
       this.componentDestroyed$.unsubscribe();
    }
 
+   public get demoMenuSds(): DemoSideMenu[] {
+      return EGEO_DEMO_MENU_SDS
+         .sort((a, b) => a.name > b.name ? 1 : -1)
+         .map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
+   }
+
    public get demoMenu(): DemoSideMenu[] {
       return EGEO_DEMO_MENU
          .sort((a, b) => a.name > b.name ? 1 : -1)
          .map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
    }
 
-   public updateDemoTitle(demoPosition: number): void {
-      this.title = EGEO_DEMO_MENU[demoPosition] ? EGEO_DEMO_MENU[demoPosition].name : '';
+   public updateDemoTitle(demo: DemoSideMenu): void {
+      const demoTitle = EGEO_DEMO_MENU.find((d) => d.name === demo.label);
+      this.title = demoTitle ? demoTitle.name : '';
    }
 }

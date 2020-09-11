@@ -183,7 +183,6 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
       setTimeout(() => {
          this._notifications.removeNotification();
          emitter.emit();
-         this.processConfiguration(this.config);
       }, 400);
    }
 
