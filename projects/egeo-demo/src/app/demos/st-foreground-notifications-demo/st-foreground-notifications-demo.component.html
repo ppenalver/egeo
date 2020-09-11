@@ -28,11 +28,8 @@
             <div class="button-container">
                <button class="button button-primary" type="button" (click)="displayNotification()">Trigger one notification</button>
             </div>
-            <div class="button-container">
-               <button class="button button-primary" type="button" (click)="displayVariousNotifications()">Trigger three notifications</button>
-            </div>
             <div [@fade] *ngIf="showCloseControlMessage" class="close-pressed-message">
-               Close control pressed...
+               Close control pressed.
             </div>
          </div>
          <div class="demo-config">

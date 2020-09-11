@@ -10,26 +10,21 @@
  */
 
 import {
-   ChangeDetectionStrategy,
-   ChangeDetectorRef,
    Component,
-   ElementRef,
+   ChangeDetectionStrategy,
+   Input,
+   Output,
    EventEmitter,
    HostListener,
-   Input,
    OnDestroy,
-   OnInit,
-   Output,
-   Renderer2,
+   ElementRef,
    ViewChild
 } from '@angular/core';
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
-import {Subscription} from 'rxjs';
-import {StWindowRefService} from '../utils/window-service';
-import {StModal2Config, StModal2Type} from './st-modal2.model';
+import { animate, AnimationEvent, state, style, transition, trigger } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
-   selector: ' st-modal2',
+   selector: 'st-modal2',
    templateUrl: './st-modal2.component.html',
    styleUrls: ['./st-modal2.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,92 +33,48 @@ import {StModal2Config, StModal2Type} from './st-modal2.model';
          state('void, hidden', style({ opacity: 0 })),
          state('visible', style({ opacity: 1 })),
          transition('* => visible', [
-            animate('{{animationTime}}')
+            style({ opacity: 0 }),
+            animate(300)
          ]),
-         transition('* => hidden, * => void', [
-            animate('{{animationTime}}')
+         transition('* => hidden', [
+            style({ opacity: 1 }),
+            animate(300)
          ])
       ])
    ]
 })
-export class StModal2Component implements OnInit, OnDestroy {
-   @ViewChild('modalContainer', {static: false}) modalContainer: ElementRef;
-   @ViewChild('modal', {static: false}) modal: ElementRef;
+export class StModal2Component implements OnDestroy {
+   @ViewChild('modalContainer', {static: true}) modalContainer: ElementRef;
 
-   @Input() modalConfig: StModal2Config;
-   @Input()
-   get showModal(): boolean {
-      return this.showModalHTML;
-   }
+   @Input() disabledAnimation: boolean = true;
+   @Input() emptyModal: boolean;
+   @Input() width: number = 600;
+   @Input() modalTitle: string = '';
+   @Input() closeOnEscape: boolean;
+   @Input() hideCloseBtn: boolean;
+   @Input() fullWindow: boolean;
 
-   set showModal(showModal: boolean) {
-      if (showModal) {
-         this.showModalHTML = true;
-         if (this.modalConfig) {
-            this.visibility = 'visible';
-            this.cd.detectChanges();
-            this.processConfiguration();
-         }
-      } else {
-         this.visibility = 'hidden';
-      }
-   }
+   @Output() endAnimation: EventEmitter<boolean> = new EventEmitter<boolean>();
+   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+   @Output() onEnter: EventEmitter<void> = new EventEmitter<void>();
 
-   @Output() closeEscape: EventEmitter<void>;
-   @Output() closeControl: EventEmitter<void>;
-   @Output() clickOutside: EventEmitter<void>;
-   @Output() cancelButton: EventEmitter<void>;
-   @Output() confirmButton: EventEmitter<void>;
-
-   public showModalHTML: boolean;
-   public visibility: string;
-   public _modalType: StModal2Type;
-   public _modalTypes: typeof StModal2Type;
-   public _showCloseControl: boolean;
-   public _showHeaderIcon: boolean;
-   public _allowClickOutside: boolean;
-   public _isFullWindow: boolean;
-   public _actionButtonLabel: string;
-   public _cancelButtonLabel: string;
-   public _enabledAnimation: boolean;
-   public _animationTime: number;
-   public _modalTitle: string;
-   public _showStandardHeader: boolean;
-   public _showStandardActions: boolean;
+   visibility: string = 'visible';
 
    private _subscriptions: Array<Subscription> = [];
    private ESCAPE_KEYCODE: number = 27;
+   private ENTER_KEYCODE: number = 13;
 
    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent): void {
-      if (event.keyCode === this.ESCAPE_KEYCODE) {
-         this.closeEscape.emit();
+      if (this.closeOnEscape && event.keyCode === this.ESCAPE_KEYCODE) {
+         this.onCloseButton();
+      }
+
+      if (event.keyCode === this.ENTER_KEYCODE) {
+         this.onEnter.emit();
       }
    }
 
-   constructor(
-      private renderer: Renderer2,
-      private cd: ChangeDetectorRef,
-      private _window: StWindowRefService,
-      private _el: ElementRef
-   ) {
-      this.visibility = 'visible';
-      this._modalTypes = StModal2Type;
-      this.showModalHTML = false;
-      this._animationTime = 300;
-      this.closeEscape = new EventEmitter();
-      this.closeControl = new EventEmitter();
-      this.clickOutside = new EventEmitter();
-      this.cancelButton = new EventEmitter();
-      this.confirmButton = new EventEmitter();
-   }
-
-   public ngOnInit(): void {
-      if (this.modalConfig) {
-         this.processConfiguration();
-      }
-   }
-
-   public ngOnDestroy(): void {
+   ngOnDestroy(): void {
       if (this._subscriptions.length > 0) {
          this._subscriptions.forEach((subscription) => {
             if (subscription) {
@@ -133,50 +84,24 @@ export class StModal2Component implements OnInit, OnDestroy {
       }
    }
 
-   public animationDone(event: AnimationEvent): void {
+   animationDone(event: AnimationEvent): void {
       if (event.toState === 'hidden') {
-         this.showModalHTML = false;
+         this.endAnimation.emit(true);
       }
    }
 
-   public onClickOutside(event: MouseEvent): void {
-      if (event.target === this.modalContainer.nativeElement && this._allowClickOutside) {
-         this.clickOutside.emit();
-      }
+   onCloseButton(): void {
+      this.visibility = 'hidden';
+      this._subscriptions.push(this.endAnimation.subscribe((data) => {
+         if (data) {
+            this.onClose.emit();
+         }
+      }));
    }
 
-   private processConfiguration(): void {
-      this._modalType = this.modalConfig.modalType;
-      this._actionButtonLabel = this.modalConfig.actionButtonLabel ? this.modalConfig.actionButtonLabel : 'Save';
-      this._cancelButtonLabel = this.modalConfig.cancelButtonLabel ? this.modalConfig.actionButtonLabel : 'Cancel';
-      this._showCloseControl = !!this.modalConfig.closeControl;
-      this._isFullWindow = !!this.modalConfig.fullWindow;
-      this._allowClickOutside = !!this.modalConfig.clickOutside;
-      this._enabledAnimation = !!this.modalConfig.enableAnimation;
-      this._animationTime = this.modalConfig.animationTime ? this.modalConfig.animationTime : 300;
-      this._modalTitle = this.modalConfig.title ? this.modalConfig.title : '';
-      this._showStandardHeader = !!this.modalConfig.showStandardHeader;
-      this._showStandardActions = !!this.modalConfig.showStandardActions;
-
-      if (this._modalType === StModal2Type.WARNING || this._modalType === StModal2Type.ERROR) {
-         this._showHeaderIcon = true;
+   onClickOutside(event: MouseEvent): void {
+      if (event.target === this.modalContainer.nativeElement) {
+         this.onCloseButton();
       }
-
-      if (this._isFullWindow) {
-         this.renderer.setStyle(this.modal.nativeElement, 'width', '100%');
-         this.renderer.setStyle(this.modal.nativeElement, 'height', '100%');
-      } else {
-         if (this.modalConfig.width) {
-            const renderWidth = this.modalConfig.width > window.innerWidth ? window.innerWidth : this.modalConfig.width;
-            this.renderer.setStyle(this.modal.nativeElement, 'width', renderWidth + 'px');
-         }
-
-         if (this.modalConfig.height) {
-            const renderHeight = this.modalConfig.height > window.innerHeight ? window.innerHeight : this.modalConfig.height;
-            this.renderer.setStyle(this.modal.nativeElement, 'height', renderHeight + 'px');
-         }
-      }
-
-      this.cd.detectChanges();
    }
 }

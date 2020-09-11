@@ -19,8 +19,6 @@
 * st-select: Enable keyboard listener by default to open, close and move across menu options
 * st-select: Enable keyboard listener to search options (as native behaviour)
 * st-modal2: Added "fullWindow" input to apply full size to the modal
-* st-modal2: st-modal2 was renamed externally (not in code) as st-modal
-* st-modal2: Added functionality to close modal when clicking outside
 * st-toggle-buttons: Added "disabled" input
 * st-toggle-buttons: Added "st-toggle-buttons--large" css class for bigger buttons
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
@@ -49,10 +47,6 @@
 * st-select, st-dropdown: Removed 'loading' status (spinner)
 * st-spinner: removed "theme" input
 * st-spinner: changed implementation (see demo)
-
-**Deprecated:**
-
-* st-modal: st-modal is deprecated and will be removed in a future release
 
 **Deprecated:**
 

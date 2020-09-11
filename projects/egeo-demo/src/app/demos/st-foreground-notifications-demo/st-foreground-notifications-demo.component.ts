@@ -208,22 +208,6 @@ export class StForegroundNotificationsDemoComponent {
 
             this.notificationsConfig = Object.assign({}, this.notificationsConfig, notificationConfig);
          });
-
-      this.configForm.get('showSpecificTimeouts').valueChanges
-         .pipe(takeUntil(this.componentDestroyed$))
-         .subscribe(() => {
-            this.configForm.get('multipleTimeout').setValue(null);
-            this.configForm.get('infoTimeout').setValue(null);
-            this.configForm.get('successTimeout').setValue(null);
-            this.configForm.get('warningTimeout').setValue(null);
-            this.configForm.get('criticalTimeout').setValue(null);
-
-            this.notificationsConfig.multipleTimeout = null;
-            this.notificationsConfig.infoTimeout = null;
-            this.notificationsConfig.successTimeout = null;
-            this.notificationsConfig.warningTimeout = null;
-            this.notificationsConfig.criticalTimeout = null;
-         });
    }
 
    public displayNotification(): void {
@@ -245,62 +229,6 @@ export class StForegroundNotificationsDemoComponent {
       });
 
       this.configForm.disable();
-   }
-
-   public displayVariousNotifications(): void {
-      this._notifications.addNotification({
-         notificationType: StNotificationType.SUCCESS,
-         message: 'This is a success notification',
-         notificationIcon: 'icon-cog',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_RIGHT,
-         positionReference: this.notificationsConfig.positionReference,
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
-      });
-
-      this._notifications.addNotification({
-         notificationType: StNotificationType.CRITICAL,
-         message: 'This is a critical notification',
-         notificationIcon: 'icon-plane',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_CENTER,
-         positionReference: this.notificationsConfig.positionReference,
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
-      });
-
-      this._notifications.addNotification({
-         notificationType: StNotificationType.WARNING,
-         message: 'This is a warning notification',
-         notificationIcon: 'icon-cog',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_LEFT,
-         positionReference: this.notificationsConfig.positionReference,
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
-      });
-
-      this.configForm.disable();
-
    }
 
    public onCloseControlClick(): void {

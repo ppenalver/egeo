@@ -10,7 +10,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {StDemoGeneratorModule, StCheckboxModule, StDocsModule, StRadioModule, StTooltipModule} from '@stratio/egeo';
+import {StDemoGeneratorModule, StCheckboxModule, StDocsModule, StRadioModule} from '@stratio/egeo';
 
 import { StCheckboxDemoComponent } from './st-checkbox-demo.component';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
@@ -19,7 +19,6 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
    imports: [
       CommonModule,
-      StTooltipModule,
       StCheckboxModule,
       StRadioModule,
       CssPropertyTableModule,

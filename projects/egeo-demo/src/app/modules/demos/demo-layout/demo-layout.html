@@ -11,7 +11,7 @@
 
 -->
 <div class="content">
-   <demo-menu [options]="demoMenu" [sdsOptions]="demoMenuSds" (selected)="updateDemoTitle($event)"></demo-menu>
+   <demo-menu [options]="demoMenu" (selected)="updateDemoTitle($event)"></demo-menu>
    <div #mainContent class="main-content">
       <egeo-title [title]="title"></egeo-title>
 

@@ -8,6 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
 
 .loading-content{
    width: 100%;
@@ -20,6 +21,42 @@
    min-height: 400px;
    padding: 0;
    line-height: 400px;
+}
+
+.demo-label {
+   font-size: 21px;
+   line-height: 33.6px;
+   letter-spacing: normal;
+   color: #0f1b27;
+   margin: 32px 0 20px 0;
+}
+
+h1 {
+   font-family: 'Nunito Sans';
+   font-size: 14px;
+   line-height: 20px;
+   margin-bottom: 8px;
+   padding: 0;
+   color: #0f1b27;
+}
+
+.demo-container {
+   display: flex;
+   flex-wrap: wrap;
+   border-bottom: 1px solid $space-20;
+
+   .demo {
+      width: 400px;
+      margin-right: 80px;
+   }
+
+   .demo-config {
+      flex: 1;
+
+      & > * {
+         margin-bottom: 24px;
+      }
+   }
 }
 
 .inline-flex {

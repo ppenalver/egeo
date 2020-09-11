@@ -20,8 +20,7 @@ import { DemoSideMenu } from './menu.model';
 export class MenuComponent implements OnInit {
 
    @Input() options: DemoSideMenu[] = [];
-   @Input() sdsOptions: DemoSideMenu[] = [];
-   @Output() selected: EventEmitter<DemoSideMenu> = new EventEmitter<DemoSideMenu>();
+   @Output() selected: EventEmitter<number> = new EventEmitter<number>();
 
    constructor(private _router: Router) {
 
@@ -29,15 +28,16 @@ export class MenuComponent implements OnInit {
 
    ngOnInit(): void {
       const currentURL = this._router.url.split('/');
-      const currentDemo = this.options.find(d => d.url === currentURL.pop());
-      if (currentDemo) {
-         this.selected.emit(currentDemo);
+      const currentDemo = currentURL[currentURL.length - 1];
+      const currentPosition = this.options.findIndex((_) => _.url.indexOf('/' + currentDemo) !== -1);
+      if (currentPosition > -1) {
+         this.selected.emit(currentPosition);
       }
    }
 
-   navigate(demo: DemoSideMenu): void {
-      this._router.navigate([demo.url]);
-      this.selected.emit(demo);
+   navigate(url: string, position: number): void {
+      this._router.navigate([url]);
+      this.selected.emit(position);
    }
 
    isActive(url: string): boolean {

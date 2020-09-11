@@ -39,12 +39,10 @@ li {
 
 
    &:hover {
-      color: $neutral-full;
+      color: $action-10;
    }
 
    &.active {
-      color: $neutral-full;
-      font-weight: 600;
-      background-color: $space-80;
+      color: $brand;
    }
 }
