@@ -17,10 +17,7 @@
 
          <st-toggle-buttons
             class="toggle-buttons"
-            [ngClass]="{'st-toggle-buttons--large': activeSizeOption === 'large'}"
-            [disabled]="disabled"
             [tabs]="options"
-            [description]="description"
             (select)="onChangeOption($event)"
             qaTag="toggle-buttons">
          </st-toggle-buttons>

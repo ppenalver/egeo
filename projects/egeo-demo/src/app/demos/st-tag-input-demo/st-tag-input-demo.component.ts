@@ -15,7 +15,7 @@ import { StDropDownMenuItem, StDropDownMenuGroup } from '@stratio/egeo';
 
 @Component({
    selector: 'st-tag-input-demo',
-   templateUrl: 'st-tag-input-demo.component.html',
+   templateUrl: './st-tag-input-demo.component.html',
    styleUrls: ['./st-tag-input-demo.component.scss']
 })
 export class StTagInputDemoComponent implements OnInit, AfterViewInit {

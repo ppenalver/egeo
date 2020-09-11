@@ -17,7 +17,7 @@ import { StBreadCrumbItem } from '@stratio/egeo';
 
 @Component({
    selector: 'st-breadcrumbs-demo',
-   templateUrl: 'st-breadcrumbs-demo.html'
+   templateUrl: './st-breadcrumbs-demo.html'
 })
 export class StBreadcrumbsDemoComponent {
    public configDoc: any = {
@@ -29,8 +29,7 @@ export class StBreadcrumbsDemoComponent {
    public output: string;
    public options: StBreadCrumbItem[] = [];
 
-   private originalOptions: StBreadCrumbItem[] = [{id: 'home', label: 'Home', icon: 'icon-home2' }];
-   private otherOptions: StBreadCrumbItem[] = [{ id: 'home', icon: 'icon-home2' },
+   public otherOptions: StBreadCrumbItem[] = [{ id: 'home', icon: 'icon-home2' },
       { id: 'downLeft', icon: 'icon-corner-down-left' },
       { id: 'downRight', icon: 'icon-corner-down-right' },
       { id: 'leftDown', icon: 'icon-corner-left-down' },
@@ -41,7 +40,7 @@ export class StBreadcrumbsDemoComponent {
       { id: 'upRight', icon: 'icon-corner-up-right' }
    ];
 
-   private otherOptions2: StBreadCrumbItem[] = [{ id: 'home', icon: 'icon-home2' },
+   public otherOptions2: StBreadCrumbItem[] = [{ id: 'home', icon: 'icon-home2' },
       { id: 'downLeft', label: 'icon-corner-down-left' },
       { id: 'downRight', icon: 'icon-corner-down-right' },
       { id: 'leftDown', label: 'icon-corner-left-down' },
@@ -51,6 +50,8 @@ export class StBreadcrumbsDemoComponent {
       { id: 'upLeft', label: 'icon-corner-up-left' },
       { id: 'upRight', icon: 'icon-corner-up-right' }
    ];
+
+   private originalOptions: StBreadCrumbItem[] = [{id: 'home', label: 'Home', icon: 'icon-home2' }];
 
    constructor(private _logger: StDemoLoggerService) {
       for (let i = 1; i < 15; i++) {

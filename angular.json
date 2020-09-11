@@ -14,6 +14,10 @@
                "options": {
                   "tsConfig": "projects/egeo/tsconfig.lib.json",
                   "project": "projects/egeo/ng-package.json"
+               },
+               "configurations": {
+                  "production": {
+                  }
                }
             },
             "test": {

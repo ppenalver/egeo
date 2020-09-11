@@ -29,6 +29,7 @@ export class ColorsDemoComponent {
    public notification: string = '';
    public hasNotification: boolean = false;
    public opacity: number = 0;
+   public searched: string;
 
    private animationInterval: number;
 

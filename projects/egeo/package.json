@@ -22,18 +22,18 @@
    },
    "homepage": "https://github.com/Stratio/egeo#readme",
    "dependencies": {
-      "lodash": "4.17.19",
-      "ngx-virtual-scroller": "3.0.2",
-      "prismjs": "1.21.0",
-      "@types/json-schema": "7.0.4"
+      "lodash": "~4.17.20",
+      "ngx-virtual-scroller": "~4.0.3",
+      "prismjs": "~1.21.0",
+      "@types/json-schema": "~7.0.6"
    },
    "peerDependencies": {
-      "@angular/common": "^8.0.0",
-      "@angular/core": "^8.0.0",
-      "@angular/forms": "^8.0.0",
-      "@angular/http": "^8.0.0",
-      "@angular/platform-browser-dynamic": "^8.0.0",
-      "@angular/router": "^8.0.0",
-      "@stratio/egeo-ui-base": "^2.0.0"
+      "@angular/common": "~10.1.0",
+      "@angular/core": "~10.1.0",
+      "@angular/forms": "~10.1.0",
+      "@angular/http": "~7.2.16",
+      "@angular/platform-browser-dynamic": "~10.1.0",
+      "@angular/router": "~10.1.0",
+      "@stratio/egeo-ui-base": "~2.3.0"
    }
 }
