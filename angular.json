@@ -16,8 +16,7 @@
                   "project": "projects/egeo/ng-package.json"
                },
                "configurations": {
-                  "production": {
-                  }
+                  "production": {}
                }
             },
             "test": {
@@ -262,5 +261,8 @@
          }
       }
    },
-   "defaultProject": "egeo"
+   "defaultProject": "egeo",
+   "cli": {
+      "analytics": false
+   }
 }
