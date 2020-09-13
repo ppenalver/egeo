@@ -10,6 +10,7 @@
  */
 import { Component } from '@angular/core';
 import { StToggleButton } from '@stratio/egeo';
+import {CssProperty} from '@app/shared/css-property-table/css-property-table.model';
 
 @Component({
    selector: 'st-form-demo',
@@ -24,16 +25,40 @@ export class StFormDemoComponent {
       component: 'lib/st-form/st-form.component.ts'
    };
 
+   public cssProperties: CssProperty[] = [
+      {
+         name: '--egeo-st-form-field--padding-bottom',
+         description: 'Form field padding bottom',
+         default: '20px'
+      },
+      {
+         name: '--egeo-st-form-field--max-width',
+         description: 'Form field max width',
+         default: '100%'
+      },
+      {
+         name: '--egeo-st-form-field__read-only--bg-color',
+         description: 'Read only form field background color',
+         default: '100%'
+      },
+      {
+         name: '--egeo-st-form-field__read-only--border',
+         description: 'Read only form field border',
+         default: '100%'
+      },
+      {
+         name: '--egeo-st-form-field__read-only--padding',
+         description: 'Read only form field padding',
+         default: '0'
+      }
+   ];
+
    public options: StToggleButton[] =
       [
          {
             id: 'demo',
             label: 'Demo',
             active: true
-         },
-         {
-            id: 'cssProperties',
-            label: 'Theme Customization'
          },
          {
             id: 'visualSectionImprovements',

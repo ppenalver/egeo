@@ -12,109 +12,131 @@
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="demo-layout">
-      <button class="button button-primary" (click)="disableInput()">Disable / Enable inputs</button>
-      <h1 class="title title--centered">Regular (36px)</h1>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo--disabled demo-layout" style="width: 100%">
+            <button class="button button-primary" (click)="disableInput()">Disable / Enable inputs</button>
+            <h1 class="title title--centered">Regular (36px)</h1>
 
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title">Inside form</h1>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title">Inside form</h1>
 
-            <form [formGroup]="myForm" novalidate>
-               <st-input class="st-form-field" type="text" formControlName="name" placeholder="Enter your name"
-                         label="Field" default="default name"
-                         contextualHelp="This is a normal field"></st-input>
-               <st-input class="st-form-field" type="text" formControlName="disabledField"
-                         placeholder="This field is disabled" label="Disabled field"></st-input>
-               <st-input class="st-form-field" type="text" formControlName="disabledFieldWithValue"
-                         placeholder="This field is disabled" label="Disabled field"></st-input>
+                  <form [formGroup]="myForm" novalidate>
+                     <st-input class="st-form-field" type="text" formControlName="name" placeholder="Enter your name"
+                               label="Field" default="default name"
+                               contextualHelp="This is a normal field"></st-input>
+                     <st-input class="st-form-field" type="text" formControlName="disabledField"
+                               placeholder="This field is disabled" label="Disabled field"></st-input>
+                     <st-input class="st-form-field" type="text" formControlName="disabledFieldWithValue"
+                               placeholder="This field is disabled" label="Disabled field"></st-input>
 
-               <st-input class="st-form-field" type="text" formControlName="requiredField"
-                         placeholder="This field is required" [errors]="requiredError"
-                         label="Required field" contextualHelp="This is a required field"></st-input>
+                     <st-input class="st-form-field" type="text" formControlName="requiredField"
+                               placeholder="This field is required" [errors]="requiredError"
+                               label="Required field" contextualHelp="This is a required field"></st-input>
 
-               <st-input class="st-form-field" type="text" formControlName="numberField"
-                         placeholder="This is a number field" label="Number field"
-                         fieldType="number" step="0.6"></st-input>
+                     <st-input class="st-form-field" type="text" formControlName="numberField"
+                               placeholder="This is a number field" label="Number field"
+                               fieldType="number" step="0.6"></st-input>
 
-               <st-input class="st-form-field" type="text" formControlName="autocompletedField"
-                         placeholder="This field has an autocomplete list"
-                         [autocompleteList]="autocompleteList" [charsToShowAutocompleteList]="0"
-                         label="Field with autocomplete list"
-                         [disabled]="disabled"
-                         contextualHelp="Only one character is required to display the autocomplete list"></st-input>
+                     <st-input class="st-form-field" type="text" formControlName="autocompletedField"
+                               placeholder="This field has an autocomplete list"
+                               [autocompleteList]="autocompleteList" [charsToShowAutocompleteList]="0"
+                               label="Field with autocomplete list"
+                               [disabled]="disabled"
+                               contextualHelp="Only one character is required to display the autocomplete list"></st-input>
 
-               <div class="st-form-field">
-                  <label class="st-label">Native Input with st-input class</label>
-                  <input class="st-input" formControlName="requiredField"
-                         placeholder="This field is created with st-input class"/>
+                     <div class="st-form-field">
+                        <label class="st-label">Native Input with st-input class</label>
+                        <input class="st-input" formControlName="requiredField"
+                               placeholder="This field is created with st-input class"/>
 
-                  <input class="st-input st-form-field" formControlName="numberField" placeholder="Number field"
-                         type="number" [min]="1" [maxlength]="1"/>
+                        <input class="st-input st-form-field" formControlName="numberField" placeholder="Number field"
+                               type="number" [min]="1" [maxlength]="1"/>
+                     </div>
+                     <div class="st-form-field">
+                        <label class="st-label">Native disabled Input with class</label>
+                        <input class="st-input st-form-field" formControlName="disabledField"
+                               placeholder="This field is disabled"/>
+                     </div>
+                  </form>
                </div>
-               <div class="st-form-field">
-                  <label class="st-label">Native disabled Input with class</label>
-                  <input class="st-input st-form-field" formControlName="disabledField"
-                         placeholder="This field is disabled"/>
+               <div class="col-sm-6">
+                  <h1 class="title">Without form control</h1>
+                  <st-input class="st-form-field" type="text" name="outForm" placeholder="Enter your name" value="Peter"
+                            default="def" label="Name"></st-input>
                </div>
-            </form>
+            </div>
+            <h1 class="title title--centered">Small (30px)</h1>
+
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title">Inside form</h1>
+                  <form [formGroup]="myForm" novalidate>
+                     <st-input class="st-form-field small" type="text" formControlName="name" placeholder="Enter your name"
+                               label="Field" default="default name"
+                               contextualHelp="This is a normal field"></st-input>
+                     <st-input class="st-form-field small" type="text" formControlName="disabledField"
+                               placeholder="This field is disabled" label="Disabled field"></st-input>
+                     <st-input class="st-form-field small" type="text" formControlName="disabledFieldWithValue"
+                               placeholder="This field is disabled" label="Disabled field"></st-input>
+
+                     <st-input class="st-form-field small" type="text" formControlName="requiredField"
+                               placeholder="This field is required" [errors]="requiredError"
+                               label="Required field" contextualHelp="This is a required field"></st-input>
+
+                     <st-input class="st-form-field small" type="text" formControlName="numberField"
+                               placeholder="This is a number field" label="Number field"
+                               fieldType="number" step="0.6"></st-input>
+
+                     <st-input class="st-form-field small" type="text" formControlName="autocompletedField"
+                               placeholder="This field has an autocomplete list"
+                               label="Field with autocomplete list"
+                               [autocompleteList]="autocompleteList" [charsToShowAutocompleteList]="0"
+                               [disabled]="disabled"
+                               contextualHelp="Only one character is required to display the autocomplete list">
+                     </st-input>
+
+                     <div class="st-form-field small">
+                        <label class="st-label">Native Input with st-input class</label>
+                        <input class="st-input" formControlName="requiredField"
+                               placeholder="This field is created with st-input class"/>
+
+                        <input class="st-input" formControlName="numberField" placeholder="Number field"
+                               type="number" [min]="1" [maxlength]="1"/>
+                     </div>
+                     <div class="st-form-field small">
+                        <label class="st-label">Native disabled Input with class</label>
+                        <input class="st-input" formControlName="disabledField"
+                               placeholder="This field is disabled"/>
+                     </div>
+                  </form>
+               </div>
+               <div class="col-sm-6">
+                  <h1 class="title">Without form control</h1>
+                  <st-input class="st-form-field small" type="text" name="outForm" placeholder="Enter your name" value="Peter"
+                            default="def" label="Name"></st-input>
+               </div>
+            </div>
          </div>
-         <div class="col-sm-6">
-            <h1 class="title">Without form control</h1>
-            <st-input class="st-form-field" type="text" name="outForm" placeholder="Enter your name" value="Peter"
-                      default="def" label="Name"></st-input>
-         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
-      <h1 class="title title--centered">Small (30px)</h1>
-
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title">Inside form</h1>
-            <form [formGroup]="myForm" novalidate>
-               <st-input class="st-form-field small" type="text" formControlName="name" placeholder="Enter your name"
-                         label="Field" default="default name"
-                         contextualHelp="This is a normal field"></st-input>
-               <st-input class="st-form-field small" type="text" formControlName="disabledField"
-                         placeholder="This field is disabled" label="Disabled field"></st-input>
-               <st-input class="st-form-field small" type="text" formControlName="disabledFieldWithValue"
-                         placeholder="This field is disabled" label="Disabled field"></st-input>
-
-               <st-input class="st-form-field small" type="text" formControlName="requiredField"
-                         placeholder="This field is required" [errors]="requiredError"
-                         label="Required field" contextualHelp="This is a required field"></st-input>
-
-               <st-input class="st-form-field small" type="text" formControlName="numberField"
-                         placeholder="This is a number field" label="Number field"
-                         fieldType="number" step="0.6"></st-input>
-
-               <st-input class="st-form-field small" type="text" formControlName="autocompletedField"
-                         placeholder="This field has an autocomplete list"
-                         label="Field with autocomplete list"
-                         [autocompleteList]="autocompleteList" [charsToShowAutocompleteList]="0"
-                         [disabled]="disabled"
-                         contextualHelp="Only one character is required to display the autocomplete list">
-               </st-input>
-
-               <div class="st-form-field small">
-                  <label class="st-label">Native Input with st-input class</label>
-                  <input class="st-input" formControlName="requiredField"
-                         placeholder="This field is created with st-input class"/>
-
-                  <input class="st-input" formControlName="numberField" placeholder="Number field"
-                         type="number" [min]="1" [maxlength]="1"/>
-               </div>
-               <div class="st-form-field small">
-                  <label class="st-label">Native disabled Input with class</label>
-                  <input class="st-input" formControlName="disabledField"
-                         placeholder="This field is disabled"/>
-               </div>
-            </form>
-         </div>
-         <div class="col-sm-6">
-            <h1 class="title">Without form control</h1>
-            <st-input class="st-form-field small" type="text" name="outForm" placeholder="Enter your name" value="Peter"
-                      default="def" label="Name"></st-input>
-         </div>
-      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Text inputs are designed to collect short free text from the user. Typical examples of use could be a name or address request.</p>
+      <p class="demo-layout__paragraph">Inputs allow adding some icons at the right side as a configurable option. These icons can be used to be more visual and explicit about the purpose of the input.</p>
+      <p class="demo-layout__paragraph">Two height sizes are available to adapt the inputs to different situations. Besides, the Input Text component includes a label and a help text to give some details to the user about tips about how the content must be formatted (E.g. to define limits, non-valid characters, etc.).</p>
+      <p class="demo-layout__paragraph">The same help text space is used to show error messages when needed. However, if error, the text is red-colored as well as the outline of the text box.</p>
+      <p class="demo-layout__paragraph">The textbox is highlighted when has the focus to guide the user visually to the component that owns the action. The textbox is highlighted when it has the focus to guide the user visually to the component that owns the action.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Inputs have many states and can have specific validation rules for the introduced data. Therefore if the validation rules are not met an error message will appear. The user should always know if specific rules are applied to that input that’s why we should put clear hints about what the user should introduce. This means that using the placeholder and the help text, the user should have enough information to fill the field correctly.</li>
+         <li class="demo-layout__list-item">The placeholder of the Input Text must show to the user a valid example of how it has to format its text. Some samples could be "E.g. 32" (indicates a number), "E.g. my_field" (indicates uppercase and whitespaces are not allowed), etc.</li>
+         <li class="demo-layout__list-item">By default, the inputs have a label and a placeholder text that shows or an example of the text that it should be introduced or a call to action text. The label should be a clear statement of what the user is asked to respond on the input field. Some samples could be "Disk space (in MB)".</li>
+         <li class="demo-layout__list-item">If some parts of the text have fixed parts, they must be visible but non-editable by the user. E.g. an URL that must be always https. Ideally, the text input must show the string "https://" at the beginning of the textbox with non-edit options. When the user starts writing, will do after the string.</li>
+         <li class="demo-layout__list-item">When the user clicks on an input, the on focus state starts, the input gets blue and a blinking cursor appears at the beginning of the input so the user know is there. While the user doesn’t write anything the placeholder text remains. If the user starts to write, the placeholder disappears. If the user deletes the content, the placeholder appears again.</li>
+         <li class="demo-layout__list-item">If the input has validation rules, they should be clearly explained in the hint text that area which appears immediately under the input and never disappears. Some samples could be "max. 20 chars" or "only words allowed" When the user writes on this kind of inputs, an error message should appear only when the validation rules are not met and the user clicks outside the input. In that case, an error message appears explaining why the validation has failed immediately under the hint text.</li>
+         <li class="demo-layout__list-item">Never must appear an error message if the user doesn't carry out any action over the Input.</li>
+      </ul>
    </section>
-
 </st-docs>

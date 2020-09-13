@@ -11,14 +11,20 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid">
-      <p>Without defined progress</p>
-      <div class="st-progress-bar-demo-container">
-         <st-progress-bar></st-progress-bar>
-      </div>
-      <p>Bigger progress bar using wider prop</p>
-      <div class="st-progress-bar-demo-container">
-         <st-progress-bar [wider]="true"></st-progress-bar>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <p>Without defined progress</p>
+            <div class="st-progress-bar-demo-container">
+               <st-progress-bar></st-progress-bar>
+            </div>
+            <p>Bigger progress bar using wider prop</p>
+            <div class="st-progress-bar-demo-container">
+               <st-progress-bar [wider]="true"></st-progress-bar>
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
    </section>
 </st-docs>

@@ -10,6 +10,10 @@
  */
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
+:host {
+   --egeo-st-modal--standard-header-height: 70px;
+}
+
  .st-modal-container {
     width: 100%;
     height: 100vh;
@@ -35,6 +39,7 @@
        }
 
        &__header {
+          height: var(--egeo-st-modal--standard-header-height);
 
           &__title {
              flex: 1;

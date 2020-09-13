@@ -106,8 +106,8 @@ export { StFileButtonComponent } from './st-file-button/st-file-button.component
 
 // Foreground notifications
 
-export { StForegroundNotificationsModule } from './st-foreground-notifications/st-foreground-notifications.module';
-export { StForegroundNotificationsComponent } from './st-foreground-notifications/st-foreground-notifications';
+export { SdsNotificationModule } from './sds-notification/sds-notification.module';
+export { SdsNotificationComponent } from './sds-notification/sds-notification.component';
 
 // Header
 export {

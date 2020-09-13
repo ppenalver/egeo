@@ -64,7 +64,7 @@ export class DemoLayoutComponent implements OnInit, OnDestroy {
    }
 
    public updateDemoTitle(demo: DemoSideMenu): void {
-      const demoTitle = EGEO_DEMO_MENU.find((d) => d.name === demo.label);
+      const demoTitle = EGEO_DEMO_MENU.concat(EGEO_DEMO_MENU_SDS).find((d) => d.name === demo.label);
       this.title = demoTitle ? demoTitle.name : '';
    }
 }

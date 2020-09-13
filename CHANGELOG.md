@@ -49,10 +49,7 @@
 * st-select, st-dropdown: Removed 'loading' status (spinner)
 * st-spinner: removed "theme" input
 * st-spinner: changed implementation (see demo)
-
-**Deprecated:**
-
-* st-modal: st-modal is deprecated and will be removed in a future release
+* st-foreground-notifications: renamed to sds-notification
 
 **Deprecated:**
 

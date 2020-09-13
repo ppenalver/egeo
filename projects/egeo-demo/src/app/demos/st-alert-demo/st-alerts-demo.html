@@ -12,32 +12,34 @@
 -->
 
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-      <st-alerts [showInConsole]="true"></st-alerts>
 
-      <br>
-      <br>
-
-      <button class="button button-primary" (click)="showError()">
-         <span>show error with button</span>
-      </button>
-      <br>
-      <br>
-
-      <button class="button button-borderless" (click)="showWarning()">
-         <span>show warning</span>
-      </button><br>
-      <br>
-
-      <button class="button button-borderless" (click)="showSuccess()">
-         <span>show success</span>
-      </button>
-      <br>
-      <br>
-
-      <button class="button button-borderless" (click)="showInfo()">
-         <span>show info</span>
-      </button>
-      <br>
-      <br>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <st-alerts [showInConsole]="true"></st-alerts>
+            <br>
+            <br>
+            <button class="button button-primary" (click)="showError()">
+               <span>show error with button</span>
+            </button>
+            <br>
+            <br>
+            <button class="button button-borderless" (click)="showWarning()">
+               <span>show warning</span>
+            </button><br>
+            <br>
+            <button class="button button-borderless" (click)="showSuccess()">
+               <span>show success</span>
+            </button>
+            <br>
+            <br>
+            <button class="button button-borderless" (click)="showInfo()">
+               <span>show info</span>
+            </button>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
+      </div>
+   </section>
 
 </st-docs>

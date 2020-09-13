@@ -12,31 +12,29 @@
 -->
 
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid demo-layout container-fnotification">
-      <p class="introduction">Notifications are feedback boxes that communicate a message from a user action. They inform and guide the user and provide critical information necessary in context. They appear at the top of the page under the header allowing the user to continue with their work.</p>
-      <br>
-      <span class="separator"></span>
-
-      <div class="demo-container">
-         <div class="demo">
-            <st-foreground-notifications
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Notifications are feedback boxes that communicate a message from a user action. They inform and guide the user and provide critical information necessary in context. They appear at the top of the page under the header allowing the user to continue with their work.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-notification
                id="notification-demo1"
                [config]="notificationsConfig"
                [hotRender]="true"
                (close)="onCloseControlClick()">
-            </st-foreground-notifications>
+            </sds-notification>
             <div class="button-container">
                <button class="button button-primary" type="button" (click)="displayNotification()">Trigger one notification</button>
             </div>
             <div class="button-container">
-               <button class="button button-primary" type="button" (click)="displayVariousNotifications()">Trigger three notifications</button>
+               <button class="button button-primary" type="button" (click)="displayVariousNotifications()">Trigger three random notifications</button>
             </div>
             <div [@fade] *ngIf="showCloseControlMessage" class="close-pressed-message">
                Close control pressed...
             </div>
          </div>
-         <div class="demo-config">
-            <form class="demo-config" [formGroup]="configForm">
+         <div class="demo-layout__demo-container__demo-config">
+            <form class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
                <div>
                   <h1>Type</h1>
                   <st-radio-group formControlName="type" class="st-inline-group">
@@ -116,44 +114,38 @@
                   <st-input class="input-number" formControlName="maxWidth" [fieldType]="'text'" (keypress)="onWidthKeyPress($event)" [label]="'Max width'" [contextualHelp]="'Write margin in px and press enter.'"></st-input>
                   <span [@fade] class="changed-input-message" *ngIf="showWidthChanged">Changed!</span>
                </div>
-               <st-foreground-notifications
+               <sds-notification
                   id="notification-demo2"
                   [config]="notificationsConfig"
                   (close)="enableControls()"
                   (autoClose)="enableControls()">
-               </st-foreground-notifications>
+               </sds-notification>
             </form>
          </div>
       </div>
-
-      <span class="separator"></span>
-
-      <h1 class="title">Design and behaviour</h1>
-      <p class="paragraph">Notification’s width is 100% of the grid. The content aligns to the center. A close icon is located always on the right part of the notification. Notifications can include a link if needed. Notifications can use an icon on the left part so it makes them more understandable to the user and allows a better experience in case the user has some kind of color blindness. That icon should reflect the nature of the notification, which can be an error, a warning, a successful or completed action, or an information one.</p>
-
-      <h1 class="title">Multiple notifications</h1>
-      <p class="paragraph">When more than one notification should appear on screen at the same time, the multiple notifications module starts to
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Notification’s width is 100% of the grid. The content aligns to the center. A close icon is located always on the right part of the notification. Notifications can include a link if needed. Notifications can use an icon on the left part so it makes them more understandable to the user and allows a better experience in case the user has some kind of color blindness. That icon should reflect the nature of the notification, which can be an error, a warning, a successful or completed action, or an information one.</p>
+      <h2 class="demo-layout__title">Multiple notifications</h2>
+      <p class="demo-layout__paragraph">When more than one notification should appear on screen at the same time, the multiple notifications module starts to
          work.
          It allows showing multiple notifications in an ordered and clean manner. Allowing the user not being overwhelmed by multiple notifications
          at
          sight. This component lets the user focus at one notification at a time. The user must dismiss the notifications one by one. A pagination
          shows
          the number of total notifications and the current notification the user is watching.</p>
-
-      <span class="separator"></span>
-      <h1 class="title">Usage and best practices</h1>
-      <ul class="list">
-         <li> Notifications are used when the user has made some interaction with the system and the system respond to them by giving feedback about
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item"> Notifications are used when the user has made some interaction with the system and the system respond to them by giving feedback about
             the action taken by the user.
             <br>
             <br>
             <b>Note:</b> In case the user haven’t interacted, but the system needs to send any message use Alerts.
          </li>
-         <li> Notification’s message should be clear, short, concise and technicaly understandable by the user.</li>
-         <li> Messages must be one-line only.</li>
-         <li> We recommend that notifications disappear automatically after three seconds. However, keep in mind that the average English language reader will read about 250-300 words per minute, with an average of 5.8 characters per word (including spaces). At a "safe" estimate for a notice of 200wpm, that yields about 1 character every 50 milliseconds. In any case, the user can discard the notification by clicking on the close icon.</li>
-         <li> If you need to introduce more text add a link with the ‘…More’ text. Then the box will grow in height to fit the content. Limit the lines of the message to a maximum of 5.</li>
-         <li> The message has to be related to the context that triggered its appearance so use terms that were used when the user started the action.</li>
+         <li class="demo-layout__list-item"> Notification’s message should be clear, short, concise and technicaly understandable by the user.</li>
+         <li class="demo-layout__list-item"> Messages must be one-line only.</li>
+         <li class="demo-layout__list-item"> We recommend that notifications disappear automatically after three seconds. However, keep in mind that the average English language reader will read about 250-300 words per minute, with an average of 5.8 characters per word (including spaces). At a "safe" estimate for a notice of 200wpm, that yields about 1 character every 50 milliseconds. In any case, the user can discard the notification by clicking on the close icon.</li>
+         <li class="demo-layout__list-item"> If you need to introduce more text add a link with the ‘…More’ text. Then the box will grow in height to fit the content. Limit the lines of the message to a maximum of 5.</li>
+         <li class="demo-layout__list-item"> The message has to be related to the context that triggered its appearance so use terms that were used when the user started the action.</li>
       </ul>
    </section>
 </st-docs>

@@ -14,16 +14,16 @@ import {
    StNotificationIcon,
    StNotificationPosition,
    StNotificationType
-} from '../../../../../egeo/src/lib/st-foreground-notifications/st-foreground-notifications.model';
+} from '../../../../../egeo/src/lib/sds-notification/sds-notification.model';
 import {Subject} from 'rxjs';
-import {StForegroundNotificationsService} from '../../../../../egeo/src/lib/st-foreground-notifications/st-foreground-notifications.service';
+import {SdsNotificationService} from '../../../../../egeo/src/lib/sds-notification/sds-notification.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-   selector: 'st-foreground-notifications-demo',
-   templateUrl: './st-foreground-notifications-demo.component.html',
+   selector: 'sds-notification-demo',
+   templateUrl: './sds-notification-demo.component.html',
    animations: [
       trigger('fade', [
          state('void', style({opacity: 0})),
@@ -32,13 +32,13 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
          transition(':leave', [animate(300)])
       ])
    ],
-   styleUrls: ['./st-foreground-notifications-demo.component.scss']
+   styleUrls: ['./sds-notification-demo.component.scss']
 })
-export class StForegroundNotificationsDemoComponent {
+export class SdsNotificationDemoComponent {
    public configDoc: any = {
-      html: 'demo/st-foreground-notifications-demo/st-foreground-notifications-demo.component.html',
-      ts: 'demo/st-foreground-notifications-demo/st-foreground-notifications-demo.component.ts',
-      component: 'lib/st-foreground-notifications/st-foreground-notifications.ts'
+      html: 'demo/sds-notification-demo/sds-notification-demo.component.html',
+      ts: 'demo/sds-notification-demo/sds-notification-demo.component.ts',
+      component: 'lib/sds-notification/sds-notification.component.ts'
    };
 
    public typeOptions: any = [
@@ -138,19 +138,18 @@ export class StForegroundNotificationsDemoComponent {
 
    public positionReferenceOptions: any = [
       {
-         label: 'Content component element',
-         value: '.main-content'
-      },
-      {
          label: 'Main tag element',
          value: '#main'
+      },
+      {
+         label: 'Content component element',
+         value: '.main-content'
       },
       {
          label: 'Window',
          value: 'html'
       }
    ];
-   public activePositionReference: string = '.main-content';
 
    public showTimeoutChanged: boolean;
    public showMultipleTimeoutChanged: boolean;
@@ -166,11 +165,11 @@ export class StForegroundNotificationsDemoComponent {
 
    private componentDestroyed$: Subject<void>;
 
-   constructor(private cd: ChangeDetectorRef, private _notifications: StForegroundNotificationsService, private fb: FormBuilder) {
+   constructor(private cd: ChangeDetectorRef, private _notifications: SdsNotificationService, private fb: FormBuilder) {
       this.componentDestroyed$ = new Subject();
-      this.notificationsConfig = this._notifications.DEFAULT_CONFIG;
+      this.notificationsConfig = {...this._notifications.DEFAULT_CONFIG};
       this.notificationsConfig.message = 'Testing <a href="https://www.google.es">Ir a google</a>';
-      this.notificationsConfig.positionReference = '.main-content';
+      this.notificationsConfig.positionReference = '#main';
       this.configForm = this.fb.group({
          type: this.fb.control(this.notificationsConfig.notificationType),
          message: this.fb.control(this.notificationsConfig.message),
@@ -178,7 +177,7 @@ export class StForegroundNotificationsDemoComponent {
          customIcon: this.fb.control('icon-mute'),
          closeControl: this.fb.control(this.notificationsConfig.closeIcon),
          position: this.fb.control(this.notificationsConfig.position),
-         positionReference: this.fb.control('.main-content'),
+         positionReference: this.fb.control(this.notificationsConfig.positionReference),
          timeout: this.fb.control(this.notificationsConfig.timeout),
          multipleTimeout: this.fb.control(null),
          infoTimeout: this.fb.control(null),
@@ -253,8 +252,8 @@ export class StForegroundNotificationsDemoComponent {
          message: 'This is a success notification',
          notificationIcon: 'icon-cog',
          closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_RIGHT,
-         positionReference: this.notificationsConfig.positionReference,
+         position: StNotificationPosition.TOP_CENTER,
+         positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
          infoTimeout: this.notificationsConfig.infoTimeout,
@@ -271,7 +270,7 @@ export class StForegroundNotificationsDemoComponent {
          notificationIcon: 'icon-plane',
          closeIcon: this.notificationsConfig.closeIcon,
          position: StNotificationPosition.TOP_CENTER,
-         positionReference: this.notificationsConfig.positionReference,
+         positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
          infoTimeout: this.notificationsConfig.infoTimeout,
@@ -287,8 +286,8 @@ export class StForegroundNotificationsDemoComponent {
          message: 'This is a warning notification',
          notificationIcon: 'icon-cog',
          closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_LEFT,
-         positionReference: this.notificationsConfig.positionReference,
+         position: StNotificationPosition.TOP_CENTER,
+         positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
          infoTimeout: this.notificationsConfig.infoTimeout,

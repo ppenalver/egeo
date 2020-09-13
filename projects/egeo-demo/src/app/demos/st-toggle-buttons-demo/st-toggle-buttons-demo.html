@@ -11,10 +11,10 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <p class="demo-label">Demo</p>
-   <section class="container-fluid">
-      <div class="demo-container">
-         <div class="demo">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
             <st-toggle-buttons
                class="toggle-buttons"
                [ngClass]="{'st-toggle-buttons--large': activeSizeOption === 'large'}"
@@ -25,7 +25,7 @@
                qaTag="toggle-buttons">
             </st-toggle-buttons>
          </div>
-         <div class="demo-config">
+         <div class="demo-layout__demo-container__demo-config">
             <div class="st-inline-group">
                <h1>Size</h1>
                <st-radio *ngFor="let sizeOption of sizeOptions" [value]="sizeOption.value" [checked]="sizeOption.value === 'small'" (change)="activeSizeOption = $event.value">{{sizeOption.label}}</st-radio>

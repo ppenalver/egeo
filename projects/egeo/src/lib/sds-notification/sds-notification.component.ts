@@ -29,16 +29,16 @@ import {
    StNotificationPosition,
    StNotificationTriggerOptions,
    StNotificationType
-} from './st-foreground-notifications.model';
+} from './sds-notification.model';
 import {Subject} from 'rxjs';
-import {StForegroundNotificationsService} from './st-foreground-notifications.service';
+import {SdsNotificationService} from './sds-notification.service';
 import {takeUntil} from 'rxjs/operators';
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-   selector: 'st-foreground-notifications',
-   templateUrl: 'st-foreground-notifications.html',
-   styleUrls: ['st-foreground-notifications.scss'],
+   selector: 'sds-notification',
+   templateUrl: 'sds-notification.component.html',
+   styleUrls: ['sds-notification.scss'],
    animations: [
       trigger('notificationFade', [
          state('*', style({opacity: 1})),
@@ -65,13 +65,13 @@ import {animate, AnimationEvent, state, style, transition, trigger} from '@angul
  * {html}
  *
  * ```
- * <st-foreground-notifications [config]="config" [hotRender]="false"></st-foreground-notifications>
+ * <sds-notification [config]="config" [hotRender]="false"></sds-notification>
  *
  * ```
  */
 
 
-export class StForegroundNotificationsComponent implements OnInit, OnChanges {
+export class SdsNotificationComponent implements OnInit, OnChanges {
 
    /** @Input {hotRender} [hotRender=false'] If true, renders the notification directly and without animation */
    @Input() hotRender: boolean;
@@ -85,7 +85,7 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
    /** @output {close} [EventEmitter] Event emitted when notification was closed by timeout */
    @Output() close: EventEmitter<void> = new EventEmitter();
 
-   @ViewChild('stNotification', {static: false}) stNotification: ElementRef;
+   @ViewChild('sdsNotification', {static: false}) stNotification: ElementRef;
 
    public showNotification: boolean;
    public message: string;
@@ -131,7 +131,7 @@ export class StForegroundNotificationsComponent implements OnInit, OnChanges {
       private cd: ChangeDetectorRef,
       private elemRef: ElementRef,
       private renderer: Renderer2,
-      private _notifications: StForegroundNotificationsService
+      private _notifications: SdsNotificationService
    ) {
       this.stNotificationIcon = StNotificationIcon;
       this.stNotificationType = StNotificationType;

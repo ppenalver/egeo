@@ -12,17 +12,9 @@
 
 
 .title {
-   font-size: $egeo-line-height-xxxlarge;
+   font-size: 34px;
    color: $space-110;
-   font-weight: 100;
-   margin: 22px 0 30px;
-
-   &:after {
-      content: '';
-      display: block;
-      width: 74px;
-      height: 1px;
-      background-color: $brand;
-      margin-top: 10px;
-   }
+   font-weight: 200;
+   margin-bottom: 17px;
+   line-height: 1.6;
 }

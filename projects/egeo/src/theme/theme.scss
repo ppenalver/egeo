@@ -12,7 +12,7 @@
 @import 'utils/index';
 @import 'components/index';
 
-st-foreground-notifications .st-notification {
+sds-notification .st-notification {
    A {
       text-decoration: underline;
       color: $neutral-full;
@@ -64,7 +64,6 @@ st-spinner {
    color: var(--egeo-theme-space-80, $space-80);
    line-height:  $egeo-line-height-20;
    margin-bottom: 8px;
-   font-weight: 300;
 }
 
 .st-inline-group {

@@ -21,9 +21,9 @@
 
 
 ```html
-<st-foreground-notifications 
+<sds-notification 
   [config]="config"
   [hotRender]="false">
-</st-foreground-notifications>
+</sds-notification>
 ```
 

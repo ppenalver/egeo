@@ -13,11 +13,11 @@ import { CommonModule } from '@angular/common';
 import {
    StDemoGeneratorModule,
    StDocsModule,
-   StForegroundNotificationsModule,
+   SdsNotificationModule,
    StHeaderModule,
    StSelectModule
 } from '@stratio/egeo';
-import { StForegroundNotificationsDemoComponent } from './st-foreground-notifications-demo.component';
+import { SdsNotificationDemoComponent } from './sds-notification-demo.component';
 import {StRadioModule, StInputModule, StCheckboxModule} from '@stratio/egeo';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -25,15 +25,15 @@ import {ReactiveFormsModule} from '@angular/forms';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        StForegroundNotificationsModule,
+        SdsNotificationModule,
         StHeaderModule,
         StDocsModule,
-        StDemoGeneratorModule.withComponents({components: [StForegroundNotificationsDemoComponent]}),
+        StDemoGeneratorModule.withComponents({components: [SdsNotificationDemoComponent]}),
         StSelectModule,
         StRadioModule,
         StInputModule,
        StCheckboxModule
     ],
-   declarations: [StForegroundNotificationsDemoComponent]
+   declarations: [SdsNotificationDemoComponent]
 })
-export class StForegroundNotificationsDemoModule {}
+export class SdsNotificationDemoModule {}

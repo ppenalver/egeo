@@ -87,18 +87,10 @@ main {
    flex-direction: column;
    flex: 1;
    min-width: 0;
-   padding-left: 60px;
-   padding-right: 30px;
+   padding: 25px 35px;
    overflow-y: auto;
    overflow-x: hidden;
    height: 100%;
-
-   &:after {
-      content: ' ';
-      display: block;
-      width: 100%;
-      padding-bottom: 50px;
-   }
 
    .container-fnotification {
       .st-header {
@@ -115,10 +107,64 @@ main {
 }
 
 .demo-layout {
-   display: flex;
-   flex-direction: column;
+   color: $space-110;
+   line-height: 1.6;
+   font-size: $egeo-font-size-14;
 
-   > .introduction {
+   &__demo-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 24px 0;
+      border-bottom: 1px solid $space-20;
+
+      &__demo {
+         width: 400px;
+         margin-right: 80px;
+      }
+
+      &__demo-config {
+         flex: 1;
+
+         & > *:not(:last-child) {
+            margin-bottom: 24px;
+         }
+      }
+   }
+
+   &__component-description {
+      font-size: $egeo-font-size-18;
+   }
+
+   &__component-description, &__paragraph, &__list-item {
+      max-width: 65%;
+   }
+
+   &__demo-label {
+      margin-top: 32px;
+      font-size: $egeo-font-size-20;
+   }
+
+   &__separator {
+      border: none;
+      border-top: 1px solid $space-20;
+      margin-top: 42px;
+   }
+
+   &__title {
+      font-size: $egeo-font-size-20;
+      margin-top: 40px;
+      margin-bottom: 10px;
+   }
+
+   &__paragraph {
+      margin: 14px 0;
+   }
+
+   &__list {
+      padding-left: 40px;
+   }
+
+   .introduction {
       font-weight: normal;
       font-size: $egeo-font-size-18;
       font-style: normal;
@@ -134,23 +180,22 @@ main {
       font-size: $egeo-font-size-20;
       font-style: normal;
       font-stretch: normal;
-      line-height: $egeo-line-height-32;
+      line-height: 1.6;
       letter-spacing: normal;
       color: $space-110;
       padding: 26px 0;
       display: inline-block;
 
 
-     &--centered {
-        border-bottom: 1px solid $space-20;
-        display: block;
-        margin-bottom: 30px;
-        padding-bottom: 14px;
-        text-align: center;
-     }
-  }
+      &--centered {
+         display: block;
+         margin-bottom: 30px;
+         padding-bottom: 14px;
+         text-align: center;
+      }
+   }
 
-  > .subtitle {
+   .subtitle {
       font-weight: 400;
       font-size: $egeo-font-size-20;
       font-style: normal;
@@ -171,14 +216,6 @@ main {
       letter-spacing: normal;
       color: $space-110;
       padding-bottom: 20px;
-   }
-
-   .separator {
-      display: block;
-      width: 75px;
-      height: 1px;
-      background-color: $brand;
-      margin-bottom: 30px;
    }
 
    .list {

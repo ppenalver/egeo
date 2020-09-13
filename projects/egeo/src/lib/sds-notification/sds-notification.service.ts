@@ -4,11 +4,11 @@ import {
    StNotificationIcon,
    StNotificationPosition, StNotificationTriggerOptions,
    StNotificationType
-} from './st-foreground-notifications.model';
+} from './sds-notification.model';
 import {Subject} from 'rxjs';
 
 @Injectable()
-export class StForegroundNotificationsService {
+export class SdsNotificationService {
    public trigger$: Subject<StNotificationTriggerOptions>;
    public cancelTimeout$: Subject<void>;
    public readonly DEFAULT_CONFIG: StNotificationDisplayOptions;

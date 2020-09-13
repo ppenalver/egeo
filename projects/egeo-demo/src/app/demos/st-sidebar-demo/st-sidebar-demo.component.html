@@ -11,47 +11,48 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="col-sm-12 demo-layout">
-      <p class="introduction">Sidebar allows to navigate user through content.</p>
-      <span class="separator"></span>
-      <h1 class="title">Theme customization</h1>
-      <p class="paragraph">You can customize some table styles using the following css variables</p>
-      <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Sidebar allows to navigate user through content.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo--disabled" style="width: 100%">
+            <st-switch (change)="enableSearchMode = $event" label="Enable search mode" class="col-sm-12 row"></st-switch>
 
-      <h1 class="title">Examples</h1>
-      <st-switch (change)="enableSearchMode = $event" label="Enable search mode" class="col-sm-12 row"></st-switch>
+            <div class="sidebar-container">
+               <h1>Normal visualization </h1>
 
-      <div class="sidebar-container">
-         <h1>Normal visualization </h1>
+               <st-sidebar class="sidebar"
+                           qaTag="sidebar-demo"
+                           title="Mesos Manager"
+                           [items]="filteredItems"
+                           [active]="activeItem"
+                           [searchMode]="enableSearchMode"
+                           emptyResults="Search without results. Try with another term"
+                           (change)="onChangeActive($event)"
+                           (search)="onSearch($event, false)">
+                  <span class="header" sidebar-header> HEADER CONTENT</span>
+                  <span class="footer" sidebar-footer> FOOTER CONTENT</span>
+               </st-sidebar>
+            </div>
 
-         <st-sidebar class="sidebar"
-                     qaTag="sidebar-demo"
-                     title="Mesos Manager"
-                     [items]="filteredItems"
-                     [active]="activeItem"
-                     [searchMode]="enableSearchMode"
-                     emptyResults="Search without results. Try with another term"
-                     (change)="onChangeActive($event)"
-                     (search)="onSearch($event, false)">
-            <span class="header" sidebar-header> HEADER CONTENT</span>
-            <span class="footer" sidebar-footer> FOOTER CONTENT</span>
-         </st-sidebar>
-      </div>
-
-      <div class="sidebar-container">
-         <h1>Complex visualization </h1>
-         <st-sidebar class="sidebar"
-                     qaTag="sidebar-demo"
-                     title="Mesos Manager"
-                     [visualMode]="complexMode"
-                     [items]="filteredComplexItems"
-                     [active]="activeItem"
-                     [searchMode]="enableSearchMode"
-                     emptyResults="Search without results. Try with another term"
-                     (change)="onChangeActive($event)"
-                     (search)="onSearch($event, true)">
-            <span sidebar-footer> FOOTER CONTENT</span>
-         </st-sidebar>
+            <div class="sidebar-container">
+               <h1>Complex visualization </h1>
+               <st-sidebar class="sidebar"
+                           qaTag="sidebar-demo"
+                           title="Mesos Manager"
+                           [visualMode]="complexMode"
+                           [items]="filteredComplexItems"
+                           [active]="activeItem"
+                           [searchMode]="enableSearchMode"
+                           emptyResults="Search without results. Try with another term"
+                           (change)="onChangeActive($event)"
+                           (search)="onSearch($event, true)">
+                  <span sidebar-footer> FOOTER CONTENT</span>
+               </st-sidebar>
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
    </section>
 </st-docs>

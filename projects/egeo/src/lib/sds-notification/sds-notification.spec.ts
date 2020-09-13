@@ -11,24 +11,24 @@
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {Component, EventEmitter, ViewChild} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {StForegroundNotificationsComponent} from './st-foreground-notifications';
-import {StForegroundNotificationsModule} from './st-foreground-notifications.module';
+import {SdsNotificationComponent} from './sds-notification.component';
+import {SdsNotificationModule} from './sds-notification.module';
 
 import {
    StNotificationDisplayOptions,
    StNotificationPosition,
    StNotificationType
-} from './st-foreground-notifications.model';
-import {StForegroundNotificationsService} from './st-foreground-notifications.service';
+} from './sds-notification.model';
+import {SdsNotificationService} from './sds-notification.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
    template: `
       <div class="test-container">
-         <st-foreground-notifications
+         <sds-notification
             (close)="onClose.emit()"
             (autoClose)="onAutoClose.emit()">
-         </st-foreground-notifications>
+         </sds-notification>
       </div>`
 })
 class TestStFNComponent {
@@ -37,21 +37,21 @@ class TestStFNComponent {
    };
    onClose: EventEmitter<void> = new EventEmitter();
    onAutoClose: EventEmitter<void> = new EventEmitter();
-   @ViewChild(StForegroundNotificationsComponent, {static: true}) notification: StForegroundNotificationsComponent;
+   @ViewChild(SdsNotificationComponent, {static: true}) notification: SdsNotificationComponent;
 
    constructor() {
    }
 }
 
 let comp: TestStFNComponent;
-let _notifications: StForegroundNotificationsService;
+let _notifications: SdsNotificationService;
 let fixture: ComponentFixture<TestStFNComponent>;
 let nativeElement: HTMLElement;
 
-describe('StForegroundNotificationsComponent', () => {
+describe('SdsNotificationComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StForegroundNotificationsModule, BrowserAnimationsModule],
+         imports: [SdsNotificationModule, BrowserAnimationsModule],
          declarations: [TestStFNComponent],
          providers: [
             {
@@ -61,7 +61,7 @@ describe('StForegroundNotificationsComponent', () => {
                   bypassSecurityTrustHtml: () => 'safeString'
                }
             },
-            StForegroundNotificationsService
+            SdsNotificationService
          ]
       }).compileComponents();
    });
@@ -69,7 +69,7 @@ describe('StForegroundNotificationsComponent', () => {
    beforeEach(() => {
       fixture = TestBed.createComponent(TestStFNComponent);
       comp = fixture.componentInstance;
-      _notifications = TestBed.inject(StForegroundNotificationsService);
+      _notifications = TestBed.inject(SdsNotificationService);
       nativeElement = fixture.nativeElement;
       comp.notification.ngOnInit();
    });

@@ -33,6 +33,7 @@ export class StDocsComponent implements OnInit, OnDestroy {
    public options: StHorizontalTab[] = [
       {id: 'demo', text: 'Overview'},
       {id: 'html', text: 'Html'},
+      {id: 'theme', text: 'Theme customization'},
       {id: 'implementation', text: 'Implementation'},
       {id: 'component', text: 'Component'}
    ];

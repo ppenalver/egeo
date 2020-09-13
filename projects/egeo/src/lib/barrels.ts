@@ -48,7 +48,7 @@ import { StTooltipModule } from './st-tooltip/st-tooltip.module';
 import { StTwoListSelectionModule } from './st-two-list-selection/st-two-list-selection.module';
 import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
-import { StForegroundNotificationsModule } from './st-foreground-notifications/st-foreground-notifications.module';
+import { SdsNotificationModule } from './sds-notification/sds-notification.module';
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
 import { StColorPickerModule } from './st-color-picker/st-color-picker.module';
 import { StDynamicTableModule } from './st-dynamic-table/st-dynamic-table.module';
@@ -63,7 +63,7 @@ export const DECLARATIONS: any[] = [
    StDocsModule,
    StDropdownMenuModule,
    StFileButtonModule,
-   StForegroundNotificationsModule,
+   SdsNotificationModule,
    StFormDirectiveModule,
    StFormModule,
    StFormFieldModule,

@@ -11,198 +11,213 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid demo-layout">
-      <h1 class="title">Theme customization</h1>
-      <p class="paragraph">You can customize some styles using the following css variables</p>
-      <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
-
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title title--centered">Template Driven Example</h1>
-
-            <form #templateDrivenForm="ngForm" novalidate autocomplete="off" class="row">
+   <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo--disabled" style="width: 100%">
+            <div class="row">
                <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select stCheckValidations
-                             class="st-form-field"
-                             errorMessage="This field is required"
-                             label="Option 1"
-                             tooltip="This field is required"
-                             placeholder="Select option"
-                             [forceValidations]="true"
-                             [options]="options"
-                             name="option1"
-                             [(ngModel)]="model.option1"
-                             required>
-                  </st-select>
+                  <h1 class="title title--centered">Template Driven Example</h1>
+
+                  <form #templateDrivenForm="ngForm" novalidate autocomplete="off" class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+                        <st-select stCheckValidations
+                                   class="st-form-field"
+                                   errorMessage="This field is required"
+                                   label="Option 1"
+                                   tooltip="This field is required"
+                                   placeholder="Select option"
+                                   [forceValidations]="true"
+                                   [options]="options"
+                                   name="option1"
+                                   [(ngModel)]="model.option1"
+                                   required>
+                        </st-select>
+                     </div>
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select class="st-form-field small"
+                                   stCheckValidations
+                                   errorMessage="This field is required"
+                                   label="Option 2"
+                                   tooltip="This field is required"
+                                   name="option2"
+                                   placeholder="Select option"
+                                   required
+                                   [forceValidations]="true"
+                                   [(ngModel)]="model.option2"
+                                   [options]="options">
+                        </st-select>
+                     </div>
+
+                     <div class="col-sm-12">
+                        <br>
+                        <p><b>Form value:</b> {{ templateDrivenForm.value | json }}</p>
+                        <p><b>Form status:</b> {{ templateDrivenForm.disabled ? 'DISABLED' : templateDrivenForm.valid ?
+                           'VALID' :
+                           'INVALID'
+                           }}</p>
+                     </div>
+                  </form>
                </div>
                <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select class="st-form-field small"
-                             stCheckValidations
-                             errorMessage="This field is required"
-                             label="Option 2"
-                             tooltip="This field is required"
-                             name="option2"
-                             placeholder="Select option"
-                             required
-                             [forceValidations]="true"
-                             [(ngModel)]="model.option2"
-                             [options]="options">
-                  </st-select>
-               </div>
+                  <h1 class="title title--centered">Model Driven / Reactive Example</h1>
 
-               <div class="col-sm-12">
-                  <br>
-                  <p><b>Form value:</b> {{ templateDrivenForm.value | json }}</p>
-                  <p><b>Form status:</b> {{ templateDrivenForm.disabled ? 'DISABLED' : templateDrivenForm.valid ?
-                     'VALID' :
-                     'INVALID'
-                     }}</p>
+                  <form [formGroup]="reactiveForm" novalidate autocomplete="off" class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+                        <st-select class="st-form-field"
+                                   label="Option 1"
+                                   stCheckValidations
+                                   formControlName="option1"
+                                   placeholder="Select option"
+                                   [options]="options">
+                        </st-select>
+                     </div>
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select class="st-form-field small"
+                                   label="Option 2"
+                                   stCheckValidations
+                                   formControlName="option2"
+                                   placeholder="Select option"
+                                   [options]="options">
+                        </st-select>
+                     </div>
+                     <div class="col-sm-12">
+                        <br>
+                        <p><b>Form value:</b> {{ reactiveForm.value | json }}</p>
+                        <p><b>Form status:</b> {{ reactiveForm.status | json }}</p>
+                     </div>
+                  </form>
                </div>
-            </form>
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">With default value</h1>
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+
+                        <st-select placeholder="Select option"
+                                   class="st-form-field"
+                                   [options]="options"
+                                   [disabled]="disabled"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select placeholder="Select option"
+                                   class="st-form-field small"
+                                   [options]="options"
+                                   [disabled]="disabled"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+
+                  <h1 class="title title--centered">Without form</h1>
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+                        <st-select class="st-form-field"
+                                   [options]="options"
+                                   label="Select option"
+                                   [selected]="options[1]"
+                                   [disabled]="disabled">
+                        </st-select>
+                     </div>
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select class="st-form-field small"
+                                   [options]="options"
+                                   label="Select option"
+                                   [selected]="options[1]"
+                                   [disabled]="disabled">
+                        </st-select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Grouped options</h1>
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+
+                        <st-select placeholder="Select option"
+                                   class="st-form-field"
+                                   [options]="groupedOptions"
+                                   [disabled]="disabled"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select placeholder="Select option"
+                                   class="st-form-field small"
+                                   [options]="groupedOptions"
+                                   [disabled]="disabled"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <h1 class="title title--centered">Disabled keyboard</h1>
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Regular (36px)</h1>
+
+                        <st-select placeholder="Select option"
+                                   class="st-form-field"
+                                   [options]="groupedOptions"
+                                   [disabled]="disabled"
+                                   [keyBoardMove]="false"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+
+                     <div class="col-sm-6">
+                        <h1 class="title title--centered">Small (30px)</h1>
+                        <st-select placeholder="Select option"
+                                   class="st-form-field small"
+                                   [options]="groupedOptions"
+                                   [disabled]="disabled"
+                                   [keyBoardMove]="false"
+                                   [default]="options[2].value">
+                        </st-select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <button class="button button-primary disable-button" (click)="changeDisabled()">{{disabled? 'Enable' : 'Disable'}}
+               All
+            </button>
          </div>
-         <div class="col-sm-6">
-            <h1 class="title title--centered">Model Driven / Reactive Example</h1>
-
-            <form [formGroup]="reactiveForm" novalidate autocomplete="off" class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select class="st-form-field"
-                             label="Option 1"
-                             stCheckValidations
-                             formControlName="option1"
-                             placeholder="Select option"
-                             [options]="options">
-                  </st-select>
-               </div>
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select class="st-form-field small"
-                             label="Option 2"
-                             stCheckValidations
-                             formControlName="option2"
-                             placeholder="Select option"
-                             [options]="options">
-                  </st-select>
-               </div>
-               <div class="col-sm-12">
-                  <br>
-                  <p><b>Form value:</b> {{ reactiveForm.value | json }}</p>
-                  <p><b>Form status:</b> {{ reactiveForm.status | json }}</p>
-               </div>
-            </form>
-         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title title--centered">With default value</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-
-                  <st-select placeholder="Select option"
-                             class="st-form-field"
-                             [options]="options"
-                             [disabled]="disabled"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select placeholder="Select option"
-                             class="st-form-field small"
-                             [options]="options"
-                             [disabled]="disabled"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-6">
-
-            <h1 class="title title--centered">Without form</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-                  <st-select class="st-form-field"
-                             [options]="options"
-                             label="Select option"
-                             [selected]="options[1]"
-                             [disabled]="disabled">
-                  </st-select>
-               </div>
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select class="st-form-field small"
-                             [options]="options"
-                             label="Select option"
-                             [selected]="options[1]"
-                             [disabled]="disabled">
-                  </st-select>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-6">
-            <h1 class="title title--centered">Grouped options</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-
-                  <st-select placeholder="Select option"
-                             class="st-form-field"
-                             [options]="groupedOptions"
-                             [disabled]="disabled"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select placeholder="Select option"
-                             class="st-form-field small"
-                             [options]="groupedOptions"
-                             [disabled]="disabled"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-6">
-            <h1 class="title title--centered">Disabled keyboard</h1>
-            <div class="row">
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Regular (36px)</h1>
-
-                  <st-select placeholder="Select option"
-                             class="st-form-field"
-                             [options]="groupedOptions"
-                             [disabled]="disabled"
-                             [keyBoardMove]="false"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-
-               <div class="col-sm-6">
-                  <h1 class="title title--centered">Small (30px)</h1>
-                  <st-select placeholder="Select option"
-                             class="st-form-field small"
-                             [options]="groupedOptions"
-                             [disabled]="disabled"
-                             [keyBoardMove]="false"
-                             [default]="options[2].value">
-                  </st-select>
-               </div>
-            </div>
-         </div>
-
-      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Use a select box for a list of items that a user does not need to see all the time. A common strategy is to combine an input field with a select box so that a user can enter a value and qualify it with a menu item. For example, the user might enter a number in an input field and select the units from the select box.</p>
+      <p class="demo-layout__paragraph">Two height sizes are available to adapt the Select to different situations. Besides, the Select component includes a label and a help text to give some details to the user about the content or the options available.</p>
+      <p class="demo-layout__paragraph">The same help text space is used to show error messages when needed. However, if error, the text is red-colored as well as the outline of the text box.</p>
+      <p class="demo-layout__paragraph">The Select is highlighted when has the focus to guide the user visually to the component that owns the action.</p>
+      <p class="demo-layout__paragraph">The Select can be used with or without border depending on the purpose of use of the component. Inside a form, always must have border. Outside instead, can use it or not.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Don’t confuse a select box with a dropdown menu. Select boxes are for setting options and work best in forms. Dropdown is for presenting actions and are most appropriate outside forms.</li>
+         <li class="demo-layout__list-item">Typically, a select box contains between 3 and 12 items. For fewer than 3 items or to present choices that are always visible, consider a radio button.</li>
+         <li class="demo-layout__list-item">The placeholder must use the text "Choose an option" as a general rule.</li>
+         <li class="demo-layout__list-item">Never must appear an error message if the user doesn't carry out any action over the Input.</li>
+      </ul>
    </section>
-   <button class="button button-primary disable-button" (click)="changeDisabled()">{{disabled? 'Enable' : 'Disable'}}
-      All
-   </button>
-
 </st-docs>

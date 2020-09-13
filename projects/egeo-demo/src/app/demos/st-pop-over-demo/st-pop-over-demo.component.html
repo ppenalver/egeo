@@ -11,21 +11,27 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <section class="container-liquid">
-      <div class="pop-over-demo-container">
-         <div class="pop-over-demo-items">
-            <st-pop-over class="pop-over-demo-component" qaTag="pop-over-demo" [title]="title" [hidden]="hidden" [offset]="{x: 0, y:0}"
-                [showSettingBtn]="true">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <div class="pop-over-demo-container">
+               <div class="pop-over-demo-items">
+                  <st-pop-over class="pop-over-demo-component" qaTag="pop-over-demo" [title]="title" [hidden]="hidden" [offset]="{x: 0, y:0}"
+                               [showSettingBtn]="true">
 
-               <button pop-over-button class="pop-over-demo-button button button-primary" (click)="onClick()">
-                  <span>Pop Over</span>
-               </button>
+                     <button pop-over-button class="pop-over-demo-button button button-primary" (click)="onClick()">
+                        <span>Pop Over</span>
+                     </button>
 
-               <div pop-over-content class="pop-over-demo-content">
-                  <span>{{content}}</span>
+                     <div pop-over-content class="pop-over-demo-content">
+                        <span>{{content}}</span>
+                     </div>
+                  </st-pop-over>
                </div>
-            </st-pop-over>
+            </div>
          </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
    </section>
 </st-docs>

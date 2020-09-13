@@ -11,5 +11,13 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <label st-label id="label-id" title="tooltip text">Label example</label>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <label st-label id="label-id" title="tooltip text">Label example</label>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
+      </div>
+   </section>
 </st-docs>

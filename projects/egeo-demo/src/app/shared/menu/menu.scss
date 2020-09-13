@@ -53,9 +53,10 @@
       position: relative;
       cursor: pointer;
 
-      &.active {
-         background-color: $space-10;
-      }
+   &.active {
+      background-color: $space-10;
+      font-weight: 600;
+   }
 
       &:hover {
          background-color: $action-10;

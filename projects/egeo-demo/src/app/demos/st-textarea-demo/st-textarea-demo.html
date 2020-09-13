@@ -11,31 +11,53 @@
 
 -->
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
-   <form [formGroup]="myForm" novalidate>
-      <h1>In a form</h1>
-      <div class="example">
-         <st-textarea name="Disabled" placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
-             formControlName="disabledField" class="st-form-field" [cols]="50" [rows]="3">
-         </st-textarea>
-      </div>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo--disabled" style="width: 100%">
+            <form [formGroup]="myForm" novalidate>
+               <h1>In a form</h1>
+               <div class="example">
+                  <st-textarea name="Disabled" placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
+                               formControlName="disabledField" class="st-form-field" [cols]="50" [rows]="3">
+                  </st-textarea>
+               </div>
 
-      <div class="example">
+               <div class="example">
 
-         <st-textarea name="enabledFormControl" placeholder="Enter description" value="This is a description" label="Enabled" contextualHelp="This is the contextual help of the components"
-             formControlName="enabledField" class="st-form-field" [cols]="50" [rows]="3">
-         </st-textarea>
-      </div>
+                  <st-textarea name="enabledFormControl" placeholder="Enter description" value="This is a description" label="Enabled" contextualHelp="This is the contextual help of the components"
+                               formControlName="enabledField" class="st-form-field" [cols]="50" [rows]="3">
+                  </st-textarea>
+               </div>
 
-      <div class="example">
-         <st-textarea name="requiredField" placeholder="Enter description" value="This is a description" label="Required field" [required]="true"
-             contextualHelp="This is the contextual help of the components" formControlName="requiredField" class="st-form-field" [cols]="50" [rows]="3">
-         </st-textarea>
+               <div class="example">
+                  <st-textarea name="requiredField" placeholder="Enter description" value="This is a description" label="Required field" [required]="true"
+                               contextualHelp="This is the contextual help of the components" formControlName="requiredField" class="st-form-field" [cols]="50" [rows]="3">
+                  </st-textarea>
+               </div>
+               <h1>Out a form</h1>
+               <div class="example">
+                  <st-textarea placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
+                               [cols]="50" [rows]="3">
+                  </st-textarea>
+               </div>
+            </form>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
       </div>
-      <h1>Out a form</h1>
-      <div class="example">
-         <st-textarea placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
-             [cols]="50" [rows]="3">
-         </st-textarea>
-      </div>
-   </form>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Text areas are designed to collect long free text from the user. Typical examples of use could be a description.</p>
+      <p class="demo-layout__paragraph">We show a text area on forms where users need to enter sometimes lengthy data, such as information that may run over to two or more lines. They can be resized by the user and the rest of the content should adapt to this.</p>
+      <p class="demo-layout__paragraph">Two height sizes are available to adapt the inputs to different situations. Besides, the Input Text component includes a label and a help text to give some details to the user about tips about how the content must be formatted (E.g. to define limits, non-valid characters, etc.).</p>
+      <p class="demo-layout__paragraph">The same help text space is used to show error messages when needed. However, if error, the text is red-colored as well as the outline of the text box.</p>
+      <p class="demo-layout__paragraph">The textbox is highlighted when has the focus to guide the user visually to the component that owns the action.The textbox is highlighted when it has the focus to guide the user visually to the component that owns the action.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">For accessibility, text labels are required for all text area items. Use clear, concise, consistent labels to guide the user. If the subject is complicated, find words to make it simpler. Each label is left-justified and appears above the text area it describes.</li>
+         <li class="demo-layout__list-item">When the user clicks on an input, the on focus state starts, the input gets blue and a blinking cursor appears at the beginning of the input so the user know is there. While the user doesn’t write anything the placeholder text remains. If the user starts to write, the placeholder disappears. If the user deletes the content, the placeholder appears again.</li>
+         <li class="demo-layout__list-item">If the input has validation rules, they should be clearly explained in the hint text that area which appears immediately under the input and never disappears. Some samples could be "max. 20 chars" or "only words allowed" When the user writes on this kind of inputs, an error message should appear only when the validation rules are not met and the user clicks outside the input. In that case, an error message appears explaining why the validation has failed immediately under the hint text.</li>
+         <li class="demo-layout__list-item">Never must appear an error message if the user doesn't carry out any action over the Input.</li>
+      </ul>
+   </section>
 </st-docs>

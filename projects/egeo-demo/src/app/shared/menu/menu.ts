@@ -28,8 +28,7 @@ export class MenuComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      const currentURL = this._router.url.split('/');
-      const currentDemo = this.options.find(d => d.url === currentURL.pop());
+      const currentDemo = this.options.concat(this.sdsOptions).find(d => d.url === this._router.url);
       if (currentDemo) {
          this.selected.emit(currentDemo);
       }

@@ -20,6 +20,11 @@
       <div *ngIf="active.id === 'html'">
          <st-prism-highlight [language]="'html'" id="codeinput">{{htmlCode}}</st-prism-highlight>
       </div>
+      <div class="demo-layout" *ngIf="active.id === 'theme'">
+         <h1 class="title">Theme customization</h1>
+         <p class="paragraph">You can customize some styles using the following css variables</p>
+         <ng-content select="demo-css-property-table"></ng-content>
+      </div>
       <div *ngIf="active.id === 'implementation'">
          <st-prism-highlight [language]="'javascript'" id="codeinput">{{demoTsCode}}</st-prism-highlight>
       </div>

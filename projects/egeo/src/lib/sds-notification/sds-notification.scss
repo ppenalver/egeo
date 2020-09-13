@@ -11,11 +11,11 @@
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
 :host {
-   --egeo-st-foreground-notifications--position: fixed;
+   --egeo-sds-notification--position: fixed;
 
    .st-notification {
       display: flex;
-      position: var(--egeo-st-foreground-notifications--position);
+      position: var(--egeo-sds-notification--position);
       align-items: center;
       justify-content: space-between;
       padding: 7px 15px;
