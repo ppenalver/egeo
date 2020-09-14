@@ -12,6 +12,14 @@
 @import 'utils/index';
 @import 'components/index';
 
+sds-textarea.sds-textarea--small {
+   .sds-textarea {
+      font-size: $egeo-font-size-12;
+      min-height: 60px;
+      padding: 5px 12px 0 12px;
+   }
+}
+
 sds-notification .st-notification {
    A {
       text-decoration: underline;
@@ -25,7 +33,12 @@ sds-notification .st-notification {
    }
 
    &--info A {
-      color: $space-110;
+      color: $action;
+      text-decoration: none;
+
+      &:hover {
+         text-decoration: underline;
+      }
    }
 }
 

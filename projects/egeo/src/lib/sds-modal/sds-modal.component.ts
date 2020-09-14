@@ -25,12 +25,12 @@ import {
 import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {StWindowRefService} from '../utils/window-service';
-import {StModal2Config, StModal2Type} from './st-modal2.model';
+import {SdsModalConfig, SdsModalType} from './sds-modal.model';
 
 @Component({
-   selector: ' st-modal2',
-   templateUrl: './st-modal2.component.html',
-   styleUrls: ['./st-modal2.component.scss'],
+   selector: ' sds-modal',
+   templateUrl: './sds-modal.component.html',
+   styleUrls: ['./sds-modal.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush,
    animations: [
       trigger('state', [
@@ -45,12 +45,12 @@ import {StModal2Config, StModal2Type} from './st-modal2.model';
       ])
    ]
 })
-export class StModal2Component implements OnInit, OnChanges {
+export class SdsModalComponent implements OnInit, OnChanges {
    @ViewChild('modalContainer', {static: false}) modalContainer: ElementRef;
    @ViewChild('modal', {static: false}) modal: ElementRef;
 
    @Input() hotRender: boolean;
-   @Input() modalConfig: StModal2Config;
+   @Input() modalConfig: SdsModalConfig;
    @Input()
    get showModal(): boolean {
       return this.showModalHTML;
@@ -77,8 +77,8 @@ export class StModal2Component implements OnInit, OnChanges {
 
    public showModalHTML: boolean;
    public visibility: string;
-   public modalType: StModal2Type;
-   public modalTypes: typeof StModal2Type;
+   public modalType: SdsModalType;
+   public modalTypes: typeof SdsModalType;
    public showCloseControl: boolean;
    public showHeaderIcon: boolean;
    public allowClickOutside: boolean;
@@ -108,7 +108,7 @@ export class StModal2Component implements OnInit, OnChanges {
       private _el: ElementRef
    ) {
       this.visibility = 'visible';
-      this.modalTypes = StModal2Type;
+      this.modalTypes = SdsModalType;
       this.showModalHTML = false;
       this.hotRender = false;
       this.animationTime = 300;
@@ -155,7 +155,7 @@ export class StModal2Component implements OnInit, OnChanges {
       this.modalTitle = this.modalConfig.title ? this.modalConfig.title : '';
       this.showDefaultHeader = !!this.modalConfig.showDefaultHeader;
 
-      if (this.modalType === StModal2Type.WARNING || this.modalType === StModal2Type.ERROR) {
+      if (this.modalType === SdsModalType.WARNING || this.modalType === SdsModalType.ERROR) {
          this.showHeaderIcon = true;
       }
 

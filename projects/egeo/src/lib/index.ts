@@ -188,8 +188,8 @@ export { StModalModule } from './st-modal/st-modal.module';
 export { StModalComponent } from './st-modal/st-modal.component';
 
 // Modal2
-export { StModal2Component } from './st-modal2/st-modal2.component';
-export { StModal2Module } from './st-modal2/st-modal2.module';
+export { SdsModalComponent } from './sds-modal/sds-modal.component';
+export { SdsModalModule } from './sds-modal/sds-modal.module';
 
 // Pagination
 export {
@@ -293,11 +293,11 @@ export { StTagInputComponent } from './st-tag-input/st-tag-input.component';
 
 // Textarea
 export {
-   StTextareaError,
-   StTextareaErrorSchema
-} from './st-textarea/st-textarea.error.model';
-export { StTextareaModule } from './st-textarea/st-textarea.module';
-export { StTextareaComponent } from './st-textarea/st-textarea.component';
+   SdsTextareaError,
+   SdsTextareaErrorSchema
+} from './sds-textarea/sds-textarea.error.model';
+export { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
+export { SdsTextareaComponent } from './sds-textarea/sds-textarea.component';
 
 // Toogle buttons
 export {

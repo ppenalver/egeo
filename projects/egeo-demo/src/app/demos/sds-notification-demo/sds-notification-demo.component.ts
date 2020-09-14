@@ -168,7 +168,7 @@ export class SdsNotificationDemoComponent {
    constructor(private cd: ChangeDetectorRef, private _notifications: SdsNotificationService, private fb: FormBuilder) {
       this.componentDestroyed$ = new Subject();
       this.notificationsConfig = {...this._notifications.DEFAULT_CONFIG};
-      this.notificationsConfig.message = 'Notification message.';
+      this.notificationsConfig.message = 'Notification message. <a href="http://www.stratio.com" target="_blank">Link example</a>';
       this.notificationsConfig.positionReference = '#main';
       this.configForm = this.fb.group({
          type: this.fb.control(this.notificationsConfig.notificationType),

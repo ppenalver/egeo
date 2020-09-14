@@ -15,7 +15,7 @@ import {
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { StTextareaError } from './st-textarea.error.model';
+import { SdsTextareaError } from './sds-textarea.error.model';
 
 /**
  * @description {Component} [Textare]
@@ -27,7 +27,7 @@ import { StTextareaError } from './st-textarea.error.model';
  * {html}
  *
  * ```
- * <st-textarea
+ * <sds-textarea
  *    label="Components"
  *    placeholder="Number of components"
  *    [forceValidations]="forceValidations"
@@ -38,22 +38,22 @@ import { StTextareaError } from './st-textarea.error.model';
  *    [(ngModel)]="model.components"
  *    contextualHelp="This is the contextual help of the components"
  *    [cols]="50" [rows]="10">
- * </st-textarea>
+ * </sds-textarea>
  * ```
  *
  */
 @Component({
-   selector: 'st-textarea',
-   templateUrl: './st-textarea.component.html',
-   styleUrls: ['./st-textarea.component.scss'],
+   selector: 'sds-textarea',
+   templateUrl: './sds-textarea.component.html',
+   styleUrls: ['./sds-textarea.component.scss'],
    providers: [
-      { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => StTextareaComponent), multi: true },
-      { provide: NG_VALIDATORS, useExisting: forwardRef(() => StTextareaComponent), multi: true }
+      { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SdsTextareaComponent), multi: true },
+      { provide: NG_VALIDATORS, useExisting: forwardRef(() => SdsTextareaComponent), multi: true }
    ],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy  {
+export class SdsTextareaComponent implements ControlValueAccessor, OnChanges, OnInit, OnDestroy  {
    /** @Input {string} [placeholder=''] The text that appears as placeholder of the textarea. It is empty by default */
    @Input() placeholder: string = '';
 
@@ -63,10 +63,8 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
    /** @Input {string} [label=''] Label to show over the textarea. It is empty by default */
    @Input() label: string = '';
 
-   /** @Input {StTextareaError} [errors=''] Error to show for each error case, if you don\'t provide this parameter,
-    * the default behaviour is only to change color without message
-    */
-   @Input() errors: StTextareaError;
+   /** @Input {string} [errorMessage=''] Error message to show */
+   @Input() errorMessage: string;
 
    /** @Input {string} [qaTag=''] Id for QA test */
    @Input() qaTag: string;
@@ -103,7 +101,6 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
    public isDisabled: boolean = false; // To check disable
    public focus: boolean = false;
    public internalControl: FormControl;
-   public errorMessage: string = undefined;
    public showErrorValue: boolean = false;
 
    private sub: Subscription;
@@ -175,19 +172,19 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
          this.internalControl.disable();
       } else if (!this.isDisabled && this.internalControl && this.internalControl.disabled) {
          this.internalControl.enable();
+         this.internalControl.markAsPristine();
+         this.showErrorValue = this.showError();
       }
       this._cd.markForCheck();
    }
 
    showError(): boolean {
-      return this.errorMessage !== undefined && (!this.internalControl.pristine || this.forceValidations) && !this.focus && !this.isDisabled;
+      return !!this.errorMessage && (this.forceValidations || !this.internalControl.pristine);
    }
 
    /** Style functions */
    onFocus(event: Event): void {
       this.focus = true;
-
-      this.showErrorValue = this.showError();
    }
 
    onFocusOut(event: Event, emitEvent: boolean): void {
@@ -196,8 +193,6 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
       if (emitEvent) {
          this.blur.emit();
       }
-
-      this.showErrorValue = this.showError();
    }
 
    displayResetButton(): boolean {
@@ -212,36 +207,12 @@ export class StTextareaComponent implements ControlValueAccessor, OnChanges, OnI
 
    // When status change call this function to check if have errors
    private checkErrors(control: FormControl): void {
-      let errors: { [key: string]: any } = control.errors;
-      this.errorMessage = this.getErrorMessage(errors);
-      this.showErrorValue = this.showError();
+      if (control.pristine) {
+         this.internalControl.markAsPristine();
+      }
+
+      this.showErrorValue = this.showError() && control.invalid;
       this._cd.markForCheck();
-   }
-
-   // Get error message in function of error list.
-   private getErrorMessage(errors: { [key: string]: any }): string {
-      if (!errors) {
-         return undefined;
-      }
-
-      if (!this.errors) {
-         return '';
-      }
-
-      if (errors.hasOwnProperty('required')) {
-         return this.errors.required || this.errors.generic || '';
-      }
-      if (errors.hasOwnProperty('minlength')) {
-         return this.errors.minLength || this.errors.generic || '';
-      }
-      if (errors.hasOwnProperty('maxlength')) {
-         return this.errors.maxLength || this.errors.generic || '';
-      }
-      if (errors.hasOwnProperty('pattern')) {
-         return this.errors.pattern || this.errors.generic || '';
-      }
-
-      return '';
    }
 
 }

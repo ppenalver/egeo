@@ -13,22 +13,22 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { StModal2Component } from './st-modal2.component';
+import { SdsModalComponent } from './sds-modal.component';
 import {StWindowRefService} from '../utils/window-service';
-import {StModal2Config} from './st-modal2.model';
+import {SdsModalConfig} from './sds-modal.model';
 
 
 @Component({
-   selector: 'st-modal2-test',
+   selector: 'sds-modal-test',
    template: `
-       <st-modal2 [modalConfig]="modalConfig" [showModal]="true" (closeEscape)="closeOnEscape.emit()">
+       <sds-modal [modalConfig]="modalConfig" [showModal]="true" (closeEscape)="closeOnEscape.emit()">
         <div>Modal content</div>
-       </st-modal2>
+       </sds-modal>
     `
 })
 export class Modal2TestComponent {
-   @ViewChild(StModal2Component, {static: false}) modalComponent: StModal2Component;
-   public modalConfig: StModal2Config = {
+   @ViewChild(SdsModalComponent, {static: false}) modalComponent: SdsModalComponent;
+   public modalConfig: SdsModalConfig = {
       closeControl: true,
       title: 'Test title',
       showDefaultHeader: true
@@ -38,8 +38,8 @@ export class Modal2TestComponent {
    public hideCloseBtn: boolean = false;
 }
 
-describe('StModal2', () => {
-   describe('StModal2Component', () => {
+describe('SdsModal', () => {
+   describe('SdsModalComponent', () => {
       let comp: Modal2TestComponent;
       let fixture: ComponentFixture<Modal2TestComponent>;
       let de: DebugElement;
@@ -47,7 +47,7 @@ describe('StModal2', () => {
       beforeEach(() => {
          TestBed.configureTestingModule({
             imports: [NoopAnimationsModule],
-            declarations: [Modal2TestComponent, StModal2Component],
+            declarations: [Modal2TestComponent, SdsModalComponent],
             providers: [StWindowRefService],
             schemas: [NO_ERRORS_SCHEMA]
          }).compileComponents();  // compile template and css

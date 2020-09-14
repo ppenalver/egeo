@@ -13,26 +13,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { StTextareaComponent } from './st-textarea.component';
-import { StTextareaError } from './st-textarea.error.model';
-import { StTextareaModule } from './st-textarea.module';
+import { SdsTextareaComponent } from './sds-textarea.component';
+import { SdsTextareaError } from './sds-textarea.error.model';
+import { SdsTextareaModule } from './sds-textarea.module';
 import { StLabelModule } from '../st-label/st-label.module';
 
-let component: StTextareaComponent;
-let fixture: ComponentFixture<StTextareaComponent>;
+let component: SdsTextareaComponent;
+let fixture: ComponentFixture<SdsTextareaComponent>;
 let textarea: HTMLInputElement;
 
-describe('StTextareaComponent', () => {
+describe('SdsTextareaComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StLabelModule],
-         declarations: [StTextareaComponent]
+         declarations: [SdsTextareaComponent]
       })
          .compileComponents();  // compile template and css
    });
 
    beforeEach(() => {
-      fixture = TestBed.createComponent(StTextareaComponent);
+      fixture = TestBed.createComponent(SdsTextareaComponent);
       textarea = fixture.nativeElement.querySelector('textarea');
       component = fixture.componentInstance;
       component.qaTag = 'test qaTag';
@@ -166,18 +166,18 @@ describe('StTextareaComponent', () => {
    template: `
       <form [formGroup]="reactiveForm" novalidate autocomplete="off" (ngSubmit)="onSubmitReactiveForm()" class="col-md-6">
          <div class="form-group">
-            <st-textarea
+            <sds-textarea
                label="Description"
                placeholder="Module description"
                [forceValidations]="forceValidations"
-               [errors]="errors"
+               [errorMessage]="errors.generic"
                name="description"
                qaTag="description-input"
                formControlName="description"
                rows="5"
                cols="50"
                wrap="soft">
-            </st-textarea>
+            </sds-textarea>
          </div>
       </form>
       `
@@ -191,7 +191,9 @@ class FormReactiveComponent implements OnInit {
       components: 10
    };
 
-   public errors: StTextareaError = {
+   public errorMessage: string = '';
+
+   public errors: SdsTextareaError = {
       generic: 'Error',
       required: 'This field is required'
    };
@@ -223,10 +225,10 @@ class FormReactiveComponent implements OnInit {
 let reactiveFixture: ComponentFixture<FormReactiveComponent>;
 let reactiveComp: FormReactiveComponent;
 
-describe('StTextareaComponent in reactive form', () => {
+describe('SdsTextareaComponent in reactive form', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StTextareaModule],
+         imports: [FormsModule, ReactiveFormsModule, SdsTextareaModule],
          declarations: [FormReactiveComponent]
       })
          .compileComponents();  // compile template and css
@@ -246,52 +248,6 @@ describe('StTextareaComponent in reactive form', () => {
       let htmlInput: HTMLInputElement = reactiveFixture.debugElement.query(By.css('textarea')).nativeElement;
 
       expect(htmlInput.placeholder).toBe('Module description');
-   });
-
-   it('should notify custom errors', () => {
-      reactiveComp.forceValidations = false;
-      reactiveFixture.detectChanges();
-      let htmlInput: HTMLInputElement = reactiveFixture.debugElement.query(By.css('textarea')).nativeElement;
-
-      reactiveComp.forceValidations = true;
-      reactiveFixture.detectChanges();
-
-      // Required
-      let errorMessage: DebugElement = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect(errorMessage.nativeElement).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual('This field is required');
-   });
-
-   it('should notify generic errors', () => {
-      let genericError: string = 'Generic Error';
-      reactiveComp.forceValidations = false;
-      reactiveComp.errors = { generic: genericError };
-      reactiveFixture.detectChanges();
-
-      reactiveComp.forceValidations = true;
-      reactiveFixture.detectChanges();
-
-      // Required
-      let errorMessage: DebugElement = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect(errorMessage.nativeElement).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual(genericError);
-   });
-
-   it('should notify empty error', () => {
-      reactiveComp.forceValidations = false;
-      reactiveComp.errors = {};
-      reactiveFixture.detectChanges();
-
-      reactiveComp.forceValidations = true;
-      reactiveFixture.detectChanges();
-
-      // Required
-      let errorMessage: DebugElement = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect(errorMessage.nativeElement).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual('');
    });
 
    it('should be able to disable and enable', () => {
@@ -315,60 +271,6 @@ describe('StTextareaComponent in reactive form', () => {
       htmlInput = reactiveFixture.debugElement.query(By.css('textarea')).nativeElement;
       expect(htmlInput).toBeDefined();
       expect(htmlInput.classList).not.toContain('disabled');
-   });
-
-   it('should notify empty error with undefined errors object', () => {
-      reactiveComp.forceValidations = false;
-      reactiveComp.errors = undefined;
-      reactiveFixture.detectChanges();
-      let htmlInput: HTMLInputElement = reactiveFixture.debugElement.query(By.css('textarea')).nativeElement;
-
-      reactiveComp.forceValidations = true;
-      reactiveFixture.detectChanges();
-
-      // Required
-      let errorMessage: DebugElement = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect(errorMessage.nativeElement).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual('');
-
-
-      // All ok
-      htmlInput.value = 'prueba';
-      htmlInput.dispatchEvent(new Event('input'));
-      reactiveFixture.detectChanges();
-
-      errorMessage = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeNull();
-   });
-
-   it('should only notify error with focus', () => {
-      reactiveComp.forceValidations = false;
-      reactiveComp.errors = { generic: 'error' };
-      reactiveFixture.detectChanges();
-      let htmlInput: HTMLInputElement = reactiveFixture.debugElement.query(By.css('textarea')).nativeElement;
-
-      reactiveComp.forceValidations = true;
-      reactiveFixture.detectChanges();
-
-      // Required
-      let errorMessage: DebugElement = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect(errorMessage.nativeElement).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual('error');
-
-      htmlInput.dispatchEvent(new Event('focus'));
-      reactiveFixture.detectChanges();
-
-      errorMessage = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeNull();
-
-      htmlInput.dispatchEvent(new Event('blur'));
-      reactiveFixture.detectChanges();
-
-      errorMessage = reactiveFixture.debugElement.query(By.css('.st-textarea-error-message'));
-      expect(errorMessage).toBeDefined();
-      expect((<HTMLSpanElement>errorMessage.nativeElement).textContent).toEqual('error');
    });
 });
 

@@ -9,15 +9,15 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-export enum StModal2Type {
+export enum SdsModalType {
    CUSTOM_CONTENT = 'custom_content',
    INFORMATION = 'information',
    WARNING = 'warning',
    ERROR = 'error'
 }
 
-export interface StModal2Config {
-   modalType?: StModal2Type;
+export interface SdsModalConfig {
+   modalType?: SdsModalType;
    title?: string;
    closeControl?: boolean;
    enableAnimation?: boolean;

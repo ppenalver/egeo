@@ -12,12 +12,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StTextareaComponent } from './st-textarea.component';
+import { SdsTextareaComponent } from './sds-textarea.component';
 import { StLabelModule } from '../st-label/st-label.module';
 
 @NgModule({
    imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule],
-   declarations: [StTextareaComponent],
-   exports: [StTextareaComponent]
+   declarations: [SdsTextareaComponent],
+   exports: [SdsTextareaComponent]
 })
-export class StTextareaModule { }
+export class SdsTextareaModule { }

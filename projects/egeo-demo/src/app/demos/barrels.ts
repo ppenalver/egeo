@@ -28,7 +28,7 @@ import { StInputDemoModule } from './st-input-demo/st-input-demo.module';
 import { StLabelDemoModule } from './st-label-demo/st-label-demo.module';
 import { StMenuDemoModule } from './st-menu-demo/st-menu-demo.module';
 import { StModalDemoModule } from './st-modal-demo/st-modal-demo.module';
-import { StModal2DemoModule } from './st-modal2-demo/st-modal2-demo.module';
+import { SdsModalDemoModule } from './sds-modal-demo/sds-modal-demo.module';
 import { StPaginationDemoModule } from './st-pagination-demo/st-pagination-demo.module';
 import { StPopOverDemoModule } from './st-pop-over-demo/st-pop-over-demo.module';
 import { StProgressBarDemoModule } from './st-progress-bar-demo/st-progress-bar-demo.module';
@@ -41,7 +41,7 @@ import { StSpinnerDemoModule } from './st-spinner-demo/st-spinner-demo.module';
 import { StSwitchDemoModule } from './st-switch-demo/st-switch-demo.module';
 import { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 import { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
-import { StTextareaDemoModule } from './st-textarea-demo/st-textarea-demo.module';
+import { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 import { StToggleButtonsDemoModule } from './st-toggle-buttons-demo/st-toggle-buttons-demo.module';
 import { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
 import { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-two-list-selection-demo.module';
@@ -77,7 +77,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StLabelDemoModule,
    StMenuDemoModule,
    StModalDemoModule,
-   StModal2DemoModule,
+   SdsModalDemoModule,
    StPaginationDemoModule,
    StPopOverDemoModule,
    StProgressBarDemoModule,
@@ -92,7 +92,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StTableDemoModule,
    StTagDemoModule,
    StTagInputDemoModule,
-   StTextareaDemoModule,
+   SdsTextareaDemoModule,
    StToggleButtonsDemoModule,
    StTooltipDemoModule,
    StTwoListSelectionDemoModule,

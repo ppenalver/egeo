@@ -3,7 +3,7 @@
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
-            <st-modal2
+            <sds-modal
                class="sds-modal--demo"
                [modalConfig]="modalConfig"
                [showModal]="true"
@@ -14,20 +14,14 @@
                <span st-modal-header>Modal custom title</span>
                <p>This is an example content for modal component.</p>
                <p>You can press ESCAPE key to close modal.</p>
-            </st-modal2>
+            </sds-modal>
             <button class="button button-primary" (click)="triggerModal()">
                <span>Trigger modal</span>
             </button>
-            <div [@fade] *ngIf="showCloseControlMessage" class="close-pressed-message">
-               Close control pressed...
+            <div [@fade] *ngIf="showMessage" class="close-pressed-message">
+               {{message}}
             </div>
-            <div [@fade] *ngIf="showConfirmButtonMessage" class="close-pressed-message">
-               Confirm button pressed...
-            </div>
-            <div [@fade] *ngIf="showCancelButtonMessage" class="close-pressed-message">
-               Cancel button pressed...
-            </div>
-            <st-modal2
+            <sds-modal
                [modalConfig]="modalConfig"
                [showModal]="showModal"
                (clickOutside)="showModal = false"
@@ -36,7 +30,7 @@
                <span st-modal-header>Modal custom title</span>
                <p>This is an example content for modal component.</p>
                <p>You can press ESCAPE key to close modal.</p>
-            </st-modal2>
+            </sds-modal>
          </div>
          <div class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
             <div>

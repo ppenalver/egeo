@@ -34,7 +34,7 @@
           (blur)="onBlur()">
 </st-input>
 
-<st-textarea *ngIf="hasType('input') && maxWidth && (maxLength >= maxWidth || minLength >= maxWidth)"
+<sds-textarea *ngIf="hasType('input') && maxWidth && (maxLength >= maxWidth || minLength >= maxWidth)"
           #templateModel="ngModel"
           [label]="label"
           [name]="schema.key"
@@ -43,14 +43,14 @@
           [ngModel]="innerValue"
           (ngModelChange)="setValue($event)"
           [contextualHelp]="description"
-          [errors]="errors"
+          [errorMessage]="errors.generic"
           [minlength]="minLength"
           [maxlength]="maxLength"
           [required]="required"
           [pattern]="pattern"
           [qaTag]="qaTag"
           (blur)="onBlur()">
-</st-textarea>
+</sds-textarea>
 
 <st-checkbox *ngIf="hasType('checkbox')"
              #templateModel="ngModel"

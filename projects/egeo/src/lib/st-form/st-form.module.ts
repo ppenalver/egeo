@@ -19,7 +19,7 @@ import { StFormDirectiveModule } from '../directives/form/form-directives.module
 import { StFormFieldModule } from './st-form-field/st-form-field.module';
 import { StSelectModule } from '../st-select/st-select.module';
 import { StSwitchModule } from '../st-switch/st-switch.module';
-import { StTextareaModule } from '../st-textarea/st-textarea.module';
+import { SdsTextareaModule } from '../sds-textarea/sds-textarea.module';
 
 @NgModule({
    imports: [
@@ -32,7 +32,7 @@ import { StTextareaModule } from '../st-textarea/st-textarea.module';
       StSelectModule,
       StSwitchModule,
       StFormDirectiveModule,
-      StTextareaModule
+      SdsTextareaModule
    ],
    declarations: [StFormComponent],
    exports: [StFormComponent]

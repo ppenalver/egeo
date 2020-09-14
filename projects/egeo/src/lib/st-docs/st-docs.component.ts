@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import { ChangeDetectorRef, Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, OnDestroy, ContentChild, ElementRef} from '@angular/core';
 import { StDocsService } from './st-docs.service';
 import { StHorizontalTab } from '../st-horizontal-tabs/st-horizontal-tabs.model';
 import { zip } from 'rxjs/operators';
@@ -21,6 +21,7 @@ import { Observable, Subscription } from 'rxjs';
    styleUrls: ['./st-docs.component.scss']
 })
 export class StDocsComponent implements OnInit, OnDestroy {
+   @ContentChild(ElementRef) cssTable: ElementRef;
 
    @Input() htmlFile?: string;
    @Input() tsFile?: string;

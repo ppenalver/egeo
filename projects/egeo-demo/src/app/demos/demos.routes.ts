@@ -24,7 +24,8 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: EgeoDemoMenu[] = [
    { id: 'st-switch', name: 'Switch', path: 'switch-demo', moduleLazyLoad: 'StSwitchDemoModule' },
    { id: 'st-toggle-buttons', name: 'Toggle Button', path: 'toggle-buttons-demo', moduleLazyLoad: 'StToggleButtonsDemoModule' },
    { id: 'st-spinner', name: 'Spinner', path: 'spinner-demo', moduleLazyLoad: 'StSpinnerDemoModule' },
-   { id: 'st-modal2', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'StModal2DemoModule' },
+   { id: 'sds-modal', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'SdsModalDemoModule' },
+   { id: 'sds-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'SdsTextareaDemoModule' },
    { id: 'sds-notification', name: 'Notification',
       path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' }
 ];
@@ -32,7 +33,6 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: EgeoDemoMenu[] = [
 
 export const EGEO_DEMO_MENU_SDS: EgeoDemoMenu[] = [
    { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
-   { id: 'st-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'StTextareaDemoModule' },
    { id: 'st-button', name: 'Button', path: 'button-demo', moduleLazyLoad: 'StButtonDemoModule' },
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
    { id: 'st-horizontal-tabs', name: 'Tab', path: 'horizontal-tabs-demo', moduleLazyLoad: 'StHorizontalTabsModule' },
@@ -93,7 +93,7 @@ const routes: Routes = [
    { path: 'label-demo', loadChildren: () => import( './st-label-demo/st-label-demo.module').then(m => m.StLabelDemoModule ) },
    { path: 'menu-demo', loadChildren: () => import( './st-menu-demo/st-menu-demo.module').then(m => m.StMenuDemoModule ) },
    { path: 'modal-demo', loadChildren: () => import( './st-modal-demo/st-modal-demo.module').then(m => m.StModalDemoModule ) },
-   { path: 'modal2-demo', loadChildren: () => import( './st-modal2-demo/st-modal2-demo.module').then(m => m.StModal2DemoModule ) },
+   { path: 'modal2-demo', loadChildren: () => import( './sds-modal-demo/sds-modal-demo.module').then(m => m.SdsModalDemoModule ) },
    { path: 'pagination-demo', loadChildren: () => import( './st-pagination-demo/st-pagination-demo.module').then(m => m.StPaginationDemoModule ) },
    { path: 'pop-over-demo', loadChildren: () => import( './st-pop-over-demo/st-pop-over-demo.module').then(m => m.StPopOverDemoModule ) },
    { path: 'progress-bar-demo', loadChildren: () => import( './st-progress-bar-demo/st-progress-bar-demo.module').then(m => m.StProgressBarDemoModule ) },
@@ -107,7 +107,7 @@ const routes: Routes = [
    { path: 'table-demo', loadChildren: () => import( './st-table-demo/st-table-demo.module').then(m => m.StTableDemoModule ) },
    { path: 'tag-demo', loadChildren: () => import( './st-tag-demo/st-tag-demo.module').then(m => m.StTagDemoModule) },
    { path: 'tag-input-demo', loadChildren: () => import( './st-tag-input-demo/st-tag-input-demo.module').then(m => m.StTagInputDemoModule ) },
-   { path: 'textarea', loadChildren: () => import( './st-textarea-demo/st-textarea-demo.module').then(m => m.StTextareaDemoModule ) },
+   { path: 'textarea', loadChildren: () => import( './sds-textarea-demo/sds-textarea-demo.module').then(m => m.SdsTextareaDemoModule ) },
    { path: 'toggle-buttons-demo', loadChildren: () => import( './st-toggle-buttons-demo/st-toggle-buttons-demo.module').then(m => m.StToggleButtonsDemoModule ) },
    { path: 'tooltip-demo', loadChildren: () => import( './st-tooltip-demo/st-tooltip-demo.module').then(m => m.StTooltipDemoModule ) },
    { path: 'two-list-selection-demo', loadChildren: () => import( './st-two-list-selection-demo/st-two-list-selection-demo.module').then(m => m.StTwoListSelectionDemoModule ) },

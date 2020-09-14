@@ -9,7 +9,7 @@
 | placeholder      | String          | False | The text that appears as placeholder of the textarea. It is empty by default                                                          | ''      |
 | name             | String          | False | Name of the textarea                                                                                                                  | ''      |
 | label            | String          | False | Label to show over the textarea. It is empty by default                                                                               | ''      |
-| errors           | StTextareaError | False | Error to show for each error case, if you don\'t provide this parameter,the default behaviour is only to change color without message | ''      |
+| errors           | SdsTextareaError | False | Error to show for each error case, if you don\'t provide this parameter,the default behaviour is only to change color without message | ''      |
 | qaTag            | String          | False | Id for QA test                                                                                                                        | ''      |
 | forceValidations | Boolean         | False | If you specify it to 'true', the textarea checks the errors before being modified by user                                             | false   |
 | contextualHelp   | String          | False | It will be displayed when user clicks on the info button                                                                              | ''      |
@@ -30,7 +30,7 @@
 
 
 ```html
-<st-textarea label="Components"
+<sds-textarea label="Components"
       placeholder="Number of components"
       [forceValidations]="forceValidations"
       [errors]="errorsTextarea"
@@ -41,6 +41,6 @@
       contextualHelp="This is the contextual help of the components"
       [cols]="50"
       [rows]="10">
-</st-textarea>
+</sds-textarea>
 ```
 

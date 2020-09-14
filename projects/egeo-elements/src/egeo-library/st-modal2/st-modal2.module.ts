@@ -2,14 +2,14 @@ import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {ElementModule} from '../../abstract/element.module';
-import {StModal2Component, StModal2Module} from '../../../../egeo/src/public_api';
+import {SdsModalComponent, SdsModalModule} from '../../../../egeo/src/public_api';
 
 @NgModule({
-    imports: [BrowserModule, StModal2Module],
-    entryComponents: [StModal2Component]
+    imports: [BrowserModule, SdsModalModule],
+    entryComponents: [SdsModalComponent]
 })
-export class StModal2ElementModule extends ElementModule {
+export class SdsModalElementModule extends ElementModule {
     constructor(injector: Injector) {
-        super(injector, StModal2Component, 'st-modal2');
+        super(injector, SdsModalComponent, 'sds-modal');
     }
 }

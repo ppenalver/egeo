@@ -14,36 +14,37 @@
    <section class="demo-layout">
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
-         <div class="demo-layout__demo-container__demo--disabled" style="width: 100%">
+         <div class="demo-layout__demo-container__demo">
             <form [formGroup]="myForm" novalidate>
-               <h1>In a form</h1>
-               <div class="example">
-                  <st-textarea name="Disabled" placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
-                               formControlName="disabledField" class="st-form-field" [cols]="50" [rows]="3">
-                  </st-textarea>
-               </div>
-
-               <div class="example">
-
-                  <st-textarea name="enabledFormControl" placeholder="Enter description" value="This is a description" label="Enabled" contextualHelp="This is the contextual help of the components"
-                               formControlName="enabledField" class="st-form-field" [cols]="50" [rows]="3">
-                  </st-textarea>
-               </div>
-
-               <div class="example">
-                  <st-textarea name="requiredField" placeholder="Enter description" value="This is a description" label="Required field" [required]="true"
-                               contextualHelp="This is the contextual help of the components" formControlName="requiredField" class="st-form-field" [cols]="50" [rows]="3">
-                  </st-textarea>
-               </div>
-               <h1>Out a form</h1>
-               <div class="example">
-                  <st-textarea placeholder="Enter description" value="This is a description" label="Description" contextualHelp="This is the contextual help of the components"
-                               [cols]="50" [rows]="3">
-                  </st-textarea>
-               </div>
+               <sds-textarea
+                  name="sds-textarea"
+                  placeholder="Placeholder"
+                  [ngClass]="{'sds-textarea--small': size}"
+                  [label]="label ? 'Label' : ''"
+                  [contextualHelp]="helperErrorText ? 'This is a helper text.' : ''"
+                  [errorMessage]="helperErrorText ? 'Required field. Write something.': ''"
+                  formControlName="textarea"
+                  class="st-form-field"
+                  [rows]="2">
+               </sds-textarea>
             </form>
          </div>
-         <div class="demo-layout__demo-container__demo-config"></div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <st-radio-group [(ngModel)]="size" class="st-inline-group">
+                  <st-radio [value]="0">Regular</st-radio>
+                  <st-radio [value]="1">Small</st-radio>
+               </st-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <st-checkbox [checked]="true" [(ngModel)]="label">Label</st-checkbox>
+               <st-checkbox [(ngModel)]="disabled" (change)="setDisabled()">Disabled</st-checkbox>
+               <st-checkbox [(ngModel)]="required" [disabled]="disabled" (change)="setValidations()">Required (to check error status)</st-checkbox>
+               <st-checkbox [checked]="true" [(ngModel)]="helperErrorText">Helper / Error text</st-checkbox>
+            </div>
+         </div>
       </div>
       <h2 class="demo-layout__title">Design and behaviour</h2>
       <p class="demo-layout__paragraph">Text areas are designed to collect long free text from the user. Typical examples of use could be a description.</p>

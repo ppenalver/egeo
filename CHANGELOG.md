@@ -50,6 +50,8 @@
 * st-spinner: removed "theme" input
 * st-spinner: changed implementation (see demo)
 * st-foreground-notifications: renamed to sds-notification
+* st-textarea: renamed to sds-textarea
+* st-modal2: renamed to sds-modal
 
 **Deprecated:**
 
@@ -590,7 +592,7 @@
 
 * st-bubble: Create component
 * st-button: Add small button style
-* st-input, st-textarea, st-select, st-radio-button, st-checkbox, st-tag-input: Change disabled style
+* st-input, sds-textarea, st-select, st-radio-button, st-checkbox, st-tag-input: Change disabled style
 * st-modal: Set default max and min width
 * st-sidebar: Allow to add any content from outside to header and footer
 * st-dropdown-menu: Allow to add a visual mode in order to display it as option or menu list
@@ -1096,7 +1098,7 @@
 * st-breadcrumb: Apply new style according to UX specifications
 * st-horizontal-tabs: Apply new style according to UX specifications
 * st-select: Apply new style according to UX specifications
-* st-textarea: Apply new style according to UX specifications
+* sds-textarea: Apply new style according to UX specifications
 * st-input: Apply new style according to UX specifications
 * st-input: Refactor styles to can be applied to a native input
 * All: Removed all references old fonts in all components
@@ -1110,7 +1112,7 @@
 * st-table: Added demo
 * st-horizontal-tabs: Added demo
 * st-select: Added demo
-* st-textarea: Added demo
+* sds-textarea: Added demo
 * st-footer: Added demo
 * st-info-card: Added demo
 * st-toggle-buttons: Added demo
@@ -1272,11 +1274,11 @@
 
 ## 2.0.2 (May 05, 2017)
 
-* fix st-textarea borders
+* fix sds-textarea borders
 
 ## 2.0.1 (May 04, 2017)
 
-* fix st-textarea styles
+* fix sds-textarea styles
 
 ## 2.0.0 (May 04, 2017)
 

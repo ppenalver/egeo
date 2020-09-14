@@ -10,11 +10,10 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<label st-label [attr.title]="contextualHelp" class="st-textarea-title"
-       [ngClass]="{error: showErrorValue, active: focus, disabled: isDisabled}" [attr.for]="name">
+<label class="st-group-label sds-textarea-title" [ngClass]="{error: showErrorValue, active: focus, disabled: isDisabled}" [attr.for]="name">
    {{label}}
 </label>
-<textarea class="st-textarea" #textarea
+<textarea class="sds-textarea" #textarea
           (focus)="onFocus($event)"
           (focusout)="onFocusOut($event, false)"
           (blur)="onFocusOut($event, true)"
@@ -28,8 +27,11 @@
       <i class="icon-reload2"></i>
 </span>
 
-<div class="st-textarea-error-layout">
-   <div *ngIf="showErrorValue">
-      <span class="st-textarea-error-message">{{errorMessage}}</span>
+<div class="sds-textarea-error-layout">
+   <div *ngIf="!showErrorValue && contextualHelp">
+      <span class="sds-textarea-helper-message">{{contextualHelp}}</span>
+   </div>
+   <div *ngIf="(showErrorValue && errorMessage)">
+      <span class="sds-textarea-error-message">{{errorMessage}}</span>
    </div>
 </div>

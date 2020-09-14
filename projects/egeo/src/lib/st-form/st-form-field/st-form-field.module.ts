@@ -18,7 +18,7 @@ import { StFormDirectiveModule } from '../../directives/form/form-directives.mod
 import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
 import { StSelectModule } from '../../st-select/st-select.module';
 import { StSwitchModule } from '../../st-switch/st-switch.module';
-import { StTextareaModule } from '../../st-textarea/st-textarea.module';
+import { SdsTextareaModule } from '../../sds-textarea/sds-textarea.module';
 
 @NgModule({
    imports: [CommonModule,
@@ -28,7 +28,7 @@ import { StTextareaModule } from '../../st-textarea/st-textarea.module';
       StCheckboxModule,
       StSelectModule,
       StSwitchModule,
-      StTextareaModule,
+      SdsTextareaModule,
       StFormDirectiveModule],
    declarations: [StFormFieldComponent],
    exports: [StFormFieldComponent]

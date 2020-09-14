@@ -10,16 +10,16 @@
  */
 
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import {StModal2Config, StModal2Type} from '../../../../../egeo/src/lib/st-modal2/st-modal2.model';
+import {SdsModalConfig, SdsModalType} from '../../../../../egeo/src/lib/sds-modal/sds-modal.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
 @Component({
-  selector: 'st-modal2-demo',
-  templateUrl: './st-modal2-demo.component.html',
-  styleUrls: ['./st-modal2-demo.component.scss'],
+  selector: 'sds-modal-demo',
+  templateUrl: './sds-modal-demo.component.html',
+  styleUrls: ['./sds-modal-demo.component.scss'],
    animations: [
       trigger('fade', [
          state('void', style({opacity: 0})),
@@ -29,28 +29,28 @@ import {Subject} from 'rxjs';
       ])
    ]
 })
-export class StModal2DemoComponent implements OnDestroy {
+export class SdsModalDemoComponent implements OnDestroy {
 
-   public modalConfig: StModal2Config;
+   public modalConfig: SdsModalConfig;
    public configForm: FormGroup;
    public showWidthChanged: boolean = false;
    public showHeightChanged: boolean = false;
 
-   public showCloseControlMessage: boolean = false;
-   public showConfirmButtonMessage: boolean = false;
-   public showCancelButtonMessage: boolean = false;
+   public showMessage: boolean = false;
+   public message: string = '';
+   public messageTimeout: any;
    public showModal: boolean = false;
    public configDoc: any = {
-      html: 'demo/st-modal2-demo/st-modal2-demo.component.html',
-      ts: 'demo/st-modal2-demo/st-modal2-demo.component.ts',
-      component: 'lib/st-modal2/st-modal2.component.ts'
+      html: 'demo/sds-modal-demo/sds-modal-demo.component.html',
+      ts: 'demo/sds-modal-demo/sds-modal-demo.component.ts',
+      component: 'lib/sds-modal/sds-modal.component.ts'
    };
    private componentDestroyed$: Subject<void>;
 
 
    constructor(private cd: ChangeDetectorRef, private fb: FormBuilder) {
       this.modalConfig = {
-         modalType: StModal2Type.CUSTOM_CONTENT,
+         modalType: SdsModalType.CUSTOM_CONTENT,
          height: null,
          width: 600,
          closeControl: true,
@@ -65,7 +65,7 @@ export class StModal2DemoComponent implements OnDestroy {
       this.componentDestroyed$ = new Subject();
 
       this.configForm = this.fb.group({
-         modalType: this.fb.control(StModal2Type.CUSTOM_CONTENT),
+         modalType: this.fb.control(SdsModalType.CUSTOM_CONTENT),
          height: this.fb.control(null),
          width: this.fb.control(600),
          closeControl: this.fb.control(true),
@@ -79,7 +79,7 @@ export class StModal2DemoComponent implements OnDestroy {
       this.configForm.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe(() => {
-            const modalConfig: StModal2Config = {
+            const modalConfig: SdsModalConfig = {
                modalType: this.configForm.get('modalType').value,
                closeControl: this.configForm.get('closeControl').value,
                clickOutside: this.configForm.get('clickOutside').value,
@@ -154,29 +154,41 @@ export class StModal2DemoComponent implements OnDestroy {
    }
 
    public onCloseControl(): void {
-      this.showCloseControlMessage = true;
+      this.message = 'Close control pressed...';
+      this.showMessage = true;
 
-      setTimeout(() => {
-         this.showCloseControlMessage = false;
-         this.cd.detectChanges();
+      this.messageTimeout = setTimeout(() => {
+         if (!this.messageTimeout) {
+            this.showMessage = false;
+            this.cd.detectChanges();
+            this.messageTimeout = null;
+         }
       }, 2000);
    }
 
    public onConfirmButton(): void {
-      this.showConfirmButtonMessage = true;
+      this.message = 'Confirm button pressed...';
+      this.showMessage = true;
 
-      setTimeout(() => {
-         this.showConfirmButtonMessage = false;
-         this.cd.detectChanges();
+      this.messageTimeout = setTimeout(() => {
+         if (!this.messageTimeout) {
+            this.showMessage = false;
+            this.cd.detectChanges();
+            this.messageTimeout = null;
+         }
       }, 2000);
    }
 
    public onCancelButton(): void {
-      this.showCancelButtonMessage = true;
+      this.message = 'Cancel button pressed...';
+      this.showMessage = true;
 
-      setTimeout(() => {
-         this.showCancelButtonMessage = false;
-         this.cd.detectChanges();
+      this.messageTimeout = setTimeout(() => {
+         if (!this.messageTimeout) {
+            this.showMessage = false;
+            this.cd.detectChanges();
+            this.messageTimeout = null;
+         }
       }, 2000);
    }
 

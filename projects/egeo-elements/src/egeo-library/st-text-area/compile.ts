@@ -1,10 +1,10 @@
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { StTextAreaElementModule } from './st-text-area.module';
+import { SdsTextareaElementModule } from './st-text-area.module';
 
 enableProdMode();
 
 platformBrowserDynamic()
-    .bootstrapModule(StTextAreaElementModule, { ngZone: 'noop'})
+    .bootstrapModule(SdsTextareaElementModule, { ngZone: 'noop'})
     .catch(err => console.error(err));

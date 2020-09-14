@@ -10,23 +10,25 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule, StTextareaModule } from '@stratio/egeo';
+import {StCheckboxModule, StDemoGeneratorModule, StDocsModule, StRadioModule, SdsTextareaModule} from '@stratio/egeo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StTextareaDemoComponent } from './st-textarea-demo';
+import { SdsTextareaDemoComponent } from './sds-textarea-demo';
 
 @NgModule({
    imports: [
       CommonModule,
-      StTextareaModule,
+      StRadioModule,
+      StCheckboxModule,
+      SdsTextareaModule,
       StDemoGeneratorModule.withComponents({
-         components: [StTextareaDemoComponent]
+         components: [SdsTextareaDemoComponent]
       }),
       FormsModule,
       ReactiveFormsModule,
       StDocsModule
    ],
-   declarations: [StTextareaDemoComponent],
+   declarations: [SdsTextareaDemoComponent],
    providers: []
 })
-export class StTextareaDemoModule { }
+export class SdsTextareaDemoModule { }

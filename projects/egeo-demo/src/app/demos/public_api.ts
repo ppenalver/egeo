@@ -42,7 +42,7 @@ export { StSwitchDemoModule } from './st-switch-demo/st-switch-demo.module';
 export { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 export { StDynamicTableDemoModule } from './st-dynamic-table-demo/st-dynamic-table-demo.module';
 export { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
-export { StTextareaDemoModule } from './st-textarea-demo/st-textarea-demo.module';
+export { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 export { StToggleButtonsDemoModule } from './st-toggle-buttons-demo/st-toggle-buttons-demo.module';
 export { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
 export { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-two-list-selection-demo.module';

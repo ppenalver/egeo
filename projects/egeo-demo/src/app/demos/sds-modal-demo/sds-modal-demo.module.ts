@@ -11,8 +11,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {StCheckboxModule, StDemoGeneratorModule, StDocsModule, StInputModule, StRadioModule} from '@stratio/egeo';
-import { StModal2DemoComponent } from './st-modal2-demo.component';
-import { StModal2Module } from '@stratio/egeo';
+import { SdsModalDemoComponent } from './sds-modal-demo.component';
+import { SdsModalModule } from '@stratio/egeo';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
@@ -23,13 +23,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         StRadioModule,
         StInputModule,
         StCheckboxModule,
-        StModal2Module,
-        StDemoGeneratorModule.withComponents({components: [StModal2DemoComponent]}),
+        SdsModalModule,
+        StDemoGeneratorModule.withComponents({components: [SdsModalDemoComponent]}),
         StDocsModule,
         ReactiveFormsModule
     ],
-   declarations: [StModal2DemoComponent],
+   declarations: [SdsModalDemoComponent],
    providers: []
 })
-export class StModal2DemoModule { }
+export class SdsModalDemoModule { }
 

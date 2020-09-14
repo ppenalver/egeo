@@ -10,7 +10,7 @@
  */
 import { TranslateableElement } from '../utils/egeo-resolver/egeo-resolve-model';
 
-export interface StTextareaError {
+export interface SdsTextareaError {
    generic?: string;
    required?: string;
    minLength?: string;
@@ -18,7 +18,7 @@ export interface StTextareaError {
    pattern?: string;
 }
 
-export interface StTextareaErrorSchema {
+export interface SdsTextareaErrorSchema {
    generic?: TranslateableElement;
    required?: TranslateableElement;
 }

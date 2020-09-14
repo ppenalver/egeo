@@ -10,11 +10,11 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StModal2Component } from './st-modal2.component';
+import { SdsModalComponent } from './sds-modal.component';
 
 @NgModule({
    imports: [CommonModule],
-   declarations: [StModal2Component],
-   exports: [StModal2Component]
+   declarations: [SdsModalComponent],
+   exports: [SdsModalComponent]
 })
-export class StModal2Module { }
+export class SdsModalModule { }

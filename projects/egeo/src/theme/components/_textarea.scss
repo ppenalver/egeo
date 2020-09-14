@@ -8,20 +8,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '~@stratio/egeo-themes/dist/stratio/constants';
-@import '../utils/forms';
 
-.st-textarea {
-    @extend %st-form-control;
- }
-
-.st-textarea-error-message {
-   font-size: $egeo-font-size-12;
-   color: var(--egeo-theme-error, $error);
-}
-
-st-textarea > .st-form-control-reset-button {
-   top: 10px;
-}
 
 

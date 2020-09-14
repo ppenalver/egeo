@@ -18,8 +18,7 @@ import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
    declarations: [StLabelComponent],
    exports: [StLabelComponent],
    imports: [
-      CommonModule,
-      StTooltipModule
+      CommonModule
    ]
 })
 

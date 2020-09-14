@@ -27,7 +27,7 @@ import { StInputModule } from './st-input/st-input.module';
 import { StItemListModule } from './st-item-list/st-item-list.module';
 import { StLabelModule } from './st-label/index';
 import { StModalModule } from './st-modal/st-modal.module';
-import { StModal2Module } from './st-modal2/st-modal2.module';
+import { SdsModalModule } from './sds-modal/sds-modal.module';
 import { StPaginationModule } from './st-pagination/st-pagination.module';
 import { StPopModule } from './st-pop/st-pop.module';
 import { StPopOverModule } from './st-pop-over/st-pop-over.module';
@@ -42,7 +42,7 @@ import { StSpinnerModule } from './st-spinner/st-spinner.module';
 import { StSwitchModule } from './st-switch/st-switch.module';
 import { StTableModule } from './st-table/st-table.module';
 import { StTagInputModule } from './st-tag-input/st-tag-input.module';
-import { StTextareaModule } from './st-textarea/st-textarea.module';
+import { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
 import { StToggleButtonsModule } from './st-toggle-buttons/st-toggle-buttons.module';
 import { StTooltipModule } from './st-tooltip/st-tooltip.module';
 import { StTwoListSelectionModule } from './st-two-list-selection/st-two-list-selection.module';
@@ -76,7 +76,7 @@ export const DECLARATIONS: any[] = [
    StItemListModule,
    StLabelModule,
    StModalModule,
-   StModal2Module,
+   SdsModalModule,
    StPaginationModule,
    StPopModule,
    StPrismModule,
@@ -92,7 +92,7 @@ export const DECLARATIONS: any[] = [
    StDynamicTableModule,
    StTableModule,
    StTagInputModule,
-   StTextareaModule,
+   SdsTextareaModule,
    StToggleButtonsModule,
    StTooltipModule,
    StTwoListSelectionModule,

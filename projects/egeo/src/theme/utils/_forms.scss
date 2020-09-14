@@ -41,7 +41,7 @@
       border-color: var(--egeo-theme-space-70, $space-70);
    }
 
-   &:focus {
+   &:not(.error):focus {
       @extend %st-form-control--focused;
    }
 }

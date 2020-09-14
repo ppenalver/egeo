@@ -39,8 +39,8 @@ export class StToggleButtonsDemoComponent {
    public tabNumbers: boolean = false;
    public disabled: boolean;
    public description: string = 'Label';
-   public selectedTabMessage: string = '';
-   public showSelectedTabMessage: boolean = false;
+   public selectedTabMessage: string = 'Example 1 is pressed.';
+   public showSelectedTabMessage: boolean = true;
 
    private messageTimeout: any;
 
@@ -76,7 +76,7 @@ export class StToggleButtonsDemoComponent {
    }
 
    onSelectTab(tab: StToggleButton): void {
-      this.selectedTabMessage = tab.label + ' was pressed.';
+      this.selectedTabMessage = tab.label + ' is pressed.';
       this.showSelectedTabMessage = true;
       this.cd.detectChanges();
 

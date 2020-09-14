@@ -25,7 +25,7 @@
                (select)="onSelectTab($event)"
                qaTag="toggle-buttons">
             </st-toggle-buttons>
-            <div [@fade] *ngIf="showSelectedTabMessage" class="close-pressed-message">
+            <div class="close-pressed-message">
                {{selectedTabMessage}}
             </div>
          </div>
@@ -37,10 +37,10 @@
             <div>
                <h1>Options</h1>
                <st-checkbox name="tabNumbers" [(ngModel)]="showLabel">
-                  <span>Show label</span>
+                  <span>Label</span>
                </st-checkbox>
                <st-checkbox name="tabNumbers" [(ngModel)]="tabNumbers">
-                  <span>Show tab numbers</span>
+                  <span>Tab numbers</span>
                </st-checkbox>
                <st-checkbox name="disabled" [(ngModel)]="disabled">
                   <span>Disabled</span>
