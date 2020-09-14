@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {EGEO_DEMO_MENU, EGEO_DEMO_MENU_SDS, EgeoDemoMenu} from '@app/demos/demos.routes';
+import {EGEO_DEMO_MENU, EGEO_DEMO_MENU_SDS, EGEO_DEMO_MENU_SDS_VERIFIED, EgeoDemoMenu} from '@app/demos/demos.routes';
 
 import { DemoSideMenu } from '../../../shared/menu/menu.model';
 import {ActivationEnd, Router} from '@angular/router';
@@ -57,6 +57,12 @@ export class DemoLayoutComponent implements OnInit, OnDestroy {
          .map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
    }
 
+   public get demoMenuSdsVerified(): DemoSideMenu[] {
+      return EGEO_DEMO_MENU_SDS_VERIFIED
+         .sort((a, b) => a.name > b.name ? 1 : -1)
+         .map(_ => ({ label: _.name, url: `/components/demo/${_.path}` }));
+   }
+
    public get demoMenu(): DemoSideMenu[] {
       return EGEO_DEMO_MENU
          .sort((a, b) => a.name > b.name ? 1 : -1)
@@ -64,7 +70,7 @@ export class DemoLayoutComponent implements OnInit, OnDestroy {
    }
 
    public updateDemoTitle(demo: DemoSideMenu): void {
-      const demoTitle = EGEO_DEMO_MENU.concat(EGEO_DEMO_MENU_SDS).find((d) => d.name === demo.label);
+      const demoTitle = EGEO_DEMO_MENU.concat(EGEO_DEMO_MENU_SDS).concat(EGEO_DEMO_MENU_SDS_VERIFIED).find((d) => d.name === demo.label);
       this.title = demoTitle ? demoTitle.name : '';
    }
 }

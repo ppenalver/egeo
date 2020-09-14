@@ -8,13 +8,22 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { StToggleButton } from '@stratio/egeo';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
    selector: 'st-toggle-buttons-demo',
    templateUrl: './st-toggle-buttons-demo.html',
-   styleUrls: ['./st-toggle-buttons-demo.scss']
+   styleUrls: ['./st-toggle-buttons-demo.scss'],
+   animations: [
+      trigger('fade', [
+         state('void', style({opacity: 0})),
+         state('*', style({opacity: 1})),
+         transition(':enter', [animate(300)]),
+         transition(':leave', [animate(300)])
+      ])
+   ]
 })
 
 export class StToggleButtonsDemoComponent {
@@ -26,21 +35,27 @@ export class StToggleButtonsDemoComponent {
    public tabs: StToggleButton[];
    public sizeOptions: any;
    public activeSizeOption: any;
+   public showLabel: boolean = true;
+   public tabNumbers: boolean = false;
    public disabled: boolean;
-   public description: string = 'My tabs: ';
+   public description: string = 'Label';
+   public selectedTabMessage: string = '';
+   public showSelectedTabMessage: boolean = false;
 
-   constructor() {
+   private messageTimeout: any;
+
+   constructor(private cd: ChangeDetectorRef) {
       this.tabs = [
          {
-            label: 'Tab1',
+            label: 'Example 1',
             number: 5,
             active: true
          }, {
-            label: 'Tab2',
+            label: 'Example 2',
             number: 10,
             active: false
          }, {
-            label: 'Tab3',
+            label: 'Example 3',
             number: 1,
             active: false
          }
@@ -49,18 +64,30 @@ export class StToggleButtonsDemoComponent {
 
       this.sizeOptions = [
          {
-            label: 'Small',
-            value: 'small'
+            label: 'Regular',
+            value: 'regular'
          },
          {
-            label: 'Large',
-            value: 'large'
+            label: 'Small',
+            value: 'small'
          }
       ];
       this.activeSizeOption = this.sizeOptions[0];
    }
 
    onSelectTab(tab: StToggleButton): void {
-      console.log('Selected tab: ' + tab.label);
+      this.selectedTabMessage = tab.label + ' was pressed.';
+      this.showSelectedTabMessage = true;
+      this.cd.detectChanges();
+
+      clearTimeout(this.messageTimeout);
+      this.messageTimeout = null;
+
+      this.messageTimeout = setTimeout(() => {
+         if (this.messageTimeout) {
+            this.showSelectedTabMessage = false;
+            this.cd.detectChanges();
+         }
+      }, 2000);
    }
 }

@@ -10,6 +10,7 @@
  */
 import { Component } from '@angular/core';
 import { CssProperty } from '@app/shared/css-property-table/css-property-table.model';
+import {RadioChange} from '@stratio/egeo';
 
 @Component({
    selector: 'st-spinner-demo',
@@ -17,7 +18,7 @@ import { CssProperty } from '@app/shared/css-property-table/css-property-table.m
    styleUrls: ['./st-spinner-demo.component.scss']
 })
 export class StSpinnerDemoComponent {
-   public spinnerBackground: number = 1;
+   public spinnerBackground: number = 0;
    public spinnerDisplay: number = 1;
    public spinnerColor: number = 1;
    public spinnerSize: number = 1;
@@ -51,5 +52,11 @@ export class StSpinnerDemoComponent {
          default: '$action'
       }
    ];
+
+   public onSpinnerColorChange(event: RadioChange): void {
+      if (event.value === 2) {
+         this.spinnerBackground = 1;
+      }
+   }
 
 }

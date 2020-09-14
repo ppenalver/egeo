@@ -16,10 +16,10 @@ import {
    ElementRef,
    EventEmitter,
    HostListener,
-   Input,
+   Input, OnChanges,
    OnInit,
    Output,
-   Renderer2,
+   Renderer2, SimpleChanges,
    ViewChild
 } from '@angular/core';
 import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
@@ -37,18 +37,19 @@ import {StModal2Config, StModal2Type} from './st-modal2.model';
          state('void, hidden', style({ opacity: 0 })),
          state('visible', style({ opacity: 1 })),
          transition('* => visible', [
-            animate('{{animationTime}}')
+            animate('400ms')
          ]),
          transition('* => hidden, * => void', [
-            animate('{{animationTime}}')
+            animate('400ms')
          ])
       ])
    ]
 })
-export class StModal2Component implements OnInit {
+export class StModal2Component implements OnInit, OnChanges {
    @ViewChild('modalContainer', {static: false}) modalContainer: ElementRef;
    @ViewChild('modal', {static: false}) modal: ElementRef;
 
+   @Input() hotRender: boolean;
    @Input() modalConfig: StModal2Config;
    @Input()
    get showModal(): boolean {
@@ -87,10 +88,12 @@ export class StModal2Component implements OnInit {
    public enabledAnimation: boolean;
    public animationTime: number;
    public modalTitle: string;
-   public showStandardHeader: boolean;
-   public showStandardActions: boolean;
+   public showDefaultHeader: boolean;
 
-   private ESCAPE_KEYCODE: number = 27;
+   private readonly ESCAPE_KEYCODE: number = 27;
+   private readonly MINIMUM_WIDTH: number = 300;
+   private readonly MINIMUM_HEIGHT: number = 200;
+
 
    @HostListener('document:keydown', ['$event']) onKeydownHandler(event: KeyboardEvent): void {
       if (event.keyCode === this.ESCAPE_KEYCODE) {
@@ -107,6 +110,7 @@ export class StModal2Component implements OnInit {
       this.visibility = 'visible';
       this.modalTypes = StModal2Type;
       this.showModalHTML = false;
+      this.hotRender = false;
       this.animationTime = 300;
       this.closeEscape = new EventEmitter();
       this.closeControl = new EventEmitter();
@@ -117,6 +121,12 @@ export class StModal2Component implements OnInit {
 
    public ngOnInit(): void {
       if (this.modalConfig) {
+         this.processConfiguration();
+      }
+   }
+
+   public ngOnChanges(changes: SimpleChanges): void {
+      if (this.hotRender && changes.modalConfig && changes.modalConfig.currentValue) {
          this.processConfiguration();
       }
    }
@@ -136,31 +146,34 @@ export class StModal2Component implements OnInit {
    private processConfiguration(): void {
       this.modalType = this.modalConfig.modalType;
       this.actionButtonLabel = this.modalConfig.actionButtonLabel ? this.modalConfig.actionButtonLabel : 'Save';
-      this.cancelButtonLabel = this.modalConfig.cancelButtonLabel ? this.modalConfig.actionButtonLabel : 'Cancel';
+      this.cancelButtonLabel = this.modalConfig.cancelButtonLabel ? this.modalConfig.cancelButtonLabel : 'Cancel';
       this.showCloseControl = !!this.modalConfig.closeControl;
       this.isFullWindow = !!this.modalConfig.fullWindow;
       this.allowClickOutside = !!this.modalConfig.clickOutside;
       this.enabledAnimation = !!this.modalConfig.enableAnimation;
       this.animationTime = this.modalConfig.animationTime ? this.modalConfig.animationTime : 300;
       this.modalTitle = this.modalConfig.title ? this.modalConfig.title : '';
-      this.showStandardHeader = !!this.modalConfig.showStandardHeader;
-      this.showStandardActions = !!this.modalConfig.showStandardActions;
+      this.showDefaultHeader = !!this.modalConfig.showDefaultHeader;
 
       if (this.modalType === StModal2Type.WARNING || this.modalType === StModal2Type.ERROR) {
          this.showHeaderIcon = true;
       }
 
-      if (this.isFullWindow) {
-         this.renderer.setStyle(this.modal.nativeElement, 'width', '100%');
-         this.renderer.setStyle(this.modal.nativeElement, 'height', '100%');
-      } else {
-         if (this.modalConfig.width) {
-            const renderWidth = this.modalConfig.width > window.innerWidth ? window.innerWidth : this.modalConfig.width;
-            this.renderer.setStyle(this.modal.nativeElement, 'width', renderWidth + 'px');
-         }
+      if (!this.hotRender && this.modal) {
+         if (this.isFullWindow) {
+            this.renderer.setStyle(this.modal.nativeElement, 'width', '100%');
+            this.renderer.setStyle(this.modal.nativeElement, 'height', '100%');
+         } else {
+            const modalWidth = this.modalConfig.width ?? this.MINIMUM_WIDTH;
+            const modalHeight = this.modalConfig.height ?? this.MINIMUM_HEIGHT;
 
-         if (this.modalConfig.height) {
-            const renderHeight = this.modalConfig.height > window.innerHeight ? window.innerHeight : this.modalConfig.height;
+            let renderWidth = modalWidth > window.innerWidth ? window.innerWidth : this.modalConfig.width;
+            renderWidth = renderWidth < this.MINIMUM_WIDTH ? this.MINIMUM_WIDTH : renderWidth;
+
+            let renderHeight = modalHeight > window.innerHeight ? window.innerHeight : this.modalConfig.height;
+            renderHeight = renderHeight < this.MINIMUM_HEIGHT ? this.MINIMUM_HEIGHT : renderHeight;
+
+            this.renderer.setStyle(this.modal.nativeElement, 'width', renderWidth + 'px');
             this.renderer.setStyle(this.modal.nativeElement, 'height', renderHeight + 'px');
          }
       }

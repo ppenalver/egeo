@@ -17,21 +17,31 @@
          <div class="demo-layout__demo-container__demo">
             <st-toggle-buttons
                class="toggle-buttons"
-               [ngClass]="{'st-toggle-buttons--large': activeSizeOption === 'large'}"
+               [ngClass]="{'st-toggle-buttons--small': activeSizeOption === 'small'}"
                [disabled]="disabled"
                [tabs]="tabs"
-               [description]="description"
+               [showTabNumber]="tabNumbers"
+               [description]="showLabel && 'Label'"
                (select)="onSelectTab($event)"
                qaTag="toggle-buttons">
             </st-toggle-buttons>
+            <div [@fade] *ngIf="showSelectedTabMessage" class="close-pressed-message">
+               {{selectedTabMessage}}
+            </div>
          </div>
          <div class="demo-layout__demo-container__demo-config">
             <div class="st-inline-group">
                <h1>Size</h1>
-               <st-radio *ngFor="let sizeOption of sizeOptions" [value]="sizeOption.value" [checked]="sizeOption.value === 'small'" (change)="activeSizeOption = $event.value">{{sizeOption.label}}</st-radio>
+               <st-radio *ngFor="let sizeOption of sizeOptions" [value]="sizeOption.value" [checked]="sizeOption.value === 'regular'" (change)="activeSizeOption = $event.value">{{sizeOption.label}}</st-radio>
             </div>
             <div>
                <h1>Options</h1>
+               <st-checkbox name="tabNumbers" [(ngModel)]="showLabel">
+                  <span>Show label</span>
+               </st-checkbox>
+               <st-checkbox name="tabNumbers" [(ngModel)]="tabNumbers">
+                  <span>Show tab numbers</span>
+               </st-checkbox>
                <st-checkbox name="disabled" [(ngModel)]="disabled">
                   <span>Disabled</span>
                </st-checkbox>

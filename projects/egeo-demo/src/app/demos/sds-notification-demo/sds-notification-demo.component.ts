@@ -10,10 +10,10 @@
  */
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {
-   StNotificationDisplayOptions,
-   StNotificationIcon,
-   StNotificationPosition,
-   StNotificationType
+   SdsNotificationDisplayOptions,
+   SdsNotificationIcon,
+   SdsNotificationPosition,
+   SdsNotificationType
 } from '../../../../../egeo/src/lib/sds-notification/sds-notification.model';
 import {Subject} from 'rxjs';
 import {SdsNotificationService} from '../../../../../egeo/src/lib/sds-notification/sds-notification.service';
@@ -44,27 +44,27 @@ export class SdsNotificationDemoComponent {
    public typeOptions: any = [
       {
          label: 'Info (default)',
-         value: StNotificationType.INFO
+         value: SdsNotificationType.INFO
       },
       {
          label: 'Success',
-         value: StNotificationType.SUCCESS
+         value: SdsNotificationType.SUCCESS
       },
       {
          label: 'Warning',
-         value: StNotificationType.WARNING
+         value: SdsNotificationType.WARNING
       },
       {
          label: 'Critical',
-         value: StNotificationType.CRITICAL
+         value: SdsNotificationType.CRITICAL
       }
    ];
-   public activeType: StNotificationType = StNotificationType.INFO;
+   public activeType: SdsNotificationType = SdsNotificationType.INFO;
 
    public iconOptions: any = [
       {
          label: 'Default icon',
-         value: StNotificationIcon.DEFAULT
+         value: SdsNotificationIcon.DEFAULT
       },
       {
          label: 'Custom icon',
@@ -72,10 +72,10 @@ export class SdsNotificationDemoComponent {
       },
       {
          label: 'No icon',
-         value: StNotificationIcon.NONE
+         value: SdsNotificationIcon.NONE
       }
    ];
-   public activeIconOption: StNotificationType | string = StNotificationIcon.DEFAULT;
+   public activeIconOption: SdsNotificationType | string = SdsNotificationIcon.DEFAULT;
 
    public customIconsOptions: any = [
       {
@@ -100,39 +100,39 @@ export class SdsNotificationDemoComponent {
    public positionOptions: any = [
       {
          label: 'top left',
-         value: StNotificationPosition.TOP_LEFT
+         value: SdsNotificationPosition.TOP_LEFT
       },
       {
          label: 'top center',
-         value: StNotificationPosition.TOP_CENTER
+         value: SdsNotificationPosition.TOP_CENTER
       },
       {
          label: 'top right',
-         value: StNotificationPosition.TOP_RIGHT
+         value: SdsNotificationPosition.TOP_RIGHT
       },
       {
          label: 'center left',
-         value: StNotificationPosition.CENTER_LEFT
+         value: SdsNotificationPosition.CENTER_LEFT
       },
       {
          label: 'center center',
-         value: StNotificationPosition.CENTER_CENTER
+         value: SdsNotificationPosition.CENTER_CENTER
       },
       {
          label: 'center right',
-         value: StNotificationPosition.CENTER_RIGHT
+         value: SdsNotificationPosition.CENTER_RIGHT
       },
       {
          label: 'bottom left',
-         value: StNotificationPosition.BOTTOM_LEFT
+         value: SdsNotificationPosition.BOTTOM_LEFT
       },
       {
          label: 'bottom center',
-         value: StNotificationPosition.BOTTOM_CENTER
+         value: SdsNotificationPosition.BOTTOM_CENTER
       },
       {
          label: 'bottom right',
-         value: StNotificationPosition.BOTTOM_RIGHT
+         value: SdsNotificationPosition.BOTTOM_RIGHT
       }
    ];
 
@@ -160,7 +160,7 @@ export class SdsNotificationDemoComponent {
    public showMarginChanged: boolean;
    public showWidthChanged: boolean;
    public configForm: FormGroup;
-   public notificationsConfig: StNotificationDisplayOptions;
+   public notificationsConfig: SdsNotificationDisplayOptions;
    public showCloseControlMessage: boolean = false;
 
    private componentDestroyed$: Subject<void>;
@@ -168,7 +168,7 @@ export class SdsNotificationDemoComponent {
    constructor(private cd: ChangeDetectorRef, private _notifications: SdsNotificationService, private fb: FormBuilder) {
       this.componentDestroyed$ = new Subject();
       this.notificationsConfig = {...this._notifications.DEFAULT_CONFIG};
-      this.notificationsConfig.message = 'Testing <a href="https://www.google.es">Ir a google</a>';
+      this.notificationsConfig.message = 'Notification message.';
       this.notificationsConfig.positionReference = '#main';
       this.configForm = this.fb.group({
          type: this.fb.control(this.notificationsConfig.notificationType),
@@ -192,7 +192,7 @@ export class SdsNotificationDemoComponent {
       this.configForm.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((e) => {
-            const notificationConfig: StNotificationDisplayOptions = {
+            const notificationConfig: SdsNotificationDisplayOptions = {
                notificationType: this.configForm.get('type').value,
                message: this.configForm.get('message').value,
                notificationIcon: this.configForm.get('icon').value,
@@ -248,11 +248,11 @@ export class SdsNotificationDemoComponent {
 
    public displayVariousNotifications(): void {
       this._notifications.addNotification({
-         notificationType: StNotificationType.SUCCESS,
+         notificationType: SdsNotificationType.SUCCESS,
          message: 'This is a success notification',
          notificationIcon: 'icon-cog',
          closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_CENTER,
+         position: SdsNotificationPosition.TOP_CENTER,
          positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
@@ -265,11 +265,11 @@ export class SdsNotificationDemoComponent {
       });
 
       this._notifications.addNotification({
-         notificationType: StNotificationType.CRITICAL,
+         notificationType: SdsNotificationType.CRITICAL,
          message: 'This is a critical notification',
          notificationIcon: 'icon-plane',
          closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_CENTER,
+         position: SdsNotificationPosition.TOP_CENTER,
          positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,
@@ -282,11 +282,11 @@ export class SdsNotificationDemoComponent {
       });
 
       this._notifications.addNotification({
-         notificationType: StNotificationType.WARNING,
+         notificationType: SdsNotificationType.WARNING,
          message: 'This is a warning notification',
          notificationIcon: 'icon-cog',
          closeIcon: this.notificationsConfig.closeIcon,
-         position: StNotificationPosition.TOP_CENTER,
+         position: SdsNotificationPosition.TOP_CENTER,
          positionReference: '#main',
          timeout: this.notificationsConfig.timeout,
          multipleTimeout: this.notificationsConfig.multipleTimeout,

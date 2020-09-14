@@ -17,6 +17,8 @@
 
 /// STYLES:
 .st-checkbox {
+   display: flex;
+   align-items: center;
    position: relative;
    cursor: pointer;
    width: fit-content;
@@ -44,6 +46,7 @@
       width: 16px;
       left: 0;
       top: 2px;
+
       border: 1px solid transparent;
    }
 

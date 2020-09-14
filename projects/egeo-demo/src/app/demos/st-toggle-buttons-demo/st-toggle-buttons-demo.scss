@@ -10,33 +10,14 @@
  */
 
  .toggle-buttons{
-   padding: 20px 0;
    display: block;
 }
 
-.demo-container {
-   margin-top: 30px;
-   display: flex;
-
-   .demo {
-      min-width: 400px;
-      max-width: 400px;
-      margin-right: 80px;
-   }
-
-   .demo-config {
-      flex: 1;
-
-      & > * {
-         margin-bottom: 24px;
-      }
-   }
+.close-pressed-message {
+   font-size: 18px;
+   font-weight: 200;
+   margin-top: 50px;
+   opacity: 1;
+   transition: opacity .4s ease-in-out;
 }
 
-.demo-label {
-   font-size: 21px;
-   line-height: 33.6px;
-   letter-spacing: normal;
-   color: #0f1b27;
-   margin-top: 32px;
-}

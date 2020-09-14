@@ -18,24 +18,28 @@ export class EgeoDemoMenu {
    moduleLazyLoad: string;
 }
 
-export const EGEO_DEMO_MENU_SDS: EgeoDemoMenu[] = [
-   { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
-   { id: 'st-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'StTextareaDemoModule' },
+export const EGEO_DEMO_MENU_SDS_VERIFIED: EgeoDemoMenu[] = [
    { id: 'st-checkbox', name: 'Checkbox', path: 'checkbox-demo', moduleLazyLoad: 'StCheckboxDemoModule' },
    { id: 'st-radio', name: 'Radio Button', path: 'radio-demo', moduleLazyLoad: 'StRadioDemoModule' },
    { id: 'st-switch', name: 'Switch', path: 'switch-demo', moduleLazyLoad: 'StSwitchDemoModule' },
+   { id: 'st-toggle-buttons', name: 'Toggle Button', path: 'toggle-buttons-demo', moduleLazyLoad: 'StToggleButtonsDemoModule' },
+   { id: 'st-spinner', name: 'Spinner', path: 'spinner-demo', moduleLazyLoad: 'StSpinnerDemoModule' },
+   { id: 'st-modal2', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'StModal2DemoModule' },
+   { id: 'sds-notification', name: 'Notification',
+      path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' }
+];
+
+
+export const EGEO_DEMO_MENU_SDS: EgeoDemoMenu[] = [
+   { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
+   { id: 'st-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'StTextareaDemoModule' },
    { id: 'st-button', name: 'Button', path: 'button-demo', moduleLazyLoad: 'StButtonDemoModule' },
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
-   { id: 'st-toggle-buttons', name: 'Toggle Button', path: 'toggle-buttons-demo', moduleLazyLoad: 'StToggleButtonsDemoModule' },
    { id: 'st-horizontal-tabs', name: 'Tab', path: 'horizontal-tabs-demo', moduleLazyLoad: 'StHorizontalTabsModule' },
    { id: 'st-dropdown-menu', name: 'Dropdown Menu', path: 'dropdown-menu-demo', moduleLazyLoad: 'StDropdownMenuDemoModule' },
    { id: 'st-tag', name: 'Tag', path: 'tag-demo', moduleLazyLoad: 'StTagDemoModule' },
-   { id: 'st-spinner', name: 'Spinner', path: 'spinner-demo', moduleLazyLoad: 'StSpinnerDemoModule' },
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
-   { id: 'sds-notification', name: 'Notification',
-      path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' },
    { id: 'st-tooltip', name: 'Tooltip', path: 'tooltip-demo', moduleLazyLoad: 'StTooltipDemoModule' },
-   { id: 'st-modal2', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'StModal2DemoModule' },
    { id: 'st-breadcrumbs', name: 'Breadcrumb', path: 'breadcrumbs', moduleLazyLoad: 'StBreadcrumbsDemoModule' },
    { id: 'st-alerts', name: 'Alert', path: 'alerts-demo', moduleLazyLoad: 'StAlertsDemoModule' },
    { id: 'st-table', name: 'Table', path: 'table-demo', moduleLazyLoad: 'StTableDemoModule' },

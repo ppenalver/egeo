@@ -24,11 +24,11 @@ import {
    ViewChild
 } from '@angular/core';
 import {
-   StNotificationDisplayOptions,
-   StNotificationIcon,
-   StNotificationPosition,
-   StNotificationTriggerOptions,
-   StNotificationType
+   SdsNotificationDisplayOptions,
+   SdsNotificationIcon,
+   SdsNotificationPosition,
+   SdsNotificationTriggerOptions,
+   SdsNotificationType
 } from './sds-notification.model';
 import {Subject} from 'rxjs';
 import {SdsNotificationService} from './sds-notification.service';
@@ -77,7 +77,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    @Input() hotRender: boolean;
 
    /** @Input {config} [config={}'] Notification's config */
-   @Input() config: StNotificationDisplayOptions;
+   @Input() config: SdsNotificationDisplayOptions;
 
    /** @output {autoClose} [EventEmitter] Event emitted when user clicks on close icon */
    @Output() autoClose: EventEmitter<void> = new EventEmitter();
@@ -90,9 +90,9 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    public showNotification: boolean;
    public message: string;
    public closeIcon: boolean;
-   public notificationType: StNotificationType;
-   public notificationIcon: StNotificationIcon | string;
-   public position: StNotificationPosition;
+   public notificationType: SdsNotificationType;
+   public notificationIcon: SdsNotificationIcon | string;
+   public position: SdsNotificationPosition;
    public positionReference: string;
    public timeout: number;
    public infoTimeout: number;
@@ -102,8 +102,8 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    public multipleTimeout: number;
    public margin: number;
    public maxWidth: string;
-   public stNotificationType: typeof StNotificationType;
-   public stNotificationIcon: typeof StNotificationIcon;
+   public stNotificationType: typeof SdsNotificationType;
+   public stNotificationIcon: typeof SdsNotificationIcon;
 
    private isMultiple: boolean;
    private visibilityTimeout: number;
@@ -133,8 +133,8 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
       private renderer: Renderer2,
       private _notifications: SdsNotificationService
    ) {
-      this.stNotificationIcon = StNotificationIcon;
-      this.stNotificationType = StNotificationType;
+      this.stNotificationIcon = SdsNotificationIcon;
+      this.stNotificationType = SdsNotificationType;
       this.config = {};
       this.showNotification = false;
       this.hotRender = false;
@@ -208,7 +208,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
          });
    }
 
-   private triggerNotification(triggerOptions: StNotificationTriggerOptions): void {
+   private triggerNotification(triggerOptions: SdsNotificationTriggerOptions): void {
       const {notificationOptions, isMultiple} = triggerOptions;
       this.isMultiple = isMultiple;
       this.showNotification = true;
@@ -299,7 +299,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
       return leftValue;
    }
 
-   private processConfiguration(config: StNotificationDisplayOptions = this.config): void {
+   private processConfiguration(config: SdsNotificationDisplayOptions = this.config): void {
       const defaultConfig = this._notifications.DEFAULT_CONFIG;
 
       this.message = config.message ? config.message : defaultConfig.message;
@@ -333,10 +333,10 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
       }
 
       const auxMap = {
-         [StNotificationType.INFO]: this.infoTimeout,
-         [StNotificationType.SUCCESS]: this.successTimeout,
-         [StNotificationType.WARNING]: this.warningTimeout,
-         [StNotificationType.CRITICAL]: this.criticalTimeout
+         [SdsNotificationType.INFO]: this.infoTimeout,
+         [SdsNotificationType.SUCCESS]: this.successTimeout,
+         [SdsNotificationType.WARNING]: this.warningTimeout,
+         [SdsNotificationType.CRITICAL]: this.criticalTimeout
       };
       return auxMap[this.notificationType];
    }

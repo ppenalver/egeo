@@ -20,6 +20,7 @@ import {
 
 import { StToggleButtonsDemoComponent } from './st-toggle-buttons-demo';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
    imports: [

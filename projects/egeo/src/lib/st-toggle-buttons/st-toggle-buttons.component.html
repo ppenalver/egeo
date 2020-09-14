@@ -10,10 +10,11 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
+<div *ngIf="description" class="st-group-label">
+   {{description}}
+</div>
 <section class="st-toggle-buttons">
-   <div *ngIf="description" class="st-toggle-buttons__description sth-toggle-buttons__description">
-      {{description}}
-   </div>
+
    <div class="st-toggle-buttons__buttons sth-toggle-buttons__buttons">
       <button
          *ngFor="let tab of parsedTabs; let i = index;"
@@ -23,7 +24,7 @@
          class="st-toggle-buttons__button sth-toggle-buttons__button"
          [ngClass]="{'st-toggle-buttons__button--active': tab.active, 'sth-toggle-buttons__button--active': tab.active}">
             {{tab.label}}
-            <span *ngIf="tab.number?.toFixed">({{tab.number}})</span>
+            <span *ngIf="showTabNumber && tab.number?.toFixed">({{tab.number}})</span>
       </button>
    </div>
 </section>

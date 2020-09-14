@@ -20,7 +20,8 @@ import { DemoSideMenu } from './menu.model';
 export class MenuComponent implements OnInit {
 
    @Input() options: DemoSideMenu[] = [];
-   @Input() sdsOptions: DemoSideMenu[] = [];
+   @Input() sdsOptionsVerified: DemoSideMenu[] = [];
+   @Input() sdsOptionsPending: DemoSideMenu[] = [];
    @Output() selected: EventEmitter<DemoSideMenu> = new EventEmitter<DemoSideMenu>();
 
    constructor(private _router: Router) {
@@ -28,7 +29,7 @@ export class MenuComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      const currentDemo = this.options.concat(this.sdsOptions).find(d => d.url === this._router.url);
+      const currentDemo = this.options.concat(this.sdsOptionsPending).concat(this.sdsOptionsVerified).find(d => d.url === this._router.url);
       if (currentDemo) {
          this.selected.emit(currentDemo);
       }

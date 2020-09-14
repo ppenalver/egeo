@@ -32,7 +32,6 @@ st-table {
 td > .icon-ellipsis {
    cursor: pointer;
    font-size: $egeo-font-size-16;
-   line-height: 20px;
    vertical-align: middle;
 }
 
@@ -51,7 +50,6 @@ td > .icon-ellipsis {
    font-size: $egeo-font-size-20;
    font-style: normal;
    font-stretch: normal;
-   line-height: $egeo-line-height-24;
    letter-spacing: normal;
    color: $neutral;
    padding: 26px 0;
@@ -63,7 +61,6 @@ td > .icon-ellipsis {
    font-size: $egeo-font-size-18;
    font-style: normal;
    font-stretch: normal;
-   line-height: 1.6;
    letter-spacing: normal;
    color: $neutral;
    padding-bottom: 20px;

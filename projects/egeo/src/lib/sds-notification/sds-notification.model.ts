@@ -9,19 +9,19 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-export enum StNotificationIcon {
+export enum SdsNotificationIcon {
    DEFAULT = 'default',
    NONE = 'none'
 }
 
-export enum StNotificationType {
+export enum SdsNotificationType {
    INFO = 'info',
    SUCCESS = 'success',
    WARNING = 'warning',
    CRITICAL = 'critical'
 }
 
-export enum StNotificationPosition {
+export enum SdsNotificationPosition {
    TOP_LEFT = 'top_left',
    TOP_CENTER = 'top_center',
    TOP_RIGHT = 'top_right',
@@ -33,13 +33,13 @@ export enum StNotificationPosition {
    BOTTOM_RIGHT = 'bottom_right'
 }
 
-export interface StNotificationDisplayOptions {
+export interface SdsNotificationDisplayOptions {
    message?: string;
    closeIcon?: boolean;
    maxWidth?: string;
-   notificationType?: StNotificationType;
-   notificationIcon?: StNotificationIcon | string;
-   position?: StNotificationPosition;
+   notificationType?: SdsNotificationType;
+   notificationIcon?: SdsNotificationIcon | string;
+   position?: SdsNotificationPosition;
    positionReference?: string;
    timeout?: number;
    infoTimeout?: number;
@@ -50,7 +50,7 @@ export interface StNotificationDisplayOptions {
    margin?: number;
 }
 
-export interface StNotificationTriggerOptions {
-   notificationOptions: StNotificationDisplayOptions;
+export interface SdsNotificationTriggerOptions {
+   notificationOptions: SdsNotificationDisplayOptions;
    isMultiple: boolean;
 }

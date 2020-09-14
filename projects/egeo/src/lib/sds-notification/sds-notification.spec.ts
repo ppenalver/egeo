@@ -15,9 +15,9 @@ import {SdsNotificationComponent} from './sds-notification.component';
 import {SdsNotificationModule} from './sds-notification.module';
 
 import {
-   StNotificationDisplayOptions,
-   StNotificationPosition,
-   StNotificationType
+   SdsNotificationDisplayOptions,
+   SdsNotificationPosition,
+   SdsNotificationType
 } from './sds-notification.model';
 import {SdsNotificationService} from './sds-notification.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -32,7 +32,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       </div>`
 })
 class TestStFNComponent {
-   config: StNotificationDisplayOptions = {
+   config: SdsNotificationDisplayOptions = {
       message: 'The request is understood <a>Check the database</a> <a>Check the database2</a>'
    };
    onClose: EventEmitter<void> = new EventEmitter();
@@ -77,7 +77,7 @@ describe('SdsNotificationComponent', () => {
    describe('When component is visible ', () => {
       it('And notificationType is defined as info, The element should contain "st-notification--info" class', fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.INFO
+            notificationType: SdsNotificationType.INFO
          });
          tick(6500);
 
@@ -89,7 +89,7 @@ describe('SdsNotificationComponent', () => {
 
       it('And status is defined as sucess, element should contain "st-notification--success" class', fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.SUCCESS
+            notificationType: SdsNotificationType.SUCCESS
          });
          tick(6500);
 
@@ -101,7 +101,7 @@ describe('SdsNotificationComponent', () => {
 
       it('And status is defined as warning, element should contain "st-notification--warning" class', fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.WARNING
+            notificationType: SdsNotificationType.WARNING
          });
          tick(6500);
 
@@ -113,7 +113,7 @@ describe('SdsNotificationComponent', () => {
 
       it('And status is defined as critical, element should contain "st-notification--critical" class', fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.CRITICAL,
+            notificationType: SdsNotificationType.CRITICAL,
             criticalTimeout: 6000
          });
          tick(6500);
@@ -136,11 +136,11 @@ describe('SdsNotificationComponent', () => {
 
       it('And user click on the close icon, the element should fade out and then hidden', fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.INFO,
+            notificationType: SdsNotificationType.INFO,
             margin: 0,
             closeIcon: true,
             positionReference: '.test-container',
-            position: StNotificationPosition.CENTER_CENTER
+            position: SdsNotificationPosition.CENTER_CENTER
          });
          tick(6500);
          let closeButton: HTMLElement = nativeElement.querySelector('.st-notification__close-icon');
@@ -152,10 +152,10 @@ describe('SdsNotificationComponent', () => {
       it(`when the config option "timeout" is set as 6000ms the element should fade out and then
          hidden in the time set`, fakeAsync(() => {
          _notifications.addNotification({
-            notificationType: StNotificationType.INFO,
+            notificationType: SdsNotificationType.INFO,
             margin: 0,
             positionReference: '.test-container',
-            position: StNotificationPosition.CENTER_CENTER
+            position: SdsNotificationPosition.CENTER_CENTER
          });
 
          tick(6500);

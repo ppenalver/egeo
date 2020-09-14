@@ -31,8 +31,7 @@ export class Modal2TestComponent {
    public modalConfig: StModal2Config = {
       closeControl: true,
       title: 'Test title',
-      showStandardHeader: true,
-      showStandardActions: true
+      showDefaultHeader: true
    };
    public closeOnEscape: EventEmitter<any> = new EventEmitter<any>();
    public modalTitle: string = '';

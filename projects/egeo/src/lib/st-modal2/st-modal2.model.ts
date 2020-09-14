@@ -10,7 +10,7 @@
  */
 
 export enum StModal2Type {
-   BASIC = 'basic',
+   CUSTOM_CONTENT = 'custom_content',
    INFORMATION = 'information',
    WARNING = 'warning',
    ERROR = 'error'
@@ -26,8 +26,7 @@ export interface StModal2Config {
    clickOutside?: boolean;
    width?: number;
    height?: number;
-   showStandardHeader?: boolean;
-   showStandardActions?: boolean;
+   showDefaultHeader?: boolean;
    actionButtonLabel?: string;
    cancelButtonLabel?: string;
 }

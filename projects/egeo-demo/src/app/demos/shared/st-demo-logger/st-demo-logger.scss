@@ -50,7 +50,6 @@
       padding: 7px;
       font-family: $egeo-stratio-icons;
       font-size: $egeo-font-size-20;
-      line-height: $egeo-line-height-20;
       content: '\e90c';
       cursor: pointer;
    }
@@ -77,14 +76,12 @@
    color: $neutral-60;
    font-weight: 400;
    font-size: $egeo-font-size-xsmall;
-   line-height: $egeo-line-height-18;
    display: inline-flex;
    border-bottom: solid 1px $neutral-10;
    padding: 3px;
    width: 100%;
    &:before {
       font-size: $egeo-font-size-16;
-      line-height: $egeo-line-height-xxxsmall;
       font-family: $egeo-stratio-icons;
       margin-right: 7px;
    }

@@ -62,16 +62,13 @@ main {
    h2 {
       font-weight: 900;
       font-size: $egeo-font-size-xlarge;
-      line-height: 44px;
    }
 
    p {
       font-weight: 100;
-      line-height: 28px;
 
       strong {
          font-weight: 600;
-         line-height: 34px;
       }
    }
 
@@ -108,7 +105,6 @@ main {
 
 .demo-layout {
    color: $space-110;
-   line-height: 1.6;
    font-size: $egeo-font-size-14;
 
    &__demo-container {
@@ -169,7 +165,6 @@ main {
       font-size: $egeo-font-size-18;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.6;
       letter-spacing: normal;
       color: $space-110;
       min-height: 100px;
@@ -180,7 +175,6 @@ main {
       font-size: $egeo-font-size-20;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.6;
       letter-spacing: normal;
       color: $space-110;
       padding: 26px 0;
@@ -200,7 +194,6 @@ main {
       font-size: $egeo-font-size-20;
       font-style: normal;
       font-stretch: normal;
-      line-height: $egeo-line-height-24;
       letter-spacing: normal;
       color: $neutral;
       padding: 26px 0;
@@ -212,7 +205,6 @@ main {
       font-size: $egeo-font-size-14;
       font-style: normal;
       font-stretch: normal;
-      line-height: 1.6;
       letter-spacing: normal;
       color: $space-110;
       padding-bottom: 20px;
@@ -221,7 +213,6 @@ main {
    .list {
       font-weight: 400;
       font-size: $egeo-font-size-14;
-      line-height: 1.6;
       color: $space-110;
       padding-left: 40px;
    }
@@ -230,7 +221,6 @@ main {
 
 .demo-label {
    font-size: 21px;
-   line-height: 33.6px;
    letter-spacing: normal;
    color: $space-110;
    margin: 32px 0 20px 0;
@@ -239,7 +229,6 @@ main {
 h1 {
    font-family: 'Nunito Sans';
    font-size: 14px;
-   line-height: 20px;
    margin-bottom: 8px;
    padding: 0;
    color: $space-110;

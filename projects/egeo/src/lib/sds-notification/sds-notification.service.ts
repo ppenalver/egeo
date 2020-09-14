@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
 import {
-   StNotificationDisplayOptions,
-   StNotificationIcon,
-   StNotificationPosition, StNotificationTriggerOptions,
-   StNotificationType
+   SdsNotificationDisplayOptions,
+   SdsNotificationIcon,
+   SdsNotificationPosition, SdsNotificationTriggerOptions,
+   SdsNotificationType
 } from './sds-notification.model';
 import {Subject} from 'rxjs';
 
 @Injectable()
 export class SdsNotificationService {
-   public trigger$: Subject<StNotificationTriggerOptions>;
+   public trigger$: Subject<SdsNotificationTriggerOptions>;
    public cancelTimeout$: Subject<void>;
-   public readonly DEFAULT_CONFIG: StNotificationDisplayOptions;
+   public readonly DEFAULT_CONFIG: SdsNotificationDisplayOptions;
 
-   private _notificationsQueue: StNotificationDisplayOptions[];
+   private _notificationsQueue: SdsNotificationDisplayOptions[];
    private _consumingQueue: boolean;
 
    constructor() {
@@ -23,12 +23,12 @@ export class SdsNotificationService {
       this._notificationsQueue = [];
       this.DEFAULT_CONFIG = {
          message: '',
-         notificationType: StNotificationType.INFO,
-         notificationIcon: StNotificationIcon.DEFAULT,
+         notificationType: SdsNotificationType.INFO,
+         notificationIcon: SdsNotificationIcon.DEFAULT,
          closeIcon: true,
          margin: 10,
          maxWidth: '50vw',
-         position: StNotificationPosition.TOP_CENTER,
+         position: SdsNotificationPosition.TOP_CENTER,
          positionReference: 'html',
          timeout: 6000,
          multipleTimeout: 0
@@ -39,7 +39,7 @@ export class SdsNotificationService {
       return this._consumingQueue;
    }
 
-   public addNotification(config: StNotificationDisplayOptions = {}): void {
+   public addNotification(config: SdsNotificationDisplayOptions = {}): void {
       this._notificationsQueue.push(config);
 
       const isMultiple = this._notificationsQueue.length > 1;

@@ -3,85 +3,106 @@
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
+            <st-modal2
+               class="sds-modal--demo"
+               [modalConfig]="modalConfig"
+               [showModal]="true"
+               [hotRender]="true"
+               (confirmButton)="onConfirmButton()"
+               (cancelButton)="onCancelButton()"
+               (closeControl)="onCloseControl()">
+               <span st-modal-header>Modal custom title</span>
+               <p>This is an example content for modal component.</p>
+               <p>You can press ESCAPE key to close modal.</p>
+            </st-modal2>
             <button class="button button-primary" (click)="triggerModal()">
-               <span>Show modal</span>
+               <span>Trigger modal</span>
             </button>
+            <div [@fade] *ngIf="showCloseControlMessage" class="close-pressed-message">
+               Close control pressed...
+            </div>
+            <div [@fade] *ngIf="showConfirmButtonMessage" class="close-pressed-message">
+               Confirm button pressed...
+            </div>
+            <div [@fade] *ngIf="showCancelButtonMessage" class="close-pressed-message">
+               Cancel button pressed...
+            </div>
             <st-modal2
                [modalConfig]="modalConfig"
                [showModal]="showModal"
                (clickOutside)="showModal = false"
                (closeEscape)="showModal = false"
                (closeControl)="showModal = false">
-               <span st-modal-header>Titulo de prueba</span>
-               <span>Esto es un texto de prueba para el modal</span>
+               <span st-modal-header>Modal custom title</span>
+               <p>This is an example content for modal component.</p>
+               <p>You can press ESCAPE key to close modal.</p>
             </st-modal2>
          </div>
-         <div class="demo-layout__demo-container__demo-config">
+         <div class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
             <div>
                <h1>Modal Type</h1>
-               <st-radio-group class="st-inline-group" [(ngModel)]="modalType">
-                  <st-radio [value]="'basic'" [checked]="true">Basic</st-radio>
-                  <st-radio [value]="'information'">Information</st-radio>
-                  <st-radio [value]="'warning'">Warning</st-radio>
-                  <st-radio [value]="'error'">Error</st-radio>
+               <st-radio-group class="st-inline-group" formControlName="modalType">
+                  <st-radio [value]="'custom_content'" [checked]="true">Custom Content</st-radio>
+                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'information'">Information</st-radio>
+                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'warning'">Warning</st-radio>
+                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'error'">Error</st-radio>
                </st-radio-group>
             </div>
             <div>
                <h1>Options</h1>
-               <st-checkbox name="clickOutside" [(ngModel)]="closeControl">
-                  <span>Close control</span>
-               </st-checkbox>
-               <st-checkbox name="clickOutside" [(ngModel)]="clickOutside">
-                  <span>Click outside</span>
-               </st-checkbox>
-               <st-checkbox name="fullWindow" [(ngModel)]="fullWindow">
-                  <span>Full window</span>
-               </st-checkbox>
-               <st-checkbox name="enableAnimation" [(ngModel)]="enableAnimation">
+               <st-checkbox name="enableAnimation" formControlName="enableAnimation">
                   <span>Enable animation</span>
                </st-checkbox>
-               <st-checkbox name="standardHeader" [(ngModel)]="showStandardHeader">
-                  <span>Show standard header</span>
+               <st-checkbox name="clickOutside" formControlName="clickOutside">
+                  <span>Click outside</span>
                </st-checkbox>
-               <st-checkbox name="standardActions" [(ngModel)]="showStandardActions">
-                  <span>Show standard actions</span>
+               <st-checkbox (change)="onShowDefaultHeaderChange()" [disabled]="configForm.get('modalType').value !== 'custom_content'" name="standardHeader" formControlName="showDefaultHeader">
+                  <span>Show default header</span>
                </st-checkbox>
+               <st-checkbox *ngIf="configForm.get('showDefaultHeader').value" name="closeControl" formControlName="closeControl">
+                  <span>Close control</span>
+               </st-checkbox>
+               <st-checkbox *ngIf="configForm.get('modalType').value === 'custom_content'" name="fullWindow" formControlName="fullWindow">
+                  <span>Full window</span>
+               </st-checkbox>
+
             </div>
             <div>
-               <div>
+               <div class="input-container">
                   <st-input
                      class="st-form-field"
                      [fieldType]="'text'"
-                     [(ngModel)]="modalTitle"
+                     formControlName="modalTitle"
                      label="Modal title"
-                     contextualHelp="Write the title of the modal"></st-input>
+                     [contextualHelp]="'Write the title of the modal.'">
+                  </st-input>
                </div>
             </div>
             <div>
-               <st-input
-                  class="st-form-field"
-                  [fieldType]="'number'"
-                  [(ngModel)]="width"
-                  label="Width"
-                  default="600"
-                  contextualHelp="Write width in px"></st-input>
-            </div>
-            <div>
-               <st-input
-                  class="st-form-field"
-                  [fieldType]="'number'"
-                  [(ngModel)]="height"
-                  label="Height"
-                  contextualHelp="Write height in px"></st-input>
-            </div>
-            <div>
-               <st-input
-                  class="st-form-field"
-                  [fieldType]="'number'"
-                  [(ngModel)]="animationTime"
-                  label="Animation time"
-                  contextualHelp="Write animation time in ms"></st-input>
-
+               <h1>Custom size</h1>
+               <p style="margin-bottom: 12px">Size changes are not seen in the example. You need to trigger modal to see them.</p>
+               <div class="input-container" style="margin-bottom: 12px">
+                  <st-input
+                     class="st-form-field input-number"
+                     [fieldType]="'number'"
+                     formControlName="width"
+                     (keypress)="onWidthKeyPress($event)"
+                     label="Width"
+                     [contextualHelp]="'Write width in px and press enter. Minimum is 300px.'">
+                  </st-input>
+                  <span [@fade] class="changed-input-message" *ngIf="showWidthChanged">Changed!</span>
+               </div>
+               <div class="input-container">
+                  <st-input
+                     class="st-form-field input-number"
+                     [fieldType]="'number'"
+                     formControlName="height"
+                     (keypress)="onHeightKeyPress($event)"
+                     label="Height"
+                     [contextualHelp]="'Write height in px and press enter. Minimum is 200px.'">
+                  </st-input>
+                  <span [@fade] class="changed-input-message" *ngIf="showHeightChanged">Changed!</span>
+               </div>
             </div>
          </div>
       </div>

@@ -7,7 +7,7 @@
 | Property      | Type                         | Req   | Description                                                                                                                                     | Default |
 | ------------- | ---------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | hotRender     | Boolean                      | False | When true the notification is shown as a demo                                                                                                             | false   |
-| config        | StNotificationDisplayOptions | False | The notification's config 
+| config        | SdsNotificationDisplayOptions | False | The notification's config 
 
 
 ## Outputs

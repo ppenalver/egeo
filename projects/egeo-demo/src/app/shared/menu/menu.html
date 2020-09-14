@@ -10,13 +10,19 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<p class="menu__title">SDS</p>
+<p *ngIf="sdsOptionsVerified?.length" class="menu__title">SDS Components (Verified)</p>
 <ul class="menu__controls menu__controls--sds">
-   <li *ngFor="let option of sdsOptions; let index = index" (click)="navigate(option)" [ngClass]="{active: isActive(option.url)}">
+   <li *ngFor="let option of sdsOptionsVerified; let index = index" (click)="navigate(option)" [ngClass]="{active: isActive(option.url)}">
       {{option.label}}
    </li>
 </ul>
-<p class="menu__title">Pending Review</p>
+<p *ngIf="sdsOptionsPending?.length" class="menu__title">SDS Components (Pending review)</p>
+<ul class="menu__controls menu__controls--sds">
+   <li *ngFor="let option of sdsOptionsPending; let index = index" (click)="navigate(option)" [ngClass]="{active: isActive(option.url)}">
+      {{option.label}}
+   </li>
+</ul>
+<p *ngIf="sdsOptionsPending?.length" class="menu__title">Front Tools</p>
 <ul class="menu__controls">
    <li *ngFor="let option of options; let index = index" (click)="navigate(option)" [ngClass]="{active: isActive(option.url)}">
       {{option.label}}

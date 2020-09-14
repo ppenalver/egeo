@@ -27,6 +27,9 @@
                      [items]="menu"
                      [active]="active[idx]"
                      [selectedItem]="selectedValue[idx]"
+                     [placement]="2"
+                     [offset]="{x: 0, y: 0}"
+                     [openToLeft]="false"
                      [visualMode]="getVisualMode(idx)"
                      [attr.id]="'dropdown-' + idx"
                      (change)="onChange($event, idx)">

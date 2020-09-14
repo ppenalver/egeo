@@ -62,7 +62,7 @@ describe('StToggleButtonsComponent', () => {
 
    it('should init correctly', () => {
       fixture.detectChanges();
-      let desc: DebugElement = fixture.debugElement.query(By.css('.st-toggle-buttons__description'));
+      let desc: DebugElement = fixture.debugElement.query(By.css('.st-group-label'));
       let options: DebugElement[] = fixture.debugElement.queryAll(By.css('.st-toggle-buttons__button'));
 
       expect(desc).toBeDefined();
