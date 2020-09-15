@@ -8,8 +8,6 @@
 * st-select: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
-* theme: Added `.st-label-group` to style a group title label with a `<p>` tag
-* theme: Added `.st-inline-group` css class to set a group of controls as inline, so we get a horizontal disposition
 * st-checkbox: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-checkbox: Added `indeterminate` boolean input to set checkbox as indeterminate. Defaults to false
 * st-tag: Apply new behaviour and design defined by UX
@@ -21,8 +19,7 @@
 * st-modal2: Added "fullWindow" input to apply full size to the modal
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
 * st-modal2: Added functionality to close modal when clicking outside
-* st-toggle-buttons: Added "disabled" input
-* st-toggle-buttons: Added "st-toggle-buttons--large" css class for bigger buttons
+* st-toggle-buttons: Added "disabled" input and "st-toggle-buttons--large" css class for bigger buttons
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
 * st-modal2: Added functionality to close modal when clicking outside
 * st-spinner: Added "st-spinner--12", "st-spinner--16" and "st-spinner--20" to apply different sizes
@@ -52,6 +49,7 @@
 * st-foreground-notifications: renamed to sds-notification
 * st-textarea: renamed to sds-textarea
 * st-modal2: renamed to sds-modal
+* st-color-picker: Removed component
 
 **Deprecated:**
 
@@ -79,7 +77,8 @@
 
 * Removed required polyfill "reflect-metadata" when Egeo is imported as dependency
 * Update to Angular 10 and upgrade dependencies to the latest versions
-
+* theme: Added `.st-label-group` to style a group title label with a `<p>` tag
+* theme: Added `.st-inline-group` css class to set a group of controls as inline, so we get a horizontal disposition
 
 ## 22.0.0 (July 29, 2020)
 

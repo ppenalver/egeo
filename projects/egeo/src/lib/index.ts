@@ -73,10 +73,6 @@ export { StBubbleComponent } from './st-bubble/st-bubble.component';
 export { StBubbleOnEllipsisModule } from './st-bubble-on-ellipsis/st-bubble-on-ellipsis.module';
 export { StBubbleOnEllipsisComponent } from './st-bubble-on-ellipsis/st-bubble-on-ellipsis.component';
 
-// Color picker
-export { StColorPickerModule } from './st-color-picker/st-color-picker.module';
-export { StColorPickerComponent } from './st-color-picker/st-color-picker.component';
-
 // Checkbox
 export { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
 export { SdsCheckboxComponent } from './sds-checkbox/sds-checkbox.component';

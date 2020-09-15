@@ -17,7 +17,6 @@ export { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-de
 export { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 
 export { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
-export { StColorPickerDemoModule } from './st-color-picker-demo/st-color-picker-demo.module';
 export { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
 export { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 export { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';

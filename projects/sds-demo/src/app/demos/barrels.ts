@@ -48,7 +48,6 @@ import { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-tw
 import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
 import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
-import { StColorPickerDemoModule } from './st-color-picker-demo/st-color-picker-demo.module';
 import { StBubbleOnEllipsisDemoModule } from '@app/demos/st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module';
 import { StTagDemoModule } from '@app/demos/st-tag-demo/st-tag-demo.module';
 import { StDynamicTableDemoModule } from '@app/demos/st-dynamic-table-demo/st-dynamic-table-demo.module';
@@ -62,7 +61,6 @@ export const EGEO_DEMO_MODULES: any[] = [
    StBubbleOnEllipsisDemoModule,
    StButtonDemoModule,
    SdsCheckboxDemoModule,
-   StColorPickerDemoModule,
    StDropdownMenuDemoModule,
    StFileButtonDemoModule,
    StFilterSelectorDemoModule,
