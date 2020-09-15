@@ -14,8 +14,8 @@ import {
    StDemoGeneratorModule,
    StDocsModule,
    StTableModule,
-   StCheckboxModule,
-   StToggleButtonsModule,
+   SdsCheckboxModule,
+   SdsToggleButtonModule,
    StDropdownMenuModule,
    StInputModule
 } from '@stratio/egeo';
@@ -28,10 +28,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    imports: [
       CommonModule,
       StTableModule,
-      StCheckboxModule,
+      SdsCheckboxModule,
       StDemoGeneratorModule.withComponents({ components: [StTableDemoComponent] }),
       StDocsModule,
-      StToggleButtonsModule,
+      SdsToggleButtonModule,
       CssPropertyTableModule,
       StDropdownMenuModule,
       StInputModule,

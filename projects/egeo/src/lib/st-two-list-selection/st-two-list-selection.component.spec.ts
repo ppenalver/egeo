@@ -27,7 +27,7 @@ import { ListScrollComponent } from './list-scroll/list-scroll.component';
 // Order modules
 import { PipesModule } from '../pipes/pipes.module';
 import { StSearchModule } from '../st-search/st-search.module';
-import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../sds-checkbox/sds-checkbox.module';
 
 // Model
 import { StTwoListSelectionElement } from './st-two-list-selection.model';
@@ -53,7 +53,7 @@ let selectedElements: StTwoListSelectionElement[] = _cloneDeep(allElements.slice
 describe('StTwoListSelectionComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StSearchModule, PipesModule, VirtualScrollerModule, StCheckboxModule],
+         imports: [StSearchModule, PipesModule, VirtualScrollerModule, SdsCheckboxModule],
          declarations: [StTwoListSelectionComponent, StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })

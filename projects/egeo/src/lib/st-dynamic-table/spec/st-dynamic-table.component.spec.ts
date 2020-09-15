@@ -15,7 +15,7 @@ import { cloneDeep as _cloneDeep } from 'lodash';
 import { JSONSchema4 } from 'json-schema';
 
 import { StDynamicTableComponent } from '../st-dynamic-table.component';
-import { Order, ORDER_TYPE, StCheckboxComponent, StCheckboxModule, StFormSchema, StTableComponent, StTableHeader, StTableModule } from '../..';
+import { Order, ORDER_TYPE, SdsCheckboxComponent, SdsCheckboxModule, StFormSchema, StTableComponent, StTableHeader, StTableModule } from '../..';
 
 let fixture: ComponentFixture<StDynamicTableComponent>;
 let component: StDynamicTableComponent;
@@ -78,7 +78,7 @@ describe('StDynamicTableComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [CommonModule, StTableModule, StCheckboxModule],
+         imports: [CommonModule, StTableModule, SdsCheckboxModule],
          declarations: [StDynamicTableComponent]
       })
       // remove this block when the issue #12313 of Angular is fixed
@@ -88,7 +88,7 @@ describe('StDynamicTableComponent', () => {
          .overrideComponent(StTableComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
-         .overrideComponent(StCheckboxComponent, {
+         .overrideComponent(SdsCheckboxComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
@@ -317,7 +317,7 @@ describe('StDynamicTableComponent', () => {
          let popover = fixture.nativeElement.querySelectorAll('.st-table__popover-content')[0];
 
          expect(popover).not.toBeNull();
-         expect(popover.querySelector('st-checkbox')).not.toBeNull();
+         expect(popover.querySelector('sds-checkbox')).not.toBeNull();
       });
 
       it('if not has custom template and select an option, clicking on button should emit eventEmitter with selected filters', () => {
@@ -330,7 +330,7 @@ describe('StDynamicTableComponent', () => {
          expect(headerItem[2].querySelector('.icon-arrow4_down')).not.toBeNull();
 
          (<jasmine.Spy> component.selectFilters.emit).calls.reset();
-         popover.querySelector('st-checkbox').querySelector('.st-checkbox').click();
+         popover.querySelector('sds-checkbox').querySelector('.sds-checkbox').click();
          popover.querySelector('.st-table__popover-button').click();
          const expectedHeader: StTableHeader = _cloneDeep(component.fields[2]);
          expectedHeader.filters.filterConfig = [{ id: '/root', name: '/root', selected: true }];
@@ -359,13 +359,13 @@ describe('StDynamicTableComponent', () => {
          });
 
          it('checkbox is displayed at the header', () => {
-            expect(fixture.nativeElement.querySelector('.st-table__header').querySelector('st-checkbox')).not.toBeNull();
+            expect(fixture.nativeElement.querySelector('.st-table__header').querySelector('sds-checkbox')).not.toBeNull();
          });
 
          it('When user clicks on the checkbox, an event is emitted with its current status', () => {
             spyOn(component.selectAll, 'emit');
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('.st-checkbox');
+               .querySelector('sds-checkbox').querySelector('.sds-checkbox');
 
             selectedAllCheckbox.click();
 
@@ -381,7 +381,7 @@ describe('StDynamicTableComponent', () => {
             fixture.detectChanges();
 
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('input');
+               .querySelector('sds-checkbox').querySelector('input');
 
             expect(selectedAllCheckbox.checked).toBeTruthy();
 

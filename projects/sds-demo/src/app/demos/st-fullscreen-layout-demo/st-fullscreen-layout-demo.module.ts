@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import {
    StDemoGeneratorModule,
    StDocsModule,
-   StFullscreenLayoutModule, StSwitchModule
+   StFullscreenLayoutModule, SdsSwitchModule
 } from '@stratio/egeo';
 
 import { StFullscreenLayoutComponent } from './st-fullscreen-layout-demo';
@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       StFullscreenLayoutModule,
       StDemoGeneratorModule.withComponents({ components: [StFullscreenLayoutComponent] }),
       StDocsModule,
-      StSwitchModule,
+      SdsSwitchModule,
       FormsModule,
       ReactiveFormsModule
    ],

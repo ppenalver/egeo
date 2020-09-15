@@ -11,7 +11,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StDemoGeneratorModule, StDocsModule, StFormModule, SdsTextareaModule, StToggleButtonsModule } from '@stratio/egeo';
+import { StDemoGeneratorModule, StDocsModule, StFormModule, SdsTextareaModule, SdsToggleButtonModule } from '@stratio/egeo';
 import { StFormDemoComponent } from './st-form-demo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StFormEditorDemoComponent } from './form-editor/st-form-editor-demo';
@@ -29,7 +29,7 @@ import { StMonacoEditorModule } from '@stratio/st-monaco-editor';
       StFormModule,
       ReactiveFormsModule,
       SdsTextareaModule,
-      StToggleButtonsModule,
+      SdsToggleButtonModule,
       CssPropertyTableModule,
       StMonacoEditorModule,
       StDemoGeneratorModule.withComponents({ components: [StFormDemoComponent] })

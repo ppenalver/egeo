@@ -13,10 +13,10 @@ import { NgModule } from '@angular/core';
 
 import { StTableModule } from '../st-table/st-table.module';
 import { StDynamicTableComponent } from './st-dynamic-table.component';
-import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../sds-checkbox/sds-checkbox.module';
 
 @NgModule({
-   imports: [CommonModule, StTableModule, StCheckboxModule],
+   imports: [CommonModule, StTableModule, SdsCheckboxModule],
    declarations: [StDynamicTableComponent],
    exports: [StDynamicTableComponent]
 })

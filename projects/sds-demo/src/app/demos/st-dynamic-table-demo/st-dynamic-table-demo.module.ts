@@ -10,7 +10,7 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StCheckboxModule, StDemoGeneratorModule, StDocsModule, StDropdownMenuModule, StInputModule, StToggleButtonsModule } from '@stratio/egeo';
+import { SdsCheckboxModule, StDemoGeneratorModule, StDocsModule, StDropdownMenuModule, StInputModule, SdsToggleButtonModule } from '@stratio/egeo';
 
 import { StDynamicTableDemoComponent } from './st-dynamic-table-demo.component';
 import { StDynamicTableModule } from '../../../../../egeo/src/lib/st-dynamic-table/st-dynamic-table.module';
@@ -21,10 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    imports: [
       CommonModule,
       StDynamicTableModule,
-      StCheckboxModule,
+      SdsCheckboxModule,
       StDemoGeneratorModule.withComponents({ components: [StDynamicTableDemoComponent] }),
       StDocsModule,
-      StToggleButtonsModule,
+      SdsToggleButtonModule,
       StDropdownMenuModule,
       CssPropertyTableModule,
       StInputModule,

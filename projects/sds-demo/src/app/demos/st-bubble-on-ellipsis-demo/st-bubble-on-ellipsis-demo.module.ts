@@ -10,7 +10,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StInputModule, StSwitchModule } from '@stratio/egeo';
+import { StDemoGeneratorModule, StInputModule, SdsSwitchModule } from '@stratio/egeo';
 import { StDocsModule } from '@stratio/egeo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +23,7 @@ import { StBubbleOnEllipsisModule } from '../../../../../egeo/src/lib/st-bubble-
       StBubbleOnEllipsisModule,
       StDemoGeneratorModule.withComponents({ components: [StBubbleOnEllipsisDemoComponent] }),
       StDocsModule,
-      StSwitchModule,
+      SdsSwitchModule,
       FormsModule,
       ReactiveFormsModule,
       StInputModule

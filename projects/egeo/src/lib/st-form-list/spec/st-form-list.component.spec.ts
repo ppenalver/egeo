@@ -9,7 +9,7 @@ import { StFormDirectiveModule } from '../../directives/form/form-directives.mod
 import { StFormFieldModule } from '../../st-form/st-form-field/st-form-field.module';
 import { StFormListModule } from '../st-form-list.module';
 import { StInputModule } from '../../st-input/st-input.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StFormFieldComponent } from '../../st-form/st-form-field/st-form-field.component';
 import { StInputComponent } from '../../st-input/st-input.component';
 
@@ -256,7 +256,7 @@ describe('StFormListComponent in reactive form', () => {
             FormsModule,
             ReactiveFormsModule,
             PipesModule,
-            StFormDirectiveModule, StFormListModule, StFormFieldModule, StInputModule, StCheckboxModule],
+            StFormDirectiveModule, StFormListModule, StFormFieldModule, StInputModule, SdsCheckboxModule],
          declarations: [FormReactiveFormListComponent]
       })
          .compileComponents();  // compile template and css

@@ -24,11 +24,11 @@ import { PipesModule } from '../pipes/pipes.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StSearchModule } from '../st-search/st-search.module';
 import { StSelectModule } from '../st-select/st-select.module';
-import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
-import { StSpinnerModule } from '../st-spinner/st-spinner.module';
+import { SdsCheckboxModule } from '../sds-checkbox/sds-checkbox.module';
+import { SdsSpinnerModule } from '../sds-spinner/sds-spinner.module';
 
 @NgModule({
-   imports: [CommonModule, StSearchModule, PipesModule, VirtualScrollerModule, StSelectModule, StCheckboxModule, StDropdownMenuModule, StSpinnerModule],
+   imports: [CommonModule, StSearchModule, PipesModule, VirtualScrollerModule, StSelectModule, SdsCheckboxModule, StDropdownMenuModule, SdsSpinnerModule],
    declarations: [StTwoListSelectionViewComponent, StTwoListSelectionComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
    exports: [StTwoListSelectionComponent, StTwoListSelectionViewComponent]
 })

@@ -17,7 +17,7 @@ import { Order, ORDER_TYPE } from './shared/order';
 import { StPopoverFilterComponent } from './shared/st-popover-filter/st-popover-filter.component';
 import { StTableComponent } from './st-table.component';
 import { StTableHeader } from './shared/table-header.interface';
-import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../sds-checkbox/sds-checkbox.module';
 import { StPopOverModule } from '../st-pop-over/st-pop-over.module';
 import { StClickOutsideModule } from '../directives/st-click-outside/st-click-outside.module';
 
@@ -39,7 +39,7 @@ describe('StTableComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [CommonModule, RouterTestingModule, StCheckboxModule, StPopOverModule, StClickOutsideModule],
+         imports: [CommonModule, RouterTestingModule, SdsCheckboxModule, StPopOverModule, StClickOutsideModule],
          declarations: [StPopoverFilterComponent, StTableComponent]
       })
       // remove this block when the issue #12313 of Angular is fixed
@@ -267,7 +267,7 @@ describe('StTableComponent', () => {
 
          if (!component.templateContentFilter) {
             expect(popover).not.toBeNull();
-            expect(popover.querySelector('st-checkbox')).not.toBeNull();
+            expect(popover.querySelector('sds-checkbox')).not.toBeNull();
          }
       });
 
@@ -280,7 +280,7 @@ describe('StTableComponent', () => {
          fixture.detectChanges();
          expect(headerItems[4].querySelector('.icon-arrow4_down')).not.toBeNull();
 
-         popover.querySelector('st-checkbox').querySelector('.st-checkbox').click();
+         popover.querySelector('sds-checkbox').querySelector('.sds-checkbox').click();
          (<HTMLButtonElement> headerItems[4].querySelector('.st-table__popover-button')).click();
          fixture.detectChanges();
 
@@ -351,13 +351,13 @@ describe('StTableComponent', () => {
          });
 
          it('checkbox is displayed at the header', () => {
-            expect(fixture.nativeElement.querySelector('.st-table__header').querySelector('st-checkbox')).not.toBeNull();
+            expect(fixture.nativeElement.querySelector('.st-table__header').querySelector('sds-checkbox')).not.toBeNull();
          });
 
          it('When user clicks on the checkbox, an event is emitted with its current status', () => {
             spyOn(component.selectAll, 'emit');
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('.st-checkbox');
+               .querySelector('sds-checkbox').querySelector('.sds-checkbox');
 
             selectedAllCheckbox.click();
 
@@ -373,7 +373,7 @@ describe('StTableComponent', () => {
             fixture.detectChanges();
 
             let selectedAllCheckbox: HTMLInputElement = fixture.nativeElement.querySelector('.st-table__header')
-               .querySelector('st-checkbox').querySelector('input');
+               .querySelector('sds-checkbox').querySelector('input');
 
             expect(selectedAllCheckbox.checked).toBeTruthy();
 

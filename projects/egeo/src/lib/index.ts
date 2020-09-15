@@ -78,8 +78,8 @@ export { StColorPickerModule } from './st-color-picker/st-color-picker.module';
 export { StColorPickerComponent } from './st-color-picker/st-color-picker.component';
 
 // Checkbox
-export { StCheckboxModule } from './st-checkbox/st-checkbox.module';
-export { StCheckboxComponent } from './st-checkbox/st-checkbox.component';
+export { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
+export { SdsCheckboxComponent } from './sds-checkbox/sds-checkbox.component';
 
 // Docs
 export { StDocsModule } from './st-docs/st-docs.module';
@@ -221,9 +221,9 @@ export { StProgressBarComponent } from './st-progress-bar/st-progress-bar';
 
 
 // Radio
-export { StRadioModule } from './st-radio/st-radio.module';
-export { StRadioComponent, StRadioGroupComponent } from './st-radio/st-radio.component';
-export { RadioChange } from './st-radio/st-radio.change';
+export { SdsRadioModule } from './sds-radio/sds-radio.module';
+export { SdsRadioComponent, SdsRadioGroupComponent } from './sds-radio/sds-radio.component';
+export { RadioChange } from './sds-radio/sds-radio.change';
 
 // Radio menu
 export { StRadioMenuModule } from './st-radio-menu/st-radio-menu.module';
@@ -253,13 +253,13 @@ export { StSidebarItem } from './st-sidebar/st-sidebar-item.interface';
 export { StSidebarVisualMode } from './st-sidebar/st-sidebar-visual-mode';
 
 // Spinner
-export { StSpinnerModule } from './st-spinner/st-spinner.module';
-export { StSpinnerComponent } from './st-spinner/st-spinner.component';
+export { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
+export { SdsSpinnerComponent } from './sds-spinner/sds-spinner.component';
 
 // Switch
-export { StSwitchModule } from './st-switch/st-switch.module';
-export { StSwitchComponent } from './st-switch/st-switch.component';
-export { StSwitchPosition } from './st-switch/st-switch.model';
+export { SdsSwitchModule } from './sds-switch/sds-switch.module';
+export { SdsSwitchComponent } from './sds-switch/sds-switch.component';
+export { SdsSwitchPosition } from './sds-switch/sds-switch.model';
 
 // Table
 export { StTableModule } from './st-table/st-table.module';
@@ -302,12 +302,12 @@ export { SdsTextareaComponent } from './sds-textarea/sds-textarea.component';
 // Toogle buttons
 export {
    StToggleButton,
-   StToggleButtonSchema
-} from './st-toggle-buttons/st-toggle-buttons.interface';
+   SdsToggleButtonchema
+} from './sds-toggle-button/sds-toggle-button.interface';
 export {
-   StToggleButtonsModule
-} from './st-toggle-buttons/st-toggle-buttons.module';
-export { StToggleButtonsComponent } from './st-toggle-buttons/st-toggle-buttons.component';
+   SdsToggleButtonModule
+} from './sds-toggle-button/sds-toggle-button.module';
+export { SdsToggleButtonComponent } from './sds-toggle-button/sds-toggle-button.component';
 
 // Tooltip
 export { StTooltipModule } from './st-tooltip/st-tooltip.module';

@@ -17,12 +17,12 @@
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo--disabled">
             <div class="tab-container st-custom-scrollbar">
-               <st-toggle-buttons
+               <sds-toggle-button
                   class="toggle-buttons"
                   [tabs]="options"
                   (select)="onChangeOption($event)"
                   qaTag="toggle-buttons">
-               </st-toggle-buttons>
+               </sds-toggle-button>
 
                <st-form-editor-demo [hidden]="activeOption.id !== 'demo'"></st-form-editor-demo>
                <st-visual-section-improvements-demo

@@ -18,7 +18,7 @@ import {
    StSelectModule
 } from '@stratio/egeo';
 import { SdsNotificationDemoComponent } from './sds-notification-demo.component';
-import {StRadioModule, StInputModule, StCheckboxModule} from '@stratio/egeo';
+import {SdsRadioModule, StInputModule, SdsCheckboxModule} from '@stratio/egeo';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
@@ -30,9 +30,9 @@ import {ReactiveFormsModule} from '@angular/forms';
         StDocsModule,
         StDemoGeneratorModule.withComponents({components: [SdsNotificationDemoComponent]}),
         StSelectModule,
-        StRadioModule,
+        SdsRadioModule,
         StInputModule,
-       StCheckboxModule
+       SdsCheckboxModule
     ],
    declarations: [SdsNotificationDemoComponent]
 })

@@ -18,9 +18,9 @@ import { StRadioMenuOption } from '@stratio/egeo';
 })
 export class StRadioMenuDemoComponent {
    public configDoc: any = {
-      html: 'demo/st-radio-menu-demo/st-radio-menu-demo.html',
-      ts: 'demo/st-radio-menu-demo/st-radio-menu-demo.ts',
-      component: 'lib/st-radio-menu/st-radio-menu.component.ts'
+      html: 'demo/sds-radio-menu-demo/sds-radio-menu-demo.html',
+      ts: 'demo/sds-radio-menu-demo/sds-radio-menu-demo.ts',
+      component: 'lib/sds-radio-menu/sds-radio-menu.component.ts'
    };
 
    options: Array<StRadioMenuOption>;

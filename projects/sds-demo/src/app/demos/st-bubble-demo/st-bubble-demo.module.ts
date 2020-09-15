@@ -10,7 +10,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StInputModule, StSwitchModule } from '@stratio/egeo';
+import { StDemoGeneratorModule, StInputModule, SdsSwitchModule } from '@stratio/egeo';
 import { StBubbleModule, StDocsModule } from '@stratio/egeo';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +23,7 @@ import { CssPropertyTableModule } from '@app/shared/css-property-table/css-prope
       StBubbleModule,
       StDemoGeneratorModule.withComponents({ components: [StBubbleDemoComponent] }),
       StDocsModule,
-      StSwitchModule,
+      SdsSwitchModule,
       FormsModule,
       ReactiveFormsModule,
       StInputModule,

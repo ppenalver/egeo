@@ -35,30 +35,30 @@
          <div class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
             <div>
                <h1>Modal Type</h1>
-               <st-radio-group class="st-inline-group" formControlName="modalType">
-                  <st-radio [value]="'custom_content'" [checked]="true">Custom Content</st-radio>
-                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'information'">Information</st-radio>
-                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'warning'">Warning</st-radio>
-                  <st-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'error'">Error</st-radio>
-               </st-radio-group>
+               <sds-radio-group class="st-inline-group" formControlName="modalType">
+                  <sds-radio [value]="'custom_content'" [checked]="true">Custom Content</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'information'">Information</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'warning'">Warning</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'error'">Error</sds-radio>
+               </sds-radio-group>
             </div>
             <div>
                <h1>Options</h1>
-               <st-checkbox name="enableAnimation" formControlName="enableAnimation">
+               <sds-checkbox name="enableAnimation" formControlName="enableAnimation">
                   <span>Enable animation</span>
-               </st-checkbox>
-               <st-checkbox name="clickOutside" formControlName="clickOutside">
+               </sds-checkbox>
+               <sds-checkbox name="clickOutside" formControlName="clickOutside">
                   <span>Click outside</span>
-               </st-checkbox>
-               <st-checkbox (change)="onShowDefaultHeaderChange()" [disabled]="configForm.get('modalType').value !== 'custom_content'" name="standardHeader" formControlName="showDefaultHeader">
+               </sds-checkbox>
+               <sds-checkbox (change)="onShowDefaultHeaderChange()" [disabled]="configForm.get('modalType').value !== 'custom_content'" name="standardHeader" formControlName="showDefaultHeader">
                   <span>Show default header</span>
-               </st-checkbox>
-               <st-checkbox *ngIf="configForm.get('showDefaultHeader').value" name="closeControl" formControlName="closeControl">
+               </sds-checkbox>
+               <sds-checkbox *ngIf="configForm.get('showDefaultHeader').value" name="closeControl" formControlName="closeControl">
                   <span>Close control</span>
-               </st-checkbox>
-               <st-checkbox *ngIf="configForm.get('modalType').value === 'custom_content'" name="fullWindow" formControlName="fullWindow">
+               </sds-checkbox>
+               <sds-checkbox *ngIf="configForm.get('modalType').value === 'custom_content'" name="fullWindow" formControlName="fullWindow">
                   <span>Full window</span>
-               </st-checkbox>
+               </sds-checkbox>
 
             </div>
             <div>

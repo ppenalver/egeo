@@ -18,7 +18,7 @@ import { StInputModule } from '../st-input/st-input.module';
 import { StFormDirectiveModule } from '../directives/form/form-directives.module';
 import { StFormFieldModule } from './st-form-field/st-form-field.module';
 import { StSelectModule } from '../st-select/st-select.module';
-import { StSwitchModule } from '../st-switch/st-switch.module';
+import { SdsSwitchModule } from '../sds-switch/sds-switch.module';
 import { SdsTextareaModule } from '../sds-textarea/sds-textarea.module';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { SdsTextareaModule } from '../sds-textarea/sds-textarea.module';
       StInputModule,
       PipesModule,
       StSelectModule,
-      StSwitchModule,
+      SdsSwitchModule,
       StFormDirectiveModule,
       SdsTextareaModule
    ],

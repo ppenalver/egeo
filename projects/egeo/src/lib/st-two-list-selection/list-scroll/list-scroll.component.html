@@ -15,7 +15,7 @@
    <list-item class="virtual-scroll__list-item" *ngFor="let item of scrollItems; let i = index" [item]="item" (selectItem)="selectItem.emit(item)" (selectItemNonEditable)="selectItemNonEditable.emit(item)"
        [qaTag]="listQaTag" [editable]="editable" (selectExtraLabel)="selectExtraLabel.emit($event)" [mode]="mode" [menuOptionList]="menuOptionList" [disabled]="item.disabled"></list-item>
    <div *ngIf="atBottom && showLoading" class="spinner-container">
-      <st-spinner class="spinner"></st-spinner>
+      <sds-spinner class="spinner"></sds-spinner>
       <span>{{fetchingDataText}}</span>
    </div>
 </virtual-scroller>

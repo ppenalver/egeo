@@ -33,13 +33,13 @@
       <div class="st-table__popover-content-filter" *ngIf="!templateContentFilter">
 
          <div *ngFor="let filter of field.filters.filterConfig; let indexFilter = index">
-            <st-checkbox
+            <sds-checkbox
                name="filter.name"
                [checked]="filter.selected"
                (change)="onChangeFilter(indexFilter, $event)"
                (click)="$event.stopPropagation()">
                <span>{{filter.name}}</span>
-            </st-checkbox>
+            </sds-checkbox>
          </div>
          <button id="filter-button-{{index}}"
                  class="button button-primary small st-table__popover-button"

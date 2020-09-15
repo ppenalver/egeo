@@ -15,9 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StFormFieldComponent } from './st-form-field.component';
 import { StInputModule } from '../../st-input/st-input.module';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StSelectModule } from '../../st-select/st-select.module';
-import { StSwitchModule } from '../../st-switch/st-switch.module';
+import { SdsSwitchModule } from '../../sds-switch/sds-switch.module';
 import { SdsTextareaModule } from '../../sds-textarea/sds-textarea.module';
 
 @NgModule({
@@ -25,9 +25,9 @@ import { SdsTextareaModule } from '../../sds-textarea/sds-textarea.module';
       FormsModule,
       ReactiveFormsModule,
       StInputModule,
-      StCheckboxModule,
+      SdsCheckboxModule,
       StSelectModule,
-      StSwitchModule,
+      SdsSwitchModule,
       SdsTextareaModule,
       StFormDirectiveModule],
    declarations: [StFormFieldComponent],

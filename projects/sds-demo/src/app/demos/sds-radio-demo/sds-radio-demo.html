@@ -1,0 +1,58 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Radio buttons are used when a list of two or more options are mutually exclusive, meaning the user must select only one option.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo" [ngClass]="{'st-inline-group': activeDispositionOption === 'horizontal'}">
+            <p *ngIf="titleLabel" class="st-group-label">Group of sds-radio</p>
+            <sds-radio value="1" [showLabel]="label" [disabled]="disabled">Option 1</sds-radio>
+            <sds-radio value="2" [showLabel]="label" [disabled]="disabled">Option 2</sds-radio>
+            <sds-radio value="3" [showLabel]="label" [disabled]="disabled">Option 3</sds-radio>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div class="st-inline-group">
+               <h1>Disposition</h1>
+               <sds-radio name="dispositionOptions" *ngFor="let dispositionOption of dispositionOptions" [value]="dispositionOption.value" (change)="activeDispositionOption = $event.value" [checked]="dispositionOption.value === 'vertical'">{{dispositionOption.label}}</sds-radio>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+                  <span>Title label</span>
+               </sds-checkbox>
+               <sds-checkbox name="titleLabel" [(ngModel)]="label">
+                  <span>Label</span>
+               </sds-checkbox>
+               <sds-checkbox name="titleLabel" [(ngModel)]="disabled">
+                  <span>Disabled</span>
+               </sds-checkbox>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Radio buttons have four states. The default state is the state the control has without any interaction by the user. The Selected one symbolizes when the user selects the option that the radio represents. Finally, the Disabled and Disabled Selected states represent when the radio can't be used for some reason. In the first case the user can't use the radio and it is non-selected. Instead, on the second one, the user also can't use the radio but it is selected.</p>
+      <p class="demo-layout__paragraph">A set of Radio buttons can work together as a set, be organized in a horizontal or vertical way. It is possible to assign a unique label for the whole set.</p>
+      <p class="demo-layout__paragraph">Radio buttons usually go with a Label but, sometimes, it could be useful to use them without it (E.g. inside a table row).</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">If necessary, a heading can accompany a set of Radio Buttons to provide further clarity for the user. Use sentence-style capitalization (only the first word in a phrase and any proper nouns capitalized).</li>
+         <li class="demo-layout__list-item">Always use a clear and concise label for Radio Buttons. Be explicit about the action that will follow if the Radio Button is selected. Labels appear to the right of Radio Buttons. Use sentence-style capitalization (only the first word in a phrase and any proper nouns capitalized) and, ideally, use no more than three words.</li>
+         <li class="demo-layout__list-item">A set of Radio Buttons should default to having one option selected. Never display them without a default selection.</li>
+         <li class="demo-layout__list-item">Use radio buttons when you want users to see all available options and the list of options is small. For mutually exclusive options, consider a checkbox or toggle switch.</li>
+         <li class="demo-layout__list-item">Radio buttons are best for six or fewer options.</li>
+         <li class="demo-layout__list-item">For more than six options, consider a Select box, which prompts users to disclose the options.</li>
+      </ul>
+   </section>
+</st-docs>

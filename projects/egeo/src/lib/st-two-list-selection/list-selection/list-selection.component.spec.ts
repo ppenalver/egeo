@@ -24,7 +24,7 @@ import { ListSelectionComponent } from './list-selection.component';
 
 // Order modules
 import { StSearchModule } from '../../st-search/st-search.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 
 // Mdel
 import { StTwoListSelectionElement } from '../st-two-list-selection.model';
@@ -48,7 +48,7 @@ let list: StTwoListSelectionElement[] = generateData(10);
 describe('StTwoListSelectionComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StSearchModule, VirtualScrollerModule, StCheckboxModule],
+         imports: [StSearchModule, VirtualScrollerModule, SdsCheckboxModule],
          declarations: [ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })

@@ -11,7 +11,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StPopoverFilterComponent } from './st-popover-filter.component';
 import { StPopOverModule } from '../../../st-pop-over/st-pop-over.module';
-import { StCheckboxModule } from '../../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../../sds-checkbox/sds-checkbox.module';
 import { StTableHeader } from '../table-header.interface';
 
 
@@ -32,7 +32,7 @@ describe('StPopoverFilterComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StCheckboxModule, StPopOverModule],
+         imports: [SdsCheckboxModule, StPopOverModule],
          declarations: [StPopoverFilterComponent]
       })
          .compileComponents();

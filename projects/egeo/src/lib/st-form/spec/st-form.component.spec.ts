@@ -19,11 +19,11 @@ import { StInputModule } from '../../st-input/st-input.module';
 import { StFormModule } from '../st-form.module';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
 import { StTooltipModule } from '../../st-tooltip/st-tooltip.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StFormFieldModule } from '../st-form-field/st-form-field.module';
-import { StCheckboxComponent } from '../../st-checkbox/st-checkbox.component';
+import { SdsCheckboxComponent } from '../../sds-checkbox/sds-checkbox.component';
 import { StFormFieldComponent } from '../st-form-field/st-form-field.component';
-import { StSwitchComponent } from '../../st-switch/st-switch.component';
+import { SdsSwitchComponent } from '../../sds-switch/sds-switch.component';
 import { StInputComponent } from '../../st-input/st-input.component';
 import { FORM_UI_COMPONENT } from '../st-form-field/st-form-field.interface';
 
@@ -44,11 +44,11 @@ describe('StFormComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputModule, StCheckboxModule, StFormFieldModule, StTooltipModule, PipesModule, StFormDirectiveModule],
+         imports: [FormsModule, ReactiveFormsModule, StInputModule, SdsCheckboxModule, StFormFieldModule, StTooltipModule, PipesModule, StFormDirectiveModule],
          declarations: [StFormComponent]
       })
       // remove this block when the issue #12313 of Angular is fixed
-         .overrideComponent(StCheckboxComponent, {
+         .overrideComponent(SdsCheckboxComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .overrideComponent(StFormComponent, {
@@ -57,7 +57,7 @@ describe('StFormComponent', () => {
          .overrideComponent(StFormFieldComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
-         .overrideComponent(StSwitchComponent, {
+         .overrideComponent(SdsSwitchComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .overrideComponent(StInputComponent, {
@@ -201,7 +201,7 @@ describe('StFormComponent', () => {
       });
 
       it('if a field has type boolean and has dependant fields, it will be displayed as a switch', () => {
-         expect(fixture.nativeElement.querySelector('#security.st-switch')).not.toBeNull();
+         expect(fixture.nativeElement.querySelector('#security.sds-switch')).not.toBeNull();
       });
 
       it('these fields are not rendered if switch is off', (done) => {
@@ -397,7 +397,7 @@ describe('StFormComponent', () => {
          });
 
          it('if first field is a boolean, it is displayed as a switch', () => {
-            expect(fixture.nativeElement.querySelector('#enable.st-switch')).not.toBeNull();
+            expect(fixture.nativeElement.querySelector('#enable.sds-switch')).not.toBeNull();
          });
 
          it('section fields are hidden while first field does not have value', (done) => {
@@ -806,7 +806,7 @@ describe('StFormComponent in templateDriven form', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StFormModule, StFormFieldModule, StInputModule, StCheckboxModule],
+         imports: [FormsModule, ReactiveFormsModule, StFormModule, StFormFieldModule, StInputModule, SdsCheckboxModule],
          declarations: [FormInTemplateDrivenFormComponent]
       })
          .compileComponents();  // compile template and css

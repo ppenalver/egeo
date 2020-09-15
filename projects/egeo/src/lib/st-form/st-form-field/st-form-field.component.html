@@ -52,7 +52,7 @@
           (blur)="onBlur()">
 </sds-textarea>
 
-<st-checkbox *ngIf="hasType('checkbox')"
+<sds-checkbox *ngIf="hasType('checkbox')"
              #templateModel="ngModel"
              [ngModel]="innerValue"
              (ngModelChange)="setValue($event)"
@@ -61,7 +61,7 @@
              [name]="schema.key"
              [contextualHelp]="description"
              [qaTag]="qaTag"><span>{{schema.value.title}}</span>
-</st-checkbox>
+</sds-checkbox>
 
 <st-select *ngIf="hasType('select')"
            #templateModel="ngModel"
@@ -77,7 +77,7 @@
            [id]="qaTag">
 </st-select>
 
-<st-switch *ngIf="hasType('switch')"
+<sds-switch *ngIf="hasType('switch')"
            #templateModel="ngModel"
            [label]="schema.value.title"
            [name]="schema.key"
@@ -87,6 +87,6 @@
            [value]="innerValue"
            [qaTag]="schema.key"
            [id]="qaTag">
-</st-switch>
+</sds-switch>
 
 <span *ngIf="schema?.value?.ui?.link" class="button button-link small" (click)="onClickLink()">{{schema.value.ui.link}}</span>

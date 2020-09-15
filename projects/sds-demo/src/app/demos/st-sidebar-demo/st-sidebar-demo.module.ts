@@ -10,7 +10,7 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule, StSidebarModule, StSwitchModule } from '@stratio/egeo';
+import { StDemoGeneratorModule, StDocsModule, StSidebarModule, SdsSwitchModule } from '@stratio/egeo';
 import { StSidebarDemoComponent } from './st-sidebar-demo.component';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
 
@@ -18,7 +18,7 @@ import { CssPropertyTableModule } from '@app/shared/css-property-table/css-prope
    imports: [
       CommonModule,
       StSidebarModule,
-      StSwitchModule,
+      SdsSwitchModule,
       CssPropertyTableModule,
       StDemoGeneratorModule.withComponents({
          components: [StSidebarDemoComponent]

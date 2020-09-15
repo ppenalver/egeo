@@ -17,9 +17,9 @@
          <div class="st-radio-menu__option sth-radio-menu-option" (click)="activateOption(option)" [ngClass]="{'active': isActive(option),
            'no-active': !isActive(option) && activeOption}" [attr.id]="qaTag + '-option-' + i">
 
-            <st-radio [name]="option.label" [value]="option.value" [checked]="checkedOption(option)">
+            <sds-radio [name]="option.label" [value]="option.value" [checked]="checkedOption(option)">
                <span class="st-radio-menu__option-text">{{ option.label }}</span>
-            </st-radio>
+            </sds-radio>
          </div>
       </li>
    </ul>

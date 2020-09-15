@@ -56,7 +56,7 @@
          padding-bottom: 20px;
       }
       .form-field.parent-field {
-         .st-switch {
+         .sds-switch {
             label {
                font-size: $egeo-font-size-xxlarge;
                line-height: $egeo-line-height-xxlarge;
@@ -72,7 +72,7 @@
       }
 
       .form-field.parent-field {
-         .st-switch {
+         .sds-switch {
             label {
                font-size: $egeo-font-size-20;
                line-height: $egeo-line-height-24;
@@ -88,7 +88,7 @@
       }
 
       .form-field.parent-field {
-         .st-switch {
+         .sds-switch {
             label {
                font-size: $egeo-font-size-xsmall;
                line-height: $egeo-line-height-20;
@@ -143,7 +143,7 @@
       max-width: var(--egeo-st-form-field--max-width, 100%);
 
       &.parent-field {
-         .st-switch {
+         .sds-switch {
             display: inline-block;
             padding-top: 20px;
             label {

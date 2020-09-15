@@ -19,7 +19,7 @@ import { ListScrollComponent } from './list-scroll.component';
 
 // Order modules
 import { StSearchModule } from '../../st-search/st-search.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 
 let comp: ListScrollComponent;
 let fixture: ComponentFixture<ListScrollComponent>;
@@ -30,7 +30,7 @@ let qaTag: string = 'st-two-list-test';
 describe('StTwoListSelectionComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StSearchModule, VirtualScrollerModule, StCheckboxModule],
+         imports: [StSearchModule, VirtualScrollerModule, SdsCheckboxModule],
          declarations: [ListScrollComponent, ListItemComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })

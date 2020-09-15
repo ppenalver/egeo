@@ -29,9 +29,9 @@ import { StRadioMenuOption } from './st-radio-menu-option.interface';
  * {html}
  *
  * ```
- *  <st-radio-menu [activeOption]="selectedOptionTheme1" class="radio-menu" [options]="options"
+ *  <sds-radio-menu [activeOption]="selectedOptionTheme1" class="radio-menu" [options]="options"
  *    qaTag="radio-menu-theme-gray-1">
- *  </st-radio-menu>
+ *  </sds-radio-menu>
  * ```
  *
  */

@@ -12,7 +12,7 @@ import { PipesModule } from './pipes/pipes.module';
 import { StAlertsModule } from './st-alerts/st-alerts.module';
 import { StBubbleModule } from './st-bubble/st-bubble.module';
 import { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
-import { StCheckboxModule } from './st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
 import { StDocsModule } from './st-docs/st-docs.module';
 import { StDropdownMenuModule } from './st-dropdown-menu/st-dropdown-menu.module';
 import { StFileButtonModule } from './st-file-button/st-file-button.module';
@@ -34,16 +34,16 @@ import { StPopOverModule } from './st-pop-over/st-pop-over.module';
 import { StPrismModule } from './st-docs/st-prism/st-prism.module';
 import { StProgressBarModule } from './st-progress-bar/st-progress-bar.module';
 import { StRadioMenuModule } from './st-radio-menu/st-radio-menu.module';
-import { StRadioModule } from './st-radio/st-radio.module';
+import { SdsRadioModule } from './sds-radio/sds-radio.module';
 import { StSearchModule } from './st-search/st-search.module';
 import { StSelectModule } from './st-select/st-select.module';
 import { StSidebarModule } from './st-sidebar/st-sidebar.module';
-import { StSpinnerModule } from './st-spinner/st-spinner.module';
-import { StSwitchModule } from './st-switch/st-switch.module';
+import { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
+import { SdsSwitchModule } from './sds-switch/sds-switch.module';
 import { StTableModule } from './st-table/st-table.module';
 import { StTagInputModule } from './st-tag-input/st-tag-input.module';
 import { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
-import { StToggleButtonsModule } from './st-toggle-buttons/st-toggle-buttons.module';
+import { SdsToggleButtonModule } from './sds-toggle-button/sds-toggle-button.module';
 import { StTooltipModule } from './st-tooltip/st-tooltip.module';
 import { StTwoListSelectionModule } from './st-two-list-selection/st-two-list-selection.module';
 import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
@@ -58,7 +58,7 @@ export const DECLARATIONS: any[] = [
    StAlertsModule,
    StBreadcrumbsModule,
    StBubbleModule,
-   StCheckboxModule,
+   SdsCheckboxModule,
    StColorPickerModule,
    StDocsModule,
    StDropdownMenuModule,
@@ -83,17 +83,17 @@ export const DECLARATIONS: any[] = [
    StProgressBarModule,
    StPopOverModule,
    StRadioMenuModule,
-   StRadioModule,
+   SdsRadioModule,
    StSearchModule,
    StSelectModule,
    StSidebarModule,
-   StSpinnerModule,
-   StSwitchModule,
+   SdsSpinnerModule,
+   SdsSwitchModule,
    StDynamicTableModule,
    StTableModule,
    StTagInputModule,
    SdsTextareaModule,
-   StToggleButtonsModule,
+   SdsToggleButtonModule,
    StTooltipModule,
    StTwoListSelectionModule,
    StVerticalTabsModule,

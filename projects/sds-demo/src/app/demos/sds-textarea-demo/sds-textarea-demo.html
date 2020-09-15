@@ -32,17 +32,17 @@
          <div class="demo-layout__demo-container__demo-config">
             <div>
                <h1>Size</h1>
-               <st-radio-group [(ngModel)]="size" class="st-inline-group">
-                  <st-radio [value]="0">Regular</st-radio>
-                  <st-radio [value]="1">Small</st-radio>
-               </st-radio-group>
+               <sds-radio-group [(ngModel)]="size" class="st-inline-group">
+                  <sds-radio [value]="0">Regular</sds-radio>
+                  <sds-radio [value]="1">Small</sds-radio>
+               </sds-radio-group>
             </div>
             <div>
                <h1>Options</h1>
-               <st-checkbox [checked]="true" [(ngModel)]="label">Label</st-checkbox>
-               <st-checkbox [(ngModel)]="disabled" (change)="setDisabled()">Disabled</st-checkbox>
-               <st-checkbox [(ngModel)]="required" [disabled]="disabled" (change)="setValidations()">Required (to check error status)</st-checkbox>
-               <st-checkbox [checked]="true" [(ngModel)]="helperErrorText">Helper / Error text</st-checkbox>
+               <sds-checkbox [checked]="true" [(ngModel)]="label">Label</sds-checkbox>
+               <sds-checkbox [(ngModel)]="disabled" (change)="setDisabled()">Disabled</sds-checkbox>
+               <sds-checkbox [(ngModel)]="required" [disabled]="disabled" (change)="setValidations()">Required (to check error status)</sds-checkbox>
+               <sds-checkbox [checked]="true" [(ngModel)]="helperErrorText">Helper / Error text</sds-checkbox>
             </div>
          </div>
       </div>

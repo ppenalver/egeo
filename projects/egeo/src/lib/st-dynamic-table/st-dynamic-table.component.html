@@ -37,11 +37,11 @@
           *ngFor="let field of fields; let cell = index"
           [ngStyle]="getCellStyles(fields[cell])">
 
-         <st-checkbox *ngIf="selectable && !cell"
+         <sds-checkbox *ngIf="selectable && !cell"
                       class="st-table__checkbox"
                       [checked]="selected[row]"
                       (change)="onSelectRow($event, row)">
-         </st-checkbox>
+         </sds-checkbox>
          <span
             [ngClass]="{clickable: field.clickable}"
             (click)="onClickCell(item[field.id], field)">

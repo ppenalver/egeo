@@ -15,10 +15,10 @@ import { StTemplateFilterSubmitDirective } from './directives/st-template-filter
 import { StClickOutsideModule } from '../../../directives/st-click-outside/st-click-outside.module';
 import { StPopOverModule } from '../../../st-pop-over/st-pop-over.module';
 import { StPopoverFilterComponent } from './st-popover-filter.component';
-import { StCheckboxModule } from '../../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../../sds-checkbox/sds-checkbox.module';
 
 @NgModule({
-   imports: [CommonModule, StPopOverModule, StCheckboxModule, StClickOutsideModule],
+   imports: [CommonModule, StPopOverModule, SdsCheckboxModule, StClickOutsideModule],
    declarations: [StPopoverFilterComponent, StTemplateFilterSubmitDirective],
    exports: [StPopoverFilterComponent]
 })

@@ -1,0 +1,52 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-toggle-button
+               class="toggle-buttons"
+               [ngClass]="{'sds-toggle-button--small': activeSizeOption === 'small'}"
+               [disabled]="disabled"
+               [tabs]="tabs"
+               [showTabNumber]="tabNumbers"
+               [description]="showLabel && 'Label'"
+               (select)="onSelectTab($event)"
+               qaTag="toggle-buttons">
+            </sds-toggle-button>
+            <div class="close-pressed-message">
+               {{selectedTabMessage}}
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div class="st-inline-group">
+               <h1>Size</h1>
+               <sds-radio *ngFor="let sizeOption of sizeOptions" [value]="sizeOption.value" [checked]="sizeOption.value === 'regular'" (change)="activeSizeOption = $event.value">{{sizeOption.label}}</sds-radio>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="tabNumbers" [(ngModel)]="showLabel">
+                  <span>Label</span>
+               </sds-checkbox>
+               <sds-checkbox name="tabNumbers" [(ngModel)]="tabNumbers">
+                  <span>Tab numbers</span>
+               </sds-checkbox>
+               <sds-checkbox name="disabled" [(ngModel)]="disabled">
+                  <span>Disabled</span>
+               </sds-checkbox>
+            </div>
+         </div>
+      </div>
+   </section>
+</st-docs>

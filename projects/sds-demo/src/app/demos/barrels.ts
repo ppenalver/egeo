@@ -12,7 +12,7 @@ import { StAlertsDemoModule } from './st-alert-demo/st-alerts-demo.module';
 import { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 import { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 import { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
-import { StCheckboxDemoModule } from './st-checkbox-demo/st-checkbox-demo.module';
+import { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
 import { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 import { StFileButtonDemoModule } from './st-file-button-demo/st-file-button-demo.module';
 import { SdsNotificationDemoModule } from './sds-notification-demo/sds-notification-demo.module';
@@ -32,17 +32,17 @@ import { SdsModalDemoModule } from './sds-modal-demo/sds-modal-demo.module';
 import { StPaginationDemoModule } from './st-pagination-demo/st-pagination-demo.module';
 import { StPopOverDemoModule } from './st-pop-over-demo/st-pop-over-demo.module';
 import { StProgressBarDemoModule } from './st-progress-bar-demo/st-progress-bar-demo.module';
-import { StRadioDemoModule } from './st-radio-demo/st-radio-demo.module';
+import { SdsRadioDemoModule } from './sds-radio-demo/sds-radio-demo.module';
 import { StRadioMenuDemoModule } from './st-radio-menu-demo/st-radio-menu-demo.module';
 import { StSearchDemoModule } from './st-search-demo/st-search-demo.module';
 import { StSelectDemoModule } from './st-select-demo/select-demo.module';
 import { StSidebarDemoModule } from './st-sidebar-demo/st-sidebar-demo.module';
-import { StSpinnerDemoModule } from './st-spinner-demo/st-spinner-demo.module';
-import { StSwitchDemoModule } from './st-switch-demo/st-switch-demo.module';
+import { SdsSpinnerDemoModule } from './sds-spinner-demo/sds-spinner-demo.module';
+import { SdsSwitchDemoModule } from './sds-switch-demo/sds-switch-demo.module';
 import { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 import { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
 import { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
-import { StToggleButtonsDemoModule } from './st-toggle-buttons-demo/st-toggle-buttons-demo.module';
+import { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
 import { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
 import { StTwoListSelectionDemoModule } from './st-two-list-selection-demo/st-two-list-selection-demo.module';
 import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
@@ -61,7 +61,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StBubbleDemoModule,
    StBubbleOnEllipsisDemoModule,
    StButtonDemoModule,
-   StCheckboxDemoModule,
+   SdsCheckboxDemoModule,
    StColorPickerDemoModule,
    StDropdownMenuDemoModule,
    StFileButtonDemoModule,
@@ -81,19 +81,19 @@ export const EGEO_DEMO_MODULES: any[] = [
    StPaginationDemoModule,
    StPopOverDemoModule,
    StProgressBarDemoModule,
-   StRadioDemoModule,
+   SdsRadioDemoModule,
    StRadioMenuDemoModule,
    StSearchDemoModule,
    StSelectDemoModule,
    StSidebarDemoModule,
-   StSpinnerDemoModule,
-   StSwitchDemoModule,
+   SdsSpinnerDemoModule,
+   SdsSwitchDemoModule,
    StDynamicTableDemoModule,
    StTableDemoModule,
    StTagDemoModule,
    StTagInputDemoModule,
    SdsTextareaDemoModule,
-   StToggleButtonsDemoModule,
+   SdsToggleButtonDemoModule,
    StTooltipDemoModule,
    StTwoListSelectionDemoModule,
    StVerticalTabsDemoModule,

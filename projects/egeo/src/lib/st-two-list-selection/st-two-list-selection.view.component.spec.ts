@@ -24,7 +24,7 @@ import { StTwoListSelectionViewComponent } from './st-two-list-selection.view.co
 // Order modules
 import { PipesModule } from '../pipes/pipes.module';
 import { StSearchModule } from '../st-search/st-search.module';
-import { StCheckboxModule } from '../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../sds-checkbox/sds-checkbox.module';
 
 // Model
 import { StTwoListSelectionConfig, StTwoListSelectionElement } from './st-two-list-selection.model';
@@ -56,7 +56,7 @@ function generateData(): StTwoListSelectionElement[] {
 describe('StTwoListSelectionComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StSearchModule, PipesModule, VirtualScrollerModule, StCheckboxModule],
+         imports: [StSearchModule, PipesModule, VirtualScrollerModule, SdsCheckboxModule],
          declarations: [StTwoListSelectionViewComponent, ListSelectionComponent, ListItemComponent, ListScrollComponent],
          schemas: [NO_ERRORS_SCHEMA]
       })

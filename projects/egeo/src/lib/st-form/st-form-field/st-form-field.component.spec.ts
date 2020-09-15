@@ -21,11 +21,11 @@ import { JSON_SCHEMA } from '../spec/resources/json-schema';
 import { StFormFieldComponent } from './st-form-field.component';
 import { StInputModule } from '../../st-input/st-input.module';
 import { StFormFieldModule } from './st-form-field.module';
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StSelectModule } from '../../st-select/st-select.module';
 import { StTooltipModule } from '../../st-tooltip/st-tooltip.module';
 import { StDropdownMenuModule } from '../../st-dropdown-menu/st-dropdown-menu.module';
-import { StSwitchModule } from '../../st-switch/st-switch.module';
+import { SdsSwitchModule } from '../../sds-switch/sds-switch.module';
 import { StSelectComponent } from '../../st-select/st-select';
 import { StInputComponent } from '../../st-input/st-input.component';
 import { StDropdownMenuComponent } from '../../st-dropdown-menu/st-dropdown-menu.component';
@@ -43,8 +43,8 @@ describe('StFormFieldComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputModule, StCheckboxModule, StSelectModule, PipesModule,
-            StTooltipModule, StFormDirectiveModule, StDropdownMenuModule, StSwitchModule, SdsTextareaModule],
+         imports: [FormsModule, ReactiveFormsModule, StInputModule, SdsCheckboxModule, StSelectModule, PipesModule,
+            StTooltipModule, StFormDirectiveModule, StDropdownMenuModule, SdsSwitchModule, SdsTextareaModule],
          declarations: [StFormFieldComponent]
       })
          .overrideComponent(StSelectComponent, {
@@ -1178,7 +1178,7 @@ describe('StFormFieldComponent', () => {
       it('field is displayed with a switch when it has boolean type and it enables another fields', () => {
          fixture.detectChanges();
 
-         expect(fixture.nativeElement.querySelector('.st-switch')).not.toBeNull();
+         expect(fixture.nativeElement.querySelector('.sds-switch')).not.toBeNull();
       });
 
       it('label is displayed', () => {

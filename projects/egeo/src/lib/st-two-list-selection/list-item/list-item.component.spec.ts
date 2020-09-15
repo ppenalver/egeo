@@ -19,7 +19,7 @@ import { ListItemComponent } from './list-item.component';
 import { StTwoListSelectionElement } from '../st-two-list-selection.model';
 
 // Other
-import { StCheckboxModule } from '../../st-checkbox/st-checkbox.module';
+import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StDropdownMenuModule } from '../../st-dropdown-menu/st-dropdown-menu.module';
 import { StDropDownMenuItem } from './../../st-dropdown-menu/st-dropdown-menu.interface';
 
@@ -36,7 +36,7 @@ let menuOptionList: StDropDownMenuItem[] = [{ label: 'Example test', icon: 'icon
 describe('StTwoListSelectionComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StCheckboxModule, StDropdownMenuModule],
+         imports: [SdsCheckboxModule, StDropdownMenuModule],
          declarations: [ListItemComponent]
       })
          .compileComponents();  // compile template and css
@@ -126,9 +126,9 @@ describe('StTwoListSelectionComponent', () => {
             comp.selectItem.subscribe(outputSelect);
 
             fixture.detectChanges();
-            let checkbox: DebugElement = fixture.debugElement.query(By.css('.st-checkbox'));
+            let checkbox: DebugElement = fixture.debugElement.query(By.css('.sds-checkbox'));
             expect(checkbox).toBeDefined();
-            expect(checkbox.nativeElement.classList).toContain('st-checkbox--disabled');
+            expect(checkbox.nativeElement.classList).toContain('sds-checkbox--disabled');
 
             let input: DebugElement = fixture.debugElement.query(By.css('input'));
             (input.nativeElement as HTMLInputElement).click();

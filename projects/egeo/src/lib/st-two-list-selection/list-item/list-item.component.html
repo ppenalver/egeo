@@ -23,9 +23,9 @@
          </button>
       </st-dropdown-menu>
    </div>
-   <st-checkbox [disabled]="disabled" *ngIf="editable" [qaTag]="checkQaTag" [checked]="selected" (click)="emitOnSelect($event)">
+   <sds-checkbox [disabled]="disabled" *ngIf="editable" [qaTag]="checkQaTag" [checked]="selected" (click)="emitOnSelect($event)">
       <span class="label">{{itemName}}</span>
-   </st-checkbox>
+   </sds-checkbox>
    <span class="extraLabel" *ngIf="item.extraLabel" [innerHTML]="item.extraLabel"
        (click)="selectExtraLabel.emit({element: item, event: $event})"></span>
 </div>
