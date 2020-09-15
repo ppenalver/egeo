@@ -21,7 +21,7 @@ import { composeRelease } from '../package-tools/build-release';
 /** Packages that will be published to NPM by the release task. */
 export const releasePackages = [
    'egeo',
-   'egeo-demo'
+   'sds-demo'
 ];
 
 /** Parse command-line arguments for release task. */

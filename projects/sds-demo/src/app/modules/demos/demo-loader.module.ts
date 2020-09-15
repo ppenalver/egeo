@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { NgModule } from '@angular/core';
-import { EgeoDemoModule } from '@app/demos/public_api';
+import { SdsDemoModule } from '@app/demos/public_api';
 
 @NgModule({
-   imports: [EgeoDemoModule]
+   imports: [SdsDemoModule]
 })
 export class DemoLoaderModule { }

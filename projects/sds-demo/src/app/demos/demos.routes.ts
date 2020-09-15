@@ -11,14 +11,14 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-export class EgeoDemoMenu {
+export class SdsDemoMenu {
    id: string;
    name: string;
    path: string;
    moduleLazyLoad: string;
 }
 
-export const EGEO_DEMO_MENU_SDS_VERIFIED: EgeoDemoMenu[] = [
+export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
    { id: 'st-checkbox', name: 'Checkbox', path: 'checkbox-demo', moduleLazyLoad: 'StCheckboxDemoModule' },
    { id: 'st-radio', name: 'Radio Button', path: 'radio-demo', moduleLazyLoad: 'StRadioDemoModule' },
    { id: 'st-switch', name: 'Switch', path: 'switch-demo', moduleLazyLoad: 'StSwitchDemoModule' },
@@ -31,7 +31,7 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: EgeoDemoMenu[] = [
 ];
 
 
-export const EGEO_DEMO_MENU_SDS: EgeoDemoMenu[] = [
+export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
    { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
    { id: 'st-button', name: 'Button', path: 'button-demo', moduleLazyLoad: 'StButtonDemoModule' },
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
@@ -46,7 +46,7 @@ export const EGEO_DEMO_MENU_SDS: EgeoDemoMenu[] = [
    { id: 'st-tag-input', name: 'Tag Input', path: 'tag-input-demo', moduleLazyLoad: 'StTagInputDemoModule' }
 ];
 
-export const EGEO_DEMO_MENU: EgeoDemoMenu[] = [
+export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
    { id: 'st-vertical-tabs', name: 'Vertical Tab', path: 'vertical-tabs-demo', moduleLazyLoad: 'StVerticalTabsDemoModule' },
    { id: 'st-bubble', name: 'Bubble', path: 'bubble-demo', moduleLazyLoad: 'StBubbleDemoModule' },
    { id: 'st-bubble-on-ellipsis', name: 'Bubble on Ellipsis', path: 'bubble-on-ellipsis-demo', moduleLazyLoad: 'StBubbleOnEllipsisDemoModule' },

@@ -211,6 +211,7 @@ export class SdsTextareaComponent implements ControlValueAccessor, OnChanges, On
          this.internalControl.markAsPristine();
       }
 
+
       this.showErrorValue = this.showError() && control.invalid;
       this._cd.markForCheck();
    }

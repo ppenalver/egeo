@@ -26,6 +26,6 @@ hose {
             failFast: config.FAILFAST
          )
 
-         doPublishStatics(config, "dist/egeo-demo", "egeo", true, true)
+         doPublishStatics(config, "dist/sds-demo", "egeo", true, true)
    }
 }

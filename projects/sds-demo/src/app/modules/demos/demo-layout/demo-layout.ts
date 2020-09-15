@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {EGEO_DEMO_MENU, EGEO_DEMO_MENU_SDS, EGEO_DEMO_MENU_SDS_VERIFIED, EgeoDemoMenu} from '@app/demos/demos.routes';
+import {EGEO_DEMO_MENU, EGEO_DEMO_MENU_SDS, EGEO_DEMO_MENU_SDS_VERIFIED, SdsDemoMenu} from '@app/demos/demos.routes';
 
 import { DemoSideMenu } from '../../../shared/menu/menu.model';
 import {ActivationEnd, Router} from '@angular/router';
@@ -24,7 +24,7 @@ import {filter, takeUntil} from 'rxjs/operators';
 export class DemoLayoutComponent implements OnInit, OnDestroy {
    @ViewChild('mainContent', {static: true}) mainContent: ElementRef;
 
-   public menu: EgeoDemoMenu[] = EGEO_DEMO_MENU || [];
+   public menu: SdsDemoMenu[] = EGEO_DEMO_MENU || [];
    public title: string;
    private componentDestroyed$: Subject<void>;
 

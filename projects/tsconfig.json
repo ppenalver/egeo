@@ -26,10 +26,10 @@
             "dist/egeo/*"
          ],
          "@app/shared/*": [
-            "./projects/egeo-demo/src/app/shared/*"
+            "./projects/sds-demo/src/app/shared/*"
          ],
          "@app/demos/*": [
-            "./projects/egeo-demo/src/app/demos/*"
+            "./projects/sds-demo/src/app/demos/*"
          ],
          "@stratio/egeo": [
             "./projects/egeo/src/public_api.ts"

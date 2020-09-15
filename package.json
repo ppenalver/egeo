@@ -5,7 +5,7 @@
    "author": "Stratio",
    "scripts": {
       "ng": "ng",
-      "start": "gulp demo-app:copy:sourcecode && ng serve --project=egeo-demo",
+      "start": "gulp demo-app:copy:sourcecode && ng serve --project=sds-demo",
       "release": "gulp publish",
       "clean": "gulp clean",
       "build": "gulp prepare-build && npm run build:lib && npm run build:demo-app",
@@ -14,14 +14,14 @@
       "publish": "gulp :publish:build-releases",
       "build:lib": "ng build --prod && npm run build:theme --prod",
       "build:theme": "gulp build",
-      "build:demo-app": "gulp demo-app:copy:sourcecode && ng build --prod  --project=egeo-demo --base-href=",
+      "build:demo-app": "gulp demo-app:copy:sourcecode && ng build --prod  --project=sds-demo --base-href=",
       "test": "ng test --source-map=true --watch=false --code-coverage --progress=false --project=egeo",
       "test:watch": "karma start test/karma.conf.js --auto-watch --no-single-run",
       "lint": "ng lint",
       "replace": "json -I -f package.json -e",
       "commit": "git-cz",
       "serve:coverage": "http-server target/html",
-      "serve:build": "npm run build:demo-app && http-server dist/egeo-demo"
+      "serve:build": "npm run build:demo-app && http-server dist/sds-demo"
    },
    "repository": {
       "type": "git",

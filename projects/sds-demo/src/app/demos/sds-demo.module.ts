@@ -21,4 +21,4 @@ import { EGEO_DEMO_MODULES } from './barrels';
       ...(EGEO_DEMO_MODULES as any[])
    ]
 })
-export class EgeoDemoModule { }
+export class SdsDemoModule { }

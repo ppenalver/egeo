@@ -41,9 +41,9 @@
             }
          }
       },
-      "egeo-demo": {
-         "root": "projects/egeo-demo",
-         "sourceRoot": "projects/egeo-demo/src",
+      "sds-demo": {
+         "root": "projects/sds-demo",
+         "sourceRoot": "projects/sds-demo/src",
          "projectType": "application",
          "prefix": "app",
          "schematics": {
@@ -55,15 +55,15 @@
             "build": {
                "builder": "@angular-devkit/build-angular:browser",
                "options": {
-                  "outputPath": "dist/egeo-demo",
-                  "index": "projects/egeo-demo/src/index.html",
-                  "main": "projects/egeo-demo/src/main.ts",
-                  "polyfills": "projects/egeo-demo/src/polyfills.ts",
-                  "tsConfig": "projects/egeo-demo/tsconfig.app.json",
+                  "outputPath": "dist/sds-demo",
+                  "index": "projects/sds-demo/src/index.html",
+                  "main": "projects/sds-demo/src/main.ts",
+                  "polyfills": "projects/sds-demo/src/polyfills.ts",
+                  "tsConfig": "projects/sds-demo/tsconfig.app.json",
                   "assets": [
-                     "projects/egeo-demo/src/favicon.ico",
-                     "projects/egeo-demo/src/package.json",
-                     "projects/egeo-demo/src/assets",
+                     "projects/sds-demo/src/favicon.ico",
+                     "projects/sds-demo/src/package.json",
+                     "projects/sds-demo/src/assets",
                      {
                         "glob": "**/*.*",
                         "input": "node_modules/@stratio/egeo-ui-base/assets",
@@ -96,7 +96,7 @@
                      }
                   ],
                   "styles": [
-                     "projects/egeo-demo/src/styles.scss"
+                     "projects/sds-demo/src/styles.scss"
                   ],
                   "stylePreprocessorOptions": {
                      "includePaths": [
@@ -113,8 +113,8 @@
                   "production": {
                      "fileReplacements": [
                         {
-                           "replace": "projects/egeo-demo/src/environments/environment.ts",
-                           "with": "projects/egeo-demo/src/environments/environment.prod.ts"
+                           "replace": "projects/sds-demo/src/environments/environment.ts",
+                           "with": "projects/sds-demo/src/environments/environment.prod.ts"
                         }
                      ],
                      "optimization": true,
@@ -139,35 +139,35 @@
             "serve": {
                "builder": "@angular-devkit/build-angular:dev-server",
                "options": {
-                  "browserTarget": "egeo-demo:build",
+                  "browserTarget": "sds-demo:build",
                   "port": 9501
                },
                "configurations": {
                   "production": {
-                     "browserTarget": "egeo-demo:build:production"
+                     "browserTarget": "sds-demo:build:production"
                   }
                }
             },
             "extract-i18n": {
                "builder": "@angular-devkit/build-angular:extract-i18n",
                "options": {
-                  "browserTarget": "egeo-demo:build"
+                  "browserTarget": "sds-demo:build"
                }
             },
             "test": {
                "builder": "@angular-devkit/build-angular:karma",
                "options": {
-                  "main": "projects/egeo-demo/src/test.ts",
-                  "polyfills": "projects/egeo-demo/src/polyfills.ts",
-                  "tsConfig": "projects/egeo-demo/tsconfig.spec.json",
-                  "karmaConfig": "projects/egeo-demo/src/karma.conf.js",
+                  "main": "projects/sds-demo/src/test.ts",
+                  "polyfills": "projects/sds-demo/src/polyfills.ts",
+                  "tsConfig": "projects/sds-demo/tsconfig.spec.json",
+                  "karmaConfig": "projects/sds-demo/src/karma.conf.js",
                   "styles": [
-                     "projects/egeo-demo/src/styles.scss"
+                     "projects/sds-demo/src/styles.scss"
                   ],
                   "scripts": [],
                   "assets": [
-                     "projects/egeo-demo/src/favicon.ico",
-                     "projects/egeo-demo/src/assets"
+                     "projects/sds-demo/src/favicon.ico",
+                     "projects/sds-demo/src/assets"
                   ]
                }
             },
@@ -175,8 +175,8 @@
                "builder": "@angular-devkit/build-angular:tslint",
                "options": {
                   "tsConfig": [
-                     "projects/egeo-demo/tsconfig.app.json",
-                     "projects/egeo-demo/src/tsconfig.spec.json"
+                     "projects/sds-demo/tsconfig.app.json",
+                     "projects/sds-demo/src/tsconfig.spec.json"
                   ],
                   "exclude": [
                      "**/node_modules/**",
