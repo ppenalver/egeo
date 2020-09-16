@@ -309,23 +309,6 @@ export { SdsToggleButtonComponent } from './sds-toggle-button/sds-toggle-button.
 export { StTooltipModule } from './st-tooltip/st-tooltip.module';
 export { StTooltipComponent } from './st-tooltip/st-tooltip.component';
 
-// Two list selection
-export {
-   StTwoListSelectionModule
-} from './st-two-list-selection/st-two-list-selection.module';
-export { StTwoListSelectionComponent } from './st-two-list-selection/st-two-list-selection.component';
-export {
-   StTwoListSelectionConfig,
-   StTwoListSelectionConfigSchema,
-   StTwoListSelectionElement,
-   StTwoListSelectionAction,
-   StTwoListSelectExtraLabelAction
-} from './st-two-list-selection/st-two-list-selection.model';
-export {
-   StTwoListSelection
-} from './st-two-list-selection/st-two-list-selection';
-export { StTwoListSelectionViewComponent } from './st-two-list-selection/st-two-list-selection.view.component';
-
 // Vertical tabs
 export { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
 export { StVerticalTabsComponent } from './st-vertical-tabs/st-vertical-tabs.component';

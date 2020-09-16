@@ -50,6 +50,7 @@
 * st-textarea: renamed to sds-textarea
 * st-modal2: renamed to sds-modal
 * st-color-picker: Removed component
+* st-two-list-selection: Remove component
 
 **Deprecated:**
 

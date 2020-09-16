@@ -107,7 +107,7 @@ npm run test
 It is possible to run an individual test to avoid run the whole suite.
 
 ```
-npm run test -- -- st-two-list
+npm run test -- -- st-table
 ```
 
 ### How to Build
