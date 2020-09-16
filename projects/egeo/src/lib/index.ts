@@ -267,17 +267,6 @@ export { StTableHeader } from './st-table/shared/table-header.interface';
 export { Order, ORDER_TYPE } from './st-table/shared/order';
 export { StTableIconClasses, StTableFilterIconClasses } from './st-table/st-table.interface';
 
-// Dynamic Table
-export { StDynamicTableModule } from './st-dynamic-table/st-dynamic-table.module';
-export { StDynamicTableComponent } from './st-dynamic-table/st-dynamic-table.component';
-export {
-   StDynamicTableHeader,
-   StDynamicTableUISpecification,
-   StDynamicTableUserInterface,
-   StDynamicTableFk,
-   StDynamicTableClickCellEvent
-} from './st-dynamic-table/st-dynamic-table.model';
-
 // Tag
 export { StTagModule } from './st-tag/st-tag.module';
 export { StTagComponent } from './st-tag/st-tag.component';

@@ -49,7 +49,6 @@ import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 import { SdsNotificationModule } from './sds-notification/sds-notification.module';
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
-import { StDynamicTableModule } from './st-dynamic-table/st-dynamic-table.module';
 
 export const DECLARATIONS: any[] = [
    PipesModule,
@@ -86,7 +85,6 @@ export const DECLARATIONS: any[] = [
    StSidebarModule,
    SdsSpinnerModule,
    SdsSwitchModule,
-   StDynamicTableModule,
    StTableModule,
    StTagInputModule,
    SdsTextareaModule,

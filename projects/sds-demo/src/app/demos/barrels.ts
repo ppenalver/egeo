@@ -49,7 +49,6 @@ import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
 import { StBubbleOnEllipsisDemoModule } from '@app/demos/st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module';
 import { StTagDemoModule } from '@app/demos/st-tag-demo/st-tag-demo.module';
-import { StDynamicTableDemoModule } from '@app/demos/st-dynamic-table-demo/st-dynamic-table-demo.module';
 
 
 export const EGEO_DEMO_MODULES: any[] = [
@@ -85,7 +84,6 @@ export const EGEO_DEMO_MODULES: any[] = [
    StSidebarDemoModule,
    SdsSpinnerDemoModule,
    SdsSwitchDemoModule,
-   StDynamicTableDemoModule,
    StTableDemoModule,
    StTagDemoModule,
    StTagInputDemoModule,

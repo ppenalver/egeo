@@ -39,7 +39,6 @@ export { StSelectDemoModule } from './st-select-demo/select-demo.module';
 export { SdsSpinnerDemoModule } from './sds-spinner-demo/sds-spinner-demo.module';
 export { SdsSwitchDemoModule } from './sds-switch-demo/sds-switch-demo.module';
 export { StTableDemoModule } from './st-table-demo/st-table-demo.module';
-export { StDynamicTableDemoModule } from './st-dynamic-table-demo/st-dynamic-table-demo.module';
 export { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
 export { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 export { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
