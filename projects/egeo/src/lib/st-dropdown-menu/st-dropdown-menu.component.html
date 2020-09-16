@@ -14,6 +14,10 @@
 
    <div pop-button #buttonId>
       <ng-content></ng-content>
+      <div #hiddenTypedText class="hidden-stored-text" type="button" spellcheck="false" contentEditable="true"
+           (keydown)="saveTypedText($event)"
+           (keyup)="moveFocusedOption($event)">
+      </div>
    </div>
 
    <div pop-content [style.z-index]="9" class="dropdown-content">
@@ -31,17 +35,18 @@
              (scroll)="onHandleScroll()">
             <st-dropdown-menu-item
                *ngFor="let item of items; let i = index"
+               [focus]="i === focusedOptionPos"
                [attr.id]="getItemId(item.value)"
                [index]="i"
                [item]="item"
                [selectedItem]="selectedItem"
                [styleSelected]="styleSelected"
                (change)="onChange($event)"
-               (mouseenter)="onMouseEnter(item)"
+               (mouseenter)="onMouseEnter(item, i)"
                (mouseleave)="onMouseLeave(item)">
             </st-dropdown-menu-item>
 
-            <div *ngIf="!items || !items.length" class="without-results st-dropdown-menu-without-results"
+            <div *ngIf="!items?.length" class="st-dropdown-menu-without-results"
                  [style.maxWidth]='widthMenu'>
                {{emptyListMessage}}
             </div>
@@ -52,25 +57,25 @@
                 class="st-custom-scrollbar"
                 [style.maxHeight]="menuMaxHeight"
                 [attr.id]="menuId" #itemList>
-               <li class="st-dropdown-menu-parent" *ngFor="let group of items">
+               <li class="st-dropdown-menu-parent" *ngFor="let group of items;">
                   <h3>
                      <span>{{ group.title }}</span>
                   </h3>
                   <ul>
                      <st-dropdown-menu-item
-                        *ngFor="let item of group.items || []; let i = index"
+                        *ngFor="let item of group.items || []"
                         [attr.id]="getItemId(item.value)"
-                        [index]="i"
+                        [index]="getGroupedOptionAbsolutePosition(item)"
                         [item]="item"
                         [selectedItem]="selectedItem"
                         [styleSelected]="styleSelected"
+                        [focus]="getGroupedOptionAbsolutePosition(item) === focusedOptionPos"
                         (change)="onChange($event)"
-                        (mouseenter)="onMouseEnter(item)"
+                        (mouseenter)="onMouseEnter(item, getGroupedOptionAbsolutePosition(item))"
                         (mouseleave)="onMouseLeave(item)">
                      </st-dropdown-menu-item>
-
-                     <div class="without-results st-dropdown-menu-without-results" [style.maxWidth]='widthMenu'
-                          *ngIf="!group || !group.items || !group.items.length">
+                     <div class="st-dropdown-menu-without-results" [style.maxWidth]='widthMenu'
+                          *ngIf="!group?.items?.length">
                         {{emptyListMessage}}
                      </div>
                   </ul>
@@ -81,3 +86,4 @@
       </div>
    </div>
 </st-pop>
+

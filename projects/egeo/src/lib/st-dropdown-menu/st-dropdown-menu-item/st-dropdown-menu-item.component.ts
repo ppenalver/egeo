@@ -22,6 +22,7 @@ export class StDropdownMenuItemComponent {
    @Input() item: StDropDownMenuItem = undefined;
    @Input() selectedItem: StDropDownMenuItem = undefined;
    @Input() styleSelected: boolean = true;
+   @Input() focus: boolean;
 
    @Output() change: EventEmitter<StDropDownMenuItem> = new EventEmitter<StDropDownMenuItem>();
 

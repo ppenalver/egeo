@@ -14,13 +14,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { cloneDeep as _cloneDeep } from 'lodash';
 
-import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
+import {
+   ARROW_KEY_CODE,
+   ENTER_KEY_CODE,
+   ESCAPE_KEY_CODE,
+   SPACE_KEY_CODE,
+   StDropDownMenuGroup,
+   StDropDownMenuItem
+} from '../st-dropdown-menu/st-dropdown-menu.interface';
 import { StSelectComponent } from './st-select';
 import { StSelectModule } from './st-select.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StDropdownMenuComponent } from '../st-dropdown-menu/st-dropdown-menu.component';
 import { StClickOutside } from '../directives/st-click-outside/st-click-outside.directive';
 import { StDropdownMenuItemComponent } from '../st-dropdown-menu/st-dropdown-menu-item/st-dropdown-menu-item.component';
+import { StPopModule } from '..';
 
 
 const simpleItems: StDropDownMenuItem[] = [
@@ -58,7 +66,7 @@ describe('StSelectComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StDropdownMenuModule, FormsModule, ReactiveFormsModule],
+         imports: [StDropdownMenuModule, FormsModule, ReactiveFormsModule, StPopModule],
          declarations: [StSelectComponent, StClickOutside],
          schemas: [NO_ERRORS_SCHEMA]
       })
@@ -222,7 +230,7 @@ describe('StSelectComponent', () => {
       expect(component.expand.emit).not.toHaveBeenCalled();
       const div: DebugElement = fixture.debugElement.query(By.css('.button-container'));
 
-      div.triggerEventHandler('keydown', new KeyboardEvent('keydown', { code: 'Enter' }));
+      div.triggerEventHandler('keydown', new KeyboardEvent('keydown', { code: ENTER_KEY_CODE }));
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
       expect(component.expand.emit).toHaveBeenCalled();
@@ -231,7 +239,7 @@ describe('StSelectComponent', () => {
       (<jasmine.Spy> component.expand.emit).calls.reset();
       fixture.detectChanges();
 
-      div.triggerEventHandler('keydown', new KeyboardEvent('keydown', { code: 'Space' }));
+      div.triggerEventHandler('keydown', new KeyboardEvent('keydown', { code: SPACE_KEY_CODE }));
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
       expect(component.expand.emit).toHaveBeenCalled();
@@ -261,8 +269,8 @@ describe('StSelectComponent', () => {
    });
 
    it('Should change input focus on click on label', () => {
-      fixture.detectChanges();
-      spyOn(component.hiddenTypedText.nativeElement, 'focus');
+      const input: HTMLInputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+      spyOn(input, 'focus');
 
       (fixture.elementRef.nativeElement as HTMLElement).id = id;
       component.label = 'Test';
@@ -270,13 +278,13 @@ describe('StSelectComponent', () => {
       fixture.detectChanges();
 
       expect(component.expandedMenu).toBeFalsy();
-      expect(component.hiddenTypedText.nativeElement.focus).not.toHaveBeenCalled();
+      expect(input.focus).not.toHaveBeenCalled();
 
       const label: HTMLLabelElement = fixture.debugElement.query(By.css('label')).nativeElement;
       label.click();
       fixture.detectChanges();
       expect(component.expandedMenu).toBeTruthy();
-      expect(component.hiddenTypedText.nativeElement.focus).toHaveBeenCalled();
+      expect(input.focus).toHaveBeenCalled();
    });
 
    it('Should preselect an option with selected property', () => {
@@ -387,6 +395,7 @@ describe('StSelectComponent', () => {
          component.options = [<StDropDownMenuItem>{ label: 'select one', value: undefined }, ...simpleItems];
          fakeDefault = component.options[4].value;
          component.default = fakeDefault;
+         component.selected = component.options[4];
          fixture.detectChanges();
          input = fixture.debugElement.query(By.css('input')).nativeElement;
       });
@@ -412,7 +421,6 @@ describe('StSelectComponent', () => {
          fixture.detectChanges();
 
          items = fixture.debugElement.queryAll(By.css('st-dropdown-menu-item>li'));
-
          expect(fixture.nativeElement.querySelector('.st-form-control-reset-button')).toBeNull();
          (items[1].nativeElement as HTMLElement).click();
          fixture.detectChanges();
@@ -541,7 +549,7 @@ describe('StSelectComponent', () => {
 
          it('if user presses SPACE key, menu has to be opened', () => {
             const keyPressEvent = new Event('keydown');
-            (<any> keyPressEvent).code = 'Space';
+            (<any> keyPressEvent).code = SPACE_KEY_CODE;
             component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
 
             expect(component.expandedMenu).toBeTruthy();
@@ -549,7 +557,7 @@ describe('StSelectComponent', () => {
 
          it('if user presses ENTER key, menu has to be opened', () => {
             const keyPressEvent = new Event('keydown');
-            (<any> keyPressEvent).code = 'Enter';
+            (<any> keyPressEvent).code = ENTER_KEY_CODE;
             component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
 
             expect(component.expandedMenu).toBeTruthy();
@@ -557,35 +565,24 @@ describe('StSelectComponent', () => {
 
          it('if user presses ESCAPE key, menu is not opened', () => {
             const keyDownEvent = new Event('keydown');
-            (<any> keyDownEvent).code = 'Escape';
+            (<any> keyDownEvent).code = ESCAPE_KEY_CODE;
             fixture.nativeElement.querySelector('.st-select-menu').dispatchEvent(keyDownEvent);
 
             expect(component.expandedMenu).toBeFalsy();
 
             const keyPressEvent = new Event('keydown');
-            (<any> keyPressEvent).code = 'Escape';
+            (<any> keyPressEvent).code = ESCAPE_KEY_CODE;
             component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
             expect(component.expandedMenu).toBeFalsy();
          });
 
-         it('if user presses Arrow keys, selected option is changed to next/previous one', () => {
-            component.selected = simpleItems[1];
-            fixture.detectChanges();
+         it('if user presses Arrow keys, menu is opened', () => {
+            expect(component.expandedMenu).toBeFalsy();
 
-            let keyDownEvent = new Event('keydown');
-            (<any> keyDownEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+            let keyDownEvent = new KeyboardEvent('keydown', { code: ARROW_KEY_CODE.ARROW_DOWN });
             component.buttonElement.nativeElement.dispatchEvent(keyDownEvent);
 
-            expect(component.selected).toEqual(simpleItems[2]);
-
-            (<any> keyDownEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
-            component.buttonElement.nativeElement.dispatchEvent(keyDownEvent);
-            expect(component.selected).toEqual(simpleItems[3]);
-
-
-            (<any> keyDownEvent).code = ARROW_KEY_CODE.ARROW_UP;
-            component.buttonElement.nativeElement.dispatchEvent(keyDownEvent);
-            expect(component.selected).toEqual(simpleItems[2]);
+            expect(component.expandedMenu).toBeTruthy();
          });
       });
 
@@ -598,7 +595,7 @@ describe('StSelectComponent', () => {
 
          it('if user presses ENTER key, menu is closed', () => {
             const keyPressEvent = new Event('keydown');
-            (<any> keyPressEvent).code = 'Enter';
+            (<any> keyPressEvent).code = ENTER_KEY_CODE;
             component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
 
             expect(component.expandedMenu).toBeFalsy();
@@ -606,7 +603,7 @@ describe('StSelectComponent', () => {
 
          it('if user presses SPACE key, menu is closed', () => {
             const keyPressEvent = new Event('keydown');
-            (<any> keyPressEvent).code = 'Space';
+            (<any> keyPressEvent).code = SPACE_KEY_CODE;
             component.buttonElement.nativeElement.dispatchEvent(keyPressEvent);
 
             expect(component.expandedMenu).toBeFalsy();
@@ -614,89 +611,10 @@ describe('StSelectComponent', () => {
 
          it('if user presses ESCAPE key, menu is closed', () => {
             const keyDownEvent = new Event('keydown.escape');
-            (<any> keyDownEvent).code = 'Escape';
+            (<any> keyDownEvent).code = ESCAPE_KEY_CODE;
             fixture.debugElement.query(By.css('.st-select-menu')).triggerEventHandler('keydown.escape', keyDownEvent);
 
             expect(component.expandedMenu).toBeFalsy();
-         });
-      });
-
-      describe('When it is focused and user starts to type', () => {
-         beforeEach(() => {
-            component.hiddenTypedText.nativeElement.focus();
-         });
-
-         it('After one second without typing any key, stored text is reset', (done) => {
-            component.hiddenTypedText.nativeElement.innerText = 'te';
-            let keyDownEvent = new Event('keydown');
-            (<any> keyDownEvent).code = 'KeyH';
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyDownEvent);
-            expect(component.hiddenTypedText.nativeElement.innerText).toEqual('te');
-            setTimeout(() => {
-               keyDownEvent = new Event('keydown');
-               (<any> keyDownEvent).code = 'KeyA';
-               component.hiddenTypedText.nativeElement.dispatchEvent(keyDownEvent);
-               fixture.detectChanges();
-
-               expect(component.hiddenTypedText.nativeElement.innerText).toEqual('');
-               done();
-            }, 1000);
-
-         });
-
-         it('If user presses one of keys to navigate or close/open menu, stored text is reset', () => {
-            component.hiddenTypedText.nativeElement.innerText = 'te';
-
-            let keyDownEvent = new Event('keydown');
-            (<any> keyDownEvent).code = ARROW_KEY_CODE.ARROW_UP;
-            component.buttonElement.nativeElement.dispatchEvent(keyDownEvent);
-
-            fixture.detectChanges();
-
-            expect(component.hiddenTypedText.nativeElement.innerText).toEqual('');
-         });
-
-         it('First option founded (next to the current focused option) whose first letters of label match with typed text is selected', () => {
-            component.hiddenTypedText.nativeElement.innerText = 'e';
-            component.selected = simpleItems[9];
-            let keyUpEvent = new Event('keyup');
-            (<any> keyUpEvent).code = 'KeyE';
-
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
-            fixture.detectChanges();
-
-            expect(component.selected).toEqual(simpleItems[10]);
-
-            component.hiddenTypedText.nativeElement.innerText = 'co';
-            (<any> keyUpEvent).code = 'KeyO';
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
-            fixture.detectChanges();
-
-            expect(component.selected).toEqual(simpleItems[5]);
-         });
-
-         it('When user types the same letter twice times or more, and exact typed text does not match with any option, ' +
-            'the first option found starting with this letter is selected', () => {
-            component.hiddenTypedText.nativeElement.innerText = 'a';
-            component.selected = simpleItems[6];
-            let keyUpEvent = new Event('keyup');
-            (<any> keyUpEvent).code = 'KeyA';
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
-            fixture.detectChanges();
-
-            expect(component.selected).toEqual(simpleItems[0]);
-
-            component.hiddenTypedText.nativeElement.innerText = 'aa';
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
-            fixture.detectChanges();
-
-            expect(component.selected).toEqual(simpleItems[1]);
-
-            component.hiddenTypedText.nativeElement.innerText = 'aaa';
-            component.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
-            fixture.detectChanges();
-
-            expect(component.selected).toEqual(simpleItems[2]);
          });
       });
    });

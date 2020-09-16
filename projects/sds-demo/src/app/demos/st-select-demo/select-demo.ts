@@ -105,7 +105,7 @@ export class SelectDemoComponent {
 
    constructor(private _fb: FormBuilder) {
       this.formControl.markAsDirty();
-      this.model.option1 = 1;
+      this.model.option1 =  this.options[2].value;
       this.options[5].selected = true;
       this.reactiveForm = this._fb.group({
          option1: [this.model.option1, Validators.required],

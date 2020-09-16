@@ -27,7 +27,8 @@ import {
 } from '@angular/core';
 
 import { StPopOffset, StPopPlacement } from '../st-pop/st-pop.model';
-import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem, StDropDownVisualMode } from './st-dropdown-menu.interface';
+import { ARROW_KEY_CODE, ENTER_KEY_CODE, SPACE_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem, StDropDownVisualMode } from './st-dropdown-menu.interface';
+import { StDropdownMenuUtils } from './utils/st-dropdown-menu.utils';
 
 /**
  * @description {Component} [Dropdown Menu]
@@ -51,14 +52,11 @@ import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem, StDropDownVisu
 @Component({
    selector: 'st-dropdown-menu',
    templateUrl: './st-dropdown-menu.component.html',
+   styleUrls: ['./st-dropdown-menu.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class StDropdownMenuComponent extends StDropdownMenuUtils implements AfterViewInit, OnInit, OnChanges, OnDestroy {
 
-   /** @Input {boolean} [active=false] Show or hide list */
-   @Input() active: boolean = false;
-   /** @Input {StDropDownMenuItem[] | StDropDownMenuGroup[]} [items=\[\]] List of items or groups of them to show in menu */
-   @Input() items: StDropDownMenuItem[] | StDropDownMenuGroup[] = [];
    /* tslint:disable-next-line:max-line-length */
    /** @Input {StPopPlacement} [placement=StPopPlacement.BOTTOM_START] Possible positions of menu with respect element to attach */
    @Input() placement: StPopPlacement = StPopPlacement.BOTTOM_START;
@@ -96,19 +94,48 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
 
    @ViewChild('buttonId') buttonElement: ElementRef;
    @ViewChild('itemList') itemListElement: ElementRef;
+   @ViewChild('hiddenTypedText') hiddenTypedText: ElementRef;
 
    widthMenu: string = '0px';
+   public focusedOptionPos: number = -1;
 
    private _itemHeight: number = 42;
-   private _focusedOptionPos: number = -1;
    private _focusListenerFn: () => void;
+   private _lastKeyTimestamp: number;
+   private _items: StDropDownMenuItem[] | StDropDownMenuGroup[];
+   private _flatItems: StDropDownMenuItem[] = [];
+   private _active: boolean;
+   private cleanTypedTextTimer: ReturnType<typeof setTimeout>;
 
    constructor(private el: ElementRef, private cd: ChangeDetectorRef, private renderer: Renderer2) {
+      super();
+   }
+
+   /** @Input {StDropDownMenuItem[] | StDropDownMenuGroup[]} [items=\[\]] List of items or groups of them to show in menu */
+   @Input()
+   set items(items: StDropDownMenuItem[] | StDropDownMenuGroup[]) {
+      this._items = items;
+      this._updateFlatOptions();
+   }
+
+   get items(): StDropDownMenuItem[] | StDropDownMenuGroup[] {
+      return this._items;
+   }
+
+   /** @Input {boolean} [active=false] Show or hide list */
+   @Input()
+   set active(active: boolean) {
+      this._active = active;
+      this._resetFilterAndFocusData();
+   }
+
+   get active(): boolean {
+      return this._active;
    }
 
    ngOnInit(): void {
       if (this.keyBoardMove) {
-         this._focusListenerFn = this.renderer.listen('document', 'keydown', this.arrowKeyListener.bind(this));
+         this._focusListenerFn = this.renderer.listen(this.el.nativeElement, 'keydown', this.arrowKeyListener.bind(this));
       }
    }
 
@@ -134,11 +161,11 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    }
 
    getItemId(value: any | undefined): string | null {
-      return this.componentId !== null && value !== undefined ? `${this.componentId}-option-${this.getItemValueMerged(value)}` : null;
+      return this.componentId !== null && value !== undefined ? `${this.componentId}-option-${this.getMergedItemValue(value)}` : null;
    }
 
-   isDropDownGroup(value: StDropDownMenuItem[] | StDropDownMenuGroup[]): value is StDropDownMenuGroup[] {
-      return value && value.length > 0 && (<StDropDownMenuGroup>value[0]).title !== undefined;
+   getGroupedOptionAbsolutePosition(item: StDropDownMenuItem): number {
+      return this._flatItems.findIndex(_item => _item === item);
    }
 
    ngAfterViewInit(): void {
@@ -146,34 +173,13 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    }
 
    ngOnChanges(changes: SimpleChanges): void {
-      if (this.active && this.selectedItem && this.moveSelected) {
-         // Only can do this functionality with timeout because we need to wait for angular to load new DOM
-         // with items before move scroll
-         setTimeout(() => {
-            if (this.itemListElement) {
-               const parent: HTMLElement = this.itemListElement.nativeElement;
-               const selectedItem: HTMLElement = parent.querySelector('.selected');
-               if (selectedItem && !this.elementIsVisible(selectedItem, parent)) {
-                  parent.scrollTop = selectedItem.offsetTop - parent.offsetTop;
-                  this.cd.markForCheck();
-               }
-            }
-         });
+      if (changes?.active && this.selectedItem && this.moveSelected) {
+         this._moveScrollToCurrentOption();
       } else {
-         if (changes && changes.active && !changes.active.currentValue) {
-            this._focusedOptionPos = -1;
+         if (changes?.active && !changes.active.currentValue) {
+            this.focusedOptionPos = -1;
          }
       }
-   }
-
-   elementIsVisible(option: HTMLElement, menu: HTMLElement): boolean {
-      let menuTop: number = menu.scrollTop;
-      let menuBottom: number = menuTop + menu.clientHeight;
-
-      let optionTop: number = option.offsetTop - menu.offsetTop;
-      let optionBottom: number = optionTop + option.clientHeight;
-
-      return  optionTop >= menuTop && optionBottom <= menuBottom;
    }
 
    onChange(value: StDropDownMenuItem): void {
@@ -187,8 +193,10 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
       }
    }
 
-   onMouseEnter(item: StDropDownMenuItem): void {
+   onMouseEnter(item: StDropDownMenuItem, optionPosition: number): void {
       this.itemMouseEnter.emit(item);
+      this.focusedOptionPos = optionPosition;
+      this._focusCurrentOption();
    }
 
    onMouseLeave(item: StDropDownMenuItem): void {
@@ -220,16 +228,11 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
       }
    }
 
-
-   private getItemValueMerged(value: any): string {
-      return value.toString().replace(/\s+/g, '_');
-   }
-
    private getSelectedItemPosition(): number {
-      if (this.selectedItem && this.items) {
+      if (this.selectedItem && this._items) {
          let _items: StDropDownMenuItem[] = [];
-         if (this.isDropDownGroup(this.items)) {
-            this.items.forEach((item: StDropDownMenuItem | StDropDownMenuGroup) => {
+         if (this.isDropDownGroup(this._items)) {
+            this._items.forEach((item: StDropDownMenuItem | StDropDownMenuGroup) => {
                if ((<StDropDownMenuGroup> item).items) {
                   _items.push(...(<StDropDownMenuGroup> item).items);
                } else {
@@ -237,7 +240,7 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
                }
             });
          } else {
-            _items = this.items;
+            _items = this._items;
          }
          return _items.findIndex(item => item.value === this.selectedItem.value);
       } else {
@@ -246,26 +249,134 @@ export class StDropdownMenuComponent implements AfterViewInit, OnInit, OnChanges
    }
 
    private arrowKeyListener(event: KeyboardEvent): void {
-      const selectedItemPosition = this.getSelectedItemPosition();
-      if (selectedItemPosition > -1 && this._focusedOptionPos < 0) {
-         this._focusedOptionPos = selectedItemPosition;
-      }
-      let nextFocus: number;
-      if (event.key === ARROW_KEY_CODE.ARROW_DOWN || event.key === ARROW_KEY_CODE.ARROW_UP) {
+      if (event.code === ARROW_KEY_CODE.ARROW_DOWN || event.code === ARROW_KEY_CODE.ARROW_UP) {
+         let nextFocus: number;
          event.preventDefault();
-
-         const options: HTMLLIElement[] = this.el.nativeElement.querySelectorAll('.st-dropdown-menu-item');
-         nextFocus = (event.key === ARROW_KEY_CODE.ARROW_DOWN || this._focusedOptionPos === -1) ? 1 : -1;
-         this._focusedOptionPos = this._focusedOptionPos + nextFocus;
-         if (this._focusedOptionPos < 0) {
-            this._focusedOptionPos = options.length - 1;
-         } else if (this._focusedOptionPos > options.length - 1) {
-            this._focusedOptionPos = 0;
+         event.stopPropagation();
+         const selectedItemPosition = this.focusedOptionPos >= 0 ? this.focusedOptionPos : this.getSelectedItemPosition();
+         if (selectedItemPosition > -1 && this.focusedOptionPos < 0) {
+            this.focusedOptionPos = selectedItemPosition;
          }
-         if (options[this._focusedOptionPos]) {
-            options[this._focusedOptionPos].focus();
+         const options: HTMLLIElement[] = this.el.nativeElement.querySelectorAll('.st-dropdown-menu-item');
+         nextFocus = (event.code === ARROW_KEY_CODE.ARROW_DOWN || this.focusedOptionPos === -1) ? 1 : -1;
+         this.focusedOptionPos = this.focusedOptionPos + nextFocus;
+         this.focusedOptionPos = this.focusedOptionPos < 0 ? options.length - 1 : (this.focusedOptionPos > options.length - 1 ? 0 : this.focusedOptionPos);
+         if (options[this.focusedOptionPos]) {
+            options[this.focusedOptionPos].focus();
+            this.hiddenTypedText.nativeElement.focus();
+            this.hiddenTypedText.nativeElement.innerText = '';
+         }
+         this.cd.markForCheck();
+      }
+   }
+
+   moveFocusedOption(event: KeyboardEvent): void {
+      if (this.keyBoardMove && event.key !== ARROW_KEY_CODE.ARROW_DOWN && event.key !== ARROW_KEY_CODE.ARROW_UP) {
+         event.preventDefault();
+         const typedText: string = this.hiddenTypedText.nativeElement.innerText;
+         if (typedText) {
+            const foundItemPos: number = this.searchFirstMatchedOptionPosition(typedText);
+            if (foundItemPos === -1 && typedText.length > 1 && typedText[typedText.length - 2] === typedText[typedText.length - 1]) {
+               this.hiddenTypedText.nativeElement.innerText = typedText.substring(0, 1);
+               this.moveFocusedOption(event);
+            }
+            if (foundItemPos > -1) {
+               this.onMouseEnter(this._flatItems[foundItemPos], foundItemPos);
+               this.focusedOptionPos = foundItemPos;
+               this._focusCurrentOption();
+            }
+            this.cd.markForCheck();
          }
       }
-      this.cd.markForCheck();
    }
+
+   saveTypedText(event: KeyboardEvent): void {
+      if (this.keyBoardMove) {
+         if (event.code === ENTER_KEY_CODE || event.code === SPACE_KEY_CODE) {
+            event.preventDefault();
+            this.onChange(this.focusedOptionPos > -1 ? this._flatItems[this.focusedOptionPos] : undefined);
+         } else {
+            if (!this.isMenuControlKey(event.code)) {
+               event.stopPropagation();
+               this._lastKeyTimestamp = event.timeStamp;
+               if (this.cleanTypedTextTimer) {
+                  clearTimeout(this.cleanTypedTextTimer);
+               }
+               this.cleanTypedTextTimer = setTimeout(() => {
+                  this.hiddenTypedText.nativeElement.innerText = '';
+               }, 1000);
+            }
+         }
+      }
+   }
+
+   private getSelectedOrFocusedOptionPosition(): number {
+      return this.focusedOptionPos > -1 ? this.focusedOptionPos : (this.selectedItem ?
+         this._flatItems.findIndex(_option => _option.value === this.selectedItem.value) : -1);
+   }
+
+   private searchFirstMatchedOptionPosition(searchText: string): number {
+      const firstOptionPos: number = this.getSelectedOrFocusedOptionPosition();
+      let foundOptionPos: number;
+      if (firstOptionPos > -1) {
+         foundOptionPos = this._searchOptionPositionByText(this._flatItems.slice(firstOptionPos + 1, this._flatItems.length), searchText);
+         if (foundOptionPos === -1) {
+            foundOptionPos = this._searchOptionPositionByText(this._flatItems.slice(0, firstOptionPos + 1), searchText);
+         } else {
+            foundOptionPos = foundOptionPos + firstOptionPos + 1;
+         }
+      } else {
+         foundOptionPos = this._searchOptionPositionByText(this._flatItems, searchText);
+      }
+      return foundOptionPos;
+   }
+
+   private _updateFlatOptions(): void {
+      this._flatItems = [];
+      if (this._items) {
+         this._items.forEach(_item => {
+            if (_item.items) {
+               this._flatItems = this._flatItems.concat(_item.items);
+            } else {
+               this._flatItems.push(_item);
+            }
+         });
+      }
+   }
+
+   private _focusCurrentOption(): void {
+      if (this.itemListElement && this.itemListElement.nativeElement && this._active) {
+         const options: HTMLLIElement[] = this.itemListElement.nativeElement.querySelectorAll('li');
+         if (options && options.length && this.focusedOptionPos >= 0 && this.focusedOptionPos < options.length) {
+            options[this.focusedOptionPos].focus();
+            this.hiddenTypedText.nativeElement.focus();
+         }
+      }
+   }
+
+   private _searchOptionPositionByText(list: StDropDownMenuItem[], searchText: string): number {
+      return list.findIndex(_option => _option.label.substring(0, searchText.length).toLowerCase() === searchText.toLowerCase());
+   }
+
+   private _moveScrollToCurrentOption(): void {
+      setTimeout(() => {
+         if (this.itemListElement) {
+            const parent: HTMLElement = this.itemListElement.nativeElement;
+            const currentItem: HTMLElement = parent.querySelector('.focus') || parent.querySelector('.selected');
+            if (currentItem && !this.elementIsVisible(currentItem, parent)) {
+               parent.scrollTop = currentItem.offsetTop - parent.offsetTop;
+               this.cd.markForCheck();
+            }
+         }
+      });
+   }
+
+   private _resetFilterAndFocusData(): void {
+      this.focusedOptionPos = -1;
+      if (this._active && this.hiddenTypedText && this.hiddenTypedText.nativeElement) {
+         this.hiddenTypedText.nativeElement.innerText = '';
+         this.hiddenTypedText.nativeElement.focus();
+      }
+   }
+
 }

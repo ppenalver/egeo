@@ -73,16 +73,19 @@
          outline: none;
       }
 
-      &:hover, &:focus {
+      &:focus, &.focus {
          background-color: var(--egeo-st-dropdown-menu__item__hover--bg-color, var(--egeo-theme-action-10, $action-10));
          outline: none;
       }
 
       &.selected {
-         background-color: var(--egeo-st-dropdown-menu__item__selected--bg-color, var(--egeo-theme-space-10, $space-10));
+         &:not(:focus):not(.focus) {
+            background-color: var(--egeo-st-dropdown-menu__item__selected--bg-color, var(--egeo-theme-space-10, $space-10));
+         }
          .label {
             font-weight: 600;
-         }      }
+         }
+      }
 
       &.disabled {
          cursor: default;

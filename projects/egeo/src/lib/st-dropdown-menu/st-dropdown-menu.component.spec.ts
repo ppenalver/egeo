@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { ChangeDetectionStrategy, Component, DebugElement, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { StDropdownMenuComponent } from './st-dropdown-menu.component';
@@ -19,17 +19,17 @@ import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem, StDropDownVisu
 import { StDropdownMenuItemComponent } from './st-dropdown-menu-item/st-dropdown-menu-item.component';
 
 const simpleItems: StDropDownMenuItem[] = [
-   { label: 'example 1', value: 1 },
-   { label: 'example 2', value: 2 },
-   { label: 'example 3', value: 3 },
-   { label: 'example 4', value: 4 },
-   { label: 'example 5', value: 5 },
-   { label: 'example 6', value: 6 },
-   { label: 'example 7', value: 7 },
-   { label: 'example 8', value: 8 },
-   { label: 'example 9', value: 9 },
-   { label: 'example 10', value: 10 },
-   { label: 'example 11', value: 11 }
+   { label: 'Afghanistan', value: 'afghanistan' },
+   { label: 'Albania', value: 'albania' },
+   { label: 'Australia', value: 'australia' },
+   { label: 'Brazil', value: 'brazil' },
+   { label: 'Chile', value: 'chile' },
+   { label: 'Costa Rica', value: 'costa_rica' },
+   { label: 'Cuba', value: 'cuba' },
+   { label: 'Czechia', value: 'czechia' },
+   { label: 'Eritrea', value: 'eritrea' },
+   { label: 'Estonia', value: 'estonia' },
+   { label: 'Ethiopia', value: 'ethiopia' }
 ];
 
 const simpleItems2: StDropDownMenuItem[] = [
@@ -201,13 +201,13 @@ describe('StDropdownMenu', () => {
          (fixture.elementRef.nativeElement as HTMLElement).id = id;
          fixture.detectChanges();
 
-         let item: DebugElement = fixture.debugElement.query(By.css('.without-results'));
+         let item: DebugElement = fixture.debugElement.query(By.css('.st-dropdown-menu-without-results'));
          expect(item).toBeNull();
 
          comp.active = true;
          fixture.detectChanges();
 
-         item = fixture.debugElement.query(By.css('.without-results'));
+         item = fixture.debugElement.query(By.css('.st-dropdown-menu-without-results'));
          expect(item).toBeDefined();
          expect(item.nativeElement).toBeDefined();
          expect((item.nativeElement as HTMLDivElement).innerText).toEqual(comp.emptyListMessage);
@@ -259,17 +259,16 @@ describe('StDropdownMenu', () => {
          comp.items = emptyGroup;
          comp.active = false;
          comp.emptyListMessage = 'Test message';
-         const id: string = 'test-id';
-         (fixture.elementRef.nativeElement as HTMLElement).id = id;
+         (fixture.elementRef.nativeElement as HTMLElement).id = 'test-id';
          fixture.detectChanges();
 
-         let item: DebugElement = fixture.debugElement.query(By.css('.without-results'));
+         let item: DebugElement = fixture.debugElement.query(By.css('.st-dropdown-menu-without-results'));
          expect(item).toBeNull();
 
          comp.active = true;
          fixture.detectChanges();
 
-         item = fixture.debugElement.query(By.css('.without-results'));
+         item = fixture.debugElement.query(By.css('.st-dropdown-menu-without-results'));
          expect(item).toBeDefined();
          expect(item.nativeElement).toBeDefined();
          expect((item.nativeElement as HTMLDivElement).innerText).toEqual(comp.emptyListMessage);
@@ -301,8 +300,8 @@ describe('StDropdownMenu', () => {
             spyOn(HTMLLIElement.prototype, 'focus');
 
             const keyboardEvent = new Event('keydown');
-            (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
-            document.dispatchEvent(keyboardEvent);
+            (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+            fixture.nativeElement.dispatchEvent(keyboardEvent);
 
             expect(HTMLLIElement.prototype.focus).not.toHaveBeenCalled();
          });
@@ -324,9 +323,9 @@ describe('StDropdownMenu', () => {
 
             it('If user presses key down and there isn´t an option selected, first option is focused', () => {
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
 
-               document.dispatchEvent(keyboardEvent);
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[0].focus).toHaveBeenCalledTimes(1);
                for (let i = 1; i < options.length; ++i) {
@@ -343,8 +342,8 @@ describe('StDropdownMenu', () => {
                }
 
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[4].focus).toHaveBeenCalledTimes(1);
                for (let i = 0; i < options.length; ++i) {
@@ -363,8 +362,8 @@ describe('StDropdownMenu', () => {
                }
 
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[0].focus).toHaveBeenCalledTimes(1);
                for (let i = 1; i < options.length; ++i) {
@@ -374,8 +373,8 @@ describe('StDropdownMenu', () => {
 
             it('If user presses key up and there isn´t an option selected, first option is focused', () => {
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_UP;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_UP;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[0].focus).toHaveBeenCalledTimes(1);
                for (let i = 1; i < options.length; ++i) {
@@ -392,8 +391,8 @@ describe('StDropdownMenu', () => {
                }
 
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_UP;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_UP;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[2].focus).toHaveBeenCalledTimes(1);
                for (let i = 0; i < options.length; ++i) {
@@ -409,12 +408,12 @@ describe('StDropdownMenu', () => {
                comp.ngOnInit();
 
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
                for (let i = 0; i < options.length; ++i) {
                   (<jasmine.Spy> options[i].focus).calls.reset();
                }
-               document.dispatchEvent(keyboardEvent); // two under options
+               fixture.nativeElement.dispatchEvent(keyboardEvent); // two under options
 
                expect(options[3].focus).toHaveBeenCalledTimes(1);
                for (let i = 0; i < options.length; ++i) {
@@ -433,8 +432,8 @@ describe('StDropdownMenu', () => {
                }
 
                const keyboardEvent = new Event('keydown');
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_UP;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_UP;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
 
                expect(options[comp.items.length - 1].focus).toHaveBeenCalledTimes(1);
                for (let i = 0; i < options.length - 1; ++i) {
@@ -443,21 +442,138 @@ describe('StDropdownMenu', () => {
             });
 
             it('When user presses enter key when an option is focused, this is selected', () => {
-               comp.ngOnDestroy();
                comp.selectedItem = (<StDropDownMenuItem> comp.items[2]);
-               comp.ngOnInit();
+
                const keyboardEvent = new Event('keydown');
 
-               (<any> keyboardEvent).key = ARROW_KEY_CODE.ARROW_DOWN;
-               document.dispatchEvent(keyboardEvent);
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
                spyOn(comp.change, 'emit');
 
-               const enterEvent = new Event('keyup');
-               (<any> enterEvent).key = 'Enter';
-
-               options[3].dispatchEvent(enterEvent);
+               const enterEvent = new Event('keydown');
+               (<any> enterEvent).code = 'Enter';
+               comp.hiddenTypedText.nativeElement.dispatchEvent(enterEvent);
 
                expect(comp.change.emit).toHaveBeenCalledWith(<StDropDownMenuItem> comp.items[3]);
+            });
+
+            it('When user presses Space key when an option is focused, this is selected', () => {
+               comp.selectedItem = (<StDropDownMenuItem> comp.items[2]);
+
+               const keyboardEvent = new Event('keydown');
+
+               (<any> keyboardEvent).code = ARROW_KEY_CODE.ARROW_DOWN;
+               fixture.nativeElement.dispatchEvent(keyboardEvent);
+               spyOn(comp.change, 'emit');
+
+               const enterEvent = new Event('keydown');
+               (<any> enterEvent).code = 'Space';
+               comp.hiddenTypedText.nativeElement.dispatchEvent(enterEvent);
+
+               expect(comp.change.emit).toHaveBeenCalledWith(<StDropDownMenuItem> comp.items[3]);
+            });
+
+            it('if user presses Arrow keys, focused option is changed to next/previous to the selected one', () => {
+               comp.selectedItem = simpleItems[1];
+               fixture.detectChanges();
+
+               let keyDownEvent = new KeyboardEvent('keydown', { code: ARROW_KEY_CODE.ARROW_DOWN, bubbles: true });
+               fixture.nativeElement.dispatchEvent(keyDownEvent);
+
+               fixture.detectChanges();
+
+               expect(comp.active).toBeTruthy();
+               expect(fixture.nativeElement.querySelectorAll('li')[2].focus).toHaveBeenCalled();
+
+               comp.buttonElement.nativeElement.dispatchEvent(keyDownEvent);
+
+               expect(fixture.nativeElement.querySelectorAll('li')[3].focus).toHaveBeenCalled();
+
+               keyDownEvent = new KeyboardEvent('keydown', { code: ARROW_KEY_CODE.ARROW_UP, bubbles: true });
+               fixture.nativeElement.dispatchEvent(keyDownEvent);
+
+               expect(fixture.nativeElement.querySelectorAll('li')[2].focus).toHaveBeenCalled();
+            });
+
+            describe('When it is focused and user starts to type', () => {
+               beforeEach(() => {
+                  comp.hiddenTypedText.nativeElement.focus();
+                  spyOn(HTMLLIElement.prototype, 'focus');
+               });
+
+               it('After one second without typing any key, stored text is reset', fakeAsync(() => {
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyE', bubbles: true }));
+
+                  comp.hiddenTypedText.nativeElement.innerText = 'te';
+                  expect(comp.hiddenTypedText.nativeElement.innerText).toEqual('te');
+
+                  tick(1000);
+                  fixture.detectChanges();
+
+                  expect(comp.hiddenTypedText.nativeElement.innerText).toEqual('');
+               }));
+
+               it('If user presses one of keys to navigate or close/open menu, stored text is reset', () => {
+                  comp.hiddenTypedText.nativeElement.innerText = 'te';
+
+                  let keyDownEvent = new Event('keydown');
+                  (<any> keyDownEvent).code = ARROW_KEY_CODE.ARROW_UP;
+                  fixture.nativeElement.dispatchEvent(keyDownEvent);
+
+                  fixture.detectChanges();
+
+                  expect(comp.hiddenTypedText.nativeElement.innerText).toEqual('');
+               });
+
+               it('First option founded (next to the current focused option) whose first letters of label match with typed text is focused', () => {
+                  comp.hiddenTypedText.nativeElement.innerText = 'e';
+                  comp.selectedItem = simpleItems[9];
+                  let keyUpEvent = new Event('keyup');
+                  (<any> keyUpEvent).code = 'KeyE';
+
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
+                  fixture.detectChanges();
+
+                  expect(comp.focusedOptionPos).toEqual(10);
+                  expect(comp.itemListElement.nativeElement.querySelectorAll('li')[10].focus).toHaveBeenCalled();
+
+                  comp.hiddenTypedText.nativeElement.innerText = 'co';
+                  (<any> keyUpEvent).code = 'KeyO';
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
+                  fixture.detectChanges();
+
+                  expect(comp.focusedOptionPos).toEqual(5);
+                  expect(comp.itemListElement.nativeElement.querySelectorAll('li')[5].focus).toHaveBeenCalled();
+               });
+
+               it('When user types the same letter twice times or more, and exact typed text does not match with any option, ' +
+                  'the first option found starting with this letter is focused', () => {
+                  comp.hiddenTypedText.nativeElement.innerText = 'a';
+                  comp.selectedItem = simpleItems[6];
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
+
+                  fixture.detectChanges();
+
+                  expect(comp.focusedOptionPos).toEqual(0);
+                  expect(comp.itemListElement.nativeElement.querySelectorAll('li')[0].focus).toHaveBeenCalled();
+
+                  comp.hiddenTypedText.nativeElement.innerText = 'aa';
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
+                  fixture.detectChanges();
+
+                  expect(comp.focusedOptionPos).toEqual(1);
+                  expect(comp.itemListElement.nativeElement.querySelectorAll('li')[1].focus).toHaveBeenCalled();
+
+                  comp.hiddenTypedText.nativeElement.innerText = 'aaa';
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
+                  comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
+                  fixture.detectChanges();
+
+                  expect(comp.focusedOptionPos).toEqual(2);
+                  expect(comp.itemListElement.nativeElement.querySelectorAll('li')[2].focus).toHaveBeenCalled();
+               });
             });
          });
       });

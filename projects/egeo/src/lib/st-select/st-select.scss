@@ -31,23 +31,6 @@
    width: 100%;
 }
 
-.hidden-stored-text {
-   border: 0;
-   color: transparent;
-   height: 0;
-   outline: transparent;
-   position: absolute;
-   top: 0;
-   width: 0;
-}
-
-.inner-input {
-   left: 0;
-   outline: transparent;
-   position: absolute;
-   top: 0;
-}
-
 .st-search {
    &-icon {
       cursor: pointer;

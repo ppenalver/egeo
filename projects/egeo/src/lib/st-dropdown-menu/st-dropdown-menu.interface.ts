@@ -11,6 +11,13 @@
 import { TranslateableElement } from '../utils/egeo-resolver/egeo-resolve-model';
 
 export enum ARROW_KEY_CODE {ARROW_UP = 'ArrowUp', ARROW_DOWN = 'ArrowDown'}
+
+export const ENTER_KEY_CODE = 'Enter';
+export const SPACE_KEY_CODE = 'Space';
+export const ESCAPE_KEY_CODE = 'Escape';
+
+export const MENU_CONTROL_KEYS = [ARROW_KEY_CODE.ARROW_UP, ARROW_KEY_CODE.ARROW_DOWN, ENTER_KEY_CODE, SPACE_KEY_CODE, ESCAPE_KEY_CODE];
+
 export class StDropDownMenuItem {
    label: string;
    value: any;
@@ -26,6 +33,7 @@ export class StDropDownMenuItem {
    disabled?: boolean;
    topSeparator?: boolean;
    bottomSeparator?: boolean;
+
    [key: string]: any; // To do model more extensible if any other component needs to send more data
 }
 

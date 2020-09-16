@@ -27,7 +27,14 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
 import { cloneDeep as _cloneDeep, flatten as _flatten, has as _has } from 'lodash';
 
 import { StCheckValidationsDirective } from './st-check-validations';
-import { ARROW_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
+import {
+   ARROW_KEY_CODE,
+   ENTER_KEY_CODE,
+   ESCAPE_KEY_CODE,
+   SPACE_KEY_CODE,
+   StDropDownMenuGroup,
+   StDropDownMenuItem
+} from '../st-dropdown-menu/st-dropdown-menu.interface';
 
 @Component({
    selector: 'st-select',
@@ -52,7 +59,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    @Input() default: any;
    @Input() itemsBeforeScroll: number = 10;
    @Input() forceValidations: boolean = false;
-   @Input() keyBoardMove: boolean = true;
 
    @Output() expand: EventEmitter<boolean> = new EventEmitter<boolean>();
    @Output() select: EventEmitter<any> = new EventEmitter<any>();
@@ -60,7 +66,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
 
    @ViewChild('input') inputElement: ElementRef;
    @ViewChild('button') buttonElement: ElementRef;
-   @ViewChild('hiddenTypedText') hiddenTypedText: ElementRef;
 
    @HostBinding('class.st-select-opened')
 
@@ -73,8 +78,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    private _inputHTMLElement: HTMLInputElement | undefined = undefined;
    private _isDisabled: boolean = false;
    private _options: StDropDownMenuItem[] | StDropDownMenuGroup[] = [];
-   private _lastKeyTimestamp: number;
-   private _flatOptions: StDropDownMenuItem[] = [];
 
    constructor(private _selectElement: ElementRef,
                private _injector: Injector,
@@ -113,7 +116,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       if (selectedItem) {
          this.selected = selectedItem;
       }
-      this._updateFlatOptions();
    }
 
    get options(): StDropDownMenuItem[] | StDropDownMenuGroup[] {
@@ -205,53 +207,6 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       }
    }
 
-   onButtonKeyPress(event: KeyboardEvent): void {
-      if (this.keyBoardMove) {
-         if ((event.code === 'Enter' || event.code === 'Space') || (event.code === 'Escape' && this.expandedMenu)) {
-            event.preventDefault();
-            this.toggleButton();
-         } else {
-            if (event.code === ARROW_KEY_CODE.ARROW_DOWN || event.code === ARROW_KEY_CODE.ARROW_UP) {
-               const selectedPosition: number = this.getSelectedOptionPosition();
-               let newSelectedPosition: number = event.code === ARROW_KEY_CODE.ARROW_DOWN ? selectedPosition + 1 : selectedPosition - 1;
-               newSelectedPosition = newSelectedPosition < 0 ? this._flatOptions.length - 1 :
-                  (newSelectedPosition >= this._flatOptions.length ? 0 : newSelectedPosition);
-               this.onChangeOption(this._flatOptions[newSelectedPosition], false, true);
-               this._cd.markForCheck();
-            }
-         }
-      }
-   }
-
-   moveSelectedOption(event: KeyboardEvent): void {
-      if (this.keyBoardMove && event.key !== ARROW_KEY_CODE.ARROW_DOWN && event.key !== ARROW_KEY_CODE.ARROW_UP) {
-         event.preventDefault();
-         const typedText: string = this.hiddenTypedText.nativeElement.innerText;
-         if (typedText) {
-            let foundOption: StDropDownMenuItem = this.searchFirstMatchedOption(typedText);
-            if (!foundOption && typedText.length > 1 && typedText[typedText.length - 2] === typedText[typedText.length - 1]) {
-               this.hiddenTypedText.nativeElement.innerText = typedText.substring(0, 1);
-               this.moveSelectedOption(event);
-            }
-            if (foundOption) {
-               this.onChangeOption(foundOption, false, false);
-            }
-            this._cd.markForCheck();
-         }
-      }
-   }
-
-   saveTypedText(event: KeyboardEvent): void {
-      if (this.keyBoardMove) {
-         if (!this._lastKeyTimestamp || event.timeStamp - this._lastKeyTimestamp < 1000) {
-            this._lastKeyTimestamp = event.timeStamp;
-         } else {
-            this.hiddenTypedText.nativeElement.innerText = '';
-            this._lastKeyTimestamp = undefined;
-         }
-      }
-   }
-
    createResetButton(): boolean {
       return this.default !== undefined && ((!this.selected && this.inputFormControl.touched) || (this.selected && this.selected.value !== this.default));
    }
@@ -270,7 +225,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       this.expand.emit(this.expandedMenu); // Notify expand change
    }
 
-   onChangeOption(option: StDropDownMenuItem, close: boolean = true, cleanSearch: boolean = true): void {
+   onChangeOption(option: StDropDownMenuItem): void {
       this.selected = option;
       const value: any = option && option.value !== undefined ? option.value : undefined;
       if (this.onChange) {
@@ -282,14 +237,10 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       }
       this.select.emit(value);
 
-      if ((value || (option && option.hasOwnProperty('value') && !option.value)) && close) {
+      if ((value || (option && option.hasOwnProperty('value') && !option.value))) {
          this.onClickOutside();
       }
-      if (cleanSearch) {
-         this.hiddenTypedText.nativeElement.innerText = '';
-         this._lastKeyTimestamp = undefined;
-      }
-      this.hiddenTypedText.nativeElement.focus();
+      this.inputElement.nativeElement.focus();
       this._cd.markForCheck();
    }
 
@@ -297,22 +248,18 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       this.scrollAtBottom.emit();
    }
 
+   onButtonKeyPress(event: KeyboardEvent): void {
+      if ((event.code === ENTER_KEY_CODE || event.code === SPACE_KEY_CODE)
+         || ((event.code === ESCAPE_KEY_CODE) === this.expandedMenu)
+         || ((event.code === ARROW_KEY_CODE.ARROW_DOWN || event.code === ARROW_KEY_CODE.ARROW_UP) && !this.expandedMenu)) {
+         this.toggleButton();
+      }
+
+   }
+
    /*
     ****** Util component methods ******
     */
-
-   private _updateFlatOptions(): void {
-      this._flatOptions = [];
-      if (this._options) {
-         this._options.forEach(_option => {
-            if (_option.items) {
-               this._flatOptions = this._flatOptions.concat(_option.items);
-            } else {
-               this._flatOptions.push(_option);
-            }
-         });
-      }
-   }
 
    // Search element by property in option list
    private findByProperty(propName: 'value' | 'selected', propValue: any): StDropDownMenuItem | undefined {
@@ -336,9 +283,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    private toggleButton(): void {
       this.expandedMenu = !this.expandedMenu;
       this.expand.emit(this.expandedMenu); // Notify expand change
-      this.hiddenTypedText.nativeElement.focus();
-      this.hiddenTypedText.nativeElement.innerText = '';
-      this._lastKeyTimestamp = undefined;
+      this._inputHTMLElement.focus();
       this._cd.markForCheck();
    }
 
@@ -359,17 +304,4 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
       }
    }
 
-   private getSelectedOptionPosition(): number {
-      return this._flatOptions && this.selected ? this._flatOptions.findIndex(_option => _option.value === this.selected.value) : -1;
-   }
-
-   private searchFirstMatchedOption(searchText: string): StDropDownMenuItem {
-      const selectedPosition: number = this.getSelectedOptionPosition();
-      const sortedOptions: StDropDownMenuItem[] = [
-         ...this._flatOptions.slice(selectedPosition + 1, this._flatOptions.length),
-         ...this._flatOptions.slice(0, selectedPosition)
-      ];
-
-      return sortedOptions.find(_option => _option.label.substring(0, searchText.length).toLowerCase() === searchText.toLowerCase());
-   }
 }
