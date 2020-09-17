@@ -50,7 +50,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeFalsy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeFalsy();
       expect(comp.styleSelected).toBeTruthy();
 
@@ -64,7 +63,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeFalsy();
       expect(comp.styleSelected).toBeTruthy();
 
@@ -79,7 +77,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeTruthy();
       expect(comp.icon).toEqual(comp.item.icon);
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeFalsy();
       expect(comp.styleSelected).toBeTruthy();
 
@@ -97,7 +94,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeTruthy();
       expect(comp.styleSelected).toBeTruthy();
 
@@ -113,7 +109,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeTruthy();
       expect(comp.styleSelected).toBeTruthy();
 
@@ -131,7 +126,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeFalsy();
       expect(comp.styleSelected).toBeFalsy();
 
@@ -153,7 +147,6 @@ describe('StDropdownMenuItemComponent', () => {
       expect(comp.hasItem).toBeTruthy();
       expect(comp.hasIcon).toBeFalsy();
       expect(comp.icon).toEqual('');
-      expect(comp.index).toEqual(0);
       expect(comp.isSelected).toBeFalsy();
       expect(comp.styleSelected).toBeFalsy();
 

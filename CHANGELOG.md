@@ -5,17 +5,14 @@
 **New features:**
 
 * st-button: Apply new design according to UX specifications
-* st-select: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
+* st-tag: Apply new behaviour and design defined by UX
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-checkbox: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-checkbox: Added `indeterminate` boolean input to set checkbox as indeterminate. Defaults to false
-* st-tag: Apply new behaviour and design defined by UX
 * st-switch: Added `showLabel` boolean input to show control's label. Defaults to true
 * st-switch: Added `position` input of type `StSwitchPosition` to change switch position. Defaults to left
 * st-radio: Added `showLabel` boolean input to show control's label. Defaults to true
-* st-select: Enable keyboard listener by default to open, close and move across menu options
-* st-select: Enable keyboard listener to search options (as native MAC behaviour)
 * st-modal2: Added "fullWindow" input to apply full size to the modal
 * st-modal2: st-modal2 was renamed externally (not in code) as st-modal
 * st-modal2: Added functionality to close modal when clicking outside
@@ -28,6 +25,10 @@
 * st-spinner: Added "st-spinner--inherit" to take parent display value
 * st-horizontal-tabs: Moved theme styles into component stylesheet
 * st-vertical-icon-tabs: Removed internal demo component
+* st-select: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
+* st-select: Enable keyboard listener by default to open, close and move across menu options
+* st-select: Enable keyboard listener to search options (as native MAC behaviour)
+* st-select: Allow user to move between selects using TAB and TAB+SHIFT keys 
 
 **Fixed bugs:**
 

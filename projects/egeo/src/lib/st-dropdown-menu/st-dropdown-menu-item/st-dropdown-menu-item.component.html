@@ -11,7 +11,6 @@
 
 -->
 <li *ngIf="hasItem"
-    [attr.tabindex]="index"
     [ngClass]="{'selected': isSelected, 'disabled': item.disabled, 'top-separator': item.topSeparator, 'bottom-separator': item.bottomSeparator, 'focus': focus}"
     class="st-dropdown-menu-item"
     (click)="onChangeItem()"

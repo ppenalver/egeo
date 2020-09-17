@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { ChangeDetectionStrategy, Component, DebugElement, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { StDropdownMenuComponent } from './st-dropdown-menu.component';
@@ -525,7 +525,7 @@ describe('StDropdownMenu', () => {
                   expect(comp.hiddenTypedText.nativeElement.innerText).toEqual('');
                });
 
-               it('First option founded (next to the current focused option) whose first letters of label match with typed text is focused', () => {
+               it('First option founded (next to the current focused option) whose first letters of label match with typed text is focused', fakeAsync(() => {
                   comp.hiddenTypedText.nativeElement.innerText = 'e';
                   comp.selectedItem = simpleItems[9];
                   let keyUpEvent = new Event('keyup');
@@ -533,6 +533,7 @@ describe('StDropdownMenu', () => {
 
                   comp.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
                   fixture.detectChanges();
+                  tick(1);
 
                   expect(comp.focusedOptionPos).toEqual(10);
                   expect(comp.itemListElement.nativeElement.querySelectorAll('li')[10].focus).toHaveBeenCalled();
@@ -541,20 +542,23 @@ describe('StDropdownMenu', () => {
                   (<any> keyUpEvent).code = 'KeyO';
                   comp.hiddenTypedText.nativeElement.dispatchEvent(keyUpEvent);
                   fixture.detectChanges();
+                  tick(1);
 
                   expect(comp.focusedOptionPos).toEqual(5);
                   expect(comp.itemListElement.nativeElement.querySelectorAll('li')[5].focus).toHaveBeenCalled();
-               });
+
+                  flush();
+               }));
 
                it('When user types the same letter twice times or more, and exact typed text does not match with any option, ' +
-                  'the first option found starting with this letter is focused', () => {
+                  'the first option found starting with this letter is focused', fakeAsync(() => {
                   comp.hiddenTypedText.nativeElement.innerText = 'a';
                   comp.selectedItem = simpleItems[6];
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
 
                   fixture.detectChanges();
-
+                  tick(1);
                   expect(comp.focusedOptionPos).toEqual(0);
                   expect(comp.itemListElement.nativeElement.querySelectorAll('li')[0].focus).toHaveBeenCalled();
 
@@ -562,6 +566,7 @@ describe('StDropdownMenu', () => {
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
                   fixture.detectChanges();
+                  tick(1);
 
                   expect(comp.focusedOptionPos).toEqual(1);
                   expect(comp.itemListElement.nativeElement.querySelectorAll('li')[1].focus).toHaveBeenCalled();
@@ -570,10 +575,13 @@ describe('StDropdownMenu', () => {
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keydown'));
                   comp.hiddenTypedText.nativeElement.dispatchEvent(new Event('keyup'));
                   fixture.detectChanges();
+                  tick(1);
 
                   expect(comp.focusedOptionPos).toEqual(2);
                   expect(comp.itemListElement.nativeElement.querySelectorAll('li')[2].focus).toHaveBeenCalled();
-               });
+
+                  flush();
+               }));
             });
          });
       });

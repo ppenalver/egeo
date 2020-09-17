@@ -31,9 +31,11 @@ import {
    ARROW_KEY_CODE,
    ENTER_KEY_CODE,
    ESCAPE_KEY_CODE,
+   SHIFT_KEY_CODE,
    SPACE_KEY_CODE,
    StDropDownMenuGroup,
-   StDropDownMenuItem
+   StDropDownMenuItem,
+   TAB_KEY_CODE
 } from '../st-dropdown-menu/st-dropdown-menu.interface';
 
 @Component({
@@ -236,10 +238,7 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
          this.onTouched();
       }
       this.select.emit(value);
-
-      if ((value || (option && option.hasOwnProperty('value') && !option.value))) {
-         this.onClickOutside();
-      }
+      this.onClickOutside();
       this.inputElement.nativeElement.focus();
       this._cd.markForCheck();
    }
@@ -249,12 +248,18 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
    }
 
    onButtonKeyPress(event: KeyboardEvent): void {
-      if ((event.code === ENTER_KEY_CODE || event.code === SPACE_KEY_CODE)
-         || ((event.code === ESCAPE_KEY_CODE) === this.expandedMenu)
-         || ((event.code === ARROW_KEY_CODE.ARROW_DOWN || event.code === ARROW_KEY_CODE.ARROW_UP) && !this.expandedMenu)) {
+      if (event.code !== TAB_KEY_CODE && event.code.indexOf(SHIFT_KEY_CODE) === -1
+         && (event.code === ENTER_KEY_CODE || event.code === SPACE_KEY_CODE
+            || this._menuHasToBeClosed(event.code) || this._menuHasToBeOpen(event.code))) {
          this.toggleButton();
       }
+   }
 
+   onPressTabKey(event: KeyboardEvent): void {
+      if (this.expandedMenu) {
+         event.stopPropagation();
+         event.preventDefault();
+      }
    }
 
    /*
@@ -302,6 +307,14 @@ export class StSelectComponent implements AfterViewInit, OnInit, ControlValueAcc
             }
          }));
       }
+   }
+
+   private _menuHasToBeClosed(keyCode: string): boolean {
+      return (keyCode === ESCAPE_KEY_CODE) === this.expandedMenu;
+   }
+
+   private _menuHasToBeOpen(keyCode: string): boolean {
+      return !this.expandedMenu && (keyCode === ARROW_KEY_CODE.ARROW_DOWN || keyCode === ARROW_KEY_CODE.ARROW_UP);
    }
 
 }

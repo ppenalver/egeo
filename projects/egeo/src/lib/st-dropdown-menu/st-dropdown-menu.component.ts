@@ -17,17 +17,23 @@ import {
    EventEmitter,
    HostListener,
    Input,
-   OnChanges,
    OnDestroy,
    OnInit,
    Output,
    Renderer2,
-   SimpleChanges,
    ViewChild
 } from '@angular/core';
 
 import { StPopOffset, StPopPlacement } from '../st-pop/st-pop.model';
-import { ARROW_KEY_CODE, ENTER_KEY_CODE, SPACE_KEY_CODE, StDropDownMenuGroup, StDropDownMenuItem, StDropDownVisualMode } from './st-dropdown-menu.interface';
+import {
+   ARROW_KEY_CODE,
+   ENTER_KEY_CODE,
+   SPACE_KEY_CODE,
+   StDropDownMenuGroup,
+   StDropDownMenuItem,
+   StDropDownVisualMode,
+   TAB_KEY_CODE
+} from './st-dropdown-menu.interface';
 import { StDropdownMenuUtils } from './utils/st-dropdown-menu.utils';
 
 /**
@@ -55,7 +61,7 @@ import { StDropdownMenuUtils } from './utils/st-dropdown-menu.utils';
    styleUrls: ['./st-dropdown-menu.component.scss'],
    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StDropdownMenuComponent extends StDropdownMenuUtils implements AfterViewInit, OnInit, OnChanges, OnDestroy {
+export class StDropdownMenuComponent extends StDropdownMenuUtils implements AfterViewInit, OnInit, OnDestroy {
 
    /* tslint:disable-next-line:max-line-length */
    /** @Input {StPopPlacement} [placement=StPopPlacement.BOTTOM_START] Possible positions of menu with respect element to attach */
@@ -107,7 +113,7 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
    private _active: boolean;
    private cleanTypedTextTimer: ReturnType<typeof setTimeout>;
 
-   constructor(private el: ElementRef, private cd: ChangeDetectorRef, private renderer: Renderer2) {
+   constructor(private _el: ElementRef, private _cd: ChangeDetectorRef, private _renderer: Renderer2) {
       super();
    }
 
@@ -127,6 +133,9 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
    set active(active: boolean) {
       this._active = active;
       this._resetFilterAndFocusData();
+      if (this._active && this.moveSelected && this.selectedItem && this.focusedOptionPos === -1) {
+         this._moveScrollToOption('selected');
+      }
    }
 
    get active(): boolean {
@@ -135,13 +144,13 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
 
    ngOnInit(): void {
       if (this.keyBoardMove) {
-         this._focusListenerFn = this.renderer.listen(this.el.nativeElement, 'keydown', this.arrowKeyListener.bind(this));
+         this._focusListenerFn = this._renderer.listen(this._el.nativeElement, 'keydown', this.arrowKeyListener.bind(this));
       }
    }
 
    get componentId(): string | null {
-      const id = (this.el.nativeElement as HTMLElement).getAttribute('id');
-      return id !== undefined && id !== null ? id : null;
+      const id = (this._el.nativeElement as HTMLElement).getAttribute('id');
+      return id || null;
    }
 
    get menuId(): string | null {
@@ -170,16 +179,6 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
 
    ngAfterViewInit(): void {
       this.updateWidth();
-   }
-
-   ngOnChanges(changes: SimpleChanges): void {
-      if (changes?.active && this.selectedItem && this.moveSelected) {
-         this._moveScrollToCurrentOption();
-      } else {
-         if (changes?.active && !changes.active.currentValue) {
-            this.focusedOptionPos = -1;
-         }
-      }
    }
 
    onChange(value: StDropDownMenuItem): void {
@@ -217,7 +216,7 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
          } else {
             this.widthMenu = button.getBoundingClientRect().width + 'px';
          }
-         this.cd.markForCheck();
+         this._cd.markForCheck();
       });
 
    }
@@ -257,7 +256,7 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
          if (selectedItemPosition > -1 && this.focusedOptionPos < 0) {
             this.focusedOptionPos = selectedItemPosition;
          }
-         const options: HTMLLIElement[] = this.el.nativeElement.querySelectorAll('.st-dropdown-menu-item');
+         const options: HTMLLIElement[] = this._el.nativeElement.querySelectorAll('.st-dropdown-menu-item');
          nextFocus = (event.code === ARROW_KEY_CODE.ARROW_DOWN || this.focusedOptionPos === -1) ? 1 : -1;
          this.focusedOptionPos = this.focusedOptionPos + nextFocus;
          this.focusedOptionPos = this.focusedOptionPos < 0 ? options.length - 1 : (this.focusedOptionPos > options.length - 1 ? 0 : this.focusedOptionPos);
@@ -265,15 +264,16 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
             options[this.focusedOptionPos].focus();
             this.hiddenTypedText.nativeElement.focus();
             this.hiddenTypedText.nativeElement.innerText = '';
+            this._moveScrollToOption('focus');
          }
-         this.cd.markForCheck();
+         this._cd.markForCheck();
       }
    }
 
    moveFocusedOption(event: KeyboardEvent): void {
-      if (this.keyBoardMove && event.key !== ARROW_KEY_CODE.ARROW_DOWN && event.key !== ARROW_KEY_CODE.ARROW_UP) {
+      if (this.keyBoardMove && event.code !== ARROW_KEY_CODE.ARROW_DOWN && event.code !== ARROW_KEY_CODE.ARROW_UP && event.code !== TAB_KEY_CODE) {
          event.preventDefault();
-         const typedText: string = this.hiddenTypedText.nativeElement.innerText;
+         const typedText: string = this.hiddenTypedText.nativeElement.innerText.trim();
          if (typedText) {
             const foundItemPos: number = this.searchFirstMatchedOptionPosition(typedText);
             if (foundItemPos === -1 && typedText.length > 1 && typedText[typedText.length - 2] === typedText[typedText.length - 1]) {
@@ -284,8 +284,9 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
                this.onMouseEnter(this._flatItems[foundItemPos], foundItemPos);
                this.focusedOptionPos = foundItemPos;
                this._focusCurrentOption();
+               this._moveScrollToOption('focus');
             }
-            this.cd.markForCheck();
+            this._cd.markForCheck();
          }
       }
    }
@@ -294,7 +295,8 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
       if (this.keyBoardMove) {
          if (event.code === ENTER_KEY_CODE || event.code === SPACE_KEY_CODE) {
             event.preventDefault();
-            this.onChange(this.focusedOptionPos > -1 ? this._flatItems[this.focusedOptionPos] : undefined);
+            const selectedItem: StDropDownMenuItem = this.focusedOptionPos > -1 ? this._flatItems[this.focusedOptionPos] : this.selectedItem;
+            this.onChange(selectedItem);
          } else {
             if (!this.isMenuControlKey(event.code)) {
                event.stopPropagation();
@@ -358,14 +360,14 @@ export class StDropdownMenuComponent extends StDropdownMenuUtils implements Afte
       return list.findIndex(_option => _option.label.substring(0, searchText.length).toLowerCase() === searchText.toLowerCase());
    }
 
-   private _moveScrollToCurrentOption(): void {
+   private _moveScrollToOption(status: 'focus' | 'selected'): void {
       setTimeout(() => {
          if (this.itemListElement) {
             const parent: HTMLElement = this.itemListElement.nativeElement;
-            const currentItem: HTMLElement = parent.querySelector('.focus') || parent.querySelector('.selected');
+            const currentItem: HTMLElement = parent.querySelector('.' + status);
             if (currentItem && !this.elementIsVisible(currentItem, parent)) {
                parent.scrollTop = currentItem.offsetTop - parent.offsetTop;
-               this.cd.markForCheck();
+               this._cd.markForCheck();
             }
          }
       });

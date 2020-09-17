@@ -24,7 +24,8 @@
    [offset]="{x: 0, y: 4}"
    [itemsBeforeScroll]="itemsBeforeScroll"
    (keydown.escape)="onButtonKeyPress($event)"
-   (keydown.tab)="onClickOutside()"
+   (keydown.tab)="onPressTabKey($event)"
+   (keydown.shift.tab)="onPressTabKey($event)"
 >
    <div #button class="button-container"
         (click)="onButtonClick()"

@@ -18,7 +18,6 @@ import { StDropDownMenuItem } from '../st-dropdown-menu.interface';
    templateUrl: './st-dropdown-menu-item.component.html'
 })
 export class StDropdownMenuItemComponent {
-   @Input() index: number = 0;
    @Input() item: StDropDownMenuItem = undefined;
    @Input() selectedItem: StDropDownMenuItem = undefined;
    @Input() styleSelected: boolean = true;

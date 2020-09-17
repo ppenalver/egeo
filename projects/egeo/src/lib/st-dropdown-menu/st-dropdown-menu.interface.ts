@@ -15,8 +15,11 @@ export enum ARROW_KEY_CODE {ARROW_UP = 'ArrowUp', ARROW_DOWN = 'ArrowDown'}
 export const ENTER_KEY_CODE = 'Enter';
 export const SPACE_KEY_CODE = 'Space';
 export const ESCAPE_KEY_CODE = 'Escape';
+export const TAB_KEY_CODE = 'Tab';
+export const SHIFT_KEY_CODE = 'Shift';
 
-export const MENU_CONTROL_KEYS = [ARROW_KEY_CODE.ARROW_UP, ARROW_KEY_CODE.ARROW_DOWN, ENTER_KEY_CODE, SPACE_KEY_CODE, ESCAPE_KEY_CODE];
+export const MENU_CONTROL_KEYS = [ARROW_KEY_CODE.ARROW_UP, ARROW_KEY_CODE.ARROW_DOWN,
+   ENTER_KEY_CODE, SPACE_KEY_CODE, ESCAPE_KEY_CODE, TAB_KEY_CODE, SHIFT_KEY_CODE];
 
 export class StDropDownMenuItem {
    label: string;

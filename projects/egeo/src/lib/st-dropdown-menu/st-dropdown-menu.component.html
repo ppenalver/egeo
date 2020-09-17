@@ -14,7 +14,7 @@
 
    <div pop-button #buttonId>
       <ng-content></ng-content>
-      <div #hiddenTypedText class="hidden-stored-text" type="button" spellcheck="false" contentEditable="true"
+      <div #hiddenTypedText class="hidden-stored-text" type="button" spellcheck="false" contentEditable="true" tabindex="-1"
            (keydown)="saveTypedText($event)"
            (keyup)="moveFocusedOption($event)">
       </div>
@@ -37,7 +37,6 @@
                *ngFor="let item of items; let i = index"
                [focus]="i === focusedOptionPos"
                [attr.id]="getItemId(item.value)"
-               [index]="i"
                [item]="item"
                [selectedItem]="selectedItem"
                [styleSelected]="styleSelected"
@@ -65,7 +64,6 @@
                      <st-dropdown-menu-item
                         *ngFor="let item of group.items || []"
                         [attr.id]="getItemId(item.value)"
-                        [index]="getGroupedOptionAbsolutePosition(item)"
                         [item]="item"
                         [selectedItem]="selectedItem"
                         [styleSelected]="styleSelected"
