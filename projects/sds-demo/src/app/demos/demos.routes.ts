@@ -20,6 +20,7 @@ export class SdsDemoMenu {
 
 export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
    { id: 'sds-checkbox', name: 'Checkbox', path: 'checkbox-demo', moduleLazyLoad: 'SdsCheckboxDemoModule' },
+   { id: 'sds-alert', name: 'Alert', path: 'alerts-demo', moduleLazyLoad: 'SdsAlertDemoModule' },
    { id: 'sds-radio', name: 'Radio Button', path: 'radio-demo', moduleLazyLoad: 'SdsRadioDemoModule' },
    { id: 'sds-switch', name: 'Switch', path: 'switch-demo', moduleLazyLoad: 'SdsSwitchDemoModule' },
    { id: 'sds-toggle-button', name: 'Toggle Button', path: 'toggle-buttons-demo', moduleLazyLoad: 'SdsToggleButtonDemoModule' },
@@ -41,7 +42,6 @@ export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
    { id: 'st-tooltip', name: 'Tooltip', path: 'tooltip-demo', moduleLazyLoad: 'StTooltipDemoModule' },
    { id: 'st-breadcrumbs', name: 'Breadcrumb', path: 'breadcrumbs', moduleLazyLoad: 'StBreadcrumbsDemoModule' },
-   { id: 'st-alerts', name: 'Alert', path: 'alerts-demo', moduleLazyLoad: 'StAlertsDemoModule' },
    { id: 'st-table', name: 'Table', path: 'table-demo', moduleLazyLoad: 'StTableDemoModule' },
    { id: 'st-tag-input', name: 'Tag Input', path: 'tag-input-demo', moduleLazyLoad: 'StTagInputDemoModule' }
 ];
@@ -68,7 +68,7 @@ export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
 
 // tslint:disable:max-line-length
 const routes: Routes = [
-   { path: 'alerts-demo', loadChildren: () => import( './st-alert-demo/st-alerts-demo.module').then(m => m.StAlertsDemoModule) },
+   { path: 'alerts-demo', loadChildren: () => import( './sds-alert-demo/sds-alert-demo.module').then(m => m.SdsAlertDemoModule) },
    { path: 'breadcrumbs', loadChildren: () => import( './st-breadcrumbs-demo/st-breadcrumbs-demo.module').then(m => m.StBreadcrumbsDemoModule ) },
    { path: 'bubble-demo', loadChildren: () => import( './st-bubble-demo/st-bubble-demo.module').then(m => m.StBubbleDemoModule ) },
    { path: 'bubble-on-ellipsis-demo', loadChildren: () => import( './st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module').then(m => m.StBubbleOnEllipsisDemoModule ) },

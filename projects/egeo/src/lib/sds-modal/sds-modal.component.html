@@ -15,7 +15,7 @@
    *ngIf="showModalHTML"
    class="st-modal-container"
    [@state]="visibility"
-   [@.disabled]="!enabledAnimation || hotRender"
+   [@.disabled]="!enabledAnimation || isDisabled"
    (@state.done)="animationDone($event)"
    (click)="onClickOutside($event)">
   <div

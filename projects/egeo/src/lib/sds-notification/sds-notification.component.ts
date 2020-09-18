@@ -34,6 +34,7 @@ import {Subject} from 'rxjs';
 import {SdsNotificationService} from './sds-notification.service';
 import {takeUntil} from 'rxjs/operators';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {SdsAlertType} from '../sds-alert/sds-alert.model';
 
 @Component({
    selector: 'sds-notification',
@@ -73,7 +74,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export class SdsNotificationComponent implements OnInit, OnChanges {
 
-   /** @Input {hotRender} [hotRender=false'] If true, renders the notification directly and without animation */
+   /** @Input {isDisabled} [isDisabled=false'] If true, disables positioning and animation */
+   @Input() isDisabled: boolean;
+
+   /** @Input {hotRender} [hotRender=false'] If true, enables hot render */
    @Input() hotRender: boolean;
 
    /** @Input {config} [config={}'] Notification's config */
@@ -94,11 +98,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    public notificationIcon: SdsNotificationIcon | string;
    public position: SdsNotificationPosition;
    public positionReference: string;
-   public timeout: number;
-   public infoTimeout: number;
-   public successTimeout: number;
-   public warningTimeout: number;
-   public criticalTimeout: number;
+   public notificationTimeout: number;
    public multipleTimeout: number;
    public margin: number;
    public maxWidth: string;
@@ -119,7 +119,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
 
    @HostListener('mouseout')
    public onMouseOut(): void {
-      if (!this.hotRender) {
+      if (!this.isDisabled) {
          const timeout = this.getTimeoutToApply(this.isMultiple);
          if (timeout) {
             this.setNotificationsTimeout(timeout);
@@ -138,12 +138,13 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
       this.config = {};
       this.showNotification = false;
       this.hotRender = false;
+      this.isDisabled = false;
       this.componentDestroyed$ = new Subject();
    }
 
    public ngOnInit(): void {
       this.processConfiguration();
-      if (this.hotRender) {
+      if (this.isDisabled) {
          this.showNotification = true;
          this.cd.detectChanges();
       } else {
@@ -159,7 +160,7 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    }
 
    public onCloseClick(): void {
-      if (!this.hotRender) {
+      if (!this.isDisabled) {
          clearTimeout(this.visibilityTimeout);
          this.visibilityTimeout = null;
          this.removeNotification(this.close);
@@ -302,25 +303,29 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    private processConfiguration(config: SdsNotificationDisplayOptions = this.config): void {
       const defaultConfig = this._notifications.DEFAULT_CONFIG;
 
-      this.message = config.message ? config.message : defaultConfig.message;
-      this.notificationType = config.notificationType ? config.notificationType : defaultConfig.notificationType;
-      this.notificationIcon = config.notificationIcon ? config.notificationIcon : defaultConfig.notificationIcon;
-      this.closeIcon = !!config.closeIcon;
-      this.position = config.position ? config.position : defaultConfig.position;
-      this.positionReference = config.positionReference ? config.positionReference : defaultConfig.positionReference;
-      this.margin = config.margin ? config.margin : defaultConfig.margin;
-      this.maxWidth = config.maxWidth ? config.maxWidth : defaultConfig.maxWidth;
+      this.message = config?.message ? config.message : defaultConfig.message;
+      this.notificationType = config?.notificationType ? config.notificationType : defaultConfig.notificationType;
+      this.notificationIcon = config?.notificationIcon ? config.notificationIcon : defaultConfig.notificationIcon;
+      this.closeIcon = !!config?.closeIcon;
+      this.position = config?.position ? config.position : defaultConfig.position;
+      this.positionReference = config?.positionReference ? config.positionReference : defaultConfig.positionReference;
+      this.margin = config?.margin ? config.margin : defaultConfig.margin;
+      this.maxWidth = config?.maxWidth ? config.maxWidth : defaultConfig.maxWidth;
 
-      this.timeout = config.timeout ? config.timeout : defaultConfig.timeout;
-      this.infoTimeout = config.infoTimeout ? config.infoTimeout : this.timeout;
-      this.successTimeout = config.successTimeout ? config.successTimeout : this.timeout;
-      this.warningTimeout = config.warningTimeout ? config.warningTimeout : this.timeout;
-      this.criticalTimeout = config.criticalTimeout ? config.criticalTimeout : 0;
-      this.multipleTimeout = config.multipleTimeout ? config.multipleTimeout : 0;
+      this.notificationTimeout = config?.timeout ? config.timeout : defaultConfig.timeout;
+      this.multipleTimeout = config?.multipleTimeout ? config.multipleTimeout : 0;
+
+      const auxMap = {
+         [SdsNotificationType.INFO]: config?.infoTimeout ? config.infoTimeout : this.notificationTimeout,
+         [SdsNotificationType.SUCCESS]: config?.successTimeout ? config.successTimeout : this.notificationTimeout,
+         [SdsNotificationType.WARNING]: config?.warningTimeout ? config.warningTimeout : this.notificationTimeout,
+         [SdsNotificationType.CRITICAL]: config?.criticalTimeout ? config.criticalTimeout : 0
+      };
+      this.notificationTimeout = auxMap[this.notificationType];
 
       this.cd.detectChanges();
 
-      if (!this.hotRender && this.stNotification) {
+      if (!this.isDisabled && this.stNotification) {
          this.renderer.setStyle(this.stNotification.nativeElement, 'max-width', this.maxWidth);
          this.renderer.removeStyle(this.stNotification.nativeElement, 'width');
          this.setNotificationPosition();
@@ -328,17 +333,12 @@ export class SdsNotificationComponent implements OnInit, OnChanges {
    }
 
    private getTimeoutToApply(isMultiple: boolean): number {
-      if (isMultiple) {
-         return this.multipleTimeout;
+      const timeout: number = isMultiple ? this.multipleTimeout : this.notificationTimeout;
+      if (!timeout) {
+         this.closeIcon = true;
       }
 
-      const auxMap = {
-         [SdsNotificationType.INFO]: this.infoTimeout,
-         [SdsNotificationType.SUCCESS]: this.successTimeout,
-         [SdsNotificationType.WARNING]: this.warningTimeout,
-         [SdsNotificationType.CRITICAL]: this.criticalTimeout
-      };
-      return auxMap[this.notificationType];
+      return timeout;
    }
 }
 

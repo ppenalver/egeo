@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { StAlertsDemoModule } from './st-alert-demo/st-alerts-demo.module';
+import { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 import { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 import { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 import { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
@@ -53,7 +53,7 @@ import { StTagDemoModule } from '@app/demos/st-tag-demo/st-tag-demo.module';
 
 export const EGEO_DEMO_MODULES: any[] = [
    // Demos
-   StAlertsDemoModule,
+   SdsAlertDemoModule,
    StBreadcrumbsDemoModule,
    StBubbleDemoModule,
    StBubbleOnEllipsisDemoModule,

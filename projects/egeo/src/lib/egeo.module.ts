@@ -11,7 +11,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { StAlertsService } from './st-alerts/st-alerts.service';
+import { SdsAlertService } from './sds-alert/sds-alert.service';
 import { StModalService } from './st-modal/st-modal.service';
 import { StPaginationService } from './st-pagination/st-pagination.service';
 import { EgeoResolveService } from './utils/egeo-resolver/egeo-resolve.service';
@@ -39,7 +39,7 @@ export class EgeoModule {
             StPaginationService,
             EgeoResolveService,
             SelectOneDispatcher,
-            StAlertsService,
+            SdsAlertService,
             StWindowRefService
          ]
       };

@@ -37,9 +37,9 @@ describe('StDocsComponent', () => {
    beforeEach(() => {
       fixture = TestBed.createComponent(StDocsComponent);
       component = fixture.componentInstance;
-      component.htmlFile = 'demo/st-alert-demo/st-alerts-demo.html';
-      component.componentFile = 'lib/st-alerts/st-alerts.component.ts';
-      component.tsFile = 'demo/st-alert-demo/st-alerts-demo.ts';
+      component.htmlFile = 'demo/sds-alert-demo/sds-alert-demo.html';
+      component.componentFile = 'lib/sds-alert/sds-alert.component.ts';
+      component.tsFile = 'demo/sds-alert-demo/sds-alert-demo.ts';
       fixture.detectChanges();
    });
 

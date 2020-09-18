@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { PipesModule } from './pipes/pipes.module';
-import { StAlertsModule } from './st-alerts/st-alerts.module';
+import { SdsAlertModule } from './sds-alert/sds-alert.module';
 import { StBubbleModule } from './st-bubble/st-bubble.module';
 import { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 import { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
@@ -52,7 +52,7 @@ import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
 
 export const DECLARATIONS: any[] = [
    PipesModule,
-   StAlertsModule,
+   SdsAlertModule,
    StBreadcrumbsModule,
    StBubbleModule,
    SdsCheckboxModule,

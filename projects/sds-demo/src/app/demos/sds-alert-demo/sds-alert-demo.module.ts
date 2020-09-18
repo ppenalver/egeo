@@ -12,22 +12,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
    StDemoGeneratorModule,
-   StAlertsModule,
-   StAlertsService,
-   StDocsModule
+   SdsAlertModule,
+   StDocsModule, SdsRadioModule, SdsCheckboxModule, StInputModule, StSelectModule, SdsSwitchModule
 } from '@stratio/egeo';
 
-import { StAlertsDemoComponent } from './st-alerts-demo';
+import { SdsAlertDemoComponent } from './sds-alert-demo';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
    imports: [
       CommonModule,
-      StAlertsModule,
-      StDemoGeneratorModule.withComponents({ components: [StAlertsDemoComponent] }),
-      StDocsModule
+      SdsAlertModule,
+      SdsRadioModule,
+      SdsCheckboxModule,
+      SdsSwitchModule,
+      StInputModule,
+      StSelectModule,
+      StDemoGeneratorModule.withComponents({components: [SdsAlertDemoComponent]}),
+      StDocsModule,
+      ReactiveFormsModule
    ],
-   declarations: [StAlertsDemoComponent],
-   providers: [StAlertsService]
+   declarations: [SdsAlertDemoComponent],
+   providers: []
 })
-export class StAlertsDemoModule { }
+export class SdsAlertDemoModule { }
 

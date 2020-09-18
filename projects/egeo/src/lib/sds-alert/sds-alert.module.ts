@@ -10,11 +10,14 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StAlertBoxComponent } from './st-alert-box.component';
+
+import { SdsAlertComponent } from './sds-alert.component';
+import {SdsAlertService} from './sds-alert.service';
 
 @NgModule({
    imports: [CommonModule],
-   declarations: [StAlertBoxComponent],
-   exports: [StAlertBoxComponent]
+   declarations: [SdsAlertComponent],
+   exports: [SdsAlertComponent],
+   providers: [SdsAlertService]
 })
-export class StAlertBoxModule { }
+export class SdsAlertModule { }

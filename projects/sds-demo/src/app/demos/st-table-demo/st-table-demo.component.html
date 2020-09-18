@@ -123,7 +123,7 @@
             <ng-template #filterContent let-index="index">
 
                <div class="custom-filter-container">
-                  <st-input [formControl]="index === 0 ? idFilterFormControl : (index === 2 ? lastNameFilterFormControl : phoneFilterFormControl)"
+                  <st-input class="st-form-field" [formControl]="index === 0 ? idFilterFormControl : (index === 2 ? lastNameFilterFormControl : phoneFilterFormControl)"
                             (click)="$event.stopPropagation()">
                   </st-input>
 

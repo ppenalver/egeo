@@ -12,7 +12,7 @@ export { EGEO_DEMO_MODULES } from './barrels';
 export { EGEO_DEMO_MENU, SdsDemoMenu } from './demos.routes';
 export { SdsDemoModule } from './sds-demo.module';
 
-export { StAlertsDemoModule } from './st-alert-demo/st-alerts-demo.module';
+export { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 export { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 export { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 

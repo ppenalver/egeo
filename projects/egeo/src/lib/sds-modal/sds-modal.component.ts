@@ -50,6 +50,7 @@ export class SdsModalComponent implements OnInit, OnChanges {
    @ViewChild('modal', {static: false}) modal: ElementRef;
 
    @Input() hotRender: boolean;
+   @Input() isDisabled: boolean;
    @Input() modalConfig: SdsModalConfig;
    @Input()
    get showModal(): boolean {
@@ -111,6 +112,7 @@ export class SdsModalComponent implements OnInit, OnChanges {
       this.modalTypes = SdsModalType;
       this.showModalHTML = false;
       this.hotRender = false;
+      this.isDisabled = false;
       this.animationTime = 300;
       this.closeEscape = new EventEmitter();
       this.closeControl = new EventEmitter();
@@ -159,7 +161,7 @@ export class SdsModalComponent implements OnInit, OnChanges {
          this.showHeaderIcon = true;
       }
 
-      if (!this.hotRender && this.modal) {
+      if (!this.isDisabled && this.modal) {
          if (this.isFullWindow) {
             this.renderer.setStyle(this.modal.nativeElement, 'width', '100%');
             this.renderer.setStyle(this.modal.nativeElement, 'height', '100%');

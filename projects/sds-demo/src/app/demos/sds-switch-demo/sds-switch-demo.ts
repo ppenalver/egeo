@@ -9,7 +9,6 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 import {RadioChange, StRadioMenuOption, SdsSwitchPosition} from '@stratio/egeo';
 
 @Component({

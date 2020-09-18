@@ -20,6 +20,7 @@ import {SdsNotificationService} from '../../../../../egeo/src/lib/sds-notificati
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {takeUntil} from 'rxjs/operators';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {SdsAlertType} from '../../../../../egeo/src/lib/sds-alert/sds-alert.model';
 
 @Component({
    selector: 'sds-notification-demo',
@@ -164,6 +165,7 @@ export class SdsNotificationDemoComponent {
    public showCloseControlMessage: boolean = false;
 
    private componentDestroyed$: Subject<void>;
+   private isShowing: boolean = false;
 
    constructor(private cd: ChangeDetectorRef, private _notifications: SdsNotificationService, private fb: FormBuilder) {
       this.componentDestroyed$ = new Subject();
@@ -186,7 +188,8 @@ export class SdsNotificationDemoComponent {
          criticalTimeout: this.fb.control(null),
          margin: this.fb.control(this.notificationsConfig.margin),
          maxWidth: this.fb.control(this.notificationsConfig.maxWidth),
-         showSpecificTimeouts: this.fb.control(false)
+         showSpecificTimeouts: this.fb.control(false),
+         multiple: this.fb.control(false)
       });
 
       this.configForm.valueChanges
@@ -206,16 +209,37 @@ export class SdsNotificationDemoComponent {
             }
 
             this.notificationsConfig = Object.assign({}, this.notificationsConfig, notificationConfig);
+
+            if (!this.getTimeoutToApply()) {
+               this.configForm.get('closeControl').setValue(true, {emitEvent: false});
+               this.configForm.get('closeControl').disable({emitEvent: false});
+               this.notificationsConfig = {...this.notificationsConfig, closeIcon: true};
+            } else if (!this.isShowing && !this.configForm.get('multiple').value) {
+               this.configForm.get('closeControl').enable({emitEvent: false});
+            }
+         });
+
+      this.configForm.get('multiple').valueChanges
+         .pipe(takeUntil(this.componentDestroyed$))
+         .subscribe((val) => {
+            if (val) {
+               this.configForm.get('closeControl').setValue(true, {emitEvent: false});
+               this.configForm.get('closeControl').disable({emitEvent: false});
+               this.configForm.get('type').disable({emitEvent: false});
+            } else {
+               this.configForm.get('type').enable({emitEvent: false});
+               this.configForm.get('closeControl').enable({emitEvent: false});
+            }
          });
 
       this.configForm.get('showSpecificTimeouts').valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe(() => {
-            this.configForm.get('multipleTimeout').setValue(null);
-            this.configForm.get('infoTimeout').setValue(null);
-            this.configForm.get('successTimeout').setValue(null);
-            this.configForm.get('warningTimeout').setValue(null);
-            this.configForm.get('criticalTimeout').setValue(null);
+            this.configForm.get('multipleTimeout').setValue(null, {emitEvent: false});
+            this.configForm.get('infoTimeout').setValue(null, {emitEvent: false});
+            this.configForm.get('successTimeout').setValue(null, {emitEvent: false});
+            this.configForm.get('warningTimeout').setValue(null, {emitEvent: false});
+            this.configForm.get('criticalTimeout').setValue(null, {emitEvent: false});
 
             this.notificationsConfig.multipleTimeout = null;
             this.notificationsConfig.infoTimeout = null;
@@ -226,80 +250,29 @@ export class SdsNotificationDemoComponent {
    }
 
    public displayNotification(): void {
-      this._notifications.addNotification({
-         notificationType: this.notificationsConfig.notificationType,
-         message: this.notificationsConfig.message,
-         notificationIcon: this.notificationsConfig.notificationIcon,
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: this.notificationsConfig.position,
-         positionReference: this.notificationsConfig.positionReference,
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
-      });
-
-      this.configForm.disable();
+      this._notifications.addNotification({...this.notificationsConfig});
+      this.isShowing = true;
+      this.configForm.disable({emitEvent: false});
    }
 
    public displayVariousNotifications(): void {
       this._notifications.addNotification({
-         notificationType: SdsNotificationType.SUCCESS,
-         message: 'This is a success notification',
-         notificationIcon: 'icon-cog',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: SdsNotificationPosition.TOP_CENTER,
-         positionReference: '#main',
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
+         ...this.notificationsConfig,
+         notificationType: SdsNotificationType.SUCCESS
       });
 
       this._notifications.addNotification({
-         notificationType: SdsNotificationType.CRITICAL,
-         message: 'This is a critical notification',
-         notificationIcon: 'icon-plane',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: SdsNotificationPosition.TOP_CENTER,
-         positionReference: '#main',
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
+         ...this.notificationsConfig,
+         notificationType: SdsNotificationType.CRITICAL
       });
 
       this._notifications.addNotification({
-         notificationType: SdsNotificationType.WARNING,
-         message: 'This is a warning notification',
-         notificationIcon: 'icon-cog',
-         closeIcon: this.notificationsConfig.closeIcon,
-         position: SdsNotificationPosition.TOP_CENTER,
-         positionReference: '#main',
-         timeout: this.notificationsConfig.timeout,
-         multipleTimeout: this.notificationsConfig.multipleTimeout,
-         infoTimeout: this.notificationsConfig.infoTimeout,
-         successTimeout: this.notificationsConfig.successTimeout,
-         warningTimeout: this.notificationsConfig.warningTimeout,
-         criticalTimeout: this.notificationsConfig.criticalTimeout,
-         margin: this.notificationsConfig.margin,
-         maxWidth: this.notificationsConfig.maxWidth
+         ...this.notificationsConfig,
+         notificationType: SdsNotificationType.WARNING
       });
 
-      this.configForm.disable();
-
+      this.isShowing = true;
+      this.configForm.disable({emitEvent: false});
    }
 
    public onCloseControlClick(): void {
@@ -313,6 +286,7 @@ export class SdsNotificationDemoComponent {
 
    public enableControls(): void {
       if (!this._notifications.getConsumingQueue()) {
+         this.isShowing = false;
          this.configForm.enable();
          this.cd.detectChanges();
       }
@@ -421,4 +395,21 @@ export class SdsNotificationDemoComponent {
       }
    }
 
+   public getTimeoutToApply(): number {
+      const alertType = this.configForm.get('type').value;
+      const alertTimeout = this.configForm.get('timeout').value;
+      const infoTimeout = this.configForm.get('infoTimeout').value;
+      const successTimeout = this.configForm.get('successTimeout').value;
+      const warningTimeout = this.configForm.get('warningTimeout').value;
+      const criticalTimeout = this.configForm.get('criticalTimeout').value;
+
+      const auxMap = {
+         [SdsNotificationType.INFO]: infoTimeout ?? alertTimeout,
+         [SdsNotificationType.SUCCESS]: successTimeout ?? alertTimeout,
+         [SdsNotificationType.WARNING]: warningTimeout ?? alertTimeout,
+         [SdsNotificationType.CRITICAL]: criticalTimeout ?? 0
+      };
+
+      return auxMap[alertType];
+   }
 }

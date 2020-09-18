@@ -10,7 +10,7 @@
    #sdsNotification
    *ngIf="showNotification"
    [@notificationFade]
-   [@.disabled]="hotRender"
+   [@.disabled]="isDisabled"
    class="st-notification"
    [ngClass]="[
       'st-notification--' + (notificationType ? notificationType : stNotificationType.INFO)]

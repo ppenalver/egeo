@@ -19,7 +19,7 @@
                <div class="buttons">
                   <sds-switch label="Open to left" [(formControl)]="openToLeftFormControl">
                   </sds-switch>
-                  <st-input label="Max with of container" [(formControl)]="containerMaxWidthFormControl"
+                  <st-input class="st-form-field" label="Max with of container" [(formControl)]="containerMaxWidthFormControl"
                             [fieldType]="'number'"></st-input>
                </div>
                <div class="bubble-container" [style.max-width]="containerMaxWidthFormControl.value + 'px'">
