@@ -28,9 +28,10 @@
               }">
                <sds-spinner
                   [ngClass]="{
-                  'sds-spinner--20': spinnerSize === 2,
-                  'sds-spinner--16': spinnerSize === 3,
-                  'sds-spinner--12': spinnerSize === 4,
+                  'sds-spinner--80': spinnerSize === 2,
+                  'sds-spinner--20': spinnerSize === 3,
+                  'sds-spinner--16': spinnerSize === 4,
+                  'sds-spinner--12': spinnerSize === 5,
                   'sds-spinner--inline': spinnerDisplay === 2,
                   'sds-spinner--inherit': spinnerDisplay === 3,
                   'sds-spinner--inverse': spinnerColor === 2
@@ -43,9 +44,10 @@
                <h1>Size</h1>
                <sds-radio-group [(ngModel)]="spinnerSize" class="st-inline-group">
                   <sds-radio name="size-options" [value]="1" [checked]="true">Default</sds-radio>
-                  <sds-radio name="size-options" [value]="2">Button standard</sds-radio>
-                  <sds-radio name="size-options" [value]="3">Button small</sds-radio>
-                  <sds-radio name="size-options" [value]="4">Text</sds-radio>
+                  <sds-radio name="size-options" [value]="2">Large</sds-radio>
+                  <sds-radio name="size-options" [value]="3">Button standard</sds-radio>
+                  <sds-radio name="size-options" [value]="4">Button small</sds-radio>
+                  <sds-radio name="size-options" [value]="5">Text</sds-radio>
                </sds-radio-group>
             </div>
             <div>

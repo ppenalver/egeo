@@ -44,7 +44,7 @@ sds-notification .st-notification {
 
 sds-spinner {
    --egeo-sds-spinner--display: block;
-   --egeo-sds-spinner--size: 80px;
+   --egeo-sds-spinner--size: 60px;
    --egeo-sds-spinner--line-width: 3px;
    --egeo-sds-spinner--color: var(--egeo-theme-action, #{$action});
 
@@ -66,6 +66,10 @@ sds-spinner {
    &.sds-spinner--20 {
       --egeo-sds-spinner--size: 20px;
       --egeo-sds-spinner--line-width: 5px;
+   }
+   &.sds-spinner--80 {
+      --egeo-sds-spinner--size: 80px;
+      --egeo-sds-spinner--line-width: 3px;
    }
    &.sds-spinner--inverse {
       --egeo-sds-spinner--color: var(--egeo-theme-neutral-full, #{$neutral-full});
