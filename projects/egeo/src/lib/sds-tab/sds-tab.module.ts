@@ -1,4 +1,4 @@
-/**
+/*
  * © 2017 Stratio Big Data Inc., Sucursal en España.
  *
  * This software is licensed under the Apache License, Version 2.0.
@@ -8,20 +8,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '~@stratio/egeo-themes/dist/stratio/constants';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { SdsTabComponent } from './sds-tab.component';
 
-
-.horizontal-tabs {
-   width: 100%;
-   display: block;
-}
-
-.demo {
-   display: block;
-   padding: 60px 0;
-}
-
-.filter {
-   text-align: right;
-   margin-left: auto;
-}
+@NgModule({
+   imports: [CommonModule],
+   declarations: [SdsTabComponent],
+   exports: [SdsTabComponent]
+})
+export class SdsTabModule {}

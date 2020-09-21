@@ -11,7 +11,7 @@
 
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { StDocsModule } from './st-docs.module';
-import { StHorizontalTabsModule } from '../st-horizontal-tabs/st-horizontal-tabs.module';
+import { SdsTabModule } from '../sds-tab/sds-tab.module';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { StDocsComponent } from './st-docs.component';
 import { StDocsService } from './st-docs.service';
@@ -28,7 +28,7 @@ describe('StDocsComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [StHorizontalTabsModule, StDocsModule],
+         imports: [SdsTabModule, StDocsModule],
          providers: [StDocsService]
       })
          .compileComponents();

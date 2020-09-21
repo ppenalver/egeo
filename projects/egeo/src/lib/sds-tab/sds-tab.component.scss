@@ -1,0 +1,70 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+@import "~@stratio/egeo-themes/dist/stratio/constants";
+
+.sds-tab {
+   position: relative;
+   display: flex;
+   width: 100%;
+   list-style: none;
+
+   &--border {
+      border-bottom: solid 1px var(--egeo-theme-neutral-20, $neutral-20);
+   }
+
+
+   &__cell {
+      display: inline-flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 30px 7px 30px;
+      margin-top: auto;
+      cursor: pointer;
+      color: var(--egeo-theme-action, $action);
+      text-decoration: none;
+      font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+      font-weight: 600;
+      text-transform: capitalize;
+      line-height: $egeo-line-height-20;
+      text-align: center;
+      font-size: $egeo-font-size-14;
+      height: 36px;
+      margin-bottom: -1px;
+
+      &--small {
+         font-size: $egeo-font-size-12;
+         height: 30px;
+      }
+
+      &--active {
+         padding-bottom: 5px;
+         border-bottom: solid 2px var(--egeo-theme-neutral, $space-110);
+
+         &:focus {
+            text-decoration: none;
+            outline: none;
+         }
+         color: var(--egeo-theme-neutral, $neutral);
+      }
+
+      &:not(&--active):hover {
+         text-decoration: none;
+         color: var(--egeo-theme-action-120, $action-120);
+      }
+
+      &:focus {
+         text-decoration: none;
+         outline: none;
+      }
+   }
+}
+

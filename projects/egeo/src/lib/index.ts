@@ -141,13 +141,12 @@ export { StFullscreenLayoutModule } from './st-fullscreen-layout/st-fullscreen-l
 export { StFullscreenLayoutComponent } from './st-fullscreen-layout/st-fullscreen-layout';
 
 // Horizontal Tabs
-export { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
-export { StHorizontalTabsComponent } from './st-horizontal-tabs/st-horizontal-tabs.component';
+export { SdsTabModule } from './sds-tab/sds-tab.module';
+export { SdsTabComponent } from './sds-tab/sds-tab.component';
 export {
-   StHorizontalTabStatus,
-   StHorizontalTab,
-   StHorizontalTabSchema
-} from './st-horizontal-tabs/st-horizontal-tabs.model';
+   SdsTab,
+   SdsTabSchema
+} from './sds-tab/sds-tab.model';
 
 // Info box
 export { StInfoBoxModule } from './st-info-box/st-info-box.module';

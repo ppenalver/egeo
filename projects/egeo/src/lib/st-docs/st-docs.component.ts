@@ -11,7 +11,7 @@
 
 import {ChangeDetectorRef, Component, Input, OnInit, OnDestroy, ContentChild, ElementRef} from '@angular/core';
 import { StDocsService } from './st-docs.service';
-import { StHorizontalTab } from '../st-horizontal-tabs/st-horizontal-tabs.model';
+import { SdsTab } from '../sds-tab/sds-tab.model';
 import { zip } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
@@ -31,7 +31,7 @@ export class StDocsComponent implements OnInit, OnDestroy {
    public demoTsCode: string;
    public componentTsCode: string;
 
-   public options: StHorizontalTab[] = [
+   public options: SdsTab[] = [
       {id: 'demo', text: 'Overview'},
       {id: 'html', text: 'Html'},
       {id: 'theme', text: 'Theme customization'},
@@ -39,7 +39,7 @@ export class StDocsComponent implements OnInit, OnDestroy {
       {id: 'component', text: 'Component'}
    ];
 
-   public active: StHorizontalTab = this.options[0];
+   public active: SdsTab = this.options[0];
 
    private subscription: Subscription;
 
@@ -61,7 +61,7 @@ export class StDocsComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
    }
 
-   onChangeOption(event: Event): void {
+   onChangeOption(event: SdsTab): void {
       this.active = <any> event;
    }
 
@@ -84,7 +84,7 @@ export class StDocsComponent implements OnInit, OnDestroy {
       }
    }
 
-   private filterOption(options: StHorizontalTab[], name: string): StHorizontalTab[] {
+   private filterOption(options: SdsTab[], name: string): SdsTab[] {
       return options.filter((element: any) => {
          return element.id !== name;
       });

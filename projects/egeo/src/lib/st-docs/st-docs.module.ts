@@ -12,13 +12,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { StDocsComponent } from './st-docs.component';
-import { StHorizontalTabsModule } from '../st-horizontal-tabs/st-horizontal-tabs.module';
+import { SdsTabModule } from '../sds-tab/sds-tab.module';
 import { StDocsService } from './st-docs.service';
 import { HttpClientModule } from '@angular/common/http';
 import {StPrismModule} from './st-prism/st-prism.module';
 
 @NgModule({
-   imports: [CommonModule, HttpClientModule, StPrismModule, StHorizontalTabsModule],
+   imports: [CommonModule, HttpClientModule, StPrismModule, SdsTabModule],
    declarations: [StDocsComponent],
    exports: [StDocsComponent],
    providers: [StDocsService]

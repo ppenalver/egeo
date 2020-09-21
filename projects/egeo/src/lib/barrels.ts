@@ -21,7 +21,7 @@ import { StFormModule } from './st-form/st-form.module';
 import { StFormListModule } from './st-form-list/st-form-list.module';
 import { StFullscreenLayoutModule } from './st-fullscreen-layout/st-fullscreen-layout.module';
 import { StHeaderModule } from './st-header/st-header.module';
-import { StHorizontalTabsModule } from './st-horizontal-tabs/st-horizontal-tabs.module';
+import { SdsTabModule } from './sds-tab/sds-tab.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
 import { StInputModule } from './st-input/st-input.module';
 import { StItemListModule } from './st-item-list/st-item-list.module';
@@ -67,7 +67,7 @@ export const DECLARATIONS: any[] = [
    StFormListModule,
    StFullscreenLayoutModule,
    StHeaderModule,
-   StHorizontalTabsModule,
+   SdsTabModule,
    StInfoBoxModule,
    StInputModule,
    StItemListModule,

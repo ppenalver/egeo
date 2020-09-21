@@ -10,12 +10,15 @@
     SPDX-License-Identifier: Apache-2.0.
 
 -->
-<nav class="st-horizontal-tabs">
+<nav class="sds-tab" [ngClass]="{'sds-tab--border': borderBottom}">
    <a *ngFor="let option of options; let i = index;"
-      class="tab {{getTabStatus(option)}}"
+      class="sds-tab__cell"
       (click)="activateOption(option)"
       href="javascript:void(0)"
-      [ngClass]="{'tab--active': isActive(option)}"
+      [ngClass]="{
+         'sds-tab__cell--active': isActive(option),
+         'sds-tab__cell--small': size === sdsTabSize.SMALL
+      }"
       [attr.id]="qaTag + '-tab-' + i">{{option.text}}</a>
    <ng-content></ng-content>
 </nav>

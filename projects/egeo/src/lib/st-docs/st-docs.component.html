@@ -11,8 +11,8 @@
 
 -->
 <div>
-   <st-horizontal-tabs [options]="options" [(activeOption)]="active" qaTag="horizontal-tabs-demo" (changedOption)="onChangeOption($event)">
-   </st-horizontal-tabs>
+   <sds-tab [options]="options" size="small" [activeOption]="active" qaTag="tab-demo" (changedOption)="onChangeOption($event)">
+   </sds-tab>
    <div class="st-docs">
       <div *ngIf="active.id === 'demo'">
          <ng-content></ng-content>

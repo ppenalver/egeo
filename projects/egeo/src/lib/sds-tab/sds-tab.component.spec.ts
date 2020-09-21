@@ -11,25 +11,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { cloneDeep as _cloneDeep } from 'lodash';
 
-import { StHorizontalTab, StHorizontalTabStatus } from './st-horizontal-tabs.model';
-import { StHorizontalTabsComponent } from './st-horizontal-tabs.component';
+import { SdsTab } from './sds-tab.model';
+import { SdsTabComponent } from './sds-tab.component';
 import { ChangeDetectionStrategy } from '@angular/core';
 
 
-describe('StHorizontalTabsComponent', () => {
+describe('SdsTabComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
-         declarations: [StHorizontalTabsComponent]
+         declarations: [SdsTabComponent]
       })
-         .overrideComponent(StHorizontalTabsComponent, {
+         .overrideComponent(SdsTabComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css
    });
 
-   let component: StHorizontalTabsComponent;
-   let fixture: ComponentFixture<StHorizontalTabsComponent>;
-   let fakeOptions: StHorizontalTab[] = [
+   let component: SdsTabComponent;
+   let fixture: ComponentFixture<SdsTabComponent>;
+   let fakeOptions: SdsTab[] = [
       {id: 'tab1', text: 'tab 1'},
       {id: 'tab2', text: 'tab 2'},
       {id: 'tab3', text: 'tab 3'}
@@ -37,13 +37,13 @@ describe('StHorizontalTabsComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         declarations: [StHorizontalTabsComponent]
+         declarations: [SdsTabComponent]
       })
          .compileComponents();  // compile template and css
    });
 
    beforeEach(() => {
-      fixture = TestBed.createComponent(StHorizontalTabsComponent);
+      fixture = TestBed.createComponent(SdsTabComponent);
       component = fixture.componentInstance;
       component.options = fakeOptions;
       fixture.detectChanges();
@@ -56,7 +56,7 @@ describe('StHorizontalTabsComponent', () => {
          component.options = undefined;
          fixture.detectChanges();
 
-         expect(() => component.ngOnInit()).toThrowError('st-horizontal-tabs-component: field options is a required field');
+         expect(() => component.ngOnInit()).toThrowError('sds-tab-component: field options is a required field');
       });
 
       it('only if option list has one option at least and if active tab is not defined, first option is activated', () => {
@@ -111,16 +111,5 @@ describe('StHorizontalTabsComponent', () => {
 
          expect(component.changedOption.emit).toHaveBeenCalledWith(fakeOptions[0]);
       });
-   });
-
-   it('should be able to add classes to tabs according to its status', () => {
-      component.options = _cloneDeep(fakeOptions);
-      component.options[1].status = StHorizontalTabStatus.warning;
-      component.options[2].status = StHorizontalTabStatus.error;
-
-      fixture.detectChanges();
-
-      expect(fixture.nativeElement.querySelectorAll('.tab')[1].classList).toContain('warning');
-      expect(fixture.nativeElement.querySelectorAll('.tab')[2].classList).toContain('error');
    });
 });

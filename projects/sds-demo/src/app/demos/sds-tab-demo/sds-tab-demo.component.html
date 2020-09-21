@@ -15,19 +15,28 @@
       <p class="demo-layout__component-description">Tabs are designed to quickly navigate between views within the same context.</p>
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
-         <div class="demo-layout__demo-container__demo--disabled">
-            <st-horizontal-tabs class="demo" [options]="options" [activeOption]="active" qaTag="horizontal-tabs-demo">
-               <st-filter-selector class="filter"
-                                   [filterList]="filterList"
-                                   [selected]="selectedFilter"
-                                   (clickFilter)="onChangeFilter($event)"
-                                   [openFilter]="openFilter"
-                                   (changeFilterVisibility)="openFilter = !openFilter"
-                                   (closeFilter)="openFilter = false">
-               </st-filter-selector>
-            </st-horizontal-tabs>
+         <div class="demo-layout__demo-container__demo">
+            <sds-tab class="demo" (changedOption)="selectedTabMessage = 'Showing ' + $event.text" [options]="options" [size]="tabSize.value" [borderBottom]="borderBottom.value" [activeOption]="active" qaTag="tab-demo">
+            </sds-tab>
+            <div class="close-pressed-message">
+               {{selectedTabMessage}}
+            </div>
          </div>
-         <div class="demo-layout__demo-container__demo-config"></div>
+         <form class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [formControl]="tabSize" class="st-inline-group">
+                  <sds-radio name="size-options" [value]="'regular'" [checked]="true">Regular</sds-radio>
+                  <sds-radio name="size-options" [value]="'small'">Small</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="borderBottom" [formControl]="borderBottom">
+                  <span>Border bottom</span>
+               </sds-checkbox>
+            </div>
+         </form>
       </div>
       <h2 class="demo-layout__title">Design and behaviour</h2>
       <p class="demo-layout__paragraph">Tabs appear in a single, non-scrollable row, above their content. The width of each tab is

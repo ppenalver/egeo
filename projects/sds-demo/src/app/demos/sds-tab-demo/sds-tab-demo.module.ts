@@ -10,22 +10,33 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule, StFilterSelectorModule, StHorizontalTabsModule } from '@stratio/egeo';
+import {
+   StDemoGeneratorModule,
+   StDocsModule,
+   StFilterSelectorModule,
+   SdsTabModule,
+   SdsCheckboxModule, SdsRadioModule
+} from '@stratio/egeo';
 
-import { StHorizontalTabsDemoComponent } from './st-horizontal-tabs-demo.component';
+import { SdsTabDemoComponent } from './sds-tab-demo.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
    imports: [
       CommonModule,
-      StHorizontalTabsModule,
+      SdsCheckboxModule,
+      SdsRadioModule,
+      SdsTabModule,
       StDemoGeneratorModule.withComponents({
-         components: [StHorizontalTabsDemoComponent]
+         components: [SdsTabDemoComponent]
       }),
       StDocsModule,
-      StFilterSelectorModule
+      StFilterSelectorModule,
+      ReactiveFormsModule,
+      FormsModule
    ],
-   declarations: [StHorizontalTabsDemoComponent],
+   declarations: [SdsTabDemoComponent],
    providers: []
 })
-export class StHorizontalTabsDemoModule { }
+export class SdsTabDemoModule { }
 

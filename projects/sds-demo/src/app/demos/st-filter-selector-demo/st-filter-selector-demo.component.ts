@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 import { Component } from '@angular/core';
-import { StDropDownMenuItem, StHorizontalTab } from '@stratio/egeo';
+import { StDropDownMenuItem, SdsTab } from '@stratio/egeo';
 
 @Component({
    selector: 'st-filter-selector-demo',

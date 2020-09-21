@@ -1,10 +1,10 @@
 import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { StHorizontalTabsElementModule } from './st-horizontal-tabs.module';
+import { SdsTabElementModule } from './sds-tab.module';
 
 enableProdMode();
 
 platformBrowserDynamic()
-    .bootstrapModule(StHorizontalTabsElementModule, { ngZone: 'noop'})
+    .bootstrapModule(SdsTabElementModule, { ngZone: 'noop'})
     .catch(err => console.error(err));
