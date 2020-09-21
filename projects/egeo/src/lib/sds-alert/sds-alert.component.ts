@@ -87,7 +87,7 @@ export class SdsAlertComponent {
    /** @output {close} [EventEmitter] Event emitted when alert was closed by timeout */
    @Output() close: EventEmitter<void> = new EventEmitter();
 
-   @ViewChild('sdsAlert', {static: false}) stAlert: ElementRef;
+   @ViewChild('sdsAlert', {static: false}) sdsAlert: ElementRef;
 
    public showAlertHtml: boolean;
    public title: string;
@@ -103,10 +103,14 @@ export class SdsAlertComponent {
    public positionReference: string;
    public alertTimeout: number;
    public timeout: number;
+   public infoTimeout: number;
+   public successTimeout: number;
+   public warningTimeout: number;
+   public criticalTimeout: number;
    public multipleTimeout: number;
    public margin: number;
-   public stAlertType: typeof SdsAlertType;
-   public stAlertIcon: typeof SdsAlertIcon;
+   public sdsAlertType: typeof SdsAlertType;
+   public sdsAlertIcon: typeof SdsAlertIcon;
 
    private isMultiple: boolean;
    private visibilityTimeout: number;
@@ -136,8 +140,8 @@ export class SdsAlertComponent {
       private _renderer: Renderer2,
       private _alerts: SdsAlertService
    ) {
-      this.stAlertIcon = SdsAlertIcon;
-      this.stAlertType = SdsAlertType;
+      this.sdsAlertIcon = SdsAlertIcon;
+      this.sdsAlertType = SdsAlertType;
       this.config = {};
       this.showAlertHtml = false;
       this.hotRender = false;
@@ -232,7 +236,7 @@ export class SdsAlertComponent {
       this.showAlertHtml = true;
       this._cd.detectChanges();
 
-      if (!!alertOptions) {
+      if (Boolean(alertOptions)) {
          this.processConfiguration(alertOptions);
       }
 
@@ -249,7 +253,7 @@ export class SdsAlertComponent {
    }
 
    private setAlertPosition(): void {
-      const alertClientRect: ClientRect = this.stAlert.nativeElement.getBoundingClientRect();
+      const alertClientRect: ClientRect = this.sdsAlert.nativeElement.getBoundingClientRect();
       const referenceElement: HTMLElement = document.querySelector(this.positionReference);
       const referenceClientRect: ClientRect = (referenceElement as Element).getBoundingClientRect();
       const [verticalPosition, horizontalPosition]: string[] = this.position.split('_');
@@ -258,34 +262,34 @@ export class SdsAlertComponent {
 
       if (alertClientRect.height >= referenceClientRect.height) {
          const width = referenceClientRect.height - (this.margin * 2);
-         this._renderer.setStyle(this.stAlert.nativeElement, 'height', width + 'px');
+         this._renderer.setStyle(this.sdsAlert.nativeElement, 'height', width + 'px');
          resizedHeight = true;
       }
 
       if (alertClientRect.width >= referenceClientRect.width) {
          const width = referenceClientRect.width - (this.margin * 2);
-         this._renderer.setStyle(this.stAlert.nativeElement, 'width', width + 'px');
+         this._renderer.setStyle(this.sdsAlert.nativeElement, 'width', width + 'px');
          resizedWidth = true;
       }
 
       const topValue = this.getTopValue(verticalPosition, referenceClientRect, resizedHeight);
       const leftValue = this.getLeftValue(horizontalPosition, referenceClientRect, resizedWidth);
-      this.stAlert.nativeElement.style.top = `${topValue}px`;
-      this.stAlert.nativeElement.style.left = `${leftValue}px`;
+      this._renderer.setStyle(this.sdsAlert.nativeElement, 'top', topValue + 'px');
+      this._renderer.setStyle(this.sdsAlert.nativeElement, 'left', leftValue + 'px');
    }
 
    private getTopValue(position: string, referenceClientRect: ClientRect, resized: boolean): number {
-      const stAlert: HTMLElement = this.stAlert.nativeElement;
-      const stAlertClientRect: ClientRect = stAlert.getBoundingClientRect() as ClientRect;
+      const sdsAlert: HTMLElement = this.sdsAlert.nativeElement;
+      const sdsAlertClientRect: ClientRect = sdsAlert.getBoundingClientRect() as ClientRect;
       const height: number = referenceClientRect.height > window.innerHeight ? window.innerHeight : referenceClientRect.height;
       let topValue = 0;
 
       if (position === 'top') {
          topValue = referenceClientRect.top + this.margin;
       } else if (position === 'bottom') {
-         topValue = referenceClientRect.bottom - stAlertClientRect.height - this.margin;
+         topValue = referenceClientRect.bottom - sdsAlertClientRect.height - this.margin;
       } else if (position === 'center') {
-         topValue = referenceClientRect.top + (height / 2) - (stAlertClientRect.height / 2);
+         topValue = referenceClientRect.top + (height / 2) - (sdsAlertClientRect.height / 2);
 
          if (!resized) {
             topValue += this.margin;
@@ -296,8 +300,8 @@ export class SdsAlertComponent {
    }
 
    private getLeftValue(position: string, referenceClientRect: ClientRect, resized: boolean): number {
-      const stAlert: HTMLElement = this.stAlert.nativeElement;
-      const stAlertClientRect: ClientRect = stAlert.getBoundingClientRect() as ClientRect;
+      const sdsAlert: HTMLElement = this.sdsAlert.nativeElement;
+      const sdsAlertClientRect: ClientRect = sdsAlert.getBoundingClientRect() as ClientRect;
       const windowWidth: number = window.innerWidth - (this.margin * 2);
       const width: number = referenceClientRect.width > window.innerWidth ? windowWidth : referenceClientRect.width;
       let leftValue = 0;
@@ -305,9 +309,9 @@ export class SdsAlertComponent {
       if (position === 'left') {
          leftValue = referenceClientRect.left + this.margin;
       } else if (position === 'right') {
-         leftValue = referenceClientRect.right - stAlertClientRect.width - this.margin;
+         leftValue = referenceClientRect.right - sdsAlertClientRect.width - this.margin;
       } else if (position === 'center') {
-         leftValue = referenceClientRect.left + (width / 2) - (stAlertClientRect.width / 2);
+         leftValue = referenceClientRect.left + (width / 2) - (sdsAlertClientRect.width / 2);
 
          if (!resized) {
             leftValue += this.margin;
@@ -352,8 +356,8 @@ export class SdsAlertComponent {
 
       this._cd.detectChanges();
 
-      if (!this.isDisabled && this.stAlert) {
-         this._renderer.removeStyle(this.stAlert.nativeElement, 'width');
+      if (!this.isDisabled && this.sdsAlert) {
+         this._renderer.removeStyle(this.sdsAlert.nativeElement, 'width');
          this.setAlertPosition();
       }
    }

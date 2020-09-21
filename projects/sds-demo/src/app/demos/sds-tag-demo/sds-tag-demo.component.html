@@ -1,0 +1,93 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Tags are used to label items with the purpose of categorizing or organizing using words to describe them.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-tag
+               [config]="tagConfig"
+               (iconClick)="displayMessage('Action ICON triggered...')"
+               (tagClick)="displayMessage('Action TAG triggered...')"
+               [isDisabled]="tagForm.get('disabled').value"
+            ></sds-tag>
+            <div [@fade] *ngIf="showMessage" class="pressed-message">
+               {{message}}
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config" [formGroup]="tagForm">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group formControlName="size" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let size of sizeOptions" [value]="size.value" [checked]="size.value === 'regular'">{{size.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div class="input-container">
+               <st-input class="st-form-field" formControlName="message" [label]="'Tag text'"></st-input>
+            </div>
+            <div>
+               <h1>Type</h1>
+               <sds-radio-group formControlName="type" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let type of typeOptions" [value]="type.value" [checked]="type.value === 'informative'">{{type.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div *ngIf="tagForm.get('type').value === 'informative'">
+               <h1>Style</h1>
+               <sds-radio-group formControlName="style" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let style of styleOptions" [value]="style.value" [checked]="style.value === 'default'">{{style.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div *ngIf="tagForm.get('type').value === 'interactive'">
+               <h1>Interactive mode</h1>
+               <sds-radio-group formControlName="interactiveMode" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let interactiveMode of interactiveModeOptions" [value]="interactiveMode.value" [checked]="interactiveMode.value === 'trigger'">{{interactiveMode.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox formControlName="icon">Icon</sds-checkbox>
+               <sds-checkbox *ngIf="tagForm.get('type').value === 'interactive'" formControlName="disabled">Disabled</sds-checkbox>
+               <sds-checkbox *ngIf="tagForm.get('iconRight').value && tagForm.get('type').value !== 'interactive'" formControlName="iconRightAction">Icon right action</sds-checkbox>
+            </div>
+            <div class="st-inline-group" *ngIf="tagForm.get('icon').value">
+               <h1>Icon Type</h1>
+               <sds-checkbox formControlName="iconLeft">Icon left</sds-checkbox>
+               <sds-checkbox formControlName="iconRight">Icon right</sds-checkbox>
+            </div>
+            <div *ngIf="tagForm.get('iconLeft').value">
+               <h1>Icon Left Examples</h1>
+               <sds-radio-group formControlName="iconLeftExamples" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let iconLeftExample of iconLeftExamples" [value]="iconLeftExample.value" [checked]="iconLeftExample.value === 'icon-cog'">{{iconLeftExample.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div *ngIf="tagForm.get('iconRight').value">
+               <h1>Icon Right Examples</h1>
+               <sds-radio-group formControlName="iconRightExamples" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let iconRightExample of iconRightExamples" [value]="iconRightExample.value" [checked]="iconRightExample.value === 'icon-cross'">{{iconRightExample.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Tags can use different color combinations to describe different types of labeling visually. They can be used to indicate filtering data as well.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Colored tags should be used for labeling and/or organizing purposes only.</li>
+         <li class="demo-layout__list-item">Interactive tags will be used when something happens on tag clicking (e.g. navigate to the place the tag is related to) and will take the default status.</li>
+         <li class="demo-layout__list-item">As a general recommendation, never should live together two different interactions in the same tags. E.g. Don't use together an interactive tag with a triggered action on click with a cross icon action to close.</li>
+      </ul>
+   </section>
+</st-docs>

@@ -1,0 +1,130 @@
+/*
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
+.sds-tag {
+   --sds-tag--background-color: #{$space-10};
+   --sds-tag--background-color--interactive: #{$space-10};
+   --sds-tag--background-color--interactive--hover: #{$action-10};
+   --sds-tag--background-color--interactive--active: #{$action};
+   --sds-tag--background-color--interactive--disabled: #{$space-5};
+   --sds-tag--background-color--info: #{$action-10};
+   --sds-tag--background-color--success: #{$success-10};
+   --sds-tag--background-color--warning: #{$warning-10};
+   --sds-tag--background-color--critical: #{$error-10};
+
+   --sds-tag--color: #{$space};
+   --sds-tag--color--interactive: #{$space};
+   --sds-tag--color--interactive--hover: #{$action};
+   --sds-tag--color--interactive--active: #{$neutral-full};
+   --sds-tag--color--interactive--disabled: #{$space-30};
+   --sds-tag--color--info: #{$action};
+   --sds-tag--color--success: #{$success};
+   --sds-tag--color--warning: #{$warning};
+   --sds-tag--color--critical: #{$error-140};
+
+   --sds-tag--font-size: #{$egeo-font-size-14};
+   --sds-tag--font-size--medium: #{$egeo-font-size-12};
+   --sds-tag--font-size--small: #{$egeo-font-size-12};
+
+   --sds-tag--padding: 0 8px;
+   --sds-tag--padding--medium: 0 8px;
+   --sds-tag--padding--small: 0 8px;
+
+   --sds-tag__left-icon--margin-right: 6px;
+
+   --sds-tag__right-icon--margin-left: 8px;
+
+   padding: var(--sds-tag--padding);
+   color: var(--sds-tag--color);
+   background-color: var(--sds-tag--background-color);
+   font-size: var(--sds-tag--font-size);
+   display: flex;
+   align-items: center;
+   width: fit-content;
+   border-radius: 4px;
+   box-sizing: border-box;
+   line-height: 30px;
+
+   I.sds-tag__icon-left {
+      margin-right: var(--sds-tag__left-icon--margin-right);
+      top: -1px;
+      position: relative;
+   }
+
+   I.sds-tag__icon-right {
+      margin-left: var(--sds-tag__right-icon--margin-left);
+   }
+
+   &__icon-right--clickable {
+      cursor: pointer;
+   }
+
+   &--medium {
+      --sds-tag--padding: var(--sds-tag--padding--medium);
+      --sds-tag--font-size: var(--sds-tag--font-size--medium);
+      line-height: 24px;
+   }
+
+   &--small {
+      --sds-tag--padding: var(--sds-tag--padding--small);
+      --sds-tag--font-size: var(--sds-tag--font-size--small);
+      line-height: 18px;
+   }
+
+   &--info:not(&--interactive) {
+      --sds-tag--background-color: var(--sds-tag--background-color--info);
+      --sds-tag--color: var(--sds-tag--color--info);
+   }
+
+   &--critical:not(&--interactive) {
+      --sds-tag--background-color: var(--sds-tag--background-color--critical);
+      --sds-tag--color: var(--sds-tag--color--critical);
+   }
+
+   &--warning:not(&--interactive) {
+      --sds-tag--background-color: var(--sds-tag--background-color--warning);
+      --sds-tag--color: var(--sds-tag--color--warning);
+   }
+
+   &--success:not(&--interactive) {
+      --sds-tag--background-color: var(--sds-tag--background-color--success);
+      --sds-tag--color: var(--sds-tag--color--success);
+   }
+
+   &--interactive {
+      cursor: pointer;
+
+      &:hover {
+         color: var(--sds-tag--color--interactive--hover);
+         background-color: var(--sds-tag--background-color--interactive--hover);
+      }
+
+      &:active, &.sds-tag--selected {
+         color: var(--sds-tag--color--interactive--active);
+         background-color: var(--sds-tag--background-color--interactive--active);
+      }
+
+      &:disabled, &.sds-tag--disabled {
+         color: var(--sds-tag--color--interactive--disabled);
+         background-color: var(--sds-tag--background-color--interactive--disabled);
+         cursor: not-allowed;
+
+         I.sds-icon {
+            cursor: not-allowed;
+         }
+      }
+   }
+
+   &--selection-mode {
+      cursor: default;
+   }
+}

@@ -11,19 +11,30 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StDocsModule } from '@stratio/egeo';
+import {
+   SdsCheckboxModule,
+   SdsRadioModule,
+   SdsTagModule,
+   StDemoGeneratorModule,
+   StDocsModule,
+   StInputModule
+} from '@stratio/egeo';
 
-import { StTagDemoComponent } from './st-tag-demo.component';
-import { StTagModule } from '../../../../../egeo/src/lib/st-tag/st-tag.module';
+import { SdsTagDemoComponent } from './sds-tag-demo.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
    imports: [
       CommonModule,
-      StTagModule,
-      StDemoGeneratorModule.withComponents({ components: [StTagDemoComponent] }),
+      ReactiveFormsModule,
+      SdsTagModule,
+      StInputModule,
+      SdsCheckboxModule,
+      SdsRadioModule,
+      StDemoGeneratorModule.withComponents({ components: [SdsTagDemoComponent] }),
       StDocsModule
    ],
-   declarations: [StTagDemoComponent],
+   declarations: [SdsTagDemoComponent],
    providers: []
 })
-export class StTagDemoModule { }
+export class SdsTagDemoModule { }

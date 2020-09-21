@@ -14,14 +14,14 @@
    #sdsAlert
    *ngIf="showAlertHtml"
    [@alertFade]
-   [@.disabled]="isDisabled"
+   [@.disabled]="hotRender"
    class="sds-alert"
    [ngClass]="{
-      'sds-alert--info': alertType === stAlertType.INFO,
-      'sds-alert--success': alertType === stAlertType.SUCCESS,
-      'sds-alert--warning': alertType === stAlertType.WARNING,
-      'sds-alert--critical': alertType === stAlertType.CRITICAL,
-      'sds-alert--connection-lost': alertType === stAlertType.CONNECTION_LOST,
+      'sds-alert--info': alertType === sdsAlertType.INFO,
+      'sds-alert--success': alertType === sdsAlertType.SUCCESS,
+      'sds-alert--warning': alertType === sdsAlertType.WARNING,
+      'sds-alert--critical': alertType === sdsAlertType.CRITICAL,
+      'sds-alert--connection-lost': alertType === sdsAlertType.CONNECTION_LOST,
       'sds-alert--with-actions': actionLeftLabel || actionRightLabel
    }">
    <div *ngIf="closeIcon" class="sds-alert__close-control">
@@ -29,7 +29,7 @@
    </div>
 
    <div class="sds-alert__header">
-      <i *ngIf="alertIcon !== stAlertIcon.NONE" class="sds-alert__header__icon" [ngClass]="alertIcon"></i>
+      <i *ngIf="alertIcon !== sdsAlertIcon.NONE" class="sds-alert__header__icon" [ngClass]="alertIcon"></i>
       <span class="sds-alert__header__title">{{title}}</span>
    </div>
 
@@ -37,7 +37,7 @@
       {{message}}
    </div>
 
-   <div *ngIf="(actionLeftLabel || actionRightLabel) && alertType !== stAlertType.CONNECTION_LOST" class="sds-alert__actions">
+   <div *ngIf="(actionLeftLabel || actionRightLabel) && alertType !== sdsAlertType.CONNECTION_LOST" class="sds-alert__actions">
       <div *ngIf="actionLeftLabel" class="sds-alert__actions__action">
          <a (click)="actionLeft()" class="sds-alert__actions__action__link">{{actionLeftLabel}}</a>
       </div>

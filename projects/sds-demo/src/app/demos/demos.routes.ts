@@ -27,6 +27,7 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
    { id: 'sds-spinner', name: 'Spinner', path: 'spinner-demo', moduleLazyLoad: 'SdsSpinnerDemoModule' },
    { id: 'sds-modal', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'SdsModalDemoModule' },
    { id: 'sds-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'SdsTextareaDemoModule' },
+   { id: 'sds-tag', name: 'Tag', path: 'tag-demo', moduleLazyLoad: 'SdsTagDemoModule' },
    { id: 'sds-notification', name: 'Notification',
       path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' }
 ];
@@ -38,7 +39,6 @@ export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
    { id: 'st-horizontal-tabs', name: 'Tab', path: 'horizontal-tabs-demo', moduleLazyLoad: 'StHorizontalTabsModule' },
    { id: 'st-dropdown-menu', name: 'Dropdown Menu', path: 'dropdown-menu-demo', moduleLazyLoad: 'StDropdownMenuDemoModule' },
-   { id: 'st-tag', name: 'Tag', path: 'tag-demo', moduleLazyLoad: 'StTagDemoModule' },
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
    { id: 'st-tooltip', name: 'Tooltip', path: 'tooltip-demo', moduleLazyLoad: 'StTooltipDemoModule' },
    { id: 'st-breadcrumbs', name: 'Breadcrumb', path: 'breadcrumbs', moduleLazyLoad: 'StBreadcrumbsDemoModule' },
@@ -100,7 +100,7 @@ const routes: Routes = [
    { path: 'spinner-demo', loadChildren: () => import( './sds-spinner-demo/sds-spinner-demo.module').then(m => m.SdsSpinnerDemoModule ) },
    { path: 'switch-demo', loadChildren: () => import( './sds-switch-demo/sds-switch-demo.module').then(m => m.SdsSwitchDemoModule ) },
    { path: 'table-demo', loadChildren: () => import( './st-table-demo/st-table-demo.module').then(m => m.StTableDemoModule ) },
-   { path: 'tag-demo', loadChildren: () => import( './st-tag-demo/st-tag-demo.module').then(m => m.StTagDemoModule) },
+   { path: 'tag-demo', loadChildren: () => import( './sds-tag-demo/sds-tag-demo.module').then(m => m.SdsTagDemoModule) },
    { path: 'tag-input-demo', loadChildren: () => import( './st-tag-input-demo/st-tag-input-demo.module').then(m => m.StTagInputDemoModule ) },
    { path: 'textarea', loadChildren: () => import( './sds-textarea-demo/sds-textarea-demo.module').then(m => m.SdsTextareaDemoModule ) },
    { path: 'toggle-buttons-demo', loadChildren: () => import( './sds-toggle-button-demo/sds-toggle-button-demo.module').then(m => m.SdsToggleButtonDemoModule ) },

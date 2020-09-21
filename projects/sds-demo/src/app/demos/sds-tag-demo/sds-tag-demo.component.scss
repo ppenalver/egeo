@@ -28,11 +28,11 @@
    }
 }
 
-span, .st-tag {
+span, .sds-tag {
    margin-bottom: 20px;
 }
 
-.st-tag {
+.sds-tag {
    margin-right: 20px;
 }
 
@@ -47,7 +47,7 @@ span, .st-tag {
       text-align: right;
       white-space: nowrap;
 
-      st-tag {
+      sds-tag {
          margin: 0 auto 24px auto;
       }
    }
@@ -57,5 +57,13 @@ span, .st-tag {
       justify-content: space-around;
       width: 100%;
    }
+}
+
+.pressed-message {
+   font-size: 18px;
+   font-weight: 200;
+   margin-top: 50px;
+   opacity: 1;
+   transition: opacity .4s ease-in-out;
 }
 

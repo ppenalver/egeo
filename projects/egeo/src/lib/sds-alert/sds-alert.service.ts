@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
 
 import {SdsAlertConfig, SdsAlertIcon, SdsAlertPosition, SdsAlertTriggerOptions, SdsAlertType} from './sds-alert.model';

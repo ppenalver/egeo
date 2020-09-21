@@ -36,4 +36,3 @@ import {ReactiveFormsModule} from '@angular/forms';
    providers: []
 })
 export class SdsAlertDemoModule { }
-

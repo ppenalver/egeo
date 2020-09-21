@@ -48,7 +48,7 @@ import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-ta
 import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
 import { StBubbleOnEllipsisDemoModule } from '@app/demos/st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module';
-import { StTagDemoModule } from '@app/demos/st-tag-demo/st-tag-demo.module';
+import { SdsTagDemoModule } from '@app/demos/sds-tag-demo/sds-tag-demo.module';
 
 
 export const EGEO_DEMO_MODULES: any[] = [
@@ -85,7 +85,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    SdsSpinnerDemoModule,
    SdsSwitchDemoModule,
    StTableDemoModule,
-   StTagDemoModule,
+   SdsTagDemoModule,
    StTagInputDemoModule,
    SdsTextareaDemoModule,
    SdsToggleButtonDemoModule,

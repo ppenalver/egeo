@@ -49,6 +49,7 @@ import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 import { SdsNotificationModule } from './sds-notification/sds-notification.module';
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
+import { SdsTagModule } from './sds-tag/sds-tag.module';
 
 export const DECLARATIONS: any[] = [
    PipesModule,
@@ -91,5 +92,6 @@ export const DECLARATIONS: any[] = [
    SdsToggleButtonModule,
    StTooltipModule,
    StVerticalTabsModule,
-   StZeroPageModule
+   StZeroPageModule,
+   SdsTagModule
 ];
