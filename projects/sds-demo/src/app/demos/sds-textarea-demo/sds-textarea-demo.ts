@@ -34,8 +34,6 @@ export class SdsTextareaDemoComponent {
       this.myForm = fb.group({
          textarea: disabledField
       });
-
-      this.myForm.valueChanges.subscribe(res => console.log(res));
    }
 
    public setValidations(): void {

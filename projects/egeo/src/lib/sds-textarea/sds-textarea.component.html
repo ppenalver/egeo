@@ -28,10 +28,10 @@
 </span>
 
 <div class="sds-textarea-error-layout">
-   <div *ngIf="!showErrorValue && contextualHelp">
+   <div *ngIf="!isDisabled && !showErrorValue && contextualHelp">
       <span class="sds-textarea-helper-message">{{contextualHelp}}</span>
    </div>
-   <div *ngIf="(showErrorValue && errorMessage)">
+   <div *ngIf="!isDisabled && showErrorValue && errorMessage">
       <span class="sds-textarea-error-message">{{errorMessage}}</span>
    </div>
 </div>
