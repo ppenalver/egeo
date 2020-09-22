@@ -10,7 +10,6 @@
  */
 import { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 import { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
-import { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 import { SdsButtonDemoModule } from './sds-button-demo/sds-button-demo.module';
 import { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
 import { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
@@ -43,11 +42,10 @@ import { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 import { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
 import { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 import { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
-import { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
+import { SdsTooltipDemoModule } from './sds-tooltip-demo/sds-tooltip-demo.module';
 import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
 import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
-import { StBubbleOnEllipsisDemoModule } from '@app/demos/st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module';
 import { SdsTagDemoModule } from '@app/demos/sds-tag-demo/sds-tag-demo.module';
 
 
@@ -55,8 +53,6 @@ export const EGEO_DEMO_MODULES: any[] = [
    // Demos
    SdsAlertDemoModule,
    StBreadcrumbsDemoModule,
-   StBubbleDemoModule,
-   StBubbleOnEllipsisDemoModule,
    SdsButtonDemoModule,
    SdsCheckboxDemoModule,
    StDropdownMenuDemoModule,
@@ -89,7 +85,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StTagInputDemoModule,
    SdsTextareaDemoModule,
    SdsToggleButtonDemoModule,
-   StTooltipDemoModule,
+   SdsTooltipDemoModule,
    StVerticalTabsDemoModule,
    StZeroPageDemoModule
 ];

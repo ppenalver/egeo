@@ -14,7 +14,6 @@ export { SdsDemoModule } from './sds-demo.module';
 
 export { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 export { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
-export { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 
 export { SdsButtonDemoModule } from './sds-button-demo/sds-button-demo.module';
 export { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
@@ -42,5 +41,5 @@ export { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 export { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
 export { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 export { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
-export { StTooltipDemoModule } from './st-tooltip-demo/st-tooltip-demo.module';
+export { SdsTooltipDemoModule } from './sds-tooltip-demo/sds-tooltip-demo.module';
 export { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';

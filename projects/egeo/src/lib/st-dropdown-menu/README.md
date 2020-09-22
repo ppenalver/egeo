@@ -55,7 +55,6 @@ export class StDropDownMenuItem {
     selected ? : boolean;
     hasHtml ? : boolean;
     extraIcon ? : string;
-    extraIconBubble ? : string;
     extraIconColor ? : string;
     disabled ? : boolean;
     topSeparator ? : boolean;

@@ -10,26 +10,28 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StDemoGeneratorModule, StInputModule, SdsSwitchModule } from '@stratio/egeo';
-import { StBubbleModule, StDocsModule } from '@stratio/egeo';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { StDemoGeneratorModule, StDocsModule, SdsTooltipModule, SdsRadioModule, StInputModule, SdsCheckboxModule } from '@stratio/egeo';
 
-import { StBubbleDemoComponent } from './st-bubble-demo.component';
+import { SdsTooltipDemoComponent } from './sds-tooltip-demo';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
+
 
 @NgModule({
    imports: [
       CommonModule,
-      StBubbleModule,
-      StDemoGeneratorModule.withComponents({ components: [StBubbleDemoComponent] }),
+      RouterModule,
+      SdsTooltipModule,
+      StDemoGeneratorModule.withComponents({ components: [SdsTooltipDemoComponent] }),
       StDocsModule,
-      SdsSwitchModule,
-      FormsModule,
-      ReactiveFormsModule,
+      SdsRadioModule,
       StInputModule,
-      CssPropertyTableModule
+      FormsModule,
+      CssPropertyTableModule,
+      SdsCheckboxModule
    ],
-   declarations: [StBubbleDemoComponent],
-   providers: []
+   declarations: [SdsTooltipDemoComponent]
 })
-export class StBubbleDemoModule { }
+export class SdsTooltipDemoModule { }
+

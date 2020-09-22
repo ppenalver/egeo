@@ -10,12 +10,11 @@
  */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StBubbleModule } from './../../st-bubble/st-bubble.module';
 import { StDropdownMenuItemComponent } from './st-dropdown-menu-item.component';
 
 
 @NgModule({
-   imports: [CommonModule, StBubbleModule],
+   imports: [CommonModule],
    declarations: [StDropdownMenuItemComponent],
    exports: [StDropdownMenuItemComponent]
 })

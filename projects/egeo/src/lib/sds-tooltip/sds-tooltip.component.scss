@@ -1,0 +1,212 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
+:host {
+   --egeo-sds-tooltip--margin: 8px;
+
+   &.sds-tooltip {
+      display: inline-block;
+      position: relative;
+
+      &:before {
+         border-radius: 4px;
+         content: attr(title);
+         font-weight: 400;
+         max-width: 250px;
+         width: max-content;
+         line-height: 1.6;
+         box-sizing: border-box;
+         backface-visibility: hidden;
+      }
+
+      &.sds-tooltip--with-arrow:after {
+         content: " ";
+         height: 6px;
+         width: 6px;
+         border-top-left-radius: 4px;
+      }
+
+      &:not(.sds-tooltip--white) {
+         &:before {
+            background-color: $space;
+            box-shadow: 0 3px 9px 0 rgba(15, 27, 39, 0.2);
+            color: var(--egeo-sds-tooltip--color, var(--egeo-theme-neutral-full, $neutral-full));
+            font-size: $egeo-font-size-14;
+            padding: var(--egeo-sds-tooltip--padding, 6px 16px);
+         }
+
+         &.sds-tooltip--with-arrow:after {
+            background-color: $space;
+            border-bottom: 1px solid var(--egeo-theme-neutral-15, $space);
+            border-right: 1px solid var(--egeo-theme-neutral-15, $space);
+         }
+      }
+
+      &--white {
+         &:before {
+            background-color: $neutral-full;
+            border: 1px solid var(--egeo-sds-tooltip__white--border-color, var(--egeo-theme-space-30, $space-30));
+            color: var(--egeo-sds-tooltip__white--color, $space-70);
+            font-size: $egeo-font-size-12;
+            padding: var(--egeo-sds-tooltip__white--padding, 4px 10px);
+         }
+
+         &.sds-tooltip--with-arrow:after {
+            background-color: var(--egeo-sds-tooltip__white--bg-color, $neutral-full);
+            border-bottom: 1px solid var(--egeo-theme-neutral-15, $space-30);
+            border-right: 1px solid var(--egeo-theme-neutral-15, $space-30);
+         }
+      }
+
+      &:before,
+      &:after {
+         pointer-events: none;
+         position: absolute;
+      }
+
+      &--top {
+         &:before {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+         }
+
+         &:after {
+            bottom: 100%;
+            margin-bottom: var(--egeo-sds-tooltip--margin);
+            left: 50%;
+            transform: rotate(45deg);
+         }
+
+         &.sds-tooltip--with-arrow {
+            &:before {
+               margin-bottom: calc(var(--egeo-sds-tooltip--margin) + 2.8px);
+            }
+         }
+
+         &:not(.sds-tooltip--with-arrow) {
+            &:before {
+               margin-bottom: calc(var(--egeo-sds-tooltip--margin));
+            }
+         }
+      }
+
+      &--bottom {
+         &:before {
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+         }
+
+         &:after {
+            left: 50%;
+            top: 100%;
+            transform: rotate(-134deg);
+            margin-top: var(--egeo-sds-tooltip--margin);
+         }
+
+         &.sds-tooltip--with-arrow {
+            &:before {
+               margin-top: calc(var(--egeo-sds-tooltip--margin) + 2.8px);
+            }
+         }
+
+         &:not(.sds-tooltip--with-arrow) {
+            &:before {
+               margin-top: calc(var(--egeo-sds-tooltip--margin));
+            }
+         }
+      }
+
+      &--left {
+         &:before {
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+         }
+
+         &:after {
+            right: 100%;
+            top: calc(50% - 3px);
+            transform: rotate(-45deg);
+            margin-right: var(--egeo-sds-tooltip--margin);
+         }
+
+         &.sds-tooltip--with-arrow {
+            &:before {
+               margin-right: calc(var(--egeo-sds-tooltip--margin) + 2.5px);
+            }
+         }
+
+         &:not(.sds-tooltip--with-arrow) {
+            &:before {
+               margin-right: calc(var(--egeo-sds-tooltip--margin));
+            }
+         }
+      }
+
+      &--right {
+         &:before {
+            left: 100%;
+            top: 50%;
+            transform: translateY(calc(-50%));
+         }
+
+         &:after {
+            left: 100%;
+            top: calc(50% - 2px);
+            transform: rotate(136deg);
+            margin-left: var(--egeo-sds-tooltip--margin);
+         }
+
+         &.sds-tooltip--with-arrow {
+            &:before {
+               margin-left: calc(var(--egeo-sds-tooltip--margin) + 2.5px);
+            }
+         }
+
+         &:not(.sds-tooltip--with-arrow) {
+            &:before {
+               margin-left: var(--egeo-sds-tooltip--margin);
+            }
+         }
+      }
+
+   }
+
+   &.sds-tooltip {
+      &:before,
+      &:after {
+         opacity: 0;
+      }
+   }
+
+   &.sds-tooltip--on,
+   &.sds-tooltip:not(.sds-tooltip--off):hover {
+      &:before,
+      &:after {
+         opacity: 1;
+      }
+
+      &.sds-tooltip--animated:after {
+         transition: opacity 0.4s ease-in-out;
+         transition-delay: 0.1s;
+      }
+   }
+
+   &.sds-tooltip--animated {
+      &:before {
+         transition: opacity 0.4s ease-in-out;
+      }
+
+   }
+}

@@ -1,0 +1,74 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            Use this icon to see tooltip behavior:
+            <span sds-tooltip id="tooltip-demo"
+                  title="This is the tooltip activated on click"
+                  [showOnClick]="showOnClick"
+                  [white]="whiteTheme"
+                  [showArrow]="showArrow"
+                  [placement]="placement"
+                  [margin]="margin + 'px'"
+                  [title]="text"
+                  [animated]="animated">
+               <span class="icon-help2"></span>
+            </span>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [(ngModel)]="whiteTheme" class="st-inline-group">
+                  <sds-radio [value]="false" [checked]="true">Default</sds-radio>
+                  <sds-radio [value]="true">Small</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <st-input [(ngModel)]="text" label="Text" class="st-inline-group">
+               </st-input>
+            </div>
+            <div>
+               <h1>Position</h1>
+               <sds-radio-group [(ngModel)]="placement" class="st-inline-group">
+                  <sds-radio [value]="'top'" [checked]="true">Top</sds-radio>
+                  <sds-radio [value]="'bottom'">Bottom</sds-radio>
+                  <sds-radio [value]="'left'">Left</sds-radio>
+                  <sds-radio [value]="'right'">Right</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Arrow</h1>
+               <sds-checkbox [(ngModel)]="showArrow" [checked]="true">Show</sds-checkbox>
+            </div>
+            <div>
+               <h1>Trigger event</h1>
+               <sds-radio-group [(ngModel)]="showOnClick" class="st-inline-group">
+                  <sds-radio [value]="true" [checked]="true">Click</sds-radio>
+                  <sds-radio [value]="false">Hover</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Animation</h1>
+               <sds-checkbox [(ngModel)]="animated" [checked]="true">Enabled</sds-checkbox>
+            </div>
+            <div>
+               <st-input label="Margin" fieldType="number" [(ngModel)]="margin" class="number-input"></st-input>
+            </div>
+         </div>
+      </div>
+   </section>
+</st-docs>

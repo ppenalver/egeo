@@ -31,7 +31,8 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
    { id: 'sds-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'SdsTextareaDemoModule' },
    { id: 'sds-tag', name: 'Tag', path: 'tag-demo', moduleLazyLoad: 'SdsTagDemoModule' },
    { id: 'sds-notification', name: 'Notification',
-      path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' }
+      path: 'notification-demo', moduleLazyLoad: '@SdsNotificationModule' },
+   { id: 'sds-tooltip', name: 'Tooltip', path: 'tooltip-demo', moduleLazyLoad: 'SdsTooltipDemoModule' }
 ];
 
 
@@ -40,7 +41,6 @@ export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
    { id: 'st-dropdown-menu', name: 'Dropdown Menu', path: 'dropdown-menu-demo', moduleLazyLoad: 'StDropdownMenuDemoModule' },
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
-   { id: 'st-tooltip', name: 'Tooltip', path: 'tooltip-demo', moduleLazyLoad: 'StTooltipDemoModule' },
    { id: 'st-breadcrumbs', name: 'Breadcrumb', path: 'breadcrumbs', moduleLazyLoad: 'StBreadcrumbsDemoModule' },
    { id: 'st-table', name: 'Table', path: 'table-demo', moduleLazyLoad: 'StTableDemoModule' },
    { id: 'st-tag-input', name: 'Tag Input', path: 'tag-input-demo', moduleLazyLoad: 'StTagInputDemoModule' }
@@ -48,8 +48,6 @@ export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
 
 export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
    { id: 'st-vertical-tabs', name: 'Vertical Tab', path: 'vertical-tabs-demo', moduleLazyLoad: 'StVerticalTabsDemoModule' },
-   { id: 'st-bubble', name: 'Bubble', path: 'bubble-demo', moduleLazyLoad: 'StBubbleDemoModule' },
-   { id: 'st-bubble-on-ellipsis', name: 'Bubble on Ellipsis', path: 'bubble-on-ellipsis-demo', moduleLazyLoad: 'StBubbleOnEllipsisDemoModule' },
    { id: 'st-file-button', name: 'File Button', path: 'file-button-demo', moduleLazyLoad: 'StFileButtonDemoModule' },
    { id: 'st-filter-selector', name: 'Filter Selector', path: 'filter-selector-demo', moduleLazyLoad: 'StFilterSelectorDemoModule' },
    { id: 'st-form', name: 'Form', path: 'form-demo', moduleLazyLoad: 'StFormDemoModule' },
@@ -70,8 +68,6 @@ export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
 const routes: Routes = [
    { path: 'alerts-demo', loadChildren: () => import( './sds-alert-demo/sds-alert-demo.module').then(m => m.SdsAlertDemoModule) },
    { path: 'breadcrumbs', loadChildren: () => import( './st-breadcrumbs-demo/st-breadcrumbs-demo.module').then(m => m.StBreadcrumbsDemoModule ) },
-   { path: 'bubble-demo', loadChildren: () => import( './st-bubble-demo/st-bubble-demo.module').then(m => m.StBubbleDemoModule ) },
-   { path: 'bubble-on-ellipsis-demo', loadChildren: () => import( './st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module').then(m => m.StBubbleOnEllipsisDemoModule ) },
    { path: 'button-demo', loadChildren: () => import( './sds-button-demo/sds-button-demo.module').then(m => m.SdsButtonDemoModule ) },
    { path: 'checkbox-demo', loadChildren: () => import( './sds-checkbox-demo/sds-checkbox-demo.module').then(m => m.SdsCheckboxDemoModule ) },
    { path: 'dropdown-menu-demo', loadChildren: () => import( './st-dropdown-menu-demo/st-dropdown-menu-demo.module').then(m => m.StDropdownMenuDemoModule ) },
@@ -104,7 +100,7 @@ const routes: Routes = [
    { path: 'tag-input-demo', loadChildren: () => import( './st-tag-input-demo/st-tag-input-demo.module').then(m => m.StTagInputDemoModule ) },
    { path: 'textarea', loadChildren: () => import( './sds-textarea-demo/sds-textarea-demo.module').then(m => m.SdsTextareaDemoModule ) },
    { path: 'toggle-buttons-demo', loadChildren: () => import( './sds-toggle-button-demo/sds-toggle-button-demo.module').then(m => m.SdsToggleButtonDemoModule ) },
-   { path: 'tooltip-demo', loadChildren: () => import( './st-tooltip-demo/st-tooltip-demo.module').then(m => m.StTooltipDemoModule ) },
+   { path: 'tooltip-demo', loadChildren: () => import( './sds-tooltip-demo/sds-tooltip-demo.module').then(m => m.SdsTooltipDemoModule ) },
    { path: 'vertical-tabs-demo', loadChildren: () => import( './st-vertical-tabs-demo/st-vertical-tabs-demo.module').then(m => m.StVerticalTabsDemoModule ) },
    { path: 'zero-page-demo', loadChildren: () => import( './st-zero-page-demo/st-zero-page-demo.module').then(m => m.StZeroPageDemoModule) }
 ];

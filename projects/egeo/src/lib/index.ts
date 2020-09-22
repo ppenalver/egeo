@@ -62,14 +62,6 @@ export { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 export { StBreadCrumbsComponent } from './st-breadcrumbs/st-breadcrumbs.component';
 export { StBreadcrumbItemComponent } from './st-breadcrumbs/st-breadcrumbs-item/st-breadcrumbs-item.component';
 
-// Bubble
-export { StBubbleModule } from './st-bubble/st-bubble.module';
-export { StBubbleComponent } from './st-bubble/st-bubble.component';
-
-// Bubble on ellipsis
-export { StBubbleOnEllipsisModule } from './st-bubble-on-ellipsis/st-bubble-on-ellipsis.module';
-export { StBubbleOnEllipsisComponent } from './st-bubble-on-ellipsis/st-bubble-on-ellipsis.component';
-
 // Checkbox
 export { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
 export { SdsCheckboxComponent } from './sds-checkbox/sds-checkbox.component';
@@ -296,8 +288,9 @@ export {
 export { SdsToggleButtonComponent } from './sds-toggle-button/sds-toggle-button.component';
 
 // Tooltip
-export { StTooltipModule } from './st-tooltip/st-tooltip.module';
-export { StTooltipComponent } from './st-tooltip/st-tooltip.component';
+export { SdsTooltipModule } from './sds-tooltip/sds-tooltip.module';
+export { SdsTooltipComponent } from './sds-tooltip/sds-tooltip.component';
+export { SdsTooltipPlacement } from './sds-tooltip/sds-tooltip.interface';
 
 // Vertical tabs
 export { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';

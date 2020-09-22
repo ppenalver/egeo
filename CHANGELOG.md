@@ -29,6 +29,7 @@
 * st-select: Enable keyboard listener by default to open, close and move across menu options
 * st-select: Enable keyboard listener to search options (as native MAC behaviour)
 * st-select: Allow user to move between selects using TAB and TAB+SHIFT keys 
+* sds-tooltip: Apply new design and behaviour according to UX specifications
 
 **Fixed bugs:**
 
@@ -54,6 +55,8 @@
 * st-two-list-selection: Remove component
 * st-dynamic-table: Removed component
 * st-select: Removed "keyBoardMove" input
+* st-bubble: Removed component
+* st-bubble-on-ellipsis: Removed component
 
 **Deprecated:**
 

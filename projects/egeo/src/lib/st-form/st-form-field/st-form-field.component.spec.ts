@@ -23,7 +23,7 @@ import { StInputModule } from '../../st-input/st-input.module';
 import { StFormFieldModule } from './st-form-field.module';
 import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StSelectModule } from '../../st-select/st-select.module';
-import { StTooltipModule } from '../../st-tooltip/st-tooltip.module';
+import { SdsTooltipModule } from '../../sds-tooltip/sds-tooltip.module';
 import { StDropdownMenuModule } from '../../st-dropdown-menu/st-dropdown-menu.module';
 import { SdsSwitchModule } from '../../sds-switch/sds-switch.module';
 import { StSelectComponent } from '../../st-select/st-select';
@@ -44,7 +44,7 @@ describe('StFormFieldComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [FormsModule, ReactiveFormsModule, StInputModule, SdsCheckboxModule, StSelectModule, PipesModule,
-            StTooltipModule, StFormDirectiveModule, StDropdownMenuModule, SdsSwitchModule, SdsTextareaModule],
+            SdsTooltipModule, StFormDirectiveModule, StDropdownMenuModule, SdsSwitchModule, SdsTextareaModule],
          declarations: [StFormFieldComponent]
       })
          .overrideComponent(StSelectComponent, {
@@ -916,7 +916,7 @@ describe('StFormFieldComponent', () => {
       });
 
       it('tooltip is displayed if description exits', () => {
-         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.st-tooltip');
+         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.sds-tooltip');
          expect(tooltip.getAttribute('title')).toBe(booleanProperty.description);
       });
 
@@ -965,7 +965,7 @@ describe('StFormFieldComponent', () => {
       });
 
       it('tooltip is displayed if description exits', () => {
-         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.st-tooltip');
+         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.sds-tooltip');
          expect(tooltip.getAttribute('title')).toBe(selectProperty.description);
       });
 
@@ -1187,7 +1187,7 @@ describe('StFormFieldComponent', () => {
       });
 
       it('tooltip is displayed if description exits', () => {
-         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.st-tooltip');
+         let tooltip: HTMLElement = fixture.nativeElement.querySelector('.sds-tooltip');
          expect(tooltip.getAttribute('title')).toBe(booleanProperty.description);
       });
 

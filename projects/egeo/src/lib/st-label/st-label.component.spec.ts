@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StLabelComponent } from './st-label.component';
-import { StTooltipModule } from '../st-tooltip';
+import { SdsTooltipModule } from '../sds-tooltip';
 import { TestUtils } from '../tests/utils';
 
 @Component({
@@ -35,7 +35,7 @@ describe('StLabel', () => {
             StLabelComponent,
             TestStLabelComponent
          ],
-         imports: [StTooltipModule]
+         imports: [SdsTooltipModule]
       });
    });
 
@@ -56,17 +56,17 @@ describe('StLabel', () => {
          fixture.detectChanges();
          nativeElement = fixture.nativeElement;
          expect(nativeElement.querySelector('label').classList.contains('st-label')).toBeTruthy();
-         expect(nativeElement.querySelector('label').classList.contains('st-tooltip')).toBeFalsy();
+         expect(nativeElement.querySelector('label').classList.contains('sds-tooltip')).toBeFalsy();
       });
    }));
 
-   it('Label tag has st-tooltip class if it has a title', async(() => {
+   it('Label tag has sds-tooltip class if it has a title', async(() => {
       template = '<label st-label title="' + tooltipContent + '">' + labelContent + '</label>';
       TestUtils.overrideComponentTemplate(TestStLabelComponent, template).then(() => {
          fixture = TestBed.createComponent(TestStLabelComponent);
          fixture.detectChanges();
          nativeElement = fixture.nativeElement;
-         expect(nativeElement.querySelector('label').classList.contains('st-tooltip')).toBeTruthy();
+         expect(nativeElement.querySelector('label').classList.contains('sds-tooltip')).toBeTruthy();
       });
    }));
 

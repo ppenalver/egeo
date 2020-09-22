@@ -283,7 +283,6 @@ export class StDropdownMenuDemoComponent {
             icon: 'icon-arrow-up',
             extraIcon: 'icon-info',
             extraIconColor: '#8898a7',
-            extraIconBubble: 'To connect this table you have to set “Province” as root',
             textInfo: 'This is an optional text'
          },
          {

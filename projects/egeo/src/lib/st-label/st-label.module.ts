@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StLabelComponent } from './st-label.component';
-import { StTooltipModule } from '../st-tooltip/st-tooltip.module';
+import { SdsTooltipModule } from '../sds-tooltip/sds-tooltip.module';
 
 @NgModule({
    declarations: [StLabelComponent],

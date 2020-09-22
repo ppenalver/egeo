@@ -37,10 +37,6 @@ export class StDropdownMenuItemComponent {
       }
    }
 
-   onToggleExtraButtonBubble(): void {
-      this.visibleExtraButtonBubble = !this.visibleExtraButtonBubble;
-   }
-
    get isSelected(): boolean {
       return (this.hasItem && this.item.selected && this.styleSelected) ||
          (this.hasItem && this.selectedItem !== undefined && this.item.value === this.selectedItem.value && this.styleSelected);

@@ -18,7 +18,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { StInputModule } from '../../st-input/st-input.module';
 import { StFormModule } from '../st-form.module';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
-import { StTooltipModule } from '../../st-tooltip/st-tooltip.module';
+import { SdsTooltipModule } from '../../sds-tooltip/sds-tooltip.module';
 import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StFormFieldModule } from '../st-form-field/st-form-field.module';
 import { SdsCheckboxComponent } from '../../sds-checkbox/sds-checkbox.component';
@@ -44,7 +44,7 @@ describe('StFormComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StInputModule, SdsCheckboxModule, StFormFieldModule, StTooltipModule, PipesModule, StFormDirectiveModule],
+         imports: [FormsModule, ReactiveFormsModule, StInputModule, SdsCheckboxModule, StFormFieldModule, SdsTooltipModule, PipesModule, StFormDirectiveModule],
          declarations: [StFormComponent]
       })
       // remove this block when the issue #12313 of Angular is fixed

@@ -10,7 +10,6 @@
  */
 import { PipesModule } from './pipes/pipes.module';
 import { SdsAlertModule } from './sds-alert/sds-alert.module';
-import { StBubbleModule } from './st-bubble/st-bubble.module';
 import { StBreadcrumbsModule } from './st-breadcrumbs/st-breadcrumbs.module';
 import { SdsCheckboxModule } from './sds-checkbox/sds-checkbox.module';
 import { StDocsModule } from './st-docs/st-docs.module';
@@ -45,7 +44,7 @@ import { StTableModule } from './st-table/st-table.module';
 import { StTagInputModule } from './st-tag-input/st-tag-input.module';
 import { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
 import { SdsToggleButtonModule } from './sds-toggle-button/sds-toggle-button.module';
-import { StTooltipModule } from './st-tooltip/st-tooltip.module';
+import { SdsTooltipModule } from './sds-tooltip/sds-tooltip.module';
 import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 import { SdsNotificationModule } from './sds-notification/sds-notification.module';
@@ -56,7 +55,6 @@ export const DECLARATIONS: any[] = [
    PipesModule,
    SdsAlertModule,
    StBreadcrumbsModule,
-   StBubbleModule,
    SdsCheckboxModule,
    StDocsModule,
    StDropdownMenuModule,
@@ -91,7 +89,7 @@ export const DECLARATIONS: any[] = [
    StTagInputModule,
    SdsTextareaModule,
    SdsToggleButtonModule,
-   StTooltipModule,
+   SdsTooltipModule,
    StVerticalTabsModule,
    StZeroPageModule,
    SdsTagModule,
