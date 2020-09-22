@@ -43,7 +43,6 @@ import { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.modu
 import { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 import { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
 import { SdsTooltipDemoModule } from './sds-tooltip-demo/sds-tooltip-demo.module';
-import { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
 import { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';
 import { StZeroPageDemoModule } from './st-zero-page-demo/st-zero-page-demo.module';
 import { SdsTagDemoModule } from '@app/demos/sds-tag-demo/sds-tag-demo.module';
@@ -86,6 +85,5 @@ export const EGEO_DEMO_MODULES: any[] = [
    SdsTextareaDemoModule,
    SdsToggleButtonDemoModule,
    SdsTooltipDemoModule,
-   StVerticalTabsDemoModule,
    StZeroPageDemoModule
 ];

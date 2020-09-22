@@ -292,10 +292,6 @@ export { SdsTooltipModule } from './sds-tooltip/sds-tooltip.module';
 export { SdsTooltipComponent } from './sds-tooltip/sds-tooltip.component';
 export { SdsTooltipPlacement } from './sds-tooltip/sds-tooltip.interface';
 
-// Vertical tabs
-export { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
-export { StVerticalTabsComponent } from './st-vertical-tabs/st-vertical-tabs.component';
-
 // Zero page
 export { StZeroPageModule } from './st-zero-page/st-zero-page.module';
 export { StZeroPageComponent } from './st-zero-page/st-zero-page.component';

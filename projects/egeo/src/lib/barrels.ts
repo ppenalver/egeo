@@ -45,7 +45,6 @@ import { StTagInputModule } from './st-tag-input/st-tag-input.module';
 import { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
 import { SdsToggleButtonModule } from './sds-toggle-button/sds-toggle-button.module';
 import { SdsTooltipModule } from './sds-tooltip/sds-tooltip.module';
-import { StVerticalTabsModule } from './st-vertical-tabs/st-vertical-tabs.module';
 import { StFormFieldModule } from './st-form/st-form-field/st-form-field.module';
 import { SdsNotificationModule } from './sds-notification/sds-notification.module';
 import { StZeroPageModule } from './st-zero-page/st-zero-page.module';
@@ -90,7 +89,6 @@ export const DECLARATIONS: any[] = [
    SdsTextareaModule,
    SdsToggleButtonModule,
    SdsTooltipModule,
-   StVerticalTabsModule,
    StZeroPageModule,
    SdsTagModule,
    SdsButtonModule

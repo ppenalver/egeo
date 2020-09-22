@@ -57,6 +57,8 @@
 * st-select: Removed "keyBoardMove" input
 * st-bubble: Removed component
 * st-bubble-on-ellipsis: Removed component
+* st-bubble-on-ellipsis: Removed component
+* st-vertical-tabs: Removed component
 
 **Deprecated:**
 

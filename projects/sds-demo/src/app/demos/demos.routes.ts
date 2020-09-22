@@ -47,7 +47,6 @@ export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
 ];
 
 export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
-   { id: 'st-vertical-tabs', name: 'Vertical Tab', path: 'vertical-tabs-demo', moduleLazyLoad: 'StVerticalTabsDemoModule' },
    { id: 'st-file-button', name: 'File Button', path: 'file-button-demo', moduleLazyLoad: 'StFileButtonDemoModule' },
    { id: 'st-filter-selector', name: 'Filter Selector', path: 'filter-selector-demo', moduleLazyLoad: 'StFilterSelectorDemoModule' },
    { id: 'st-form', name: 'Form', path: 'form-demo', moduleLazyLoad: 'StFormDemoModule' },
@@ -101,7 +100,6 @@ const routes: Routes = [
    { path: 'textarea', loadChildren: () => import( './sds-textarea-demo/sds-textarea-demo.module').then(m => m.SdsTextareaDemoModule ) },
    { path: 'toggle-buttons-demo', loadChildren: () => import( './sds-toggle-button-demo/sds-toggle-button-demo.module').then(m => m.SdsToggleButtonDemoModule ) },
    { path: 'tooltip-demo', loadChildren: () => import( './sds-tooltip-demo/sds-tooltip-demo.module').then(m => m.SdsTooltipDemoModule ) },
-   { path: 'vertical-tabs-demo', loadChildren: () => import( './st-vertical-tabs-demo/st-vertical-tabs-demo.module').then(m => m.StVerticalTabsDemoModule ) },
    { path: 'zero-page-demo', loadChildren: () => import( './st-zero-page-demo/st-zero-page-demo.module').then(m => m.StZeroPageDemoModule) }
 ];
 // tslint:enable

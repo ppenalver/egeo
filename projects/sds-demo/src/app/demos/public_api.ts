@@ -42,4 +42,3 @@ export { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.modu
 export { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
 export { SdsToggleButtonDemoModule } from './sds-toggle-button-demo/sds-toggle-button-demo.module';
 export { SdsTooltipDemoModule } from './sds-tooltip-demo/sds-tooltip-demo.module';
-export { StVerticalTabsDemoModule } from './st-vertical-tabs-demo/st-vertical-tabs-demo.module';
