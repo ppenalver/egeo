@@ -1,0 +1,242 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/egeo-themes/dist/stratio/constants';
+
+/// tipography EXTENDS (@extend %button-label-regular;):
+%button-label-regular {
+   color: var(--egeo-theme-neutral-full, $neutral-full);
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-size: var(--egeo-sds-button--font-size, $egeo-font-size-14);
+   font-weight: normal;
+   line-height: var(--egeo-sds-button--height, 34px);
+   height: var(--egeo-sds-button--height, 36px);
+   padding: 0 1.429rem 0 1.429rem;
+
+   & > I {
+      line-height: var(--egeo-sds-button--height, 34px);
+   }
+}
+
+%button-label-small {
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-size: var(--egeo-sds-button__small--font-size, $egeo-font-size-12);
+   font-weight: normal;
+   line-height: var(--egeo-sds-button__small--height, 28px);
+   height: var(--egeo-sds-button__small--height, 30px);
+   padding: 0 1.429rem;
+
+   & > I {
+      line-height: var(--egeo-sds-button__small--height, 28px);
+   }
+}
+
+%button-toolbar-ico-default {
+   font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+   font-size: var(--egeo-sds-button__icon--font-size, $egeo-font-size-16);
+   &[disabled] {
+      color: var(--egeo-theme-neutral-20, $neutral-20);
+   }
+}
+
+.button-link {
+   color: var(--egeo-theme-action, $action);
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-size: var(--egeo-sds-button__link--font-size, $egeo-font-size-14);
+   font-weight: normal;
+
+   &:hover {
+      color: var(--egeo-theme-action-120, $action-120);
+      border-color: var(--egeo-theme-action-120, $action-120);
+   }
+
+   :active {
+      color: var(--egeo-theme-action-150, $action-150);
+      border-color: var(--egeo-theme-action-150, $action-150);
+   }
+
+   &[disabled] {
+      opacity: 0.4;
+   }
+
+   &.small {
+      font-size: var(--egeo-sds-button__link__small--font-size, $egeo-font-size-12);
+   }
+}
+
+/// STYLES:
+.button {
+   border-radius: 4px;
+   box-sizing: border-box;
+   max-width: 100%;
+   outline: none;
+   overflow: hidden;
+   vertical-align: middle;
+   white-space: nowrap;
+   line-height: 1;
+   display: flex;
+   align-items: center;
+   border: 1px solid;
+
+   &:not([disabled]) {
+      cursor: pointer;
+   }
+
+   &[disabled] {
+      cursor: not-allowed;
+   }
+
+   &.button-spinner {
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      cursor: progress;
+
+      sds-spinner {
+         margin-top: -2px;
+      }
+   }
+
+   &.button-primary {
+      background-color: var(--egeo-theme-action, $action);
+      border-color: var(--egeo-theme-action, $action);
+      color: var(--egeo-theme-neutral-full, $neutral-full);
+
+      &:not(.button-spinner):hover {
+         background-color: var(--egeo-theme-action-120, $action-120);
+         border-color: var(--egeo-theme-action-120, $action-120);
+      }
+
+      &:not(.button-spinner):active {
+         background-color: var(--egeo-theme-action-150, $action-150);
+         border-color: var(--egeo-theme-action-150, $action-150);
+      }
+   }
+
+   &.button-secondary {
+      background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      border-color: var(--egeo-theme-space-40, $space-40);
+      color: var(--egeo-theme-space-70, $space-70);
+
+      &:not(.button-spinner):hover {
+         background-color: var(--egeo-theme-action-10, $action-10);
+         border-color: var(--egeo-theme-space-50, $space-50);
+         color: var(--egeo-theme-space-80, $space-80);
+      }
+
+      &:not(.button-spinner):active {
+         background-color: var(--egeo-theme-space-10, $space-10);
+         border-color: var(--egeo-theme-space-80, $space-80);
+         color: var(--egeo-theme-space, $space);
+      }
+
+      &[disabled], &[disabled]:hover {
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
+         border-color: var(--egeo-theme-space-20, $space-20);
+         color: var(--egeo-theme-space-30, $space-30);
+      }
+   }
+
+   &.button-critical {
+      background-color: var(--egeo-theme-error, $error);
+      border-color: var(--egeo-theme-error, $error);
+
+      &:not(.button-spinner):hover {
+         background-color: var(--egeo-theme-error-120, $error-120);
+         border-color: var(--egeo-theme-error-120, $error-120);
+      }
+
+      &:not(.button-spinner):active {
+         background-color: var(--egeo-theme-error-140, $error-140);
+         border-color: var(--egeo-theme-error-140, $error-140);
+
+      }
+   }
+
+   &.button-borderless {
+      background-color: transparent;
+      color: var(--egeo-theme-space-70, $space-70);
+      border-color: transparent;
+
+      &:not(.button-spinner):hover {
+         background-color: var(--egeo-theme-action-10, $action-10);
+         color: var(--egeo-theme-space-80, $space-80);
+      }
+
+      &:not(.button-spinner):active {
+         background-color: var(--egeo-theme-space-10, $space-10);
+         color: var(--egeo-theme-space, $space);
+      }
+   }
+
+   &.button-toolbar {
+      @extend %button-toolbar-ico-default;
+      border-radius: 4px;
+      padding: 0 0.715rem;
+
+      &.small {
+         padding: 0 0.50rem;
+      }
+
+      i {
+         display: block;
+         font-size: 16px;
+      }
+   }
+
+   &.button-primary,
+   &.button-secondary,
+   &.button-borderless,
+   &.button-critical {
+      @extend %button-label-regular;
+      text-overflow: ellipsis;
+
+      &.block {
+         width: 100%;
+      }
+
+      &.small {
+         @extend %button-label-small;
+      }
+
+      > i {
+         vertical-align: top;
+         position: relative;
+         top: -1px;
+
+         & + span {
+            margin-left: 8px;
+         }
+      }
+
+      > span + i {
+         margin-left: 10px;
+      }
+
+      &[disabled]:not(.button-secondary), &[disabled]:not(.button-secondary):hover {
+         background-color: var(--egeo-theme-space-5, $space-10);
+         border-color: var(--egeo-theme-space-5, $space-10);
+         color: var(--egeo-theme-space-30, $space-30);
+      }
+   }
+
+   .button-secondary[disabled], .button-secondary[disabled]:hover {
+      border-color: var(--egeo-theme-space-5, $space-10);
+      color: var(--egeo-theme-space-30, $space-30);
+   }
+}
+
+
+
+
+
+
+
+

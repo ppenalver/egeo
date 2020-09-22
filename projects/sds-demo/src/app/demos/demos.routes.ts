@@ -27,6 +27,7 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
    { id: 'sds-toggle-button', name: 'Toggle Button', path: 'toggle-buttons-demo', moduleLazyLoad: 'SdsToggleButtonDemoModule' },
    { id: 'sds-spinner', name: 'Spinner', path: 'spinner-demo', moduleLazyLoad: 'SdsSpinnerDemoModule' },
    { id: 'sds-modal', name: 'Modal', path: 'modal2-demo', moduleLazyLoad: 'SdsModalDemoModule' },
+   { id: 'sds-button', name: 'Button', path: 'button-demo', moduleLazyLoad: 'SdsButtonDemoModule' },
    { id: 'sds-textarea', name: 'Textarea', path: 'textarea', moduleLazyLoad: 'SdsTextareaDemoModule' },
    { id: 'sds-tag', name: 'Tag', path: 'tag-demo', moduleLazyLoad: 'SdsTagDemoModule' },
    { id: 'sds-notification', name: 'Notification',
@@ -36,7 +37,6 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
 
 export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
    { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
-   { id: 'st-button', name: 'Button', path: 'button-demo', moduleLazyLoad: 'StButtonDemoModule' },
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
    { id: 'st-dropdown-menu', name: 'Dropdown Menu', path: 'dropdown-menu-demo', moduleLazyLoad: 'StDropdownMenuDemoModule' },
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
@@ -72,7 +72,7 @@ const routes: Routes = [
    { path: 'breadcrumbs', loadChildren: () => import( './st-breadcrumbs-demo/st-breadcrumbs-demo.module').then(m => m.StBreadcrumbsDemoModule ) },
    { path: 'bubble-demo', loadChildren: () => import( './st-bubble-demo/st-bubble-demo.module').then(m => m.StBubbleDemoModule ) },
    { path: 'bubble-on-ellipsis-demo', loadChildren: () => import( './st-bubble-on-ellipsis-demo/st-bubble-on-ellipsis-demo.module').then(m => m.StBubbleOnEllipsisDemoModule ) },
-   { path: 'button-demo', loadChildren: () => import( './st-button-demo/st-button-demo.module').then(m => m.StButtonDemoModule ) },
+   { path: 'button-demo', loadChildren: () => import( './sds-button-demo/sds-button-demo.module').then(m => m.SdsButtonDemoModule ) },
    { path: 'checkbox-demo', loadChildren: () => import( './sds-checkbox-demo/sds-checkbox-demo.module').then(m => m.SdsCheckboxDemoModule ) },
    { path: 'dropdown-menu-demo', loadChildren: () => import( './st-dropdown-menu-demo/st-dropdown-menu-demo.module').then(m => m.StDropdownMenuDemoModule ) },
    { path: 'file-button-demo', loadChildren: () => import( './st-file-button-demo/st-file-button-demo.module').then(m => m.StFileButtonDemoModule ) },

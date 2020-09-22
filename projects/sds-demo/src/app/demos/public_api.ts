@@ -16,7 +16,7 @@ export { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 export { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 export { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
 
-export { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
+export { SdsButtonDemoModule } from './sds-button-demo/sds-button-demo.module';
 export { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
 export { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 export { StFilterSelectorDemoModule } from './st-filter-selector-demo/st-filter-selector-demo.module';

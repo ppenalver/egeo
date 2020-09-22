@@ -11,7 +11,7 @@
 import { SdsAlertDemoModule } from './sds-alert-demo/sds-alert-demo.module';
 import { StBreadcrumbsDemoModule } from './st-breadcrumbs-demo/st-breadcrumbs-demo.module';
 import { StBubbleDemoModule } from './st-bubble-demo/st-bubble-demo.module';
-import { StButtonDemoModule } from './st-button-demo/st-button-demo.module';
+import { SdsButtonDemoModule } from './sds-button-demo/sds-button-demo.module';
 import { SdsCheckboxDemoModule } from './sds-checkbox-demo/sds-checkbox-demo.module';
 import { StDropdownMenuDemoModule } from './st-dropdown-menu-demo/st-dropdown-menu-demo.module';
 import { StFileButtonDemoModule } from './st-file-button-demo/st-file-button-demo.module';
@@ -57,7 +57,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StBreadcrumbsDemoModule,
    StBubbleDemoModule,
    StBubbleOnEllipsisDemoModule,
-   StButtonDemoModule,
+   SdsButtonDemoModule,
    SdsCheckboxDemoModule,
    StDropdownMenuDemoModule,
    StFileButtonDemoModule,

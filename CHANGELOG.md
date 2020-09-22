@@ -4,7 +4,7 @@
 
 **New features:**
 
-* st-button: Apply new design according to UX specifications
+* sds-button: Apply new design according to UX specifications
 * st-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-tag: Apply new behaviour and design defined by UX
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
@@ -37,9 +37,9 @@
 
 **Breaking changes:**
 
-* st-button: Removed large buttons
+* sds-button: Removed large buttons
 * Remove theme constants in order to import them from egeo-themes dependency
-* st-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
+* sds-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 * st-tag: Removed input 'removable' and output 'remove'. Changed to property 'rightIcon' in StTagItem model and output 'clickButton'
 * st-foreground-notification: Removed old component's inputs and added "config" and "hotRender" as new inputs.
 * st-foreground-notification: Removed old component's outputs and added "close" and "autoClose" as new inputs.
@@ -164,8 +164,8 @@
 * st-table: Allow to customize sort and filter icons using an input
 * st-pagination: Allow to customize icon classes of previous and next page buttons using input "iconClasses"
 * st-pop-over: Allow to choose placement and added input 'openToLeft' to be displayed from the button left side
-* st-button: Allow to customize its style from outside using css variables
-* st-button: Updated button colors
+* sds-button: Allow to customize its style from outside using css variables
+* sds-button: Updated button colors
 * st-form: Allow to customize some styles from outside using css variables and error messages
 * st-fullscreen-layout: Added close button and changed background-color
 * st-form: Allow to display a link before field if it is defined on ui block
@@ -235,7 +235,7 @@
 
 **Others:**
 
-* st-button: Set cursor pointer to button class
+* sds-button: Set cursor pointer to button class
 * Color palette: Add color space-40
 * Update icon font to 1.30
 
@@ -555,7 +555,7 @@
 
 **New features:**
 
-* st-button: Add small toolbar button style
+* sds-button: Add small toolbar button style
 * st-tag-input: Allow user to generate arrays of integers or numbers
 
 **Others:**
@@ -586,7 +586,7 @@
 
 * st-dropdown-menu: Put cursor pointer to items and improve design
 * st-input: Label is only generated if it is not empty
-* st-button: Minor style changes
+* sds-button: Minor style changes
 
 
 ## 12.0.0 (August 17, 2018)
@@ -594,7 +594,7 @@
 **New features:**
 
 * st-bubble: Create component
-* st-button: Add small button style
+* sds-button: Add small button style
 * st-input, sds-textarea, st-select, st-radio-button, st-checkbox, st-tag-input: Change disabled style
 * st-modal: Set default max and min width
 * st-sidebar: Allow to add any content from outside to header and footer
@@ -1088,7 +1088,7 @@
 * st-switch: Remove labelPosition input, label always are dispayed at the left
 * st-horizontal-tabs: Event emitted when active tabs changes, now sends the option of type StHorizontalTab
 * st-horizontal-tabs: Removed functionality to display disabled tabs
-* st-button: Removed component now use native tag and classes
+* sds-button: Removed component now use native tag and classes
 * st-select: Output emitted when select is changed is now the value of the option instead of the entire option
 * st-form-label: Deleted, replaced by st-label
 * st-tooltip: New behaviour based on native tag
@@ -1131,7 +1131,7 @@
 
 **Fixed bugs:**
 
-* st-button: Update internal text value when change input
+* sds-button: Update internal text value when change input
 
 ## 3.0.1 (September 01, 2017)
 

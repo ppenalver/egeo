@@ -11,20 +11,34 @@
 
 @import '~@stratio/egeo-themes/dist/stratio/constants';
 
-.table-container {
-   overflow: auto;
+.press-message {
+   font-size: 18px;
+   font-weight: 200;
+   margin-top: 50px;
+   opacity: 1;
+   transition: opacity .4s ease-in-out;
+}
 
-   table {
-      width: 100%;
-      margin-bottom: 30px;
+.button-container {
+   margin-top: 50px;
+}
+
+.input-container {
+   display: flex;
+   align-items: center;
+
+   .input-number {
+      max-width: 200px;
    }
 
-   .button-cell {
-      text-align: center;
-      vertical-align: middle;
-      height: 50px;
-      padding: 0 10px;
+   st-input, st-select {
+      flex: 1;
+      max-width: 300px;
    }
 
+   span {
+      margin-left: 20px;
+      margin-top: 20px;
+   }
 }
 
