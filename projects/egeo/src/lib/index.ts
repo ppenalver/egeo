@@ -230,12 +230,6 @@ export { StSelectModule } from './st-select/st-select.module';
 export { StSelectComponent } from './st-select/st-select';
 export { StCheckValidationsDirective } from './st-select/st-check-validations';
 
-// Sidebar
-export { StSidebarModule } from './st-sidebar/st-sidebar.module';
-export { StSidebarComponent } from './st-sidebar/st-sidebar.component';
-export { StSidebarItem } from './st-sidebar/st-sidebar-item.interface';
-export { StSidebarVisualMode } from './st-sidebar/st-sidebar-visual-mode';
-
 // Spinner
 export { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
 export { SdsSpinnerComponent } from './sds-spinner/sds-spinner.component';

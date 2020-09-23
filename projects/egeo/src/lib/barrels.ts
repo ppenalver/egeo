@@ -36,7 +36,6 @@ import { StRadioMenuModule } from './st-radio-menu/st-radio-menu.module';
 import { SdsRadioModule } from './sds-radio/sds-radio.module';
 import { StSearchModule } from './st-search/st-search.module';
 import { StSelectModule } from './st-select/st-select.module';
-import { StSidebarModule } from './st-sidebar/st-sidebar.module';
 import { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
 import { SdsSwitchModule } from './sds-switch/sds-switch.module';
 import { SdsButtonModule } from './sds-button/sds-button.module';
@@ -81,7 +80,6 @@ export const DECLARATIONS: any[] = [
    SdsRadioModule,
    StSearchModule,
    StSelectModule,
-   StSidebarModule,
    SdsSpinnerModule,
    SdsSwitchModule,
    StTableModule,

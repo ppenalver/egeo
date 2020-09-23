@@ -59,7 +59,6 @@ export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
    { id: 'st-progress-bar', name: 'Progress Bar', path: 'progress-bar-demo', moduleLazyLoad: 'StProgressBarDemoModule' },
    { id: 'sds-radio-menu', name: 'Radio Menu', path: 'radio-menu-demo', moduleLazyLoad: 'StRadioMenuDemoModule' },
    { id: 'st-search', name: 'Search', path: 'search-demo', moduleLazyLoad: 'StSearchDemoModule' },
-   { id: 'st-sidebar', name: 'Sidebar', path: 'sidebar-demo', moduleLazyLoad: 'SidebarDemoModule' },
    { id: 'st-zero-page', name: 'Zero Page', path: 'zero-page-demo', moduleLazyLoad: 'StZeroPageDemoModule' }
 ];
 
@@ -91,7 +90,6 @@ const routes: Routes = [
    { path: 'radio-menu-demo', loadChildren: () => import( './st-radio-menu-demo/st-radio-menu-demo.module').then(m => m.StRadioMenuDemoModule ) },
    { path: 'search-demo', loadChildren: () => import( './st-search-demo/st-search-demo.module').then(m => m.StSearchDemoModule ) },
    { path: 'select-demo', loadChildren: () => import( './st-select-demo/select-demo.module').then(m => m.StSelectDemoModule ) },
-   { path: 'sidebar-demo', loadChildren: () => import( './st-sidebar-demo/st-sidebar-demo.module').then(m => m.StSidebarDemoModule ) },
    { path: 'spinner-demo', loadChildren: () => import( './sds-spinner-demo/sds-spinner-demo.module').then(m => m.SdsSpinnerDemoModule ) },
    { path: 'switch-demo', loadChildren: () => import( './sds-switch-demo/sds-switch-demo.module').then(m => m.SdsSwitchDemoModule ) },
    { path: 'table-demo', loadChildren: () => import( './st-table-demo/st-table-demo.module').then(m => m.StTableDemoModule ) },
