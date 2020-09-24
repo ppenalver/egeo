@@ -37,6 +37,7 @@ import { StSearchDemoModule } from './st-search-demo/st-search-demo.module';
 import { StSelectDemoModule } from './st-select-demo/select-demo.module';
 import { SdsSpinnerDemoModule } from './sds-spinner-demo/sds-spinner-demo.module';
 import { SdsSwitchDemoModule } from './sds-switch-demo/sds-switch-demo.module';
+import { SdsLinkDemoModule } from './sds-link-demo/sds-link-demo.module';
 import { StTableDemoModule } from './st-table-demo/st-table-demo.module';
 import { StTagInputDemoModule } from './st-tag-input-demo/st-tag-input-demo.module';
 import { SdsTextareaDemoModule } from './sds-textarea-demo/sds-textarea-demo.module';
@@ -83,5 +84,6 @@ export const EGEO_DEMO_MODULES: any[] = [
    SdsTextareaDemoModule,
    SdsToggleButtonDemoModule,
    SdsTooltipDemoModule,
-   StZeroPageDemoModule
+   StZeroPageDemoModule,
+   SdsLinkDemoModule
 ];

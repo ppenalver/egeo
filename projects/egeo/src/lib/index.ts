@@ -244,6 +244,10 @@ export { SdsTagModule } from './sds-tag/sds-tag.module';
 export { SdsTagComponent } from './sds-tag/sds-tag.component';
 export * from './sds-tag/sds-tag.model';
 
+// Link
+export { SdsLinkModule } from './sds-link/sds-link.module';
+export { SdsLinkComponent } from './sds-link/sds-link.component';
+
 // Button
 export { SdsButtonConfig } from './sds-button/sds-button.model';
 export { SdsButtonModule } from './sds-button/sds-button.module';

@@ -1,0 +1,56 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-link
+               [text]="text.value"
+               (linkClick)="showPressMessage()"
+               [underline]="underline.value"
+               [inverseUnderline]="inverseUnderline.value"
+               [size]="size.value"
+               [icon]="showIcon.value ? iconExample.value : ''">
+            </sds-link>
+            <div [@fade] *ngIf="showMessage" class="close-pressed-message">
+               Link pressed...
+            </div>
+         </div>
+         <form class="demo-layout__demo-container__demo-config">
+            <div class="st-inline-group">
+               <h1>Size</h1>
+               <sds-radio-group [formControl]="size" class="st-inline-group">
+                  <sds-radio name="custom-icon" *ngFor="let size of sizeOptions" [value]="size.value" [checked]="size.value === 'regular'">{{size.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div class="input-container">
+               <st-input class="st-form-field" [formControl]="text" [label]="'Link text'"></st-input>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox [formControl]="showIcon">Icon</sds-checkbox>
+               <sds-checkbox [formControl]="underline">Underline</sds-checkbox>
+               <sds-checkbox *ngIf="underline.value" [formControl]="inverseUnderline">Inverse underline</sds-checkbox>
+            </div>
+            <div *ngIf="showIcon.value" class="st-inline-group">
+               <h1>Examples</h1>
+               <sds-radio-group [formControl]="iconExample" class="st-inline-group">
+                  <sds-radio name="custom-icon" *ngFor="let exampleIcon of exampleIconOptions" [value]="exampleIcon.value" [checked]="exampleIcon.value === 'icon-circle-plus'">{{exampleIcon.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+         </form>
+      </div>
+   </section>
+</st-docs>
