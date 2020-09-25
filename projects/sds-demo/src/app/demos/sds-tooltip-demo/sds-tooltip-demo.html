@@ -13,6 +13,7 @@
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
    <section class="demo-layout">
+      <p class="demo-layout__component-description">Tooltips provide additional information upon hover or focus. They often contain helper text that is contextual to an element.</p>
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
@@ -70,5 +71,19 @@
             </div>
          </div>
       </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">A Tooltip is used to clarify the action or name of an interactive icon button.</p>
+      <p class="demo-layout__paragraph">Tooltips usually appears when the user hovers an icon-based button or hovers a question mark icon that indicates that some clarifications are available.</p>
+      <p class="demo-layout__paragraph">Tooltips can be also used to expand big words which, due to space limitations, must be trunked.</p>
+      <p class="demo-layout__paragraph">The Tooltip content should only contain one to two words on the best cases and a couple of lines on the worst.</p>
+      <p class="demo-layout__paragraph">Icon Tooltips appear on hover, focus, and click. So, when hover and focus could not be available (mobile devices), the click one will be.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Keep the tooltip text short and concise, try not to put more than two words on it.</li>
+         <li class="demo-layout__list-item">Top and bottom tooltips are prefered in general. In some cases may be neccessary to use the left or right versions for better understanding due to the possition of the icon that triggers it.</li>
+         <li class="demo-layout__list-item">Icon tooltips should appear on hovering the icon almost inmediately. A little animation should be applied.</li>
+         <li class="demo-layout__list-item">All the buttons, badges, symbols, and similar items on the UI that are icon-only based (or numerical-only) have to be a related tooltip that explains what the symbol means.</li>
+      </ul>
    </section>
 </st-docs>

@@ -1,5 +1,6 @@
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="demo-layout">
+      <p class="demo-layout__component-description">Modals provide information or help a user complete a task. They require the user to take any action to dismiss them.  Use Modals with care because they interrupt user workflow.</p>
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
@@ -101,5 +102,24 @@
             </div>
          </div>
       </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Modals are used in different scenarios. Most notably: alerting the user, confirmation dialogs, and informational ones.</p>
+      <p class="demo-layout__paragraph">The title summarizes the purpose of the modal. In a confirmation modal, use a question in your title and make sure the action is clearly called out in the buttons.</p>
+      <p class="demo-layout__paragraph">When the result of the action of the confirmation buttons cannot be undone and it carries out deleting or other critical actions, the button must be also critical (the red one).</p>
+      <p class="demo-layout__paragraph">The content may differ between different types of Modals. Be concise and provide a clear explanation of the task or information a user should focus on.</p>
+      <p class="demo-layout__paragraph">Buttons should include clear and direct action for the user to take. Buttons are right-aligned.</p>
+      <p class="demo-layout__paragraph">Modals appear over a dark blue semitransparent background to help the user focus on the task. (Background-color: Space Default; Opacity: 90%;)</p>
+      <p class="demo-layout__paragraph">The modal component has different sizes available to adapt it to the content.</p>
+      <p class="demo-layout__paragraph">Modals can have a close button icon on the top right part of it. That closes the modal and comes back to the original page where the modal was triggered.</p>
+      <p class="demo-layout__paragraph">A special full-width modal exists which occupies 100% of the viewport. This modal contains some graphical and functional variations respect the rest of the sizes. It is often used to edit and configuration.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">
+         Below are the good practices that should guide the uses of the component to maintain coherence and consistency in the design system and the spirit with which they were sustained.
+      </p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Modals are disruptive. Only use modals when you need the user’s full attention for the period of time the modal is displayed.</li>
+         <li class="demo-layout__list-item">A user needs to actively dismiss a modal. A modal should not disappear on its own. Taking any of the actions to either cancel or proceed should eventually dismiss the modal.</li>
+         <li class="demo-layout__list-item">Scrolling makes it hard for a user to go through the content of your modal or complete the task assigned. Avoid scrolling inside a modal.</li>
+      </ul>
    </section>
 </st-docs>

@@ -13,6 +13,7 @@
 
 <st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
    <section class="demo-layout">
+      <p class="demo-layout__component-description">Links are button-like items that allow to place them on situations where buttons are too big, too remarkable, or need to appear so many times that is a bad design decision to use them. Links are subtle, user understands them quite well, and are more flexible.</p>
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
@@ -52,5 +53,18 @@
             </div>
          </form>
       </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Links are exactly that, links, and must have the link behavior. So, links use the CTA colors (usually blue and red) and show a hand when the user hovers over it (CSS cursor: pointer).</p>
+      <p class="demo-layout__paragraph">Links can be accompany an icon to emphasize the action or to reduce the time the user needs to understand the action. E.g. the plus icon to the action Add.</p>
+      <p class="demo-layout__paragraph">Links should have a security hover space around them to facilitates the user to click on it.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">
+         Below are the good practices that should guide the uses of the component to maintain coherence and consistency in the design system and the spirit with which they were sustained.
+      </p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Use Links when the action is clearly secondary or even less importante.</li>
+         <li class="demo-layout__list-item">Try to be as clear and concise as possible. Links must have two words or less and must describe the action as well as possible. E.g. Add item, Delete, More info...</li>
+         <li class="demo-layout__list-item">Usually, the link texts are begun by a verb that identifies the action. E.g. Add, Delete, Edit. However, exceptionally, can use other words. E.g. More.</li>
+      </ul>
    </section>
 </st-docs>
