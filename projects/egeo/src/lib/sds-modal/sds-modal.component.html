@@ -20,6 +20,7 @@
    (click)="onClickOutside($event)">
   <div
      #modal
+     [@middleFade]
      class="st-modal"
      [ngClass]="{
         'st-modal--custom_content': modalType === modalTypes.CUSTOM_CONTENT,
@@ -28,7 +29,7 @@
         'st-modal--error': modalType === modalTypes.ERROR,
         'st-modal--padding': showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT
      }">
-     <div *ngIf="!isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header">
+     <div [@innerFade] *ngIf="!isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header">
         <i
            *ngIf="modalType === modalTypes.WARNING || modalType === modalTypes.ERROR"
            class="icon st-modal__header__status-icon"
@@ -46,7 +47,7 @@
         </i>
      </div>
 
-     <div *ngIf="isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header--full-window">
+     <div [@innerFade] *ngIf="isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header--full-window">
         <i
            *ngIf="showCloseControl"
            class="icon icon-cross st-modal__header__close-control st-modal__header__close-control--full-window"
@@ -64,16 +65,18 @@
         </button>
      </div>
      <ng-container *ngIf="!showDefaultHeader && modalType === modalTypes.CUSTOM_CONTENT">
-        <ng-content select="[st-modal-header]"></ng-content>
+        <div [@innerFade]>
+           <ng-content select="[st-modal-header]"></ng-content>
+        </div>
      </ng-container>
 
 
 
-     <div class="st-modal__body" [ngClass]="{'st-modal__body--padding': showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT}">
+     <div [@innerFade] class="st-modal__body" [ngClass]="{'st-modal__body--padding': showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT}">
         <ng-content></ng-content>
      </div>
 
-     <div *ngIf="!isFullWindow && modalType !== modalTypes.CUSTOM_CONTENT" class="st-modal__actions">
+     <div [@innerFade] *ngIf="!isFullWindow && modalType !== modalTypes.CUSTOM_CONTENT" class="st-modal__actions">
         <button class="st-modal__actions__cancel button button-secondary" (click)="cancelButton.emit()">
            <span>{{cancelButtonLabel}}</span>
         </button>

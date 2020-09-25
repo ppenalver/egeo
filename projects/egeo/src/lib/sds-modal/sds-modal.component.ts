@@ -22,7 +22,7 @@ import {
    Renderer2, SimpleChanges,
    ViewChild
 } from '@angular/core';
-import {animate, AnimationEvent, state, style, transition, trigger} from '@angular/animations';
+import {animate, animateChild, AnimationEvent, query, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {StWindowRefService} from '../utils/window-service';
 import {SdsModalConfig, SdsModalType} from './sds-modal.model';
@@ -37,11 +37,35 @@ import {SdsModalConfig, SdsModalType} from './sds-modal.model';
          state('void, hidden', style({ opacity: 0 })),
          state('visible', style({ opacity: 1 })),
          transition('* => visible', [
-            animate('400ms')
+            animate(100),
+            query('@middleFade', [
+               animateChild()
+            ])
          ]),
          transition('* => hidden, * => void', [
-            animate('400ms')
+            query('@innerFade', [
+               animate(0, style({opacity: 0}))
+            ]),
+            query('@middleFade', [
+               animate(400, style({opacity: 0}))
+            ]),
+            animate(0)
          ])
+      ]),
+      trigger('middleFade', [
+         state('void', style({opacity: 0})),
+         state('*', style({opacity: 1})),
+         transition(':enter', [
+            animate(150),
+            query('@innerFade', [
+               animateChild()
+            ])
+         ])
+      ]),
+      trigger('innerFade', [
+         state('void', style({opacity: 0})),
+         state('*', style({opacity: 1})),
+         transition(':enter', [animate(150)])
       ])
    ]
 })
