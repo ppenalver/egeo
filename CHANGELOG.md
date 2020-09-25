@@ -4,7 +4,6 @@
 
 **New features:**
 
-* sds-button: Apply new design according to UX specifications
 * st-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
 * st-tag: Apply new behaviour and design defined by UX
 * st-tag-input: Apply new design and heights according to UX specifications. Regular (36px) and small (30px)
@@ -38,7 +37,6 @@
 
 **Breaking changes:**
 
-* sds-button: Removed large buttons
 * Remove theme constants in order to import them from egeo-themes dependency
 * sds-button: 'button-toolbar' class has to be used together with 'button-primary', 'button-secondary', 'button-borderless' or 'button-critical'
 * st-tag: Removed input 'removable' and output 'remove'. Changed to property 'rightIcon' in StTagItem model and output 'clickButton'

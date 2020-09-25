@@ -11,7 +11,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-   SdsButtonModule,
    SdsCheckboxModule,
    SdsRadioModule,
    StDemoGeneratorModule,
@@ -26,7 +25,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
    imports: [
       CommonModule,
-      SdsButtonModule,
       StInputModule,
       SdsCheckboxModule,
       SdsRadioModule,

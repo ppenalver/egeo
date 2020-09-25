@@ -39,7 +39,6 @@ import { StSelectModule } from './st-select/st-select.module';
 import { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
 import { SdsSwitchModule } from './sds-switch/sds-switch.module';
 import { SdsLinkModule } from './sds-link/sds-link.module';
-import { SdsButtonModule } from './sds-button/sds-button.module';
 import { StTableModule } from './st-table/st-table.module';
 import { StTagInputModule } from './st-tag-input/st-tag-input.module';
 import { SdsTextareaModule } from './sds-textarea/sds-textarea.module';
@@ -90,6 +89,5 @@ export const DECLARATIONS: any[] = [
    SdsTooltipModule,
    StZeroPageModule,
    SdsLinkModule,
-   SdsTagModule,
-   SdsButtonModule
+   SdsTagModule
 ];

@@ -17,7 +17,20 @@
       <h2 class="demo-layout__demo-label">Demo</h2>
       <div class="demo-layout__demo-container">
          <div class="demo-layout__demo-container__demo">
-            <sds-button (buttonClick)="onButtonClick()" [config]="buttonConfig" [isDisabled]="disabledControl.value"></sds-button>
+
+            <button (click)="onButtonClick()"
+              [className]="getButtonClasses(buttonConfig)"
+              [disabled]="disabledControl.value">
+
+              <i *ngIf="(buttonConfig?.icon?.length && buttonConfig.iconType === 'icon-left') || buttonConfig.iconType === 'only-icon'" [className]="buttonConfig.icon"></i>
+
+              <span *ngIf="buttonConfig.iconType !== 'only-icon'">{{buttonConfig.text}}</span>
+
+              <i *ngIf="buttonConfig?.icon?.length && buttonConfig.iconType === 'icon-right'" [className]="buttonConfig.icon"></i>
+
+            </button>
+
+
             <p [@fade] *ngIf="showPressMessage" class="press-message">{{message}}</p>
          </div>
          <div class="demo-layout__demo-container__demo-config">
@@ -40,7 +53,6 @@
                <h1>Options</h1>
                <sds-checkbox [formControl]="disabledControl">Disabled</sds-checkbox>
                <sds-checkbox [formControl]="iconControl">Icon</sds-checkbox>
-               <sds-checkbox [formControl]="spinnerControl">Spinner</sds-checkbox>
             </div>
             <div *ngIf="iconControl.value">
                <h1>Icon Type</h1>

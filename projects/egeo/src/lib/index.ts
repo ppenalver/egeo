@@ -248,11 +248,6 @@ export * from './sds-tag/sds-tag.model';
 export { SdsLinkModule } from './sds-link/sds-link.module';
 export { SdsLinkComponent } from './sds-link/sds-link.component';
 
-// Button
-export { SdsButtonConfig } from './sds-button/sds-button.model';
-export { SdsButtonModule } from './sds-button/sds-button.module';
-export { SdsButtonComponent } from './sds-button/sds-button.component';
-
 // Table
 export { StTableModule } from './st-table/st-table.module';
 export { StTableComponent } from './st-table/st-table.component';

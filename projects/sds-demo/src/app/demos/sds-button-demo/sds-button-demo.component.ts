@@ -1,21 +1,10 @@
-/*
- * © 2017 Stratio Big Data Inc., Sucursal en España.
- *
- * This software is licensed under the Apache License, Version 2.0.
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the terms of the License for more details.
- *
- * SPDX-License-Identifier: Apache-2.0.
- */
-import {ChangeDetectorRef, Component} from '@angular/core';
-import {CssProperty} from '@app/shared/css-property-table/css-property-table.model';
-import {FormControl} from '@angular/forms';
-import {SdsButtonConfig} from '@stratio/egeo';
-import {SdsButtonIconType, SdsButtonSize, SdsButtonType} from '../../../../../egeo/src/lib/sds-button/sds-button.model';
-import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SdsButtonType, SdsButtonIconType, SdsButtonSize, SdsButtonConfig } from './sds-button-demo.model';
+import { CssProperty } from '../../shared/css-property-table/css-property-table.model';
 
 @Component({
    selector: 'sds-button-demo',
@@ -23,8 +12,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
    styleUrls: ['./sds-button-demo.component.scss'],
    animations: [
       trigger('fade', [
-         state('void', style({opacity: 0})),
-         state('*', style({opacity: 1})),
+         state('void', style({ opacity: 0 })),
+         state('*', style({ opacity: 1 })),
          transition(':enter', [animate(300)]),
          transition(':leave', [animate(300)])
       ])
@@ -100,46 +89,46 @@ export class SdsButtonDemoComponent {
    ];
 
    public sizeOptions: Record<string, string>[] = [
-      {label: 'Regular', value: 'regular'},
-      {label: 'Small', value: 'small'}
+      { label: 'Regular', value: 'regular' },
+      { label: 'Small', value: 'small' }
    ];
 
    public typeOptions: Record<string, string>[] = [
-      {label: 'Primary', value: 'primary'},
-      {label: 'Secondary', value: 'secondary'},
-      {label: 'Borderless', value: 'borderless'},
-      {label: 'Critical', value: 'critical'}
+      { label: 'Primary', value: 'primary' },
+      { label: 'Secondary', value: 'secondary' },
+      { label: 'Borderless', value: 'borderless' },
+      { label: 'Critical', value: 'critical' }
    ];
 
    public iconTypeOptions: Record<string, string>[] = [
-      {label: 'Icon Left', value: 'icon-left'},
-      {label: 'Icon Right', value: 'icon-right'},
-      {label: 'Only Icon', value: 'only-icon'}
+      { label: 'Icon Left', value: 'icon-left' },
+      { label: 'Icon Right', value: 'icon-right' },
+      { label: 'Only Icon', value: 'only-icon' }
    ];
 
    public iconLeftExamplesOptions: Record<string, string>[] = [
-      {label: 'Example 1', value: 'icon-location-2'},
-      {label: 'Example 2', value: 'icon-image'},
-      {label: 'Example 3', value: 'icon-link'},
-      {label: 'Example 4', value: 'icon-github2'}
+      { label: 'Example 1', value: 'icon-location-2' },
+      { label: 'Example 2', value: 'icon-image' },
+      { label: 'Example 3', value: 'icon-link' },
+      { label: 'Example 4', value: 'icon-github2' }
    ];
 
    public iconRightExamplesOptions: Record<string, string>[] = [
-      {label: 'Example 1', value: 'icon-arrow2_down'},
-      {label: 'Example 2', value: 'icon-scissors'},
-      {label: 'Example 3', value: 'icon-trending-up'},
-      {label: 'Example 4', value: 'icon-location'}
+      { label: 'Example 1', value: 'icon-arrow2_down' },
+      { label: 'Example 2', value: 'icon-scissors' },
+      { label: 'Example 3', value: 'icon-trending-up' },
+      { label: 'Example 4', value: 'icon-location' }
    ];
 
    public onlyIconExamplesOptions: Record<string, string>[] = [
-      {label: 'Example 1', value: 'icon-waiting'},
-      {label: 'Example 2', value: 'icon-nodes'},
-      {label: 'Example 3', value: 'icon-bell'},
-      {label: 'Example 4', value: 'icon-rotate-cw'}
+      { label: 'Example 1', value: 'icon-waiting' },
+      { label: 'Example 2', value: 'icon-nodes' },
+      { label: 'Example 3', value: 'icon-bell' },
+      { label: 'Example 4', value: 'icon-rotate-cw' }
    ];
 
-   public typeControl: FormControl = new FormControl(SdsButtonType.PRIMARY);
-   public sizeControl: FormControl = new FormControl(SdsButtonSize.REGULAR);
+   public typeControl: FormControl = new FormControl('primary');
+   public sizeControl: FormControl = new FormControl('regular');
    public textControl: FormControl = new FormControl('Cool button');
    public disabledControl: FormControl = new FormControl(false);
    public iconControl: FormControl = new FormControl(false);
@@ -148,7 +137,7 @@ export class SdsButtonDemoComponent {
    public iconLeftExamplesControl: FormControl = new FormControl('icon-location-2');
    public iconRightExamplesControl: FormControl = new FormControl('icon-arrow2_down');
    public onlyIconExamplesControl: FormControl = new FormControl('icon-waiting');
-   public buttonConfig: SdsButtonConfig = {
+   public buttonConfig: any = {
       text: 'Cool button',
       type: SdsButtonType.PRIMARY,
       icon: '',
@@ -163,19 +152,19 @@ export class SdsButtonDemoComponent {
       this.sizeControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, size: val};
+            this.buttonConfig = { ...this.buttonConfig, size: val };
          });
 
       this.typeControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, type: val};
+            this.buttonConfig = { ...this.buttonConfig, type: val };
          });
 
       this.textControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, text: val};
+            this.buttonConfig = { ...this.buttonConfig, text: val };
          });
 
       this.spinnerControl.valueChanges
@@ -184,9 +173,9 @@ export class SdsButtonDemoComponent {
             this.showPressMessage = val;
             if (val) {
                this.disabledControl.setValue(false);
-               this.disabledControl.disable({emitEvent: false});
+               this.disabledControl.disable({ emitEvent: false });
             } else {
-               this.disabledControl.enable({emitEvent: false});
+               this.disabledControl.enable({ emitEvent: false });
             }
          });
 
@@ -199,34 +188,34 @@ export class SdsButtonDemoComponent {
       this.iconTypeControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, iconType: val};
-            this.textControl.enable({emitEvent: false});
+            this.buttonConfig = { ...this.buttonConfig, iconType: val };
+            this.textControl.enable({ emitEvent: false });
             if (val === 'icon-left') {
                this.iconLeftExamplesControl.setValue('icon-location-2');
             } else if (val === 'icon-right') {
                this.iconRightExamplesControl.setValue('icon-arrow2_down');
             } else {
                this.onlyIconExamplesControl.setValue('icon-waiting');
-               this.textControl.disable({emitEvent: false});
+               this.textControl.disable({ emitEvent: false });
             }
          });
 
       this.iconLeftExamplesControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, icon: val};
+            this.buttonConfig = { ...this.buttonConfig, icon: val };
          });
 
       this.iconRightExamplesControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, icon: val};
+            this.buttonConfig = { ...this.buttonConfig, icon: val };
          });
 
       this.onlyIconExamplesControl.valueChanges
          .pipe(takeUntil(this.componentDestroyed$))
          .subscribe((val) => {
-            this.buttonConfig = {...this.buttonConfig, icon: val};
+            this.buttonConfig = { ...this.buttonConfig, icon: val };
          });
 
       this.disabledControl.valueChanges
@@ -234,9 +223,9 @@ export class SdsButtonDemoComponent {
          .subscribe((val) => {
             if (val) {
                this.spinnerControl.setValue(false);
-               this.spinnerControl.disable({emitEvent: false});
+               this.spinnerControl.disable({ emitEvent: false });
             } else {
-               this.spinnerControl.enable({emitEvent: false});
+               this.spinnerControl.enable({ emitEvent: false });
             }
          });
    }
@@ -244,13 +233,32 @@ export class SdsButtonDemoComponent {
    public onButtonClick(): void {
       if (this.spinnerControl.value && !this.buttonConfig.showSpinner) {
          this.message = 'Loading...';
-         this.buttonConfig = {...this.buttonConfig, showSpinner: true};
+         this.buttonConfig = { ...this.buttonConfig, showSpinner: true };
          setTimeout(() => {
             this.message = 'Press to trigger an action with loading spinner.';
-            this.buttonConfig = {...this.buttonConfig, showSpinner: false};
+            this.buttonConfig = { ...this.buttonConfig, showSpinner: false };
             this.cd.markForCheck();
          }, 2000);
       }
-
    }
+
+
+   public getButtonClasses(buttonConfig: SdsButtonConfig): string {
+      const classes: Array<string> = ['button'];
+
+      if (buttonConfig.iconType === 'only-icon') {
+         classes.push('button-toolbar');
+      }
+
+      if (buttonConfig.type) {
+         classes.push('button-' + buttonConfig.type);
+      }
+
+      if (buttonConfig.size === 'small') {
+         classes.push('small');
+      }
+
+      return classes.join(' ');
+   }
+
 }
