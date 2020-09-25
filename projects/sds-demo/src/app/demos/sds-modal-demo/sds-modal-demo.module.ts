@@ -15,7 +15,7 @@ import {
    StDemoGeneratorModule,
    StDocsModule,
    StInputModule,
-   SdsRadioModule,
+   SdsRadioModule
 } from '@stratio/egeo';
 import { SdsModalDemoComponent } from './sds-modal-demo.component';
 import { SdsModalModule } from '@stratio/egeo';
