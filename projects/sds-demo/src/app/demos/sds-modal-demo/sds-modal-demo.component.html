@@ -17,8 +17,7 @@
                <p>This is an example content for modal component.</p>
                <p>You can press ESCAPE key to close modal.</p>
             </sds-modal>
-            <sds-button [config]="{type: 'primary', text: 'Trigger modal'}" (buttonClick)="triggerModal()">
-            </sds-button>
+            <button class="button buytton-primary" (click)="triggerModal()">Trigger modal</button>
             <div [@fade] *ngIf="showMessage" class="close-pressed-message">
                {{message}}
             </div>
