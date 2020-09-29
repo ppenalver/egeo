@@ -15,7 +15,7 @@ export interface StError {
    required?: string;
 }
 
-export interface StInputError extends StError {
+export interface SdsInputError extends StError {
    minLength?: string;
    maxLength?: string;
    min?: string;
@@ -24,7 +24,7 @@ export interface StInputError extends StError {
    pattern?: string;
 }
 
-export interface StInputErrorSchema {
+export interface SdsInputErrorSchema {
    generic?: TranslateableElement;
    required?: TranslateableElement;
    minLength?: TranslateableElement;
@@ -35,3 +35,15 @@ export interface StInputErrorSchema {
    pattern?: TranslateableElement;
 }
 
+export enum SdsInputSize {
+   REGULAR = 'regular',
+   SMALL = 'small'
+}
+
+export enum SdsInputType {
+   TEXT = 'text',
+   SEARCH = 'search',
+   USER = 'user',
+   EMAIL = 'email',
+   PASSWORD = 'password'
+}

@@ -33,7 +33,7 @@
                      [visualMode]="getVisualMode(idx)"
                      [attr.id]="'dropdown-' + idx"
                      (change)="onChange($event, idx)">
-                     <button class="button button-primary" (click)="changeActive(idx)">Show {{titles[idx]}}</button>
+                     <button (click)="changeActive(idx)" class="button button-primary">Show {{titles[idx]}}</button>
                   </st-dropdown-menu>
                   <br>
                   <p>Value: {{selectedValue[idx] | json}}</p>

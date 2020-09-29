@@ -23,7 +23,7 @@ import { StFullscreenLayoutDemoModule } from './st-fullscreen-layout-demo/st-ful
 import { StHeaderDemoModule } from './st-header-demo/st-header-demo.module';
 import { SdsTabDemoModule } from './sds-tab-demo/sds-tab-demo.module';
 import { StInfoBoxDemoModule } from './st-info-box-demo/st-info-box-demo.module';
-import { StInputDemoModule } from './st-input-demo/st-input-demo.module';
+import { SdsInputDemoModule } from './sds-input-demo/sds-input-demo.module';
 import { StLabelDemoModule } from './st-label-demo/st-label-demo.module';
 import { StMenuDemoModule } from './st-menu-demo/st-menu-demo.module';
 import { StModalDemoModule } from './st-modal-demo/st-modal-demo.module';
@@ -64,7 +64,7 @@ export const EGEO_DEMO_MODULES: any[] = [
    StHeaderDemoModule,
    SdsTabDemoModule,
    StInfoBoxDemoModule,
-   StInputDemoModule,
+   SdsInputDemoModule,
    StLabelDemoModule,
    StMenuDemoModule,
    StModalDemoModule,

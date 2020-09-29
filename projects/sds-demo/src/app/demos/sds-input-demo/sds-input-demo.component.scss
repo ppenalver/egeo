@@ -9,19 +9,20 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-.st-input-container {
-   position: relative;
+.button {
+   float: right;
 }
 
-.st-input-container :invalid {
-   box-shadow: none;
+sds-input {
+   display: block;
+   max-width: 300px;
 }
 
-.st-input {
-   width: 100%;
-}
-
-.input-container {
-   position: relative;
+.pressed-message {
+   font-size: 18px;
+   font-weight: 200;
+   margin-top: 50px;
+   opacity: 1;
+   transition: opacity .4s ease-in-out;
 }
 

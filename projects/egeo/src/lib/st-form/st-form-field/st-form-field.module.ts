@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StFormFieldComponent } from './st-form-field.component';
-import { StInputModule } from '../../st-input/st-input.module';
+import { SdsInputModule } from '../../sds-input/sds-input.module';
 import { StFormDirectiveModule } from '../../directives/form/form-directives.module';
 import { SdsCheckboxModule } from '../../sds-checkbox/sds-checkbox.module';
 import { StSelectModule } from '../../st-select/st-select.module';
@@ -24,7 +24,7 @@ import { SdsTextareaModule } from '../../sds-textarea/sds-textarea.module';
    imports: [CommonModule,
       FormsModule,
       ReactiveFormsModule,
-      StInputModule,
+      SdsInputModule,
       SdsCheckboxModule,
       StSelectModule,
       SdsSwitchModule,

@@ -123,9 +123,9 @@
             <ng-template #filterContent let-index="index">
 
                <div class="custom-filter-container">
-                  <st-input class="st-form-field" [formControl]="index === 0 ? idFilterFormControl : (index === 2 ? lastNameFilterFormControl : phoneFilterFormControl)"
+                  <sds-input class="st-form-field" [formControl]="index === 0 ? idFilterFormControl : (index === 2 ? lastNameFilterFormControl : phoneFilterFormControl)"
                             (click)="$event.stopPropagation()">
-                  </st-input>
+                  </sds-input>
 
                   <button class="button button-primary small st-table__popover-button"
                           (click)="onCustomFilter()" popover-filter-submit>

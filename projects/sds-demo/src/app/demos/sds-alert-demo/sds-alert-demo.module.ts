@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import {
    StDemoGeneratorModule,
    SdsAlertModule,
-   StDocsModule, SdsRadioModule, SdsCheckboxModule, StInputModule, StSelectModule, SdsSwitchModule
+   StDocsModule, SdsRadioModule, SdsCheckboxModule, SdsInputModule, StSelectModule, SdsSwitchModule
 } from '@stratio/egeo';
 
 import { SdsAlertDemoComponent } from './sds-alert-demo';
@@ -26,7 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms';
       SdsRadioModule,
       SdsCheckboxModule,
       SdsSwitchModule,
-      StInputModule,
+      SdsInputModule,
       StSelectModule,
       StDemoGeneratorModule.withComponents({components: [SdsAlertDemoComponent]}),
       StDocsModule,

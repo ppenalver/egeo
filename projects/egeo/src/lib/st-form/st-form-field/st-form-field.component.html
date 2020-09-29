@@ -11,7 +11,7 @@
 
 -->
 
-<st-input *ngIf="hasType('input') && (!maxWidth || (!maxLength || maxLength < maxWidth) && (!minLength || minLength < maxWidth))"
+<sds-input *ngIf="hasType('input') && (!maxWidth || (!maxLength || maxLength < maxWidth) && (!minLength || minLength < maxWidth))"
           #templateModel="ngModel"
           [forceValidations]="forceValidations"
           [fieldType]="type"
@@ -21,8 +21,6 @@
           [ngModel]="innerValue"
           (ngModelChange)="setValue($event)"
           [contextualHelp]="description"
-          [errors]="errors"
-          [default]="default"
           [max]="max"
           [min]="min"
           [minlength]="minLength"
@@ -32,13 +30,12 @@
           [step]="getInputStep()"
           [qaTag]="qaTag"
           (blur)="onBlur()">
-</st-input>
+</sds-input>
 
 <sds-textarea *ngIf="hasType('input') && maxWidth && (maxLength >= maxWidth || minLength >= maxWidth)"
           #templateModel="ngModel"
           [label]="label"
           [name]="schema.key"
-          [default]="default"
           [placeholder]="placeholder"
           [ngModel]="innerValue"
           (ngModelChange)="setValue($event)"
@@ -69,7 +66,6 @@
            [tooltip]="description"
            [name]="schema.key"
            [placeholder]="placeholder"
-           [default]="default"
            [options]="selectOptions"
            [ngModel]="innerValue"
            (ngModelChange)="setValue($event)"

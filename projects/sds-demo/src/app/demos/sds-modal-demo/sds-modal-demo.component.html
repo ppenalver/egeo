@@ -64,38 +64,38 @@
             </div>
             <div>
                <div class="input-container">
-                  <st-input
+                  <sds-input
                      class="st-form-field"
                      [fieldType]="'text'"
                      formControlName="modalTitle"
                      label="Modal title"
                      [contextualHelp]="'Write the title of the modal.'">
-                  </st-input>
+                  </sds-input>
                </div>
             </div>
             <div>
                <h1>Custom size</h1>
                <p style="margin-bottom: 12px">Size changes are not seen in the example. You need to trigger modal to see them.</p>
                <div class="input-container" style="margin-bottom: 12px">
-                  <st-input
+                  <sds-input
                      class="st-form-field input-number"
                      [fieldType]="'number'"
                      formControlName="width"
                      (keypress)="onWidthKeyPress($event)"
                      label="Width"
                      [contextualHelp]="'Write width in px and press enter. Minimum is 300px.'">
-                  </st-input>
+                  </sds-input>
                   <span [@fade] class="changed-input-message" *ngIf="showWidthChanged">Changed!</span>
                </div>
                <div class="input-container">
-                  <st-input
+                  <sds-input
                      class="st-form-field input-number"
                      [fieldType]="'number'"
                      formControlName="height"
                      (keypress)="onHeightKeyPress($event)"
                      label="Height"
                      [contextualHelp]="'Write height in px and press enter. Minimum is 200px.'">
-                  </st-input>
+                  </sds-input>
                   <span [@fade] class="changed-input-message" *ngIf="showHeightChanged">Changed!</span>
                </div>
             </div>

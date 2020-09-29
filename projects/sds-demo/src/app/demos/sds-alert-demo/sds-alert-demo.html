@@ -36,10 +36,10 @@
                </sds-radio-group>
             </div>
             <div class="input-container">
-               <st-input class="st-form-field" formControlName="title" [label]="'Alert title'"></st-input>
+               <sds-input class="st-form-field" formControlName="title" [label]="'Alert title'"></sds-input>
             </div>
             <div class="input-container">
-               <st-input class="st-form-field" formControlName="message" [label]="'Alert message'"></st-input>
+               <sds-input class="st-form-field" formControlName="message" [label]="'Alert message'"></sds-input>
             </div>
             <div class="st-inline-group">
                <h1>Icon</h1>
@@ -84,34 +84,34 @@
                </sds-radio-group>
             </div>
             <div class="input-container">
-               <st-input class="input-number st-form-field" formControlName="timeout" [fieldType]="'number'" (keypress)="onTimeoutKeyPress($event)" [label]="'Alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="timeout" [fieldType]="'number'" (keypress)="onTimeoutKeyPress($event)" [label]="'Alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showTimeoutChanged">Changed!</span>
             </div>
             <div>
                <sds-checkbox formControlName="showSpecificTimeouts" [checked]="false">Show specific timeouts</sds-checkbox>
             </div>
             <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
-               <st-input class="input-number st-form-field" formControlName="multipleTimeout" [fieldType]="'number'" (keypress)="onMultipleTimeoutKeyPress($event)" [label]="'Multiple alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="multipleTimeout" [fieldType]="'number'" (keypress)="onMultipleTimeoutKeyPress($event)" [label]="'Multiple alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showMultipleTimeoutChanged">Changed!</span>
             </div>
             <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
-               <st-input class="input-number st-form-field" formControlName="infoTimeout" [fieldType]="'number'" (keypress)="onInfoTimeoutKeyPress($event)" [label]="'Info timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="infoTimeout" [fieldType]="'number'" (keypress)="onInfoTimeoutKeyPress($event)" [label]="'Info timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showInfoTimeoutChanged">Changed!</span>
             </div>
             <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
-               <st-input class="input-number st-form-field" formControlName="successTimeout" [fieldType]="'number'" (keypress)="onSuccessTimeoutKeyPress($event)" [label]="'Success timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="successTimeout" [fieldType]="'number'" (keypress)="onSuccessTimeoutKeyPress($event)" [label]="'Success timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showSuccessTimeoutChanged">Changed!</span>
             </div>
             <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
-               <st-input class="input-number st-form-field" formControlName="warningTimeout" [fieldType]="'number'" (keypress)="onWarningTimeoutKeyPress($event)" [label]="'Warning timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="warningTimeout" [fieldType]="'number'" (keypress)="onWarningTimeoutKeyPress($event)" [label]="'Warning timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showWarningTimeoutChanged">Changed!</span>
             </div>
             <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
-               <st-input class="input-number st-form-field" formControlName="criticalTimeout" [fieldType]="'number'" (keypress)="onCriticalTimeoutKeyPress($event)" [label]="'Critical timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="criticalTimeout" [fieldType]="'number'" (keypress)="onCriticalTimeoutKeyPress($event)" [label]="'Critical timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showCriticalTimeoutChanged">Changed!</span>
             </div>
             <div class="input-container">
-               <st-input class="input-number st-form-field" formControlName="margin" [fieldType]="'number'" (keypress)="onMarginKeyPress($event)" [label]="'Margin'" [contextualHelp]="'Write margin in px and press enter.'"></st-input>
+               <sds-input class="input-number st-form-field" formControlName="margin" [fieldType]="'number'" (keypress)="onMarginKeyPress($event)" [label]="'Margin'" [contextualHelp]="'Write margin in px and press enter.'"></sds-input>
                <span [@fade] class="changed-input-message" *ngIf="showMarginChanged">Changed!</span>
             </div>
             <sds-alert

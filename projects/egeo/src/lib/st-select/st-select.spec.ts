@@ -502,7 +502,7 @@ describe('StSelectComponent', () => {
          fixture.detectChanges();
 
          expect(component.showError()).toBeTruthy();
-         expect(fixture.nativeElement.querySelector('.st-input-error-message').innerHTML).toContain(component.errorMessage);
+         expect(fixture.nativeElement.querySelector('.sds-input-error-message').innerHTML).toContain(component.errorMessage);
       });
 
       it('If it is disabled, error is not displayed', () => {
@@ -511,7 +511,7 @@ describe('StSelectComponent', () => {
          fixture.detectChanges();
 
          expect(component.showError()).toBeFalsy();
-         expect(fixture.nativeElement.querySelector('.st-input-error-message')).toBeNull();
+         expect(fixture.nativeElement.querySelector('.sds-input-error-message')).toBeNull();
       });
 
       it('If error is empty, error is not displayed', () => {
@@ -520,7 +520,7 @@ describe('StSelectComponent', () => {
          fixture.detectChanges();
 
          expect(component.showError()).toBeFalsy();
-         expect(fixture.nativeElement.querySelector('.st-input-error-message')).toBeNull();
+         expect(fixture.nativeElement.querySelector('.sds-input-error-message')).toBeNull();
       });
 
       it('If error is not touched, error is not displayed', () => {
@@ -529,7 +529,7 @@ describe('StSelectComponent', () => {
          fixture.detectChanges();
 
          expect(component.showError()).toBeFalsy();
-         expect(fixture.nativeElement.querySelector('.st-input-error-message')).toBeNull();
+         expect(fixture.nativeElement.querySelector('.sds-input-error-message')).toBeNull();
       });
    });
 

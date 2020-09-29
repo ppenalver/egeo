@@ -22,7 +22,7 @@ import { StFullscreenLayoutModule } from './st-fullscreen-layout/st-fullscreen-l
 import { StHeaderModule } from './st-header/st-header.module';
 import { SdsTabModule } from './sds-tab/sds-tab.module';
 import { StInfoBoxModule } from './st-info-box/st-info-box.module';
-import { StInputModule } from './st-input/st-input.module';
+import { SdsInputModule } from './sds-input/sds-input.module';
 import { StItemListModule } from './st-item-list/st-item-list.module';
 import { StLabelModule } from './st-label/index';
 import { StModalModule } from './st-modal/st-modal.module';
@@ -66,7 +66,7 @@ export const DECLARATIONS: any[] = [
    StHeaderModule,
    SdsTabModule,
    StInfoBoxModule,
-   StInputModule,
+   SdsInputModule,
    StItemListModule,
    StLabelModule,
    StModalModule,

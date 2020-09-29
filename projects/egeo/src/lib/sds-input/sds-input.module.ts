@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { StInputComponent } from './st-input.component';
+import { SdsInputComponent } from './sds-input.component';
 import { StLabelModule } from '../st-label/st-label.module';
 import { StFormDirectiveModule } from '../directives/form/form-directives.module';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
@@ -21,9 +21,9 @@ import { StMinValidator } from '../directives/form/st-min-validator/st-min-valid
 import { StMaxValidator } from '../directives/form/st-max-validator/st-max-validator';
 
 @NgModule({
-   imports: [CommonModule, FormsModule, ReactiveFormsModule, StLabelModule, StFormDirectiveModule, StDropdownMenuModule, StClickOutsideModule],
-   declarations: [StInputComponent],
-   exports: [StInputComponent, StMinValidator, StMaxValidator]
+   imports: [CommonModule, FormsModule, ReactiveFormsModule],
+   declarations: [SdsInputComponent],
+   exports: [SdsInputComponent]
 })
-export class StInputModule {
+export class SdsInputModule {
 }

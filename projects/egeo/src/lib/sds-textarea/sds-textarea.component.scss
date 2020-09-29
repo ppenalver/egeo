@@ -48,6 +48,11 @@ sds-textarea > .st-form-control-reset-button {
    display: block;
    float: left;
    width: 100%;
+   color: var(--egeo-theme-space-80, $space-80);
+
+   &--active {
+      color: var(--egeo-theme-space-110, $space-110);
+   }
 }
 
 .sds-textarea {

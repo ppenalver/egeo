@@ -154,7 +154,7 @@ describe('StTagInputComponent', () => {
       expect(comp.hasFocus).toBeFalsy();
       expect(input.focus).not.toHaveBeenCalled();
 
-      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.st-input')).nativeElement;
+      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.sds-input')).nativeElement;
       container.click();
       fixture.detectChanges();
 
@@ -188,7 +188,7 @@ describe('StTagInputComponent', () => {
       fixture.detectChanges();
 
       const tag: HTMLElement = fixture.debugElement.query(By.css('.tag-item')).nativeElement;
-      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.st-input')).nativeElement;
+      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.sds-input')).nativeElement;
       spyOn(tag, 'click');
       spyOn(container, 'click');
 
@@ -378,7 +378,7 @@ describe('StTagInputComponent', () => {
       expect(comp.hasFocus).toBeFalsy();
       expect(comp.innerInputContent).not.toBe('');
 
-      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.st-input')).nativeElement;
+      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.sds-input')).nativeElement;
       container.click();
       const input: DebugElement = fixture.debugElement.query(By.css('.inner-input'));
       input.triggerEventHandler('keydown', {
@@ -418,7 +418,7 @@ describe('StTagInputComponent', () => {
       expect(comp.hasFocus).toBeFalsy();
       expect(input.focus).not.toHaveBeenCalled();
 
-      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.st-input')).nativeElement;
+      const container: HTMLLabelElement = fixture.debugElement.query(By.css('.sds-input')).nativeElement;
       container.click();
       fixture.detectChanges();
 
@@ -453,7 +453,7 @@ describe('StTagInputComponent', () => {
       comp.errorMessage = 'This is a fake error message';
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.querySelector('.st-input-error-message')).toBeNull();
+      expect(fixture.nativeElement.querySelector('.sds-input-error-message')).toBeNull();
       expect(fixture.nativeElement.querySelector('.st-tag-input__input').classList).not.toContain('error');
    });
 
@@ -462,7 +462,7 @@ describe('StTagInputComponent', () => {
       comp.errorMessage = 'This is a fake error message';
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.querySelector('.st-input-error-message')).not.toBeNull();
+      expect(fixture.nativeElement.querySelector('.sds-input-error-message')).not.toBeNull();
       expect(fixture.nativeElement.querySelector('.st-tag-input__input').classList).toContain('error');
    });
 

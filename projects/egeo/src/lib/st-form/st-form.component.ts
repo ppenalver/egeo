@@ -24,7 +24,7 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Ng
 import { Subscription } from 'rxjs';
 
 import { JSONSchema4 } from 'json-schema';
-import { StInputError } from '../st-input/st-input.error.model';
+import { SdsInputError } from '../sds-input/sds-input.model';
 import { StFormSchema } from './st-form.model';
 import { FORM_UI_COMPONENT, StFormFieldTranslations } from './st-form-field/st-form-field.interface';
 
@@ -81,8 +81,8 @@ export class StFormComponent implements AfterViewInit, AfterViewChecked, Control
    /** @Input {number} [textFieldMaxWidth=] Maximum width of a field needed to paint a input or textarea */
    @Input() textFieldMaxWidth: number;
 
-   /** @Input {StInputError} [errorMessages=] Field error translations */
-   @Input() errorMessages: StInputError;
+   /** @Input {SdsInputError} [errorMessages=] Field error translations */
+   @Input() errorMessages: SdsInputError;
 
    /** @Input {boolean} [showTooltips=-1] Enable or disable displaying of tooltips
     * By default, tooltips are displayed

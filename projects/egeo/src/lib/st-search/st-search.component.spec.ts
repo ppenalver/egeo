@@ -17,10 +17,10 @@ import { StSearchComponent } from './st-search.component';
 import { StDropdownMenuModule } from '../st-dropdown-menu/st-dropdown-menu.module';
 import { StDropDownMenuItem } from '../st-dropdown-menu/st-dropdown-menu.interface';
 import { StSelectModule } from '../st-select/st-select.module';
-import { StInputModule } from '../st-input/st-input.module';
+import { SdsInputModule } from '../sds-input/sds-input.module';
 import { StSearchEventOrigin } from './st-search.model';
 import { StSelectComponent } from '../st-select/st-select';
-import { StInputComponent } from '../st-input/st-input.component';
+import { SdsInputComponent } from '../sds-input/sds-input.component';
 
 // Component
 
@@ -36,7 +36,7 @@ describe('StSearchComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [FormsModule, ReactiveFormsModule, StDropdownMenuModule, StSelectModule, StInputModule, StDropdownMenuModule],
+         imports: [FormsModule, ReactiveFormsModule, StDropdownMenuModule, StSelectModule, SdsInputModule, StDropdownMenuModule],
          declarations: [StSearchComponent]
       })
       // remove this block when the issue #12313 of Angular is fixed
@@ -46,7 +46,7 @@ describe('StSearchComponent', () => {
          .overrideComponent(StSelectComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
-         .overrideComponent(StInputComponent, {
+         .overrideComponent(SdsInputComponent, {
             set: { changeDetection: ChangeDetectionStrategy.Default }
          })
          .compileComponents();  // compile template and css

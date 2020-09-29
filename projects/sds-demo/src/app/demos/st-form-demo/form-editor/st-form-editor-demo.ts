@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from
 import { NgModel } from '@angular/forms';
 
 import { JSON_SCHEMA } from './json-schema';
-import { StInputError } from '@stratio/egeo';
+import { SdsInputError } from '@stratio/egeo';
 
 @Component({
    selector: 'st-form-editor-demo',
@@ -25,7 +25,7 @@ export class StFormEditorDemoComponent {
    public model: any = {};
    public schemaError: string;
    public schemaChangeTimer: number;
-   public errorMessages: StInputError;
+   public errorMessages: SdsInputError;
 
    @ViewChild('formModel') public formModel: NgModel;
 

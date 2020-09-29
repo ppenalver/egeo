@@ -14,7 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { StFormComponent } from './st-form.component';
 import { PipesModule } from '../pipes/pipes.module';
-import { StInputModule } from '../st-input/st-input.module';
+import { SdsInputModule } from '../sds-input/sds-input.module';
 import { StFormDirectiveModule } from '../directives/form/form-directives.module';
 import { StFormFieldModule } from './st-form-field/st-form-field.module';
 import { StSelectModule } from '../st-select/st-select.module';
@@ -27,7 +27,7 @@ import { SdsTextareaModule } from '../sds-textarea/sds-textarea.module';
       FormsModule,
       StFormFieldModule,
       ReactiveFormsModule,
-      StInputModule,
+      SdsInputModule,
       PipesModule,
       StSelectModule,
       SdsSwitchModule,

@@ -145,12 +145,12 @@ export { StInfoBoxModule } from './st-info-box/st-info-box.module';
 export { StInfoBoxComponent } from './st-info-box/st-info-box.component';
 
 // Input
-export { StInputModule } from './st-input/st-input.module';
-export { StInputComponent } from './st-input/st-input.component';
+export { SdsInputModule } from './sds-input/sds-input.module';
+export { SdsInputComponent } from './sds-input/sds-input.component';
 export {
-   StInputError,
-   StInputErrorSchema
-} from './st-input/st-input.error.model';
+   SdsInputError,
+   SdsInputErrorSchema
+} from './sds-input/sds-input.model';
 
 // Menu
 export { StMenuModule } from './st-menu/st-menu.module';

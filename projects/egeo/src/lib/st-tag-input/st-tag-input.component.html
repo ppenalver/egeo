@@ -19,7 +19,7 @@
              [attr.disabled]="disableValue"
              [ngClass]="{ 'active': hasFocus, 'error': showErrorValue }">{{label}}</label>
 
-      <div #inputElement class="st-input st-tag-input__input"
+      <div #inputElement class="sds-input st-tag-input__input"
            [attr.disabled]="disableValue" (clickOutside)="onClickOutside($event)"
            [ngClass]="{ 'active': hasFocus, 'error': showErrorValue }" (click)="onInputFocusIn($event)">
 
@@ -49,6 +49,6 @@
 
 </st-dropdown-menu>
 <span class="info-message" *ngIf="infoMessage && isPristine">{{infoMessage}}</span>
-<span *ngIf="showErrorValue" class="st-input-error-message">{{errorMessage}}</span>
+<span *ngIf="showErrorValue" class="sds-input-error-message">{{errorMessage}}</span>
 
 

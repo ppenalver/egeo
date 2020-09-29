@@ -24,7 +24,7 @@ export { StFormListDemoModule } from './st-form-list-demo/st-form-list-demo.modu
 export { StFullscreenLayoutDemoModule } from './st-fullscreen-layout-demo/st-fullscreen-layout-demo.module';
 export { StHeaderDemoModule } from './st-header-demo/st-header-demo.module';
 export { StInfoBoxDemoModule } from './st-info-box-demo/st-info-box-demo.module';
-export { StInputDemoModule } from './st-input-demo/st-input-demo.module';
+export { SdsInputDemoModule } from './sds-input-demo/sds-input-demo.module';
 export { StLabelDemoModule } from './st-label-demo/index';
 export { StMenuDemoModule } from './st-menu-demo/st-menu-demo.module';
 export { StModalDemoModule } from './st-modal-demo/st-modal-demo.module';

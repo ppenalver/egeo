@@ -17,7 +17,7 @@ import {
    SdsTagModule,
    StDemoGeneratorModule,
    StDocsModule,
-   StInputModule
+   SdsInputModule
 } from '@stratio/egeo';
 
 import { SdsTagDemoComponent } from './sds-tag-demo.component';
@@ -28,7 +28,7 @@ import {ReactiveFormsModule} from '@angular/forms';
       CommonModule,
       ReactiveFormsModule,
       SdsTagModule,
-      StInputModule,
+      SdsInputModule,
       SdsCheckboxModule,
       SdsRadioModule,
       StDemoGeneratorModule.withComponents({ components: [SdsTagDemoComponent] }),

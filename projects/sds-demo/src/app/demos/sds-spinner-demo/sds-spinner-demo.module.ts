@@ -15,7 +15,7 @@ import {
    StDemoGeneratorModule,
    StDocsModule,
    SdsSpinnerModule,
-   StInputModule,
+   SdsInputModule,
    SdsCheckboxModule,
    SdsRadioModule
 } from '@stratio/egeo';
@@ -30,7 +30,7 @@ import { CssPropertyTableModule } from '@app/shared/css-property-table/css-prope
       SdsCheckboxModule,
       SdsRadioModule,
       SdsSpinnerModule,
-      StInputModule,
+      SdsInputModule,
       FormsModule,
       CssPropertyTableModule,
       StDemoGeneratorModule.withComponents({

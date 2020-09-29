@@ -18,7 +18,7 @@ import {
    SdsRadioModule,
    StDemoGeneratorModule,
    StDocsModule,
-   StInputModule
+   SdsInputModule
 } from '@stratio/egeo';
 
 @NgModule({
@@ -28,7 +28,7 @@ import {
       ReactiveFormsModule,
       FormsModule,
       SdsLinkModule,
-      StInputModule,
+      SdsInputModule,
       SdsCheckboxModule,
       SdsRadioModule,
       StDemoGeneratorModule.withComponents({ components: [SdsLinkDemoComponent] }),

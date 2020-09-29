@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { StDemoGeneratorModule, StDocsModule, SdsTooltipModule, SdsRadioModule, StInputModule, SdsCheckboxModule } from '@stratio/egeo';
+import { StDemoGeneratorModule, StDocsModule, SdsTooltipModule, SdsRadioModule, SdsInputModule, SdsCheckboxModule } from '@stratio/egeo';
 
 import { SdsTooltipDemoComponent } from './sds-tooltip-demo';
 import { CssPropertyTableModule } from '@app/shared/css-property-table/css-property-table.module';
@@ -26,7 +26,7 @@ import { CssPropertyTableModule } from '@app/shared/css-property-table/css-prope
       StDemoGeneratorModule.withComponents({ components: [SdsTooltipDemoComponent] }),
       StDocsModule,
       SdsRadioModule,
-      StInputModule,
+      SdsInputModule,
       FormsModule,
       CssPropertyTableModule,
       SdsCheckboxModule

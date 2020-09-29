@@ -1,0 +1,58 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<label
+   *ngIf="label"
+   class="sds-input__label st-group-label"
+   [ngClass]="{'sds-input__label--active': focus}"
+   name="name"
+   [attr.title]="contextualHelp"
+   [attr.id]="qaTag">
+   {{label}}
+</label>
+
+<div
+   tabindex="0"
+   class="sds-input__input-container"
+   [ngClass]="{
+      'sds-input__input-container--small': size === sdsInputSize.SMALL,
+      'sds-input__input-container--error': showErrorValue,
+      'sds-input__input-container--active': focus,
+      'sds-input__input-container--disabled': isDisabled,
+      'sds-input__input-container--email': fieldType === sdsInputType.EMAIL,
+      'sds-input__input-container--user': fieldType === sdsInputType.USER,
+      'sds-input__input-container--password': fieldType === sdsInputType.PASSWORD,
+      'sds-input__input-container--search': fieldType === sdsInputType.SEARCH,
+      'sds-input__input-container--filled': internalControl.value?.length && iconRightAction
+   }">
+
+   <i *ngIf="iconLeft" [ngClass]="iconLeft"></i>
+   <input
+      #input class="sds-input__input-container__input" (focus)="onFocus($event)"
+      (focusout)="onFocusOut($event, false)"
+      (blur)="onFocusOut($event, true)"
+      [formControl]="internalControl"
+      [placeholder]="placeholder"
+      [step]="step"
+      [name]="name"
+      [attr.type]="fieldType"
+      [attr.id]="qaTag"
+      [attr.maxlength]="maxLength"
+      [attr.min]="min"
+      [attr.max]="max"
+      [readonly]="readonly">
+   <i *ngIf="(iconRight || fieldType !== sdsInputType.TEXT) || (!internalControl.value?.length && !iconRightAction)" [ngClass]="iconRight"></i>
+   <i *ngIf="iconRightAction && internalControl.value?.length" (click)="onIconRightClick()" class="sds-input__input-container__action-icon" [ngClass]="iconRightAction === 'clear-input' ? 'icon-cross' : iconRightAction"></i>
+</div>
+
+<span class="sds-input__help-text" *ngIf="!isDisabled && !showErrorValue && contextualHelp">{{contextualHelp}}</span>
+<span class="sds-input__error-text" *ngIf="!isDisabled && showErrorValue && errorMessage">{{errorMessage}}</span>

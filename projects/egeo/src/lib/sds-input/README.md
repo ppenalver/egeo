@@ -10,7 +10,7 @@
 | name                        | String                                                   | False | Input name                                                                             | ''      |
 | label                       | String                                                   | False | Label to show over the input. It is empty by default                                   | ''      |
 | fieldType                   | &#39;text&#39; \| &#39;number&#39; \| &#39;password&#39; | False | Input type                                                                             | 'text'  |
-| errors                      | StInputError                                             | False | Customized error messages                                                              |         |
+| errors                      | SdsInputError                                             | False | Customized error messages                                                              |         |
 | qaTag                       | String                                                   | False | Id value for qa test                                                                   | ''      |
 | forceValidations            | Boolean                                                  | False | If you specify it to 'true', the input checks the errors before being modified by user | false   |
 | contextualHelp              | String                                                   | False | It will be displayed when user clicks on the info button                               | ''      |
@@ -35,19 +35,19 @@
 
 
 ```html
-<st-input class="st-form-field"
+<sds-input class="st-form-field"
       type="text"
       formControlName="name"
       placeholder="Enter your name"
       label="Field"
       default="default name"
       contextualHelp="This is a normal field">
-</st-input>
+</sds-input>
 ```
 
 ## Models
 
-*Error messages* (StInputError)
+*Error messages* (SdsInputError)
 
 ```typescript
 

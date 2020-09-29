@@ -10,7 +10,7 @@
  */
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
-import { StInputError } from '../../st-input/st-input.error.model';
+import { SdsInputError } from '../../sds-input/sds-input.model';
 import { StEgeo, StRequired } from '../../decorators/require-decorators';
 import { StDropDownMenuItem } from '../../st-dropdown-menu/st-dropdown-menu.interface';
 import { JSONSchema4Type, JSONSchema4TypeName } from 'json-schema';
@@ -34,7 +34,7 @@ import { StFormFieldTranslations } from './st-form-field.interface';
 
 export class StFormFieldComponent implements ControlValueAccessor, OnInit {
    @Input() required: boolean = false;
-   @Input() errorMessages: StInputError;
+   @Input() errorMessages: SdsInputError;
    @Input() qaTag: string;
    @Input() name: string;
    @Input() value: any;
@@ -53,11 +53,11 @@ export class StFormFieldComponent implements ControlValueAccessor, OnInit {
    public errorMessage: string = undefined;
    public selectOptions: StDropDownMenuItem[];
    public innerValue: any;
-   public errors: StInputError;
+   public errors: SdsInputError;
 
    private _schema: { key: string, value: StFormSchema };
 
-   private readonly _defaultErrorMessages: StInputError = {
+   private readonly _defaultErrorMessages: SdsInputError = {
       generic: 'Error',
       required: 'This field is required',
       minLength: 'The field min length is ',

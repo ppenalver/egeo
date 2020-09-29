@@ -15,7 +15,7 @@ import {
    SdsRadioModule,
    StDemoGeneratorModule,
    StDocsModule,
-   StInputModule
+   SdsInputModule
 } from '@stratio/egeo';
 
 import { SdsButtonDemoComponent } from './sds-button-demo.component';
@@ -25,7 +25,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
    imports: [
       CommonModule,
-      StInputModule,
+      SdsInputModule,
       SdsCheckboxModule,
       SdsRadioModule,
       ReactiveFormsModule,

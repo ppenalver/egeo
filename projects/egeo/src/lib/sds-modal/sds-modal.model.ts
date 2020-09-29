@@ -16,6 +16,10 @@ export enum SdsModalType {
    ERROR = 'error'
 }
 
+export enum SdsInputIconActions {
+   CLEAR_INPUT = 'clear-input'
+}
+
 export interface SdsModalConfig {
    modalType?: SdsModalType;
    title?: string;

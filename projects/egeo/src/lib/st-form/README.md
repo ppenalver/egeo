@@ -12,7 +12,7 @@
 | disabledSectionMessage  | String                  | False | Message displayed when a section is disabled. This is always displayed after the section name               | 'for this instance is disabled.' |
 | sectionDescriptionLevel | Number                  | False | Level of the section to which description is displayed. By default, section descriptions are not displayed. | -1                               |
 | textFieldMaxWidth       | Number                  | False | Maximum width of a field needed to paint a input or textarea                                                |                                  |
-| errorMessages           | StInputError            | False | Field error translations                                                                                    |                                  |
+| errorMessages           | SdsInputError            | False | Field error translations                                                                                    |                                  |
 | showTooltips            | Boolean                 | False | Enable or disable displaying of tooltips By default, tooltips are displayed                                 | -1                               |
 | translations            | StFormFieldTranslations | False | Field translations                                                                                          |                                  |
 | schema                  |                         | False | {StFormSchema  Form schema needed to generate the form                                                      |                                  |

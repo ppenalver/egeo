@@ -1,0 +1,86 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <form class="demo-layout__demo-container__demo">
+            <sds-input
+               [formControl]="inputDemo"
+               [size]="sizeControl.value"
+               [iconLeft]="iconLeftControl.value ? iconLeftExamplesControl.value : ''"
+               [iconRightAction]="iconActionControl.value ? 'clear-input' : ''"
+               [fieldType]="iconRightControl.value"
+               placeholder="E.g. https://www.mysite.com"
+               [label]="labelControl.value ? 'Field' : ''"
+               [errorMessage]="helperErrorControl.value ? errorMessage : ''"
+               [contextualHelp]="helperErrorControl.value ? helperText : ''">
+            </sds-input>
+            <div [@fade] *ngIf="iconActionControl.value" class="pressed-message">
+               Write something to see how icon action works.
+            </div>
+         </form>
+         <form class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [formControl]="sizeControl" class="st-inline-group">
+                  <sds-radio name="size" *ngFor="let size of sizeOptions" [value]="size.value" [checked]="size.value === 'regular'">{{size.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Icon Right</h1>
+               <sds-radio-group [formControl]="iconRightControl" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let iconRight of iconRightOptions" [value]="iconRight.value">{{iconRight.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox [formControl]="labelControl">Label</sds-checkbox>
+               <sds-checkbox [formControl]="disabledControl" (change)="setDisabled()">Disabled</sds-checkbox>
+               <sds-checkbox [formControl]="iconActionControl">Icon action</sds-checkbox>
+               <sds-checkbox [formControl]="helperErrorControl">Helper / Error text</sds-checkbox>
+               <sds-checkbox [formControl]="iconLeftControl">Icon left</sds-checkbox>
+            </div>
+            <div *ngIf="iconLeftControl.value">
+               <h1>Icon Left Examples</h1>
+               <sds-radio-group [formControl]="iconLeftExamplesControl" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let iconLeft of iconLeftOptions" [value]="iconLeft.value">{{iconLeft.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div *ngIf="iconActionControl.value">
+               <h1>Icon Action Types</h1>
+               <sds-radio-group [formControl]="iconRightControl" class="st-inline-group">
+                  <sds-radio [disabled]="true" name="type" [checked]="true">Clear input</sds-radio>
+               </sds-radio-group>
+            </div>
+         </form>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Text inputs are designed to collect short free text from the user. Typical examples of use could be a name or address request.</p>
+      <p class="demo-layout__paragraph">Inputs allow adding some icons at the right side as a configurable option. These icons can be used to be more visual and explicit about the purpose of the input.</p>
+      <p class="demo-layout__paragraph">Two height sizes are available to adapt the inputs to different situations. Besides, the Input Text component includes a label and a help text to give some details to the user about tips about how the content must be formatted (E.g. to define limits, non-valid characters, etc.).</p>
+      <p class="demo-layout__paragraph">The same help text space is used to show error messages when needed. However, if error, the text is red-colored as well as the outline of the text box.</p>
+      <p class="demo-layout__paragraph">The textbox is highlighted when has the focus to guide the user visually to the component that owns the action. The textbox is highlighted when it has the focus to guide the user visually to the component that owns the action.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Inputs have many states and can have specific validation rules for the introduced data. Therefore if the validation rules are not met an error message will appear. The user should always know if specific rules are applied to that input that’s why we should put clear hints about what the user should introduce. This means that using the placeholder and the help text, the user should have enough information to fill the field correctly.</li>
+         <li class="demo-layout__list-item">The placeholder of the Input Text must show to the user a valid example of how it has to format its text. Some samples could be "E.g. 32" (indicates a number), "E.g. my_field" (indicates uppercase and whitespaces are not allowed), etc.</li>
+         <li class="demo-layout__list-item">By default, the inputs have a label and a placeholder text that shows or an example of the text that it should be introduced or a call to action text. The label should be a clear statement of what the user is asked to respond on the input field. Some samples could be "Disk space (in MB)".</li>
+         <li class="demo-layout__list-item">If some parts of the text have fixed parts, they must be visible but non-editable by the user. E.g. an URL that must be always https. Ideally, the text input must show the string "https://" at the beginning of the textbox with non-edit options. When the user starts writing, will do after the string.</li>
+         <li class="demo-layout__list-item">When the user clicks on an input, the on focus state starts, the input gets blue and a blinking cursor appears at the beginning of the input so the user know is there. While the user doesn’t write anything the placeholder text remains. If the user starts to write, the placeholder disappears. If the user deletes the content, the placeholder appears again.</li>
+         <li class="demo-layout__list-item">If the input has validation rules, they should be clearly explained in the hint text that area which appears immediately under the input and never disappears. Some samples could be "max. 20 chars" or "only words allowed" When the user writes on this kind of inputs, an error message should appear only when the validation rules are not met and the user clicks outside the input. In that case, an error message appears explaining why the validation has failed immediately under the hint text.</li>
+         <li class="demo-layout__list-item">Never must appear an error message if the user doesn't carry out any action over the Input.</li>
+      </ul>
+   </section>
+</st-docs>

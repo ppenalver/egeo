@@ -19,6 +19,7 @@ export class SdsDemoMenu {
 }
 
 export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
+   { id: 'sds-input', name: 'Input', path: 'input', moduleLazyLoad: 'SdsInputDemoModule' },
    { id: 'sds-checkbox', name: 'Checkbox', path: 'checkbox-demo', moduleLazyLoad: 'SdsCheckboxDemoModule' },
    { id: 'sds-alert', name: 'Alert', path: 'alerts-demo', moduleLazyLoad: 'SdsAlertDemoModule' },
    { id: 'sds-tab', name: 'Tab', path: 'tab-demo', moduleLazyLoad: 'SdsTabModule' },
@@ -38,7 +39,6 @@ export const EGEO_DEMO_MENU_SDS_VERIFIED: SdsDemoMenu[] = [
 
 
 export const EGEO_DEMO_MENU_SDS: SdsDemoMenu[] = [
-   { id: 'st-input', name: 'Input', path: 'input', moduleLazyLoad: 'StInputDemoModule' },
    { id: 'st-select', name: 'Select', path: 'select-demo', moduleLazyLoad: 'StSelectDemoModule' },
    { id: 'st-dropdown-menu', name: 'Dropdown Menu', path: 'dropdown-menu-demo', moduleLazyLoad: 'StDropdownMenuDemoModule' },
    { id: 'st-pagination', name: 'Pagination', path: 'pagination-demo', moduleLazyLoad: 'StPaginationDemoModule' },
@@ -79,7 +79,7 @@ const routes: Routes = [
    { path: 'header-demo', loadChildren: () => import( './st-header-demo/st-header-demo.module').then(m => m.StHeaderDemoModule ) },
    { path: 'tab-demo', loadChildren: () => import( './sds-tab-demo/sds-tab-demo.module').then(m => m.SdsTabDemoModule ) },
    { path: 'info-box-demo', loadChildren: () => import( './st-info-box-demo/st-info-box-demo.module').then(m => m.StInfoBoxDemoModule ) },
-   { path: 'input', loadChildren: () => import( './st-input-demo/st-input-demo.module').then(m => m.StInputDemoModule ) },
+   { path: 'input', loadChildren: () => import( './sds-input-demo/sds-input-demo.module').then(m => m.SdsInputDemoModule ) },
    { path: 'label-demo', loadChildren: () => import( './st-label-demo/st-label-demo.module').then(m => m.StLabelDemoModule ) },
    { path: 'menu-demo', loadChildren: () => import( './st-menu-demo/st-menu-demo.module').then(m => m.StMenuDemoModule ) },
    { path: 'modal-demo', loadChildren: () => import( './st-modal-demo/st-modal-demo.module').then(m => m.StModalDemoModule ) },
