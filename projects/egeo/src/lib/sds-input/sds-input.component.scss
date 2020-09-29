@@ -32,7 +32,6 @@
     flex-wrap: var(--egeo-sds-input--flex-wrap, nowrap);
     box-sizing: var(--egeo-sds-input--box-sizing, border-box);
     height: var(--egeo-sds-input--height, 36px);
-    padding: var(--egeo-sds-input--padding, #{0 12px});
     border: var(--egeo-sds-input--border, 1px solid var(--egeo-theme-space-40, #{$space-40}));
     border-radius: var(--egeo-sds-input--border-radius, 4px);
     font-size: var(--egeo-sds-input--font-size, #{$egeo-font-size-14});
@@ -48,11 +47,11 @@
     }
 
     i:first-child {
-      margin-right: 8px;
+      margin-left: 8px;
     }
 
     i:last-child {
-      margin-left: 8px;
+      margin-right: 8px;
     }
 
     &:not(.sds-input__input-container--active):not(.sds-input__input-container--disabled):not(.sds-input__input-container--error):hover {
@@ -85,12 +84,17 @@
     &--small {
       font-size: $egeo-font-size-12;
       height: 30px;
-      padding: 0 8px;
+
+      input {
+         padding: 0 8px;
+      }
     }
 
     &__input {
       height: 100%;
       width: 100%;
+      padding: var(--egeo-sds-input--padding, #{0 12px});
+      outline: 0;
     }
 
     &--email:not(.sds-input__input-container--filled) {
