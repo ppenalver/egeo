@@ -22,10 +22,9 @@ import {
    Renderer2, SimpleChanges,
    ViewChild
 } from '@angular/core';
-import {animate, animateChild, AnimationEvent, query, state, style, transition, trigger} from '@angular/animations';
-import {Subscription} from 'rxjs';
-import {StWindowRefService} from '../utils/window-service';
-import {SdsModalConfig, SdsModalType} from './sds-modal.model';
+import { animate, animateChild, AnimationEvent, query, state, style, transition, trigger } from '@angular/animations';
+import { StWindowRefService } from '../utils/window-service';
+import { SdsModalConfig, SdsModalType } from './sds-modal.model';
 
 @Component({
    selector: ' sds-modal',
@@ -44,17 +43,17 @@ import {SdsModalConfig, SdsModalType} from './sds-modal.model';
          ]),
          transition('* => hidden, * => void', [
             query('@innerFade', [
-               animate(0, style({opacity: 0}))
+               animate(0, style({ opacity: 0 }))
             ]),
             query('@middleFade', [
-               animate(400, style({opacity: 0}))
+               animate(400, style({ opacity: 0 }))
             ]),
             animate(0)
          ])
       ]),
       trigger('middleFade', [
-         state('void', style({opacity: 0})),
-         state('*', style({opacity: 1})),
+         state('void', style({ opacity: 0 })),
+         state('*', style({ opacity: 1 })),
          transition(':enter', [
             animate(150),
             query('@innerFade', [
@@ -63,15 +62,16 @@ import {SdsModalConfig, SdsModalType} from './sds-modal.model';
          ])
       ]),
       trigger('innerFade', [
-         state('void', style({opacity: 0})),
-         state('*', style({opacity: 1})),
+         state('void', style({ opacity: 0 })),
+         state('*', style({ opacity: 1 })),
          transition(':enter', [animate(150)])
       ])
    ]
 })
 export class SdsModalComponent implements OnInit, OnChanges {
-   @ViewChild('modalContainer', {static: false}) modalContainer: ElementRef;
-   @ViewChild('modal', {static: false}) modal: ElementRef;
+
+   @ViewChild('modalContainer', { static: false }) modalContainer: ElementRef;
+   @ViewChild('modal', { static: false }) modal: ElementRef;
 
    @Input() hotRender: boolean;
    @Input() isDisabled: boolean;

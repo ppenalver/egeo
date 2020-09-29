@@ -50,6 +50,9 @@
 }
 
 sds-notification#notification-demo1 {
-   --egeo-sds-notification--position: relative;
+   position: relative;
 }
 
+.notification-demo2 {
+   top: 60px;
+}

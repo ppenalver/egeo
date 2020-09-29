@@ -11,8 +11,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {SdsNotificationComponent} from './sds-notification.component';
-import {SdsNotificationService} from './sds-notification.service';
+import { SdsNotificationComponent } from './sds-notification.component';
 
 @NgModule({
    imports: [
@@ -21,8 +20,7 @@ import {SdsNotificationService} from './sds-notification.service';
    declarations: [
       SdsNotificationComponent
    ],
-   exports: [SdsNotificationComponent],
-   providers: [SdsNotificationService]
+   exports: [SdsNotificationComponent]
 })
 
 export class SdsNotificationModule {

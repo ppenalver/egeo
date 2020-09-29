@@ -8,21 +8,18 @@
 -->
 <div
    #sdsNotification
-   *ngIf="showNotification"
-   [@notificationFade]
-   [@.disabled]="isDisabled"
    class="st-notification"
    [ngClass]="[
-      'st-notification--' + (notificationType ? notificationType : stNotificationType.INFO)]
+      'st-notification--' + (notificationType ? notificationType : SdsNotificationType.INFO)]
    ">
    <div class="st-notification__inner-container">
       <i
-         *ngIf="notificationIcon !== stNotificationIcon.NONE"
+         *ngIf="notificationIcon !== SdsNotificationIcon.NONE"
          class="st-notification__status-icon"
          [ngClass]="notificationIcon">
       </i>
 
       <span class="st-notification__message" [innerHTML]="message"></span>
    </div>
-   <i *ngIf="closeIcon" class="st-notification__close-icon icon-cross" (click)="onCloseClick()"></i>
+   <i *ngIf="closeIcon" class="st-notification__close-icon icon-cross" (click)="removeNotification()"></i>
 </div>

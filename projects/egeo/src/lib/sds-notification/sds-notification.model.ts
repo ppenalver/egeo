@@ -21,33 +21,17 @@ export enum SdsNotificationType {
    CRITICAL = 'critical'
 }
 
-export enum SdsNotificationPosition {
-   TOP_LEFT = 'top_left',
-   TOP_CENTER = 'top_center',
-   TOP_RIGHT = 'top_right',
-   CENTER_LEFT = 'center_left',
-   CENTER_CENTER = 'center_center',
-   CENTER_RIGHT = 'center_right',
-   BOTTOM_LEFT = 'bottom_left',
-   BOTTOM_CENTER = 'bottom_center',
-   BOTTOM_RIGHT = 'bottom_right'
-}
-
 export interface SdsNotificationDisplayOptions {
    message?: string;
    closeIcon?: boolean;
    maxWidth?: string;
    notificationType?: SdsNotificationType;
    notificationIcon?: SdsNotificationIcon | string;
-   position?: SdsNotificationPosition;
-   positionReference?: string;
    timeout?: number;
    infoTimeout?: number;
    successTimeout?: number;
    warningTimeout?: number;
    criticalTimeout?: number;
-   multipleTimeout?: number;
-   margin?: number;
 }
 
 export interface SdsNotificationTriggerOptions {

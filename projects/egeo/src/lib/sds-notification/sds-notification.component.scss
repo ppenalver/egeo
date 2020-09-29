@@ -1,0 +1,106 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import "~@stratio/sds-themes/dist/stratio/constants";
+
+:host {
+  position: fixed;
+  display: block;
+  z-index: $header-z-index + 1;
+}
+
+.st-notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 15px;
+  width: fit-content;
+  min-width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 3px 9px rgba(17, 17, 17, 0.25);
+  border: 1px solid $neutral-full;
+  background-color: $neutral-full;
+  border-radius: 4px;
+  color: $space-80;
+
+  &__inner-container {
+    display: flex;
+    align-items: baseline;
+
+    .st-notification__status-icon {
+      position: relative;
+      font-size: 18px;
+      margin-right: 10px;
+      top: 0.1em;
+    }
+
+    .st-notification__message {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  &__close-icon {
+    margin-left: 50px;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  & .st-notification__status-icon.none {
+    &.default:before {
+      content: "";
+    }
+  }
+
+  &--info {
+    & .st-notification__status-icon.default {
+      &.default:before {
+        content: "\e615";
+      }
+    }
+  }
+
+  &--success {
+    background-color: $success;
+    border-color: $success;
+    color: $neutral-full;
+
+    & .st-notification__status-icon.default {
+      &.default:before {
+        content: "\e048";
+      }
+    }
+  }
+
+  &--warning {
+    background-color: $warning;
+    border-color: $warning;
+    color: $neutral-full;
+
+    & .st-notification__status-icon.default {
+      &.default:before {
+        content: "\e613";
+      }
+    }
+  }
+
+  &--critical {
+    background-color: $error;
+    border-color: $error;
+    color: $neutral-full;
+
+    & .st-notification__status-icon.default {
+      &.default:before {
+        content: "\e60e";
+      }
+    }
+  }
+}

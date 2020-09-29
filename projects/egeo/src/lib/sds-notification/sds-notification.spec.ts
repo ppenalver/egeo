@@ -8,51 +8,27 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {Component, EventEmitter, ViewChild} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-import {SdsNotificationComponent} from './sds-notification.component';
-import {SdsNotificationModule} from './sds-notification.module';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { SimpleChange } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SdsNotificationComponent } from './sds-notification.component';
+import { SdsNotificationModule } from './sds-notification.module';
 
 import {
-   SdsNotificationDisplayOptions,
-   SdsNotificationPosition,
    SdsNotificationType
 } from './sds-notification.model';
-import {SdsNotificationService} from './sds-notification.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-@Component({
-   template: `
-      <div class="test-container">
-         <sds-notification
-            (close)="onClose.emit()"
-            (autoClose)="onAutoClose.emit()">
-         </sds-notification>
-      </div>`
-})
-class TestStFNComponent {
-   config: SdsNotificationDisplayOptions = {
-      message: 'The request is understood <a>Check the database</a> <a>Check the database2</a>'
-   };
-   onClose: EventEmitter<void> = new EventEmitter();
-   onAutoClose: EventEmitter<void> = new EventEmitter();
-   @ViewChild(SdsNotificationComponent, {static: true}) notification: SdsNotificationComponent;
 
-   constructor() {
-   }
-}
-
-let comp: TestStFNComponent;
-let _notifications: SdsNotificationService;
-let fixture: ComponentFixture<TestStFNComponent>;
+let comp: SdsNotificationComponent;
+let fixture: ComponentFixture<SdsNotificationComponent>;
 let nativeElement: HTMLElement;
 
 describe('SdsNotificationComponent', () => {
    beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [SdsNotificationModule, BrowserAnimationsModule],
-         declarations: [TestStFNComponent],
+         declarations: [SdsNotificationComponent],
          providers: [
             {
                provide: DomSanitizer,
@@ -60,105 +36,112 @@ describe('SdsNotificationComponent', () => {
                   sanitize: () => '<p>The request is understood <a>Check the database</a> <a>Check the database2</a>  </p>',
                   bypassSecurityTrustHtml: () => 'safeString'
                }
-            },
-            SdsNotificationService
+            }
          ]
       }).compileComponents();
    });
 
    beforeEach(() => {
-      fixture = TestBed.createComponent(TestStFNComponent);
+      fixture = TestBed.createComponent(SdsNotificationComponent);
       comp = fixture.componentInstance;
-      _notifications = TestBed.inject(SdsNotificationService);
       nativeElement = fixture.nativeElement;
-      comp.notification.ngOnInit();
    });
 
    describe('When component is visible ', () => {
-      it('And notificationType is defined as info, The element should contain "st-notification--info" class', fakeAsync(() => {
-         _notifications.addNotification({
+
+      it('And notificationType is defined as info, The element should contain "st-notification--info" class', () => {
+         comp.config = {
             notificationType: SdsNotificationType.INFO
-         });
-         tick(6500);
-
+         };
+         fixture.detectChanges();
          expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--info');
          expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
          expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
          expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
-      }));
+      });
 
-      it('And status is defined as sucess, element should contain "st-notification--success" class', fakeAsync(() => {
-         _notifications.addNotification({
+      it('And status is defined as sucess, element should contain "st-notification--success" class', () => {
+
+         comp.config = {
             notificationType: SdsNotificationType.SUCCESS
+         };
+
+         comp.ngOnChanges({
+            config: new SimpleChange(null, comp.config, true)
          });
-         tick(6500);
+         fixture.detectChanges();
+         const classList = nativeElement.querySelector('.st-notification').classList;
 
-         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--success');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
-      }));
+         expect(classList).toContain('st-notification--success');
+         expect(classList).not.toContain('st-notification--warning');
+         expect(classList).not.toContain('st-notification--info');
+         expect(classList).not.toContain('st-notification--critical');
+      });
 
-      it('And status is defined as warning, element should contain "st-notification--warning" class', fakeAsync(() => {
-         _notifications.addNotification({
+      it('And status is defined as warning, element should contain "st-notification--warning" class', () => {
+
+         comp.config = {
             notificationType: SdsNotificationType.WARNING
+         };
+
+         comp.ngOnChanges({
+            config: new SimpleChange(null, comp.config, true)
          });
-         tick(6500);
+         fixture.detectChanges();
+         const classList = nativeElement.querySelector('.st-notification').classList;
 
-         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--warning');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
-      }));
+         expect(classList).toContain('st-notification--warning');
+         expect(classList).not.toContain('st-notification--info');
+         expect(classList).not.toContain('st-notification--success');
+         expect(classList).not.toContain('st-notification--critical');
+      });
 
-      it('And status is defined as critical, element should contain "st-notification--critical" class', fakeAsync(() => {
-         _notifications.addNotification({
-            notificationType: SdsNotificationType.CRITICAL,
-            criticalTimeout: 6000
+      it('And status is defined as critical, element should contain "st-notification--critical" class', () => {
+
+         comp.config = {
+            notificationType: SdsNotificationType.CRITICAL
+         };
+
+         comp.ngOnChanges({
+            config: new SimpleChange(null, comp.config, true)
          });
-         tick(6500);
+         fixture.detectChanges();
+         const classList = nativeElement.querySelector('.st-notification').classList;
 
-         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--critical');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--info');
-      }));
+         expect(classList).toContain('st-notification--critical');
+         expect(classList).not.toContain('st-notification--warning');
+         expect(classList).not.toContain('st-notification--success');
+         expect(classList).not.toContain('st-notification--info');
+      });
 
-      it('And "notificationType" is not defined, element should contain "st-notification--info" class', fakeAsync(() => {
-         _notifications.addNotification();
-         tick(6500);
+      it('And "notificationType" is not defined, element should contain "st-notification--info" class', () => {
+         comp.config = {
+            notificationType: SdsNotificationType.INFO
+         };
 
-         expect(nativeElement.querySelector('.st-notification').classList).toContain('st-notification--info');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--warning');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--success');
-         expect(nativeElement.querySelector('.st-notification').classList).not.toContain('st-notification--critical');
-      }));
-
-      it('And user click on the close icon, the element should fade out and then hidden', fakeAsync(() => {
-         _notifications.addNotification({
-            notificationType: SdsNotificationType.INFO,
-            margin: 0,
-            closeIcon: true,
-            positionReference: '.test-container',
-            position: SdsNotificationPosition.CENTER_CENTER
+         comp.ngOnChanges({
+            config: new SimpleChange(null, comp.config, true)
          });
-         tick(6500);
-         let closeButton: HTMLElement = nativeElement.querySelector('.st-notification__close-icon');
-         closeButton.click();
-         tick(1000);
-         expect((nativeElement.querySelector('.st-notification') as HTMLElement).style.opacity).not.toBe('1');
-      }));
+         fixture.detectChanges();
+         const classList = nativeElement.querySelector('.st-notification').classList;
 
-      it(`when the config option "timeout" is set as 6000ms the element should fade out and then
+         expect(classList).toContain('st-notification--info');
+         expect(classList).not.toContain('st-notification--warning');
+         expect(classList).not.toContain('st-notification--success');
+         expect(classList).not.toContain('st-notification--critical');
+      });
+
+      it(`when the config option "timeout" is set as 400ms the element should fade out and then
          hidden in the time set`, fakeAsync(() => {
-         _notifications.addNotification({
+         comp.config = {
             notificationType: SdsNotificationType.INFO,
-            margin: 0,
-            positionReference: '.test-container',
-            position: SdsNotificationPosition.CENTER_CENTER
+            timeout: 400
+         };
+         comp.ngOnChanges({
+            config: new SimpleChange(null, comp.config, true)
          });
-
-         tick(6500);
+         fixture.detectChanges();
+         tick(500);
          expect((nativeElement.querySelector('.st-notification') as HTMLElement).style.opacity).not.toBe('1');
       }));
    });
