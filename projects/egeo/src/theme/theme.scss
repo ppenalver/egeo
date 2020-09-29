@@ -8,7 +8,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-@import '~@stratio/egeo-themes/dist/stratio/constants';
+@import '~@stratio/sds-themes/dist/stratio/constants';
 @import 'utils/index';
 @import 'components/index';
 
@@ -93,3 +93,34 @@ sds-spinner {
       margin-bottom: 0;
    }
 }
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: $egeo-stratio-icons !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-feature-settings: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+i {
+   /* use !important to prevent issues with browser extensions that change fonts */
+   font-family: $egeo-stratio-icons !important;
+   speak: none;
+   font-style: normal;
+   font-weight: normal;
+   -webkit-font-feature-settings: normal;
+           font-feature-settings: normal;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+   /* Better Font Rendering =========== */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale; }

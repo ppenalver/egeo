@@ -12,13 +12,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { StLabelComponent } from './st-label.component';
-import { SdsTooltipModule } from '../sds-tooltip/sds-tooltip.module';
+import { SdsTooltipModule } from './../sds-tooltip/sds-tooltip.module';
 
 @NgModule({
    declarations: [StLabelComponent],
    exports: [StLabelComponent],
    imports: [
-      CommonModule
+      CommonModule,
+      SdsTooltipModule
    ]
 })
 

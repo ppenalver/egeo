@@ -22,12 +22,13 @@ export class IconsDemoService {
    constructor(private _http: HttpClient) { }
 
    getIconList(): Observable<IconDemoModel[]> {
-      return this._http.get(location.pathname + 'assets/stratio-fonticon.css', {responseType: 'text'}).pipe(
+      return this._http.get(location.pathname + 'assets/stratio-font-icons.css', {responseType: 'text'}).pipe(
          map(text => this.getIconClasses(text))
       );
    }
 
    private getIconClasses(text: string): IconDemoModel[] {
+
       const result: IconDemoModel[] = [];
       let execResult: RegExpExecArray | null;
       const regex = /.icon-(.*?)\:before {[\n].*?content: \"(.*?)"/gm;

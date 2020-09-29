@@ -21,7 +21,12 @@
    [hidden]="true"
    [readonly]="readonly"
    (change)="handleChange($event)" />
-<label st-label class="sds-checkbox" [ngClass]="{'sds-checkbox--disabled' : disabled, 'sds-checkbox--checked': checked, 'sds-checkbox--indeterminate': indeterminate}" [attr.id]="labelQaTag" [attr.title]="contextualHelp" [attr.for]="qaTag" (click)="handleClick()">
+<label st-label class="sds-checkbox"
+   [ngClass]="{'sds-checkbox--disabled' : disabled, 'sds-checkbox--checked': checked, 'sds-checkbox--indeterminate': indeterminate}"
+   [attr.id]="labelQaTag"
+   [attr.title]="contextualHelp"
+   [attr.for]="qaTag"
+   (click)="handleClick()">
    <ng-container *ngIf="showLabel">
       <ng-content></ng-content>
    </ng-container>

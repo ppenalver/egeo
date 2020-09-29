@@ -66,17 +66,17 @@
                      "projects/sds-demo/src/assets",
                      {
                         "glob": "**/*.*",
-                        "input": "node_modules/@stratio/egeo-ui-base/assets",
+                        "input": "node_modules/@stratio/sds-fonts/assets",
                         "output": "/assets/fonts"
                      },
                      {
                         "glob": "constants.scss",
-                        "input": "node_modules/@stratio/egeo-themes/dist/stratio",
+                        "input": "node_modules/@stratio/sds-themes/dist/stratio",
                         "output": "/assets"
                      },
                      {
-                        "glob": "stratio-fonticon.css",
-                        "input": "node_modules/@stratio/egeo-ui-base",
+                        "glob": "stratio-font-icons.css",
+                        "input": "node_modules/@stratio/sds-fonts",
                         "output": "/assets"
                      },
                      {

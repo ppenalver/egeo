@@ -9,16 +9,17 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-import { ChangeDetectorRef, Component, ElementRef, HostBinding } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
 import { SdsTooltipComponent } from '../sds-tooltip/sds-tooltip.component';
 
 @Component({
    selector: '[st-label]',
-   styleUrls: ['../sds-tooltip/sds-tooltip.component.scss'],
+   styleUrls: [],
    templateUrl: './st-label.component.html'
 })
 
 export class StLabelComponent extends SdsTooltipComponent {
+
    @HostBinding('class.st-label') classStLabel: boolean = true;
 
    constructor(_el: ElementRef, _cd: ChangeDetectorRef) {

@@ -23,10 +23,8 @@ const themeSourceFolder = join(packagesDir, 'theme');
 const themeSourceFile = join(themeSourceFolder, 'theme.scss');
 const gridSourceFile = join(themeSourceFolder, 'grid', 'grid.scss');
 const sanitizeSourceFile = join(themeSourceFolder, 'vendors', 'sanitize.scss');
-const constantsSourceFile = join(themeSourceFolder, 'constants', '_index.scss');
 
 const packageOut = join(outputDir, 'egeo', 'theme');
-const constantsOutputFile = 'constants.scss';
 const themeScssOutputFile = 'egeo-theme-stratio.scss';
 
 
@@ -36,15 +34,6 @@ task('styles:grid', buildScssFromFileTask(packageOut, gridSourceFile, true));
 task('styles:sanitize', buildScssFromFileTask(packageOut, sanitizeSourceFile, true));
 task('styles:copy-fonts', () => src(join(assetsSource, '/**/*')).pipe(dest(join(packageOut, 'assets'))));
 
-
-task('styles:constants', () => {
-   const allScssGlob = join(themeSourceFolder, '**/*.scss');
-   return new Bundler().bundle(constantsSourceFile, [allScssGlob]).then((result: BundleResult) => {
-      mkdirpSync(packageOut);
-      writeFileSync(join(packageOut, constantsOutputFile), <any> result.bundledContent, { encoding: 'utf-8' });
-   });
-});
-
 task('styles:theme:scss', () => {
    const allScssGlob = join(themeSourceFolder, '**/*.scss');
    return new Bundler().bundle(themeSourceFile, [allScssGlob]).then((result: BundleResult) => {
@@ -53,4 +42,4 @@ task('styles:theme:scss', () => {
    });
 });
 
-task('build:styles', parallel('styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:constants', 'styles:theme:scss'));
+task('build:styles', parallel('styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:theme:scss'));

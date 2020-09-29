@@ -25,7 +25,7 @@ import {
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {SdsInputSize, SdsInputType} from './sds-input.model';
-import {SdsInputIconActions} from '../sds-modal/sds-modal.model';
+import {SdsInputIconActions} from './../sds-modal/sds-modal.model';
 
 /**
  * @description {Component} [Input]

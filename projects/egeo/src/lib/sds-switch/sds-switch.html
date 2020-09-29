@@ -27,9 +27,7 @@
      'sds-switch--right': position === sdsSwitchPosition.RIGHT,
      'sds-switch--labeled': showLabel
    }"
-   st-label
    [attr.for]="relatedInput"
-   [attr.title]="contextualHelp"
    [attr.id]="labelQaTag">
-   <ng-container *ngIf="showLabel">{{label}}</ng-container>
+   <div st-label [attr.title]="contextualHelp" *ngIf="showLabel">{{label}}</div>
 </label>

@@ -11,7 +11,7 @@
 
 $egeo-fontface-src: 'assets/fonts';
 
-@import '~@stratio/egeo-themes/dist/stratio/constants';
+@import '~@stratio/sds-themes/dist/stratio/constants';
 
 @import '../../egeo/src/theme/vendors/sanitize';
 @import '../../egeo/src/theme/grid/grid';
@@ -19,8 +19,8 @@ $egeo-fontface-src: 'assets/fonts';
 
 @import '~prismjs/themes/prism.css';
 
-@import '~@stratio/egeo-ui-base/nunito-sans.css';
-@import '~@stratio/egeo-ui-base/stratio-fonticon.css';
+@import '~@stratio/sds-fonts/nunito-sans.css';
+@import '~@stratio/sds-fonts/stratio-font-icons.css';
 
 
 :root {
