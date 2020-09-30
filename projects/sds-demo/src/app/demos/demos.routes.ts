@@ -60,6 +60,7 @@ export const EGEO_DEMO_MENU: SdsDemoMenu[] = [
    { id: 'st-progress-bar', name: 'Progress Bar', path: 'progress-bar-demo', moduleLazyLoad: 'StProgressBarDemoModule' },
    { id: 'sds-radio-menu', name: 'Radio Menu', path: 'radio-menu-demo', moduleLazyLoad: 'StRadioMenuDemoModule' },
    { id: 'st-search', name: 'Search', path: 'search-demo', moduleLazyLoad: 'StSearchDemoModule' },
+   { id: 'st-two-list-selection', name: 'Two List Selection', path: 'two-list-selection-demo', moduleLazyLoad: 'StTwoListSelectionDemoModule' },
    { id: 'st-zero-page', name: 'Zero Page', path: 'zero-page-demo', moduleLazyLoad: 'StZeroPageDemoModule' }
 ];
 
@@ -100,6 +101,7 @@ const routes: Routes = [
    { path: 'textarea', loadChildren: () => import( './sds-textarea-demo/sds-textarea-demo.module').then(m => m.SdsTextareaDemoModule ) },
    { path: 'toggle-buttons-demo', loadChildren: () => import( './sds-toggle-button-demo/sds-toggle-button-demo.module').then(m => m.SdsToggleButtonDemoModule ) },
    { path: 'tooltip-demo', loadChildren: () => import( './sds-tooltip-demo/sds-tooltip-demo.module').then(m => m.SdsTooltipDemoModule ) },
+   { path: 'two-list-selection-demo', loadChildren: () => import( './st-two-list-selection-demo/st-two-list-selection-demo.module').then(m => m.StTwoListSelectionDemoModule ) },
    { path: 'zero-page-demo', loadChildren: () => import( './st-zero-page-demo/st-zero-page-demo.module').then(m => m.StZeroPageDemoModule) }
 ];
 // tslint:enable

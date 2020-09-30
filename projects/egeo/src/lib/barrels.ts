@@ -38,6 +38,7 @@ import { StSearchModule } from './st-search/st-search.module';
 import { StSelectModule } from './st-select/st-select.module';
 import { SdsSpinnerModule } from './sds-spinner/sds-spinner.module';
 import { SdsSwitchModule } from './sds-switch/sds-switch.module';
+import { StTwoListSelectionModule } from './st-two-list-selection/st-two-list-selection.module';
 import { SdsLinkModule } from './sds-link/sds-link.module';
 import { StTableModule } from './st-table/st-table.module';
 import { StTagInputModule } from './st-tag-input/st-tag-input.module';
@@ -84,6 +85,7 @@ export const DECLARATIONS: any[] = [
    SdsSwitchModule,
    StTableModule,
    StTagInputModule,
+   StTwoListSelectionModule,
    SdsTextareaModule,
    SdsToggleButtonModule,
    SdsTooltipModule,

@@ -150,21 +150,7 @@ main {
       margin-top: 42px;
    }
 
-   &__title {
-      font-size: $egeo-font-size-20;
-      margin-top: 40px;
-      margin-bottom: 10px;
-   }
-
-   &__paragraph {
-      margin: 14px 0;
-   }
-
-   &__list {
-      padding-left: 40px;
-   }
-
-   .introduction {
+   &__introduction {
       font-weight: normal;
       font-size: $egeo-font-size-18;
       font-style: normal;
@@ -174,7 +160,7 @@ main {
       min-height: 100px;
    }
 
-   .title {
+   &__title {
       font-weight: bold;
       font-size: $egeo-font-size-20;
       font-style: normal;
@@ -183,6 +169,8 @@ main {
       color: $space-110;
       padding: 26px 0;
       display: inline-block;
+      margin-top: 40px;
+      margin-bottom: 10px;
 
 
       &--centered {
@@ -193,7 +181,7 @@ main {
       }
    }
 
-   .subtitle {
+   &__subtitle {
       font-weight: 400;
       font-size: $egeo-font-size-20;
       font-style: normal;
@@ -204,7 +192,7 @@ main {
       display: inline-block;
    }
 
-   .paragraph {
+   &__paragraph {
       font-weight: normal;
       font-size: $egeo-font-size-14;
       font-style: normal;
@@ -212,9 +200,10 @@ main {
       letter-spacing: normal;
       color: $space-110;
       padding-bottom: 20px;
+      margin: 14px 0;
    }
 
-   .list {
+   &__list {
       font-weight: 400;
       font-size: $egeo-font-size-14;
       color: $space-110;

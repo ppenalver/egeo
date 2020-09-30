@@ -50,7 +50,6 @@
 * st-textarea: renamed to sds-textarea
 * st-modal2: renamed to sds-modal
 * st-color-picker: Removed component
-* st-two-list-selection: Remove component
 * st-dynamic-table: Removed component
 * st-select: Removed "keyBoardMove" input
 * st-bubble: Removed component

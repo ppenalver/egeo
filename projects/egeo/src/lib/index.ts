@@ -285,6 +285,23 @@ export { SdsTooltipModule } from './sds-tooltip/sds-tooltip.module';
 export { SdsTooltipComponent } from './sds-tooltip/sds-tooltip.component';
 export { SdsTooltipPlacement } from './sds-tooltip/sds-tooltip.interface';
 
+// Two list selection
+export {
+   StTwoListSelectionModule
+} from './st-two-list-selection/st-two-list-selection.module';
+export { StTwoListSelectionComponent } from './st-two-list-selection/st-two-list-selection.component';
+export {
+   StTwoListSelectionConfig,
+   StTwoListSelectionConfigSchema,
+   StTwoListSelectionElement,
+   StTwoListSelectionAction,
+   StTwoListSelectExtraLabelAction
+} from './st-two-list-selection/st-two-list-selection.model';
+export {
+   StTwoListSelection
+} from './st-two-list-selection/st-two-list-selection';
+export { StTwoListSelectionViewComponent } from './st-two-list-selection/st-two-list-selection.view.component';
+
 // Zero page
 export { StZeroPageModule } from './st-zero-page/st-zero-page.module';
 export { StZeroPageComponent } from './st-zero-page/st-zero-page.component';
