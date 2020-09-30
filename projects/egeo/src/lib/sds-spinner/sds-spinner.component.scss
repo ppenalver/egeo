@@ -1,0 +1,78 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+.sds-spinner {
+   position: relative;
+   display: var(--egeo-sds-spinner--display, block);
+   margin: 0 auto;
+   width: var(--egeo-sds-spinner--size, 80px);
+
+   &:before {
+      display: block;
+      content: '';
+      padding-top: 100%;
+   }
+
+   .sds-spinner__circular {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      animation: rotate 2s linear infinite;
+      transform-origin: center center;
+
+      .sds-spinner__path {
+         stroke-width: var(--egeo-sds-spinner--line-width, 3px);
+         stroke-dasharray: 1, 200;
+         stroke-dashoffset: 0;
+         animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+         stroke-linecap: round;
+      }
+   }
+
+   @keyframes rotate {
+      100% {
+         transform: rotate(360deg);
+      }
+   }
+
+   @keyframes dash {
+      0% {
+         stroke-dasharray: 1, 200;
+         stroke-dashoffset: 0;
+      }
+
+      50% {
+         stroke-dasharray: 89, 200;
+         stroke-dashoffset: -35px;
+      }
+
+      100% {
+         stroke-dasharray: 89, 200;
+         stroke-dashoffset: -124px;
+      }
+   }
+
+   @keyframes color {
+      100%, 0% {
+         stroke: var(--egeo-sds-spinner--color, $action);
+      }
+
+      50% {
+         stroke: var(--egeo-sds-spinner--color, $action);
+      }
+   }
+}

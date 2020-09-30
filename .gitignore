@@ -16,6 +16,7 @@ compiled/
 #################
 temp
 dist
+projects/sds-demo/src/assets/source-code
 
 #################
 ## IDEs

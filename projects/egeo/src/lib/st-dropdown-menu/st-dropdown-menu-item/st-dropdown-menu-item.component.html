@@ -1,0 +1,33 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<li *ngIf="hasItem"
+    [ngClass]="{'selected': isSelected, 'disabled': item.disabled, 'top-separator': item.topSeparator, 'bottom-separator': item.bottomSeparator, 'focus': focus}"
+    class="st-dropdown-menu-item"
+    (click)="onChangeItem()"
+    (keyup.enter)="onChangeItem()"
+>
+   <i *ngIf="hasIcon" class="icon" [ngClass]="icon" [style.color]="item.iconColor"></i>
+   <div *ngIf="!item.hasHtml" class="label-container">
+      <span class="label">
+         <span [style.color]="item.labelColor">{{item.label}}</span>
+         <span *ngIf="item.textInfo" class="text-info">{{item.textInfo}}</span>
+      </span>
+      <ng-container *ngIf="hasExtraIcon">
+         <i class="extra-icon {{item.extraIcon}}"
+            [style.color]="item.extraIconColor">
+         </i>
+      </ng-container>
+   </div>
+
+   <div *ngIf="item.hasHtml" [innerHTML]="html"></div>
+</li>

@@ -32,7 +32,8 @@ const buildLicense = `/**
 module.exports = {
    projectVersion: buildVersion,
    projectDir: __dirname,
-   packagesDir: join(__dirname, 'src'),
+   packagesDir: join(__dirname, 'projects/egeo/src'),
+   packagesDemoDir: join(__dirname, 'projects/sds-demo/src'),
    outputDir: join(__dirname, 'dist'),
    licenseBanner: buildLicense,
    htmlPath: 'html',

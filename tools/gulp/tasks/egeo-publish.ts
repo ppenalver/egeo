@@ -11,26 +11,29 @@
 import { spawn } from 'child_process';
 import { existsSync, statSync } from 'fs-extra';
 import { join } from 'path';
-import { task } from 'gulp';
+import { task, series } from 'gulp';
 import { execTask } from '../util/task_helpers';
-import { buildConfig, sequenceTask } from 'build-tools';
+import { buildConfig } from 'build-tools';
 import { yellow, green, red, grey } from 'chalk';
 import * as minimist from 'minimist';
+import { composeRelease } from '../package-tools/build-release';
 
 /** Packages that will be published to NPM by the release task. */
 export const releasePackages = [
    'egeo',
-   'egeo-demo'
+   'sds-demo'
 ];
 
 /** Parse command-line arguments for release task. */
 const argv = minimist(process.argv.slice(3));
 
 /** Task that builds all releases that will be published. */
-task(':publish:build-releases', sequenceTask(
-   'clean',
-   releasePackages.map(packageName => `${packageName}:build-release`)
-));
+task(':publish:build-releases', execTask('./node/npm', ['run-script', 'build']));
+
+task(':publish:compose', (done) => {
+   releasePackages.map(name => composeRelease(name));
+   done();
+});
 
 /** Make sure we're logged in. */
 task(':publish:whoami', execTask('./node/npm', ['whoami'], {
@@ -39,7 +42,7 @@ task(':publish:whoami', execTask('./node/npm', ['whoami'], {
 }));
 
 function _execNpmPublish(label: string, packageName: string): Promise<{}> | undefined {
-   const packageDir = join(buildConfig.outputDir, 'releases', packageName);
+   const packageDir = join(buildConfig.outputDir, packageName);
 
    if (!statSync(packageDir).isDirectory()) {
       return;
@@ -113,10 +116,9 @@ task(':publish', async () => {
    process.chdir(currentDir);
 });
 
-task('publish', sequenceTask(
+task('publish', series(
    ':publish:whoami',
    ':publish:build-releases',
-   'build:styles',
-   'validate-release:check-bundles',
+   ':publish:compose',
    ':publish'
 ));

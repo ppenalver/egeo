@@ -1,0 +1,177 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '../utils/forms';
+
+%select-dropdown-menu-title {
+   color: var(--egeo-st-dropdown-menu__title--color, var(--egeo-theme-neutral-40, $space-50));
+   font-weight: var(--egeo-st-dropdown-menu__title--font-weight, normal);
+   font-size: var(--egeo-st-dropdown-menu__title--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-dropdown-menu__title--line-height, $egeo-line-height-22);
+   padding: var(--egeo-st-dropdown-menu__title--padding, 4px 20px);
+}
+
+%select-dropdown-menu-default {
+   color: var(--egeo-st-dropdown-menu--color, var(--egeo-theme-space-110, $space-110));
+   font-weight: var(--egeo-st-dropdown-menu--font-weight, 400);
+   font-size: var(--egeo-st-dropdown-menu--font-size, $egeo-font-size-xsmall);
+   line-height: var(--egeo-st-dropdown-menu--line-height, $egeo-line-height-20);
+}
+
+.st-dropdown-menu {
+   background-color: var(--egeo-st-dropdown-menu--bg-color, var(--egeo-theme-neutral-full, $neutral-full));
+   border-radius: var(--egeo-st-dropdown-menu--border-radius, 4px);
+   box-shadow: var(--egeo-st-dropdown-menu--box-shadow, 0 3px 9px 0 rgba($space-110, 0.2));
+   padding: var(--egeo-st-dropdown-menu--padding, 8px 0);
+   border: 0;
+
+   ul {
+      list-style: none;
+      margin: 0;
+      overflow-y: auto;
+      padding: 0;
+
+      &:focus {
+         outline: none;
+      }
+
+      .spinner-container {
+         width: 100%;
+
+         .spinner {
+            display: block;
+            margin: 20px auto 14px auto;
+            width: 20px;
+            height: 20px;
+         }
+      }
+   }
+
+   h3 span {
+      @extend %select-dropdown-menu-title;
+      display: flex;
+   }
+
+   .st-dropdown-menu-item {
+      font-weight: var(--egeo-st-dropdown-menu__item--font-weight, 400);
+      cursor: pointer;
+      display: flex;
+      color: var(--egeo-st-dropdown-menu__item--color, var(--egeo-theme-space-110, $space-110));
+      font-size: var(--egeo-st-dropdown-menu__item--font-size, $egeo-font-size-14);
+      min-height: var(--egeo-st-dropdown-menu__item--min-height, 40px);
+      padding: var(--egeo-st-dropdown-menu__item--padding, 9px 20px);
+      background-color: transparent;
+
+      &:active {
+         outline: none;
+      }
+
+      &:focus, &.focus {
+         background-color: var(--egeo-st-dropdown-menu__item__hover--bg-color, var(--egeo-theme-action-10, $action-10));
+         outline: none;
+      }
+
+      &.selected {
+         &:not(:focus):not(.focus) {
+            background-color: var(--egeo-st-dropdown-menu__item__selected--bg-color, var(--egeo-theme-space-10, $space-10));
+         }
+         .label {
+            font-weight: 600;
+         }
+      }
+
+      &.disabled {
+         cursor: default;
+
+         & *:not(i) {
+            color: var(--egeo-st-dropdown-menu__item__disabled--color, var(--egeo-theme-space-50, $space-50)) !important;
+         }
+
+         &.selected {
+            background-color: var(--egeo-st-dropdown-menu__item__selected__disabled--bg-color, var(--egeo-theme-space-10, $space-10));
+         }
+      }
+
+      &.top-separator {
+         border-top: 1px solid var(--egeo-st-dropdown-menu__separator--color, var(--egeo-theme-space-20, $space-20));
+      }
+
+      &.bottom-separator {
+         border-bottom: 1px solid var(--egeo-st-dropdown-menu__separator--color, var(--egeo-theme-space-20, $space-20));
+      }
+
+      .label-container {
+         width: 100%;
+         display: inline-flex;
+         font-weight: normal;
+
+         .label {
+            display: inline-flex;
+            flex-direction: column;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            line-height: var(--egeo-st-dropdown-menu__item--line-height, $egeo-line-height-22);
+            white-space: nowrap;
+         }
+      }
+
+      i {
+         color: var(--egeo-st-dropdown-menu__icon--color, var(--egeo-theme-space-70, $space-70));
+         display: inline-flex;
+         font-size: var(--egeo-st-dropdown-menu__icon--font-size, $egeo-font-size-12);
+         line-height: var(--egeo-st-dropdown-menu__icon--line-height, $egeo-line-height-20);
+         font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+
+         &.icon {
+            margin-right: 10px;
+         }
+
+         &.extra-icon {
+            margin-left: 10px;
+         }
+      }
+
+      .extra-icon__bubble {
+         display: inline-block;
+         margin-left: 10px;
+         float: right;
+      }
+
+      .label {
+         @extend %select-dropdown-menu-default;
+         display: inline-flex;
+      }
+
+      & .text-info {
+         color: var(--egeo-st-dropdown-menu__text-info--color, var(--egeo-theme-neutral-40, $neutral-40));
+         display: block;
+         font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+         font-size: var(--egeo-st-dropdown-menu__text-info--font-size, $egeo-font-size-12);
+         font-stretch: normal;
+         font-style: normal;
+         font-weight: normal;
+         letter-spacing: normal;
+         line-height: var(--egeo-st-dropdown-menu__text-info--line-height, 12px);
+      }
+   }
+
+   .st-dropdown-menu-without-results {
+      color: var(--egeo-st-dropdown-menu__without-results--color, var(--egeo-theme-neutral-50, $neutral-50));
+      font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+      font-size: var(--egeo-st-dropdown-menu__without-results--font-size, $egeo-font-size-14);
+      font-weight: var(--egeo-st-dropdown-menu__without-results--font-weight, 300);
+      padding: var(--egeo-st-dropdown-menu__without-results--padding, 20px);
+   }
+
+   &:not(.menu-list) .label {
+      overflow-wrap: break-word;
+   }
+}

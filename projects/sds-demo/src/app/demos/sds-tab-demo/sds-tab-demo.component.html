@@ -1,0 +1,61 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Tabs are designed to quickly navigate between views within the same context.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-tab class="demo" (changedOption)="selectedTabMessage = 'Showing ' + $event.text" [options]="options" [size]="tabSize.value" [borderBottom]="borderBottom.value" [activeOption]="active" qaTag="tab-demo">
+            </sds-tab>
+            <div class="close-pressed-message">
+               {{selectedTabMessage}}
+            </div>
+         </div>
+         <form class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [formControl]="tabSize" class="st-inline-group">
+                  <sds-radio name="size-options" [value]="'regular'" [checked]="true">Regular</sds-radio>
+                  <sds-radio name="size-options" [value]="'small'">Small</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="borderBottom" [formControl]="borderBottom">
+                  <span>Border bottom</span>
+               </sds-checkbox>
+            </div>
+         </form>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Tabs appear in a single, non-scrollable row, above their content.</p>
+      <p class="demo-layout__paragraph">The width of each tab is dependent on its label. It is not recommended to make two-line tabs. Instead, trunk the text with ellipsis and place a tooltip on hover.</p>
+      <p class="demo-layout__paragraph">To ensure that all tabs appear in the container, avoid using more than seven tabs and limit labels to one or two words.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Use tabs for alternate views within the sidenav, the aside or main content area.</li>
+         <li class="demo-layout__list-item">Don’t use tabs to break user interactions into a series of steps. Serial workflows are best presented in a wizard.</li>
+         <li class="demo-layout__list-item">Avoid using tabs in cards and modals (except the full-width one).</li>
+         <li class="demo-layout__list-item">Ensure that the content in each view is independent of the content in other views.</li>
+         <li class="demo-layout__list-item">Don’t force users to navigate back and forth to compare data–keep such content in the same view.</li>
+         <li class="demo-layout__list-item">Avoid cross-linking between tabs.</li>
+         <li class="demo-layout__list-item">If the content within a view is broad, divide it into subsections.</li>
+         <li class="demo-layout__list-item">Users should not have to move between tabs in order to complete a task</li>
+         <li class="demo-layout__list-item">Favor nouns over verbs, for example, Settings, Permissions, and Performance.</li>
+         <li class="demo-layout__list-item">Use title-style caps.</li>
+         <li class="demo-layout__list-item">Avoid using icons in labels.</li>
+      </ul>
+   </section>
+</st-docs>

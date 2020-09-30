@@ -1,0 +1,69 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-dropdown-menu
+   class="st-select-menu"
+   [items]="options"
+   [attr.id]="optionsId"
+   [active]="expandedMenu"
+   [placement]="'bottom-start'"
+   [keyBoardMove]="true"
+   [selectedItem]="selected"
+   [moveSelected]="true"
+   (change)="onChangeOption($event)"
+   (scrollAtBottom)="onScrollAtBottom()"
+   [offset]="{x: 0, y: 4}"
+   [itemsBeforeScroll]="itemsBeforeScroll"
+   (keydown.escape)="onButtonKeyPress($event)"
+   (keydown.tab)="onPressTabKey($event)"
+   (keydown.shift.tab)="onPressTabKey($event)"
+>
+   <div #button class="button-container"
+        (click)="onButtonClick()"
+        (keydown)="onButtonKeyPress($event)"
+        (clickOutside)="onClickOutside()">
+      <label *ngIf="hasLabel" [ngClass]="{disabled: disabled, error: showError(), active: expandedMenu}"
+             st-label
+             for="inputId"
+             class="st-label"
+             [attr.title]="tooltip"
+             [attr.id]="labelId"
+             [attr.disabled]="disableValue">{{label}}</label>
+
+      <div class="input-container">
+         <input
+            #input
+            [formControl]="inputFormControl"
+            autocomplete="off"
+            aria-haspopup="true"
+            class="sds-input"
+            type="text"
+            readonly
+            [attr.aria-expanded]="expandedMenu"
+            [attr.disabled]="disableValue"
+            [attr.id]="inputId"
+            [attr.name]="inputName"
+            [placeholder]="placeholder"
+            [value]="selectedValue"
+         />
+         <span *ngIf="createResetButton()" class="st-form-control-reset-button" (click)="resetToDefault()"
+               [style.opacity]="expandedMenu ? 1 : 0">
+               <i class="icon-reload2"></i>
+            </span>
+         <i class="arrow" [attr.disabled]="disableValue"></i>
+      </div>
+   </div>
+</st-dropdown-menu>
+
+<div class="sds-input-error-layout" *ngIf="showError()">
+   <span class="sds-input-error-message">{{errorMessage}}</span>
+</div>

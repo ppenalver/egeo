@@ -1,0 +1,124 @@
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Modals provide information or help a user complete a task. They require the user to take any action to dismiss them.  Use Modals with care because they interrupt user workflow.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-modal
+               class="sds-modal--demo"
+               [modalConfig]="modalConfig"
+               [showModal]="true"
+               [hotRender]="true"
+               [isDisabled]="true"
+               (confirmButton)="onConfirmButton()"
+               (cancelButton)="onCancelButton()"
+               (closeControl)="onCloseControl()">
+               <span st-modal-header>Modal custom title</span>
+               <p>This is an example content for modal component.</p>
+               <p>You can press ESCAPE key to close modal.</p>
+            </sds-modal>
+            <button class="button buytton-primary" (click)="triggerModal()">Trigger modal</button>
+            <div [@fade] *ngIf="showMessage" class="close-pressed-message">
+               {{message}}
+            </div>
+
+            <sds-modal
+               [modalConfig]="modalConfig"
+               [showModal]="showModal"
+               (clickOutside)="showModal = false"
+               (closeEscape)="showModal = false"
+               (closeControl)="showModal = false">
+               <span st-modal-header>Modal custom title</span>
+               <p>This is an example content for modal component.</p>
+               <p>You can press ESCAPE key to close modal.</p>
+            </sds-modal>
+         </div>
+         <div class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
+            <div>
+               <h1>Modal Type</h1>
+               <sds-radio-group class="st-inline-group" formControlName="modalType">
+                  <sds-radio [value]="'custom_content'" [checked]="true">Custom Content</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'information'">Information</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'warning'">Warning</sds-radio>
+                  <sds-radio (change)="configForm.get('showDefaultHeader').setValue(true)" [value]="'error'">Error</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="enableAnimation" formControlName="enableAnimation">
+                  <span>Enable animation</span>
+               </sds-checkbox>
+               <sds-checkbox name="clickOutside" formControlName="clickOutside">
+                  <span>Click outside</span>
+               </sds-checkbox>
+               <sds-checkbox (change)="onShowDefaultHeaderChange()" [disabled]="configForm.get('modalType').value !== 'custom_content'" name="standardHeader" formControlName="showDefaultHeader">
+                  <span>Show default header</span>
+               </sds-checkbox>
+               <sds-checkbox *ngIf="configForm.get('showDefaultHeader').value" name="closeControl" formControlName="closeControl">
+                  <span>Close control</span>
+               </sds-checkbox>
+               <sds-checkbox *ngIf="configForm.get('modalType').value === 'custom_content'" name="fullWindow" formControlName="fullWindow">
+                  <span>Full window</span>
+               </sds-checkbox>
+
+            </div>
+            <div>
+               <div class="input-container">
+                  <sds-input
+                     class="st-form-field"
+                     [fieldType]="'text'"
+                     formControlName="modalTitle"
+                     label="Modal title"
+                     [contextualHelp]="'Write the title of the modal.'">
+                  </sds-input>
+               </div>
+            </div>
+            <div>
+               <h1>Custom size</h1>
+               <p style="margin-bottom: 12px">Size changes are not seen in the example. You need to trigger modal to see them.</p>
+               <div class="input-container" style="margin-bottom: 12px">
+                  <sds-input
+                     class="st-form-field input-number"
+                     [fieldType]="'number'"
+                     formControlName="width"
+                     (keypress)="onWidthKeyPress($event)"
+                     label="Width"
+                     [contextualHelp]="'Write width in px and press enter. Minimum is 300px.'">
+                  </sds-input>
+                  <span [@fade] class="changed-input-message" *ngIf="showWidthChanged">Changed!</span>
+               </div>
+               <div class="input-container">
+                  <sds-input
+                     class="st-form-field input-number"
+                     [fieldType]="'number'"
+                     formControlName="height"
+                     (keypress)="onHeightKeyPress($event)"
+                     label="Height"
+                     [contextualHelp]="'Write height in px and press enter. Minimum is 200px.'">
+                  </sds-input>
+                  <span [@fade] class="changed-input-message" *ngIf="showHeightChanged">Changed!</span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Modals are used in different scenarios. Most notably: alerting the user, confirmation dialogs, and informational ones.</p>
+      <p class="demo-layout__paragraph">The title summarizes the purpose of the modal. In a confirmation modal, use a question in your title and make sure the action is clearly called out in the buttons.</p>
+      <p class="demo-layout__paragraph">When the result of the action of the confirmation buttons cannot be undone and it carries out deleting or other critical actions, the button must be also critical (the red one).</p>
+      <p class="demo-layout__paragraph">The content may differ between different types of Modals. Be concise and provide a clear explanation of the task or information a user should focus on.</p>
+      <p class="demo-layout__paragraph">Buttons should include clear and direct action for the user to take. Buttons are right-aligned.</p>
+      <p class="demo-layout__paragraph">Modals appear over a dark blue semitransparent background to help the user focus on the task. (Background-color: Space Default; Opacity: 90%;)</p>
+      <p class="demo-layout__paragraph">The modal component has different sizes available to adapt it to the content.</p>
+      <p class="demo-layout__paragraph">Modals can have a close button icon on the top right part of it. That closes the modal and comes back to the original page where the modal was triggered.</p>
+      <p class="demo-layout__paragraph">A special full-width modal exists which occupies 100% of the viewport. This modal contains some graphical and functional variations respect the rest of the sizes. It is often used to edit and configuration.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">
+         Below are the good practices that should guide the uses of the component to maintain coherence and consistency in the design system and the spirit with which they were sustained.
+      </p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Modals are disruptive. Only use modals when you need the user’s full attention for the period of time the modal is displayed.</li>
+         <li class="demo-layout__list-item">A user needs to actively dismiss a modal. A modal should not disappear on its own. Taking any of the actions to either cancel or proceed should eventually dismiss the modal.</li>
+         <li class="demo-layout__list-item">Scrolling makes it hard for a user to go through the content of your modal or complete the task assigned. Avoid scrolling inside a modal.</li>
+      </ul>
+   </section>
+</st-docs>

@@ -1,0 +1,138 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+@import "~@stratio/sds-themes/dist/stratio/constants";
+
+.sds-input {
+  &__input-container,
+  .sds-input__input-container__input {
+    outline: 0;
+  }
+
+  &__label {
+    color: var(--egeo-theme-space-80, #{$space-80});
+    display: inline;
+
+    &--active {
+      color: var(--egeo-theme-space-110, #{$space-110});
+    }
+  }
+
+  &__input-container {
+    display: var(--egeo-sds-input--display, #{flex});
+    align-items: var(--egeo-sds-input--align-items, center);
+    flex-wrap: var(--egeo-sds-input--flex-wrap, nowrap);
+    box-sizing: var(--egeo-sds-input--box-sizing, border-box);
+    height: var(--egeo-sds-input--height, 36px);
+    border: var(--egeo-sds-input--border, 1px solid var(--egeo-theme-space-40, #{$space-40}));
+    border-radius: var(--egeo-sds-input--border-radius, 4px);
+    font-size: var(--egeo-sds-input--font-size, #{$egeo-font-size-14});
+    line-height: 1;
+    color: var(--egeo-theme-space-110, #{$space-110});
+
+    & input::placeholder {
+      color: var(--egeo-theme-space-50, #{$space-50});
+    }
+
+    i {
+      color: var(--egeo-theme-space-80, #{$space-80});
+    }
+
+    i:first-child {
+      margin-left: 8px;
+    }
+
+    i:last-child {
+      margin-right: 8px;
+    }
+
+    &:not(.sds-input__input-container--active):not(.sds-input__input-container--disabled):not(.sds-input__input-container--error):hover {
+      border-color: var(--egeo-theme-space-70, #{$space-70});
+    }
+
+    &__action-icon {
+      cursor: pointer;
+    }
+
+    &--active {
+      border-color: var(--egeo-theme-action, #{$action});
+    }
+
+    &--disabled {
+      background-color: var(--egeo-theme-space-5, #{$space-5});
+
+      &,
+      input,
+      i {
+        color: var(--egeo-theme-space-50, #{$space-50});
+        cursor: not-allowed;
+      }
+    }
+
+    &--error {
+      border-color: var(--egeo-theme-error, #{$error});
+    }
+
+    &--small {
+      font-size: $egeo-font-size-12;
+      height: 30px;
+
+      input {
+         padding: 0 8px;
+      }
+    }
+
+    &__input {
+      height: 100%;
+      width: 100%;
+      padding: var(--egeo-sds-input--padding, #{0 12px});
+      outline: 0;
+    }
+
+    &--email:not(.sds-input__input-container--filled) {
+      i:last-child:before {
+        content: "\e904";
+      }
+    }
+
+    &--search:not(.sds-input__input-container--filled) {
+      i:last-child:before {
+        content: "\e036";
+      }
+    }
+
+    &--password:not(.sds-input__input-container--filled) {
+      i:last-child:before {
+        content: "\e984";
+      }
+    }
+
+    &--user:not(.sds-input__input-container--filled) {
+      i:last-child:before {
+        content: "\e939";
+      }
+    }
+  }
+
+  &__help-text,
+  .sds-input__error-text {
+    margin-top: 6px;
+    font-size: $egeo-font-size-12;
+  }
+
+  &__help-text {
+    color: var(--egeo-theme-space-80, $space-80);
+  }
+
+  &__error-text {
+    color: var(--egeo-theme-error, #{$error});
+  }
+}

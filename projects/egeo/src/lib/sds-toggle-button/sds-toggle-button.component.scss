@@ -1,0 +1,94 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+:host {
+   &.sds-toggle-button--small {
+      & .sds-toggle-button {
+
+         & .sds-toggle-button__buttons {
+            height: 30px;
+         }
+
+         & .sds-toggle-button__button {
+            padding: 5px 21px;
+            font-size: $egeo-font-size-12;
+         }
+      }
+   }
+}
+
+.sds-toggle-button {
+   display: flex;
+   align-items: center;
+   box-sizing: border-box;
+
+   .sds-toggle-button__buttons {
+      display: inline-block;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 4px;
+      border-color: var(--egeo-theme-space-40, $space-40);
+      height: 36px;
+   }
+
+   .sds-toggle-button__button {
+      display: inline-block;
+      padding: 7px 21px;
+      cursor: pointer;
+      box-shadow: none;
+      height: 100%;
+
+      color: var(--egeo-theme-space-70, $space-70);
+      background: var(--egeo-theme-neutral-full, $neutral-full);
+      font-size: $egeo-font-size-14;
+
+      &:first-child {
+         border-radius: 4px 0 0 4px;
+      }
+
+      &:last-child {
+         border-radius: 0 4px 4px 0;
+      }
+
+      &:focus {
+         outline: none;
+      }
+
+      &:not([disabled]):hover {
+         color: var(--egeo-theme-space-80, $space-80);
+         background: var(--egeo-theme-action-10, $action-10);
+      }
+
+      &--active,
+      &--active:hover {
+         color: var(--egeo-theme-space, $space);
+         background: var(--egeo-theme-space-10, $space-10);
+         cursor: default;
+      }
+
+      &[disabled] {
+         color: var(--egeo-theme-space-30, $space-30);
+         border-color: var(--egeo-theme-space-20, $space-20);
+         cursor: not-allowed;
+      }
+
+      &--active[disabled], &--active[disabled]:hover {
+         color: var(--egeo-theme-space-30, $space-30);
+         border-color: var(--egeo-theme-space-20, $space-20);
+         background: var(--egeo-theme-space-5, $space-5);
+         cursor: not-allowed;
+      }
+   }
+
+}
+
+

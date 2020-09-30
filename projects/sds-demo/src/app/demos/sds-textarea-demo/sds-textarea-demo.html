@@ -1,0 +1,64 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <form [formGroup]="myForm" novalidate>
+               <sds-textarea
+                  name="sds-textarea"
+                  placeholder="Placeholder"
+                  [ngClass]="{'sds-textarea--small': size}"
+                  [label]="label ? 'Label' : ''"
+                  [contextualHelp]="helperErrorText ? 'This is a helper text.' : ''"
+                  [errorMessage]="helperErrorText ? 'Required field. Write something.': ''"
+                  formControlName="textarea"
+                  class="st-form-field"
+                  [rows]="2">
+               </sds-textarea>
+            </form>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [(ngModel)]="size" class="st-inline-group">
+                  <sds-radio [value]="0">Regular</sds-radio>
+                  <sds-radio [value]="1">Small</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox [checked]="true" [(ngModel)]="label">Label</sds-checkbox>
+               <sds-checkbox [(ngModel)]="disabled" (change)="setDisabled()">Disabled</sds-checkbox>
+               <sds-checkbox [(ngModel)]="required" [disabled]="disabled" (change)="setValidations()">Required (to check error status)</sds-checkbox>
+               <sds-checkbox [checked]="true" [(ngModel)]="helperErrorText">Helper / Error text</sds-checkbox>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Text areas are designed to collect long free text from the user. Typical examples of use could be a description.</p>
+      <p class="demo-layout__paragraph">We show a text area on forms where users need to enter sometimes lengthy data, such as information that may run over to two or more lines. They can be resized by the user and the rest of the content should adapt to this.</p>
+      <p class="demo-layout__paragraph">Two height sizes are available to adapt the inputs to different situations. Besides, the Input Text component includes a label and a help text to give some details to the user about tips about how the content must be formatted (E.g. to define limits, non-valid characters, etc.).</p>
+      <p class="demo-layout__paragraph">The same help text space is used to show error messages when needed. However, if error, the text is red-colored as well as the outline of the text box.</p>
+      <p class="demo-layout__paragraph">The textbox is highlighted when has the focus to guide the user visually to the component that owns the action.The textbox is highlighted when it has the focus to guide the user visually to the component that owns the action.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">For accessibility, text labels are required for all text area items. Use clear, concise, consistent labels to guide the user. If the subject is complicated, find words to make it simpler. Each label is left-justified and appears above the text area it describes.</li>
+         <li class="demo-layout__list-item">When the user clicks on an input, the on focus state starts, the input gets blue and a blinking cursor appears at the beginning of the input so the user know is there. While the user doesn’t write anything the placeholder text remains. If the user starts to write, the placeholder disappears. If the user deletes the content, the placeholder appears again.</li>
+         <li class="demo-layout__list-item">If the input has validation rules, they should be clearly explained in the hint text that area which appears immediately under the input and never disappears. Some samples could be "max. 20 chars" or "only words allowed" When the user writes on this kind of inputs, an error message should appear only when the validation rules are not met and the user clicks outside the input. In that case, an error message appears explaining why the validation has failed immediately under the hint text.</li>
+         <li class="demo-layout__list-item">Never must appear an error message if the user doesn't carry out any action over the Input.</li>
+      </ul>
+   </section>
+</st-docs>

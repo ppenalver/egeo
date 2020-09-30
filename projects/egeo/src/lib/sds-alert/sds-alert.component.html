@@ -1,0 +1,48 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<div
+   #sdsAlert
+   *ngIf="showAlertHtml"
+   [@alertFade]
+   [@.disabled]="hotRender"
+   class="sds-alert"
+   [ngClass]="{
+      'sds-alert--info': alertType === sdsAlertType.INFO,
+      'sds-alert--success': alertType === sdsAlertType.SUCCESS,
+      'sds-alert--warning': alertType === sdsAlertType.WARNING,
+      'sds-alert--critical': alertType === sdsAlertType.CRITICAL,
+      'sds-alert--connection-lost': alertType === sdsAlertType.CONNECTION_LOST,
+      'sds-alert--with-actions': actionLeftLabel || actionRightLabel
+   }">
+   <div *ngIf="closeIcon" class="sds-alert__close-control">
+      <i class="sds-alert__close-control__icon icon-cross" (click)="onCloseClick()"></i>
+   </div>
+
+   <div class="sds-alert__header">
+      <i *ngIf="alertIcon !== sdsAlertIcon.NONE" class="sds-alert__header__icon" [ngClass]="alertIcon"></i>
+      <span class="sds-alert__header__title">{{title}}</span>
+   </div>
+
+   <div class="sds-alert__body">
+      {{message}}
+   </div>
+
+   <div *ngIf="(actionLeftLabel || actionRightLabel) && alertType !== sdsAlertType.CONNECTION_LOST" class="sds-alert__actions">
+      <div *ngIf="actionLeftLabel" class="sds-alert__actions__action">
+         <a (click)="actionLeft()" class="sds-alert__actions__action__link">{{actionLeftLabel}}</a>
+      </div>
+      <div *ngIf="actionRightLabel" class="sds-alert__actions__action sds-alert__actions__action--second">
+         <a (click)="actionRight()" class="sds-alert__actions__action__link">{{actionRightLabel}}</a>
+      </div>
+   </div>
+</div>

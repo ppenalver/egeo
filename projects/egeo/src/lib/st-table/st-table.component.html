@@ -1,0 +1,47 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<table class='st-table' [ngClass]="tableClasses" [attr.id]='qaTag'>
+   <thead>
+   <tr *ngIf="header" class='st-table__header'>
+
+      <th *ngFor='let field of fields; let i = index' class='st-table__header-item' [ngClass]="{
+             'st-table__header-item--selected': isSortedByField(field),
+             'st-table__header-item--sortable': isSortable(field),
+             'st-table__header-item--filterable': isFilterable(field)}">
+         <sds-checkbox *ngIf="i == 0 && selectableAll" qaTag="select-all-checkbox" class="st-table__checkbox"
+                      name="selectAll"
+                      [checked]="selectedAll" (change)="onSelectAll($event)">
+         </sds-checkbox>
+         <label class='st-table__header-text' (click)="onChangeOrder(field)">
+            <i *ngIf="isSortedByField(field)" class='st-table__order-arrow' [ngClass]="getHeaderItemClass(field)">
+            </i>
+            {{field.label}}
+         </label>
+         <st-popover-filter *ngIf="isFilterable(field)"
+                            [field]="field"
+                            [index]="i"
+                            [templateContentFilter]="templateContentFilter"
+                            [hidden]="visibleFilter !== i"
+                            (filter)="onSelectFilters()"
+                            (close)="onHideFilterMenu()">
+            <i popover-filter-button
+               [ngClass]="getFilterIconClasses(i)"
+               (click)="onChangeFilterVisibility($event, i, field)">
+            </i>
+         </st-popover-filter>
+      </th>
+      <th *ngIf="hasHoverMenu"></th> <!-- For hover cell -->
+   </tr>
+   </thead>
+   <ng-content></ng-content>
+</table>

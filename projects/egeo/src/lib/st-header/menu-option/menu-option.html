@@ -1,0 +1,32 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+
+<st-dropdown-menu [items]="submenuList"
+                  [visualMode]="visualMode"
+                  [active]="isActive && hasSubmenu"
+                  [placement]="'bottom-start'"
+                  [offset]="{x: 0, y: 10}"
+                  (change)="changeOption($event)">
+   <div class="st-header-menu-option" #menu
+        [attr.id]="qaId"
+        (click)="onMenuClick()">
+      <a class="st-header-menu-option-name">
+         <i *ngIf="option.icon"
+            class="st-header-menu-option-icon"
+            [ngClass]="option.icon"
+            [title]="option.label"></i>
+         <div *ngIf="showMenuName" class="st-header-menu-option-label">{{option.label}}</div>
+      </a>
+      <i *ngIf="hasSubmenu" class="icon-arrow2_down st-header-menu-option-arrow"></i>
+   </div>
+</st-dropdown-menu>

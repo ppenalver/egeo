@@ -1,0 +1,250 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+.st-header {
+   background-color: var(--egeo-theme-space, $space);
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   height: 50px;
+   left: 0;
+   position: fixed;
+   right: 0;
+   top: 0;
+   width: 100%;
+   z-index: $header-z-index;
+
+   .st-header-container {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+      min-width: 768px;
+      width: 100%;
+
+      .st-header-container-fix-part {
+         align-self: center;
+         display: flex;
+         flex-direction: row;
+         flex-wrap: nowrap;
+         height: 50px;
+
+         .st-header-logo {
+            align-self: center;
+            display: flex;
+            margin-right: 60px;
+            position: relative;
+         }
+
+         .st-header-menu-component {
+            align-items: center;
+            align-self: center;
+            cursor: pointer;
+            display: flex;
+            height: 50px;
+            margin-right: 60px;
+         }
+      }
+
+      .st-header-shortcut-buttons-container {
+         align-content: flex-end;
+         align-items: center;
+         color: var(--egeo-theme-space-30, $space-30);
+         display: flex;
+         flex-direction: row;
+         flex-grow: 1;
+         font-size: $egeo-font-size-24;
+         height: 50px;
+         justify-content: flex-end;
+         line-height: $egeo-line-height-24;
+         margin-left: auto;
+
+         .st-header-shortcut-buttons {
+            height: 100%;
+            padding-right: 7px;
+
+            .st-header-shortcut-buttons__button {
+               cursor: pointer;
+               height: 100%;
+               display: inline-flex;
+               vertical-align: middle;
+               flex-direction: column;
+               justify-content: center;
+               padding: 0 10px;
+
+               &.active {
+                  color: var(--egeo-theme-neutral-full, $neutral-full);
+                  background-color: var(--egeo-theme-space-80, $space-80);
+               }
+
+               &:hover {
+                  color: var(--egeo-theme-neutral-full, $neutral-full);
+               }
+            }
+         }
+      }
+
+      .st-header-user-menu-container {
+         align-content: flex-end;
+         align-items: center;
+         align-self: center;
+         display: flex;
+         flex-direction: row;
+         font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+         height: 36px;
+         justify-content: flex-end;
+         margin-left: auto;
+         margin-top: 2px;
+
+         .st-header-user-menu {
+            display: flex;
+            border-left: 1px solid var(--egeo-theme-space-50, $space-50);
+         }
+
+         .st-header-user-info {
+            display: grid;
+            flex-wrap: nowrap;
+            margin-left: auto;
+            overflow: hidden;
+            padding-left: 20px;
+
+            .st-header-user-info__name-line {
+               color: var(--egeo-theme-neutral-full, $neutral-full);
+               font-size: $egeo-font-size-14;
+               font-stretch: normal;
+               font-style: normal;
+               font-weight: normal;
+
+               .st-header-user-info__name {
+                  max-width: calc(100% - 22px);
+                  display: inline-block;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
+                  line-height: 11px;
+                  white-space: nowrap;
+               }
+            }
+
+            &__description {
+               align-self: center;
+               color: var(--egeo-theme-space-40, $space-40);
+               display: block;
+               font-size: $egeo-font-size-12;
+               line-height: $egeo-line-height-18;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               text-transform: capitalize;
+               white-space: nowrap;
+            }
+
+            &__arrow {
+               color: var(--egeo-theme-neutral-full, $neutral-full);
+               cursor: pointer;
+               display: inline-block;
+               font-size: $egeo-font-size-12;
+               margin-left: 10px;
+               vertical-align: text-top;
+            }
+         }
+
+         .st-user-profile-container {
+            padding: 15px;
+
+            .st-user-action {
+               color: var(--egeo-theme-neutral-80, $neutral-80);
+               cursor: pointer;
+               display: flex;
+               font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+               font-size: $egeo-font-size-16;
+
+               span {
+                  align-items: center;
+                  display: flex;
+                  font-size: $egeo-font-size-14;
+
+                  i {
+                     font-size: $egeo-font-size-12;
+                     margin-right: 10px;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.st-header-menu {
+   align-content: flex-end;
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   height: 100%;
+}
+
+.st-header-menu-option {
+   align-items: flex-end;
+   color: var(--egeo-theme-space-30, $space-30);
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-size: $egeo-font-size-18;
+   font-weight: normal;
+   position: relative;
+   text-align: left;
+
+   &.active,
+   &:hover {
+      color: var(--egeo-theme-neutral-full, $neutral-full);
+   }
+
+   .st-header-menu-option-name {
+      align-items: flex-end;
+      color: inherit;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      font-size: $egeo-font-size-14;
+      text-decoration: none;
+
+      .st-header-menu-option-icon {
+         align-self: flex-end;
+         font-size: $egeo-font-size-14;
+         height: 15px;
+         line-height: 15px;
+         margin-right: 8px;
+         text-align: left;
+         width: 15px;
+      }
+
+      .st-header-menu-option-label {
+         align-self: flex-end;
+         height: 15px;
+         line-height: 15px;
+         text-align: left;
+         white-space: nowrap;
+      }
+   }
+   .st-header-menu-option-arrow {
+      align-self: flex-end;
+      font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+      font-size: $egeo-font-size-12;
+      height: 15px;
+      line-height: 15px;
+      margin-left: 10px;
+      text-align: left;
+      width: 10px;
+   }
+}

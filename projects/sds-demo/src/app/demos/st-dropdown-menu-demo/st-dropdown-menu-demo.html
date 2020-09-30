@@ -1,0 +1,49 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+
+   <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <section class="demo-layout">
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <h1 class="title">Examples</h1>
+            <div *ngFor="let menu of menus; let idx = index">
+               <ng-container *ngIf="idx < 5">
+                  <h1>{{titles[idx]}}</h1>
+                  <br>
+                  <st-dropdown-menu
+                     [keyBoardMove]="true"
+                     [items]="menu"
+                     [active]="active[idx]"
+                     [selectedItem]="selectedValue[idx]"
+                     [placement]="2"
+                     [offset]="{x: 0, y: 0}"
+                     [openToLeft]="false"
+                     [visualMode]="getVisualMode(idx)"
+                     [attr.id]="'dropdown-' + idx"
+                     (change)="onChange($event, idx)">
+                     <button (click)="changeActive(idx)" class="button button-primary">Show {{titles[idx]}}</button>
+                  </st-dropdown-menu>
+                  <br>
+                  <p>Value: {{selectedValue[idx] | json}}</p>
+                  <br>
+                  <br>
+               </ng-container>
+            </div>
+            <st-demo-logger></st-demo-logger>
+         </div>
+         <div class="demo-layout__demo-container__demo-config"></div>
+      </div>
+   </section>
+</st-docs>

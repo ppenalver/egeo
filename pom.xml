@@ -6,12 +6,12 @@
    <parent>
       <groupId>com.stratio</groupId>
       <artifactId>parent</artifactId>
-      <version>0.10.0-SNAPSHOT</version>
+      <version>0.10.0</version>
    </parent>
 
    <groupId>com.stratio.egeo</groupId>
    <artifactId>egeo</artifactId>
-   <version>7.0.0-SNAPSHOT</version>
+   <version>23.0.0-SNAPSHOT</version>
    <name>Egeo</name>
    <inceptionYear>2016</inceptionYear>
 
@@ -21,8 +21,8 @@
    </issueManagement>
 
    <properties>
-      <nodeVer>v6.9.2</nodeVer>
-      <npmVer>3.8.8</npmVer>
+      <nodeVer>v10.16.0</nodeVer>
+      <npmVer>6.5.0</npmVer>
       <nodeURL>http://tools.stratio.com/buildtools</nodeURL>
    </properties>
 

@@ -1,0 +1,92 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+@import '../utils/forms';
+
+st-search.small {
+   input {
+      @extend %st-form-small-globals;
+   }
+   .st-select {
+      @extend %st-select-small-props;
+   }
+}
+.sth-search {
+   .st-search-filter.disabled {
+      .arrow {
+         background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      }
+   }
+
+   .st-search-box > st-pop {
+      width: 100%;
+   }
+
+}
+.sth-search::placeholder {
+   font-weight: normal;
+   font-size: $egeo-font-size-xsmall;
+   color: var(--egeo-theme-neutral-50, $neutral-50);
+}
+
+.sth-search .sth-search-input {
+   @extend %st-form-control;
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-size: $egeo-font-size-xsmall;
+   font-weight: normal;
+   background-color: var(--egeo-theme-neutral-full, $neutral-full);
+   border-radius: 4px;
+}
+
+.sth-search .sth-search-input:focus {
+   border: solid 1px $action;
+}
+
+.sth-search .st-dropdown-menu {
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
+}
+
+.st-search-box > st-pop > div > div > .st-dropdown-menu.active {
+   margin-top: -3px;
+}
+
+.sth-search-icon {
+   font-size: var(--egeo-st-search__icon--font-size, $egeo-font-size-16);
+   color: var(--egeo-st-search__icon--color, var(--egeo-theme-neutral-60, $neutral-60));
+   line-height: var(--egeo-st-search__icon--line-height, 1);
+   font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+   font-style: normal;
+   margin-top:  var(--egeo-st-search__icon--margin-top, 10px);
+
+   &--search:before {
+      content:  var(--egeo-st-search__search-icon--content, '\e036');
+   }
+
+   &--clear:before {
+      content:  var(--egeo-st-search__clear-icon--content, '\e117');
+   }
+}
+
+.sth-search .sth-search-input:focus + .sth-search-icon {
+   color: var(--egeo-st-search__icon__focus--color, var(--egeo-theme-action, $action)) !important;
+}
+
+.sth-search-filter {
+   margin-right: -3px;
+   input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+   }
+   .button-container {
+      z-index: 1;
+   }
+}

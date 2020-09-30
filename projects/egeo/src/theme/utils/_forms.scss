@@ -1,0 +1,80 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+%st-form-control--focused {
+   border-color: var(--egeo-theme-action, $action) !important;
+   box-shadow: 0 0 4px 0 rgba(18, 139, 221, 0.2) !important;
+}
+
+%st-form-control {
+   font-weight: 400;
+   font-size: var(--egeo-st-form-control--font-size, $egeo-font-size-14);
+   line-height: var(--egeo-st-form-control--line-height, $egeo-line-height-20);
+   color: var(--egeo-theme-space-110, $space-110);
+   background-color: var(--egeo-theme-neutral-full, $neutral-full);
+   border: 1px solid var(--egeo-theme-space-40, $space-40);
+   padding: 10px 12px 10px 12px;
+   border-radius: 4px;
+   vertical-align: bottom;
+   outline: none;
+   width: 100%;
+   height: var(--egeo-st-form-control--height, 36px);
+
+   input {
+      min-height: $egeo-line-height-20;
+   }
+
+   &::placeholder {
+      color: var(--egeo-theme-neutral-50, $neutral-50);
+   }
+
+   &:hover {
+      border-color: var(--egeo-theme-space-70, $space-70);
+   }
+
+   &:not(.error):focus {
+      @extend %st-form-control--focused;
+   }
+}
+
+%st-form-control.error {
+   border-color: var(--egeo-theme-error, $error);
+}
+
+%st-select-small-props {
+   .arrow {
+      padding: 0;
+      right: 0;
+   }
+}
+
+%st-form-small-globals {
+   --egeo-st-form-control--height: 30px;
+
+   input, textarea {
+      font-size: $egeo-font-size-12;
+      padding: 5px 8px 5px 8px;
+   }
+
+   i.st-search-icon {
+      top: 0;
+      margin-top: 9px;
+   }
+
+   .st-form-control-reset-button {
+      line-height: 32px;
+      font-size: $egeo-font-size-14;
+      right: -25px;
+   }
+
+}
+

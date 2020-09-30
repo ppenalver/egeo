@@ -1,0 +1,36 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<div>
+   <sds-tab [options]="options" size="small" [activeOption]="active" qaTag="tab-demo" (changedOption)="onChangeOption($event)">
+   </sds-tab>
+   <div class="st-docs">
+      <div *ngIf="active.id === 'demo'">
+         <ng-content></ng-content>
+      </div>
+      <div *ngIf="active.id === 'html'">
+         <st-prism-highlight [language]="'html'" id="codeinput">{{htmlCode}}</st-prism-highlight>
+      </div>
+      <div class="demo-layout" *ngIf="active.id === 'theme'">
+         <h1 *ngIf="cssTable?.nativeElement" class="title">Theme customization</h1>
+         <p  *ngIf="cssTable?.nativeElement" class="paragraph">You can customize some styles using the following css variables</p>
+         <ng-content select="demo-css-property-table"></ng-content>
+      </div>
+      <div *ngIf="active.id === 'implementation'">
+         <st-prism-highlight [language]="'javascript'" id="codeinput2">{{demoTsCode}}</st-prism-highlight>
+      </div>
+
+      <div *ngIf="active.id === 'component'">
+         <st-prism-highlight [language]="'javascript'" id="codeinput3">{{componentTsCode}}</st-prism-highlight>
+      </div>
+   </div>
+</div>

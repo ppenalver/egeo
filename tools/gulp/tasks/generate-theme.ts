@@ -8,12 +8,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0.
  */
-import { task, src, dest } from 'gulp';
+import { task, src, dest, parallel } from 'gulp';
 import { join } from 'path';
 import { writeFileSync, mkdirpSync } from 'fs-extra';
-import { Bundler } from 'scss-bundle';
+import { Bundler, BundleResult } from 'scss-bundle';
 
-import { buildConfig, buildScssFromFileTask, sequenceTask } from 'build-tools';
+import { buildConfig, buildScssFromFileTask } from 'build-tools';
 
 const { projectDir, packagesDir, outputDir } = buildConfig;
 
@@ -23,10 +23,8 @@ const themeSourceFolder = join(packagesDir, 'theme');
 const themeSourceFile = join(themeSourceFolder, 'theme.scss');
 const gridSourceFile = join(themeSourceFolder, 'grid', 'grid.scss');
 const sanitizeSourceFile = join(themeSourceFolder, 'vendors', 'sanitize.scss');
-const constantsSourceFile = join(themeSourceFolder, 'constants', '_index.scss');
 
-const packageOut = join(outputDir, 'releases', 'egeo', 'theme');
-const constantsOutputFile = 'constants.scss';
+const packageOut = join(outputDir, 'egeo', 'theme');
 const themeScssOutputFile = 'egeo-theme-stratio.scss';
 
 
@@ -36,21 +34,12 @@ task('styles:grid', buildScssFromFileTask(packageOut, gridSourceFile, true));
 task('styles:sanitize', buildScssFromFileTask(packageOut, sanitizeSourceFile, true));
 task('styles:copy-fonts', () => src(join(assetsSource, '/**/*')).pipe(dest(join(packageOut, 'assets'))));
 
-
-task('styles:constans', () => {
-   const allScssGlob = join(themeSourceFolder, '**/*.scss');
-   return new Bundler().Bundle(constantsSourceFile, [allScssGlob]).then(result => {
-      mkdirpSync(packageOut);
-      writeFileSync(join(packageOut, constantsOutputFile), result.bundledContent);
-   });
-});
-
 task('styles:theme:scss', () => {
    const allScssGlob = join(themeSourceFolder, '**/*.scss');
-   return new Bundler().Bundle(themeSourceFile, [allScssGlob]).then(result => {
+   return new Bundler().bundle(themeSourceFile, [allScssGlob]).then((result: BundleResult) => {
       mkdirpSync(packageOut);
-      writeFileSync(join(packageOut, themeScssOutputFile), result.bundledContent);
+      writeFileSync(join(packageOut, themeScssOutputFile), <any> result.bundledContent, { encoding: 'utf-8' });
    });
 });
 
-task('build:styles', ['styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:constans', 'styles:theme:scss']);
+task('build:styles', parallel('styles:copy-fonts', 'styles:theme', 'styles:grid', 'styles:sanitize', 'styles:theme:scss'));

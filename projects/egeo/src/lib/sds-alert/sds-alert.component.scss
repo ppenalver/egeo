@@ -1,0 +1,194 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+:host {
+   --sds-alert--position: fixed;
+   --sds-alert--z-index: #{$alert-z-index};
+   --sds-alert--width: 350px;
+   --sds-alert--line-height: 1.6;
+}
+
+.sds-alert {
+   position: var(--sds-alert--position);
+   border-radius: 4px;
+   border: solid 1px $space-20;
+   background-color: $neutral-full;
+   line-height: var(--sds-alert--line-height);
+   padding: 30px 0;
+   z-index: var(--sds-alert--z-index);
+   width: var(--sds-alert--width);
+
+   &--with-actions:not(&--connection-lost) {
+      padding-bottom: 0;
+   }
+
+   &__close-control {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 15px;
+      padding: 0 30px;
+
+      &__icon {
+         margin-top: -15px;
+         margin-right: -15px;
+
+         &:hover {
+            cursor: pointer;
+         }
+      }
+   }
+
+   &__header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 10px;
+      padding: 0 30px;
+
+      &__icon {
+         font-size: $egeo-font-size-20;
+         position: relative;
+         height: 24px;
+         top: 0.1em;
+         margin-right: 9px;
+
+         &:before {
+            top: 1.5px;
+         }
+
+      }
+
+      &__title {
+         font-size: $egeo-font-size-16;
+         color: $neutral;
+         font-weight: bold;
+         line-height: 1.6;
+         flex: 1;
+
+         overflow: hidden;
+         display: -webkit-box;
+         -webkit-line-clamp: 2;
+         -webkit-box-orient: vertical;
+
+      }
+   }
+
+   &__body {
+      padding: 0 30px;
+   }
+
+   &__actions {
+      display: flex;
+      margin-top: 30px;
+
+      &__action {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 40px;
+         flex: 1;
+         background-color: $space-5;
+
+         &__link {
+            color: $action;
+
+            &:hover {
+               text-decoration: underline;
+               cursor: pointer;
+               color: $action-120;
+            }
+         }
+
+         &--second {
+            margin-left: 2px;
+         }
+      }
+   }
+
+   &--info {
+      border-left: 4px solid $action;
+
+      .sds-alert__header {
+         &__icon.default {
+            color: $space-80;
+            margin-right: 9px;
+
+            &:before {
+               content: "\e615";
+            }
+         }
+      }
+   }
+
+   &--success {
+      border-left: 4px solid $success;
+
+      .sds-alert__header {
+         &__icon.default {
+            color: $success;
+
+            &:before {
+               content: "\e048";
+            }
+         }
+      }
+   }
+
+   &--warning {
+      border-left: 4px solid $warning;
+
+      .sds-alert__header {
+         &__icon.default {
+            color: $warning;
+
+            &:before {
+               content: "\e613";
+            }
+         }
+      }
+   }
+
+   &--critical {
+      border-left: 4px solid $error;
+
+      .sds-alert__header {
+         &__icon.default {
+            color: $error;
+
+            &:before {
+               content: "\e9ba";
+            }
+         }
+      }
+   }
+
+   &--connection-lost {
+      background-color: $space-70;
+      color: $neutral-full;
+      border: none;
+
+      .sds-alert__header {
+         color: $neutral-full;
+
+         &__title {
+            color: $neutral-full;
+         }
+
+         &__icon.default {
+
+            &:before {
+               content: "\e940";
+            }
+         }
+      }
+   }
+}

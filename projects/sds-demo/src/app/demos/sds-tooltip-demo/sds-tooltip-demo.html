@@ -1,0 +1,89 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <demo-css-property-table [cssProperties]="cssProperties"></demo-css-property-table>
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Tooltips provide additional information upon hover or focus. They often contain helper text that is contextual to an element.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            Use this icon to see tooltip behavior:
+            <span sds-tooltip id="tooltip-demo"
+                  title="This is the tooltip activated on click"
+                  [showOnClick]="showOnClick"
+                  [white]="whiteTheme"
+                  [showArrow]="showArrow"
+                  [placement]="placement"
+                  [margin]="margin + 'px'"
+                  [title]="text"
+                  [animated]="animated">
+               <span class="icon-help2"></span>
+            </span>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div>
+               <h1>Size</h1>
+               <sds-radio-group [(ngModel)]="whiteTheme" class="st-inline-group">
+                  <sds-radio [value]="false" [checked]="true">Default</sds-radio>
+                  <sds-radio [value]="true">Small</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <sds-input [(ngModel)]="text" label="Text" class="st-inline-group">
+               </sds-input>
+            </div>
+            <div>
+               <h1>Position</h1>
+               <sds-radio-group [(ngModel)]="placement" class="st-inline-group">
+                  <sds-radio [value]="'top'" [checked]="true">Top</sds-radio>
+                  <sds-radio [value]="'bottom'">Bottom</sds-radio>
+                  <sds-radio [value]="'left'">Left</sds-radio>
+                  <sds-radio [value]="'right'">Right</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Arrow</h1>
+               <sds-checkbox [(ngModel)]="showArrow" [checked]="true">Show</sds-checkbox>
+            </div>
+            <div>
+               <h1>Trigger event</h1>
+               <sds-radio-group [(ngModel)]="showOnClick" class="st-inline-group">
+                  <sds-radio [value]="true" [checked]="true">Click</sds-radio>
+                  <sds-radio [value]="false">Hover</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Animation</h1>
+               <sds-checkbox [(ngModel)]="animated" [checked]="true">Enabled</sds-checkbox>
+            </div>
+            <div>
+               <sds-input label="Margin" fieldType="number" [(ngModel)]="margin" class="number-input"></sds-input>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">A Tooltip is used to clarify the action or name of an interactive icon button.</p>
+      <p class="demo-layout__paragraph">Tooltips usually appears when the user hovers an icon-based button or hovers a question mark icon that indicates that some clarifications are available.</p>
+      <p class="demo-layout__paragraph">Tooltips can be also used to expand big words which, due to space limitations, must be trunked.</p>
+      <p class="demo-layout__paragraph">The Tooltip content should only contain one to two words on the best cases and a couple of lines on the worst.</p>
+      <p class="demo-layout__paragraph">Icon Tooltips appear on hover, focus, and click. So, when hover and focus could not be available (mobile devices), the click one will be.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">Keep the tooltip text short and concise, try not to put more than two words on it.</li>
+         <li class="demo-layout__list-item">Top and bottom tooltips are prefered in general. In some cases may be neccessary to use the left or right versions for better understanding due to the possition of the icon that triggers it.</li>
+         <li class="demo-layout__list-item">Icon tooltips should appear on hovering the icon almost inmediately. A little animation should be applied.</li>
+         <li class="demo-layout__list-item">All the buttons, badges, symbols, and similar items on the UI that are icon-only based (or numerical-only) have to be a related tooltip that explains what the symbol means.</li>
+      </ul>
+   </section>
+</st-docs>

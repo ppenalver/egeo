@@ -1,0 +1,250 @@
+/**
+* © 2017 Stratio Big Data Inc., Sucursal en España.
+*
+* This software is licensed under the Apache License, Version 2.0.
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the terms of the License for more details.
+*
+* SPDX-License-Identifier: Apache-2.0.
+*/
+
+$egeo-fontface-src: 'assets/fonts';
+
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+@import '../../egeo/src/theme/vendors/sanitize';
+@import '../../egeo/src/theme/grid/grid';
+@import '../../egeo/src/theme/theme';
+
+@import '~prismjs/themes/prism.css';
+
+@import '~@stratio/sds-fonts/nunito-sans.css';
+@import '~@stratio/sds-fonts/stratio-font-icons.css';
+
+
+:root {
+   --egeo-grid---max: 100%;
+}
+
+body {
+   color: $neutral-40;
+   font-weight: 400;
+   font-size: 14px;
+   font-family: $egeo-nunito-sans;
+   overflow-y: hidden;
+}
+
+main {
+   .page-title:first-child {
+      margin-top: 0;
+      padding-top: 0;
+   }
+}
+
+.page-title {
+   border-bottom: 2px solid;
+   border-color: $brand;
+   color: $space-110;
+   display: inline-block;
+   font-size: $egeo-font-size-xxlarge;
+   font-weight: normal;
+   margin: 0 0 25px;
+   padding: 0 0 8px;
+}
+
+.content {
+   display: flex;
+   height: 100%;
+}
+
+.changelog {
+   h2 {
+      font-weight: 900;
+      font-size: $egeo-font-size-xlarge;
+   }
+
+   p {
+      font-weight: 100;
+
+      strong {
+         font-weight: 600;
+      }
+   }
+
+   ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+   }
+}
+
+.main-content {
+   width: 100%;
+   flex-direction: column;
+   flex: 1;
+   min-width: 0;
+   padding: 25px 35px;
+   overflow-y: auto;
+   overflow-x: hidden;
+   height: 100%;
+
+   .container-fnotification {
+      .st-header {
+         position: static;
+      }
+   }
+
+   st-prism-highlight {
+      pre {
+         margin: 0;
+         background-color: $neutral-full;
+      }
+   }
+}
+
+.demo-layout {
+   color: $space-110;
+   font-size: $egeo-font-size-14;
+
+   .sds-input, st-dropdown-menu .input-container {
+      max-width: 300px;
+   }
+
+   &__demo-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 24px 0;
+      border-bottom: 1px solid $space-20;
+
+      &__demo {
+         width: 400px;
+         margin-right: 80px;
+      }
+
+      &__demo-config {
+         flex: 1;
+
+         & > *:not(:last-child) {
+            margin-bottom: 24px;
+         }
+      }
+   }
+
+   &__component-description {
+      font-size: $egeo-font-size-18;
+   }
+
+   &__component-description, &__paragraph, &__list-item {
+      max-width: 65%;
+   }
+
+   &__demo-label {
+      margin-top: 32px;
+      font-size: $egeo-font-size-20;
+   }
+
+   &__separator {
+      border: none;
+      border-top: 1px solid $space-20;
+      margin-top: 42px;
+   }
+
+   &__introduction {
+      font-weight: normal;
+      font-size: $egeo-font-size-18;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $space-110;
+      min-height: 100px;
+   }
+
+   &__title {
+      font-weight: bold;
+      font-size: $egeo-font-size-20;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $space-110;
+      padding: 26px 0;
+      display: inline-block;
+      margin-top: 40px;
+      margin-bottom: 10px;
+
+
+      &--centered {
+         display: block;
+         margin-bottom: 30px;
+         padding-bottom: 14px;
+         text-align: center;
+      }
+   }
+
+   &__subtitle {
+      font-weight: 400;
+      font-size: $egeo-font-size-20;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $neutral;
+      padding: 26px 0;
+      display: inline-block;
+   }
+
+   &__paragraph {
+      font-weight: normal;
+      font-size: $egeo-font-size-14;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: $space-110;
+      padding-bottom: 20px;
+      margin: 14px 0;
+   }
+
+   &__list {
+      font-weight: 400;
+      font-size: $egeo-font-size-14;
+      color: $space-110;
+      padding-left: 40px;
+   }
+
+}
+
+.demo-label {
+   font-size: 21px;
+   letter-spacing: normal;
+   color: $space-110;
+   margin: 32px 0 20px 0;
+}
+
+h1 {
+   font-family: 'Nunito Sans';
+   font-size: 14px;
+   margin-bottom: 8px;
+   padding: 0;
+   color: $space-110;
+}
+
+.demo-container {
+   display: flex;
+   flex-wrap: wrap;
+   border-bottom: 1px solid $space-20;
+
+   .demo {
+      width: 400px;
+      margin-right: 80px;
+   }
+
+   .demo-config {
+      flex: 1;
+
+      & > * {
+         margin-bottom: 24px;
+      }
+   }
+}
+
+
+

@@ -1,0 +1,52 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-pop-over class="st-table__popover" qaTag="pop-over-table"
+             [title]="getConfigField(field, 'title')"
+             [hidden]="hidden"
+             [showArrow]="false"
+             [openToLeft]="false"
+             [offset]="{x: offsetX, y: 0}"
+             [showSettingBtn]="getConfigField(field, 'showSettingBtn')"
+             (clickOutside)="onCloseMenu()">
+   <div pop-over-button>
+      <ng-content select="[popover-filter-button]"></ng-content>
+   </div>
+   <div pop-over-content class="st-table__popover-content">
+      <div *ngIf="templateContentFilter && !hidden"
+           template-filter-submit
+           (submit)="onCloseMenu()">
+         <ng-container
+            [ngTemplateOutlet]="templateContentFilter"
+            [ngTemplateOutletContext]="{index:index}">
+         </ng-container>
+      </div>
+      <div class="st-table__popover-content-filter" *ngIf="!templateContentFilter">
+
+         <div *ngFor="let filter of field.filters.filterConfig; let indexFilter = index">
+            <sds-checkbox
+               name="filter.name"
+               [checked]="filter.selected"
+               (change)="onChangeFilter(indexFilter, $event)"
+               (click)="$event.stopPropagation()">
+               <span>{{filter.name}}</span>
+            </sds-checkbox>
+         </div>
+         <button id="filter-button-{{index}}"
+                 class="button button-primary small st-table__popover-button"
+                 (click)="onFilter()">
+            <i *ngIf="!getConfigField(field, 'buttonText')" class="icon icon-filter"></i>
+            <span>{{getConfigField(field, 'buttonText')}}</span>
+         </button>
+      </div>
+   </div>
+</st-pop-over>

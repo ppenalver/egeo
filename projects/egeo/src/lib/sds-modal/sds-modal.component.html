@@ -1,0 +1,88 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<div
+   #modalContainer
+   *ngIf="showModalHTML"
+   class="st-modal-container"
+   [@state]="visibility"
+   [@.disabled]="!enabledAnimation || isDisabled"
+   (@state.done)="animationDone($event)"
+   (click)="onClickOutside($event)">
+  <div
+     #modal
+     [@middleFade]
+     class="st-modal"
+     [ngClass]="{
+        'st-modal--custom_content': modalType === modalTypes.CUSTOM_CONTENT,
+        'st-modal--information': modalType === modalTypes.INFORMATION,
+        'st-modal--warning': modalType === modalTypes.WARNING,
+        'st-modal--error': modalType === modalTypes.ERROR,
+        'st-modal--padding': showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT
+     }">
+     <div [@innerFade] *ngIf="!isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header">
+        <i
+           *ngIf="modalType === modalTypes.WARNING || modalType === modalTypes.ERROR"
+           class="icon st-modal__header__status-icon"
+           [ngClass]="{
+                 'icon-alert': modalType === modalTypes.WARNING,
+                 'icon-circle-cross': modalType === modalTypes.ERROR}">
+        </i>
+        <span class="st-modal__header__title">
+            {{modalTitle}}
+        </span>
+        <i
+           *ngIf="showCloseControl"
+           class="icon icon-cross st-modal__header__close-control"
+           (click)="closeControl.emit()">
+        </i>
+     </div>
+
+     <div [@innerFade] *ngIf="isFullWindow && (showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT)" class="st-modal__header--full-window">
+        <i
+           *ngIf="showCloseControl"
+           class="icon icon-cross st-modal__header__close-control st-modal__header__close-control--full-window"
+           (click)="closeControl.emit()">
+        </i>
+        <div class="st-modal__header__vertical-separator"></div>
+        <span class="st-modal__header__title">
+            {{modalTitle}}
+           </span>
+        <button class="st-modal__header__cancel button button-secondary" (click)="cancelButton.emit()">
+           <span>{{cancelButtonLabel}}</span>
+        </button>
+        <button class="st-modal__header__action button button-primary" (click)="confirmButton.emit()">
+           <span>{{actionButtonLabel}}</span>
+        </button>
+     </div>
+     <ng-container *ngIf="!showDefaultHeader && modalType === modalTypes.CUSTOM_CONTENT">
+        <div [@innerFade]>
+           <ng-content select="[st-modal-header]"></ng-content>
+        </div>
+     </ng-container>
+
+
+
+     <div [@innerFade] class="st-modal__body" [ngClass]="{'st-modal__body--padding': showDefaultHeader || modalType !== modalTypes.CUSTOM_CONTENT}">
+        <ng-content></ng-content>
+     </div>
+
+     <div [@innerFade] *ngIf="!isFullWindow && modalType !== modalTypes.CUSTOM_CONTENT" class="st-modal__actions">
+        <button class="st-modal__actions__cancel button button-secondary" (click)="cancelButton.emit()">
+           <span>{{cancelButtonLabel}}</span>
+        </button>
+        <button class="st-modal__actions__action button button-primary" (click)="confirmButton.emit()">
+           <span>{{actionButtonLabel}}</span>
+        </button>
+     </div>
+  </div>
+</div>

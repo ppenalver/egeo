@@ -1,0 +1,24 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<nav class="sds-tab" [ngClass]="{'sds-tab--border': borderBottom}">
+   <a *ngFor="let option of options; let i = index;"
+      class="sds-tab__cell"
+      (click)="activateOption(option)"
+      href="javascript:void(0)"
+      [ngClass]="{
+         'sds-tab__cell--active': isActive(option),
+         'sds-tab__cell--small': size === sdsTabSize.SMALL
+      }"
+      [attr.id]="qaTag + '-tab-' + i">{{option.text}}</a>
+   <ng-content></ng-content>
+</nav>

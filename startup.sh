@@ -26,13 +26,13 @@ done
 npm run build:demo-app
 
 # Remove old image if exists
-IMG_ID=`docker ps -aq --filter "ancestor=egeo-demos"`
+IMG_ID=`docker ps -aq --filter "ancestor=sds-demos"`
 if [[ $IMG_ID ]]; then
    docker rm -f $IMG_ID
 fi
 
 # Generate docker and run
-docker build -t egeo-demos .
-docker run -p 9502:9502 -itd egeo-demos
+docker build -t sds-demos .
+docker run -p 9502:9502 -itd sds-demos
 
 set -x

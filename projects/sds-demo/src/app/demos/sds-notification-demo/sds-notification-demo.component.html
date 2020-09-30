@@ -1,0 +1,122 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Notifications are feedback boxes that communicate a message from a user action. They inform and guide the user and provide critical information necessary in context. They appear at the top of the page under the header allowing the user to continue with their work.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+
+            <div class="button-container">
+               <button *ngIf="!configForm.get('multiple').value" class="button button-primary" type="button" (click)="displayNotification()">Trigger one notification</button>
+               <button *ngIf="configForm.get('multiple').value" class="button button-primary" type="button" (click)="displayVariousNotifications()">Trigger three random type notifications</button>
+            </div>
+            <div class="button-container">
+
+            </div>
+            <div [@fade] *ngIf="showCloseControlMessage" class="close-pressed-message">
+               Close control pressed...
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <form class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
+               <div>
+                  <h1>Type</h1>
+                  <sds-radio-group formControlName="type" class="st-inline-group">
+                     <sds-radio name="type" *ngFor="let type of typeOptions" [value]="type.value" [checked]="type.value === 'info'" (change)="activeType = $event.value">{{type.label}}</sds-radio>
+                  </sds-radio-group>
+               </div>
+               <div class="input-container">
+                  <sds-input class="st-form-field" formControlName="message" [label]="'Notification message'"></sds-input>
+               </div>
+               <div class="st-inline-group">
+                  <h1>Icon</h1>
+                  <sds-radio-group formControlName="icon" class="st-inline-group">
+                     <sds-radio name="icon" *ngFor="let icon of iconOptions" [value]="icon.value" [checked]="icon.value === 'default'" (change)="activeIconOption = $event.value">{{icon.label}}</sds-radio>
+                  </sds-radio-group>
+               </div>
+               <div *ngIf="configForm.get('icon').value === 'custom'" class="st-inline-group">
+                  <h1>Custom Icon</h1>
+                  <sds-radio-group formControlName="customIcon" class="st-inline-group">
+                     <sds-radio name="custom-icon" *ngFor="let customIcon of customIconsOptions" [value]="customIcon.value" [checked]="customIcon.value === 'default'" (change)="customIconsOption = $event.value">{{customIcon.label}}</sds-radio>
+                  </sds-radio-group>
+               </div>
+               <div>
+                  <h1>Options</h1>
+                  <sds-checkbox formControlName="closeControl" [checked]="true">Close control</sds-checkbox>
+                  <sds-checkbox formControlName="multiple">Multiple</sds-checkbox>
+               </div>
+               <h1>Trigger to see</h1>
+
+               <div class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="timeout" [fieldType]="'number'" [label]="'Notifications timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div>
+                  <sds-checkbox formControlName="showSpecificTimeouts" [checked]="false">Show specific timeouts</sds-checkbox>
+               </div>
+               <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="multipleTimeout" [fieldType]="'number'" [label]="'Multiple notifications timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="infoTimeout" [fieldType]="'number'" [label]="'Info timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="successTimeout" [fieldType]="'number'" [label]="'Success timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="warningTimeout" [fieldType]="'number'" [label]="'Warning timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="criticalTimeout" [fieldType]="'number'" [label]="'Critical timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               </div>
+               <div class="input-container">
+                  <sds-input class="input-number st-form-field" formControlName="maxWidth" [fieldType]="'text'" [label]="'Max width'" [contextualHelp]="'Write margin in px and press enter.'"></sds-input>
+               </div>
+
+               <sds-notification
+                  *ngIf="queuedNotifications.length"
+                  id="notification-demo2"
+                  class="notification-demo2"
+                  [config]="queuedNotifications[0]"
+                  (close)="enableControls()">
+               </sds-notification>
+            </form>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Notification’s width is 100% of the grid. The content aligns to the center. A close icon is located always on the right part of the notification. Notifications can include a link if needed. Notifications can use an icon on the left part so it makes them more understandable to the user and allows a better experience in case the user has some kind of color blindness. That icon should reflect the nature of the notification, which can be an error, a warning, a successful or completed action, or an information one.</p>
+      <h2 class="demo-layout__title">Multiple notifications</h2>
+      <p class="demo-layout__paragraph">When more than one notification should appear on screen at the same time, the multiple notifications module starts to
+         work.
+         It allows showing multiple notifications in an ordered and clean manner. Allowing the user not being overwhelmed by multiple notifications
+         at
+         sight. This component lets the user focus at one notification at a time. The user must dismiss the notifications one by one. A pagination
+         shows
+         the number of total notifications and the current notification the user is watching.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item"> Notifications are used when the user has made some interaction with the system and the system respond to them by giving feedback about
+            the action taken by the user.
+            <br>
+            <br>
+            <b>Note:</b> In case the user haven’t interacted, but the system needs to send any message use Alerts.
+         </li>
+         <li class="demo-layout__list-item"> Notification’s message should be clear, short, concise and technicaly understandable by the user.</li>
+         <li class="demo-layout__list-item"> Messages must be one-line only.</li>
+         <li class="demo-layout__list-item"> We recommend that notifications disappear automatically after three seconds. However, keep in mind that the average English language reader will read about 250-300 words per minute, with an average of 5.8 characters per word (including spaces). At a "safe" estimate for a notice of 200wpm, that yields about 1 character every 50 milliseconds. In any case, the user can discard the notification by clicking on the close icon.</li>
+         <li class="demo-layout__list-item"> If you need to introduce more text add a link with the ‘…More’ text. Then the box will grow in height to fit the content. Limit the lines of the message to a maximum of 5.</li>
+         <li class="demo-layout__list-item"> The message has to be related to the context that triggered its appearance so use terms that were used when the user started the action.</li>
+      </ul>
+   </section>
+</st-docs>

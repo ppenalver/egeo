@@ -1,0 +1,42 @@
+@import '~@stratio/sds-themes/dist/stratio/constants';
+@import '../utils/forms';
+
+st-form-list.small {
+   input, textarea {
+      @extend %st-form-small-globals;
+   }
+
+   .st-select {
+      @extend %st-select-small-props;
+   }
+}
+.st-form-list {
+
+   .st-form-list__row {
+      &:not(:first-child) {
+         label {
+            display: none;
+         }
+      }
+
+      label {
+         white-space: nowrap;
+         overflow: hidden;
+
+         span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+         }
+      }
+   }
+
+   .remove-button {
+      font-size: $egeo-font-size-20;
+      color: var(--egeo-theme-neutral-50, $neutral-50);
+
+      &:hover {
+         color: var(--egeo-theme-neutral-70, $neutral-70);
+      }
+   }
+
+}

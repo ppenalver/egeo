@@ -1,0 +1,78 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+.sth-radio-menu-option {
+   font-weight: normal;
+   color: var(--egeo-theme-neutral-50, $neutral-50);
+
+   &.active {
+      color: var(--egeo-theme-neutral-80, $neutral-80);
+      background-color: var(--egeo-theme-neutral-4, $neutral-4);
+
+      &:after {
+         border-left: 60px solid var(--egeo-theme-neutral-4, $neutral-4);
+      }
+
+      &:before {
+         background-color: var(--egeo-theme-neutral-4, $neutral-4);
+      }
+   }
+
+   &.no-active {
+      color: var(--egeo-theme-neutral-20, $neutral-20);
+   }
+}
+
+.theme-gray-1 {
+   .sth-radio-menu-option {
+      &.active {
+         background-color: var(--egeo-theme-neutral-8, $neutral-8);
+
+         &:after {
+            border-left: 60px solid var(--egeo-theme-neutral-8, $neutral-8);
+         }
+
+         &:before {
+            background-color: var(--egeo-theme-neutral-8, $neutral-8);
+         }
+      }
+
+      &.no-active {
+         color: var(--egeo-theme-neutral-30, $neutral-30);
+      }
+   }
+}
+
+.theme-gray-2 {
+   .sth-radio-menu-option {
+
+      background-color: var(--egeo-theme-neutral-full, $neutral-full);
+      &.active {
+         background-color: var(--egeo-theme-neutral-4, $neutral-4);
+
+         &:after {
+            border-left: 60px solid var(--egeo-theme-neutral-4, $neutral-4);
+         }
+
+         &:before {
+            background-color: var(--egeo-theme-neutral-4, $neutral-4);
+         }
+      }
+
+      &.no-active {
+         color: var(--egeo-theme-neutral-20, $neutral-20);
+      }
+   }
+}
+
+
+

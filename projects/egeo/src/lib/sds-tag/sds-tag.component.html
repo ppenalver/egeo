@@ -1,0 +1,36 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<div
+   class="sds-tag"
+   (click)="onTagClick($event)"
+   [ngClass]="{
+                  'sds-tag--small': config.size === sdsTagSize.SMALL,
+                  'sds-tag--medium': config.size === sdsTagSize.MEDIUM,
+                  'sds-tag--info': config.style === sdsTagStyle.INFO,
+                  'sds-tag--warning': config.style === sdsTagStyle.WARNING,
+                  'sds-tag--success': config.style === sdsTagStyle.SUCCESS,
+                  'sds-tag--critical': config.style === sdsTagStyle.CRITICAL,
+                  'sds-tag--interactive': config.tagType === sdsTagType.INTERACTIVE,
+                  'sds-tag--selection-mode': config.tagType === sdsTagType.INTERACTIVE && config.interactiveMode === sdsTagInteractionMode.SELECTION,
+                  'sds-tag--selected': isSelected,
+                  'sds-tag--disabled': isDisabled
+               }">
+   <i class="sds-tag__icon-left" *ngIf="config.iconLeft" [ngClass]="config.iconLeft"></i>
+   {{config.text}}
+   <i
+      class="sds-tag__icon-right"
+      *ngIf="config.iconRight"
+      (click)="onIconClick($event)"
+      [ngClass]="config.iconRight + (config.iconRightClickable ? ' sds-tag__icon-right--clickable' : '')">
+   </i>
+</div>

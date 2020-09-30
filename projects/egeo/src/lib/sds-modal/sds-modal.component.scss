@@ -1,0 +1,119 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+:host {
+   --egeo-st-modal__standard-header--height: unset;
+   --egeo-st-modal__container--position: fixed;
+   --egeo-st-modal__container--width: 100%;
+   --egeo-st-modal__container--height: 100vh;
+}
+
+ .st-modal-container {
+    width: var(--egeo-st-modal__container--width);
+    height: var(--egeo-st-modal__container--height);
+    position: var(--egeo-st-modal__container--position);
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--egeo-stmodal-container__bg-color, rgba($neutral, 0.3));
+    z-index: $modal-z-index;
+
+    .st-modal {
+       border-radius: 0;
+       box-shadow: 0 3px 9px 0 rgba(17, 17, 17, 0.25);
+       background-color: var(--egeo-theme-neutral-full, $neutral-full);
+       display: flex;
+       flex-direction: column;
+
+       &--padding {
+          padding: 25px;
+       }
+
+       &__header, &__header--full-window {
+          display: flex;
+          align-items: center;
+          padding-bottom: 20.5px;
+          font-size: $egeo-font-size-18;
+          font-weight: bold;
+          color: $space-110;
+       }
+
+       &__header {
+          height: var(--egeo-st-modal__standard-header--height);
+
+          &__status-icon {
+             font-size: 15px;
+             margin-right: 15px;
+          }
+
+          &__title {
+             flex: 1;
+             overflow: hidden;
+             display: -webkit-box;
+             -webkit-line-clamp: 2;
+             -webkit-box-orient: vertical;
+          }
+
+          &__close-control {
+             margin-top: 2px;
+             font-size: 15px;
+             color: $space-110;
+             cursor: pointer;
+          }
+
+          &__close-control:not(.st-modal__header__close-control--full-window) {
+             margin-left: 12px;
+          }
+
+          &__vertical-separator {
+             height: 40px;
+             border-left: 1px solid $space-20;
+             margin: 0 15px;
+          }
+
+          &__cancel, &__action {
+             margin-left: 12px;
+          }
+       }
+
+       &__actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding-top: 25px;
+
+          &__cancel {
+             margin-right: 12px;
+          }
+       }
+
+       &--warning, &--error {
+          .st-modal__actions__action {
+             background-color: $error;
+          }
+       }
+
+       &--warning {
+          .st-modal__header__status-icon {
+             color: $warning;
+          }
+       }
+
+       &--error {
+          .st-modal__header__status-icon {
+             color: $error;
+          }
+       }
+    }
+ }

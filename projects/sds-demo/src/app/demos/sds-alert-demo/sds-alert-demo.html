@@ -1,0 +1,146 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">Alerts communicate a message of the system and its level of severity. The system informs the user about what it’s going on the background but they are not related to an immediately previous interaction of the user. They grab the user’s attention to provide critical information needed in context. They could include action buttons or not.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo">
+            <sds-alert class="sds-alert-demo" [config]="alertsConfig" [isDisabled]="true" [hotRender]="true" (close)="onClick('Close control pressed...')"></sds-alert>
+            <div class="button-container">
+               <button *ngIf="configForm.get('alertType').value !== 'connection_lost' && !configForm.get('multiple').value" class="button button-primary" type="button" (click)="displayAlert()">Trigger one alert</button>
+               <button *ngIf="configForm.get('alertType').value !== 'connection_lost' && configForm.get('multiple').value" class="button button-primary" type="button" (click)="displayVariousAlerts()">Trigger three random type alerts</button>
+               <sds-switch *ngIf="configForm.get('alertType').value === 'connection_lost' && !configForm.get('multiple').value" [formControl]="simulateConnection" [label]="'Simulate connection lost'"></sds-switch>
+            </div>
+            <div [@fade] *ngIf="showMessage" class="close-pressed-message">
+               {{message}}
+            </div>
+         </div>
+         <div class="demo-layout__demo-container__demo-config" [formGroup]="configForm">
+            <div>
+               <h1>Type</h1>
+               <sds-radio-group formControlName="alertType" class="st-inline-group">
+                  <sds-radio name="type" *ngFor="let type of typeOptions" [value]="type.value" [checked]="type.value === 'info'">{{type.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div class="input-container">
+               <sds-input class="st-form-field" formControlName="title" [label]="'Alert title'"></sds-input>
+            </div>
+            <div class="input-container">
+               <sds-input class="st-form-field" formControlName="message" [label]="'Alert message'"></sds-input>
+            </div>
+            <div class="st-inline-group">
+               <h1>Icon</h1>
+               <sds-radio-group formControlName="icon" class="st-inline-group">
+                  <sds-radio name="icon" *ngFor="let icon of iconOptions" [value]="icon.value" [checked]="icon.value === 'default'" (change)="activeIconOption = $event.value">{{icon.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div *ngIf="configForm.get('icon').value === 'custom'" class="st-inline-group">
+               <h1>Custom Icon</h1>
+               <sds-radio-group formControlName="customIcon" class="st-inline-group">
+                  <sds-radio name="custom-icon" *ngFor="let customIcon of customIconsOptions" [value]="customIcon.value" [checked]="customIcon.value === 'icon-mute'" (change)="customIconsOption = $event.value">{{customIcon.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div class="st-inline-group">
+               <h1>Actions</h1>
+               <sds-radio-group formControlName="action" class="st-inline-group">
+                  <sds-radio name="icon" *ngFor="let action of actionOptions" [value]="action.value" [checked]="action.value === 'no-actions'" (change)="activeIconOption = $event.value">{{action.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox formControlName="closeControl" [checked]="true">Close control</sds-checkbox>
+               <sds-checkbox formControlName="multiple" [checked]="false">Multiple</sds-checkbox>
+            </div>
+            <h1>Trigger to see</h1>
+            <div>
+               <h1>Position</h1>
+               <div class="input-container">
+                  <st-select stCheckValidations
+                             class="st-form-field"
+                             [options]="positionOptions"
+                             name="position"
+                             formControlName="position"
+                             required>
+                  </st-select>
+               </div>
+            </div>
+            <div>
+               <h1>Reference (examples)</h1>
+               <sds-radio-group formControlName="positionReference" class="st-inline-group">
+                  <sds-radio name="reference" *ngFor="let reference of positionReferenceOptions" [value]="reference.value">{{reference.label}}</sds-radio>
+               </sds-radio-group>
+            </div>
+            <div class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="timeout" [fieldType]="'number'" (keypress)="onTimeoutKeyPress($event)" [label]="'Alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showTimeoutChanged">Changed!</span>
+            </div>
+            <div>
+               <sds-checkbox formControlName="showSpecificTimeouts" [checked]="false">Show specific timeouts</sds-checkbox>
+            </div>
+            <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="multipleTimeout" [fieldType]="'number'" (keypress)="onMultipleTimeoutKeyPress($event)" [label]="'Multiple alerts timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showMultipleTimeoutChanged">Changed!</span>
+            </div>
+            <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="infoTimeout" [fieldType]="'number'" (keypress)="onInfoTimeoutKeyPress($event)" [label]="'Info timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showInfoTimeoutChanged">Changed!</span>
+            </div>
+            <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="successTimeout" [fieldType]="'number'" (keypress)="onSuccessTimeoutKeyPress($event)" [label]="'Success timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showSuccessTimeoutChanged">Changed!</span>
+            </div>
+            <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="warningTimeout" [fieldType]="'number'" (keypress)="onWarningTimeoutKeyPress($event)" [label]="'Warning timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showWarningTimeoutChanged">Changed!</span>
+            </div>
+            <div *ngIf="configForm.get('showSpecificTimeouts').value" class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="criticalTimeout" [fieldType]="'number'" (keypress)="onCriticalTimeoutKeyPress($event)" [label]="'Critical timeout'" [contextualHelp]="'Write timeout in ms and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showCriticalTimeoutChanged">Changed!</span>
+            </div>
+            <div class="input-container">
+               <sds-input class="input-number st-form-field" formControlName="margin" [fieldType]="'number'" (keypress)="onMarginKeyPress($event)" [label]="'Margin'" [contextualHelp]="'Write margin in px and press enter.'"></sds-input>
+               <span [@fade] class="changed-input-message" *ngIf="showMarginChanged">Changed!</span>
+            </div>
+            <sds-alert
+               id="alert-demo2"
+               [config]="alertsConfig"
+               (close)="enableControls()"
+               (autoClose)="enableControls()">
+            </sds-alert>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Alerts are floating cards that appear from the top right of the screen. If there is more than one they stack on top of each other. They have a close button to dismiss them. They can have action buttons in case the user is required to respond to the system in any way. Like in Notifications, color and icons tell the user the importance and nature of the Alert. They can be Critical, Warning, Success, Info or Connection alerts.</p>
+      <p class="demo-layout__paragraph">
+         Instead of notifications, alerts are related to actions or system events that the user must know but are not related to the context the user is seeing just right now.
+      </p>
+      <p class="demo-layout__paragraph">Success alerts without actions needed could include an auto-close timing mode that will fade out the alert after 5 seconds. Instead, the connection alerts will include an auto-close system as well but related to the connection status, fading out the alert if the connection is restored. An alert with actions never could be auto-closed.</p>
+      <p class="demo-layout__paragraph">Success alerts are used when a previous action of the user was successful. Keep in mind that this type of alert only can be used when the user is out of the context where the action was originated.</p>
+      <p class="demo-layout__paragraph">Info alerts are used when the system needs to inform the user about something that should be read (this is the reason for avoiding auto-close).</p>
+      <p class="demo-layout__paragraph">Warning alerts are used when something was not well but, even so, the system will be not critically affected, that is, it will be work quite well although could suffer unexpected issues.</p>
+      <p class="demo-layout__paragraph">Critical alerts are used when something important is not well and can affect critical parts of the system.</p>
+      <p class="demo-layout__paragraph">The connection alert is a special one that always has to be pushed to the first position of the alert stack. This alert can’t be closed. It will be closed automatically when the connection will be recovered.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item"> Use Alerts when the system needs to communicate something to the user although the user has not interacted directly with it.</li>
+         <li class="demo-layout__list-item"> Try to empathize with the user and be as polite as possible. Don’t blame the user if something goes wrong.</li>
+         <li class="demo-layout__list-item"> Be concise and try to be as clear using a human language. Avoid difficult or too technical jargon.</li>
+         <li class="demo-layout__list-item"> Connection alerts will be shown without closing icon and for its critical nature should be displayed always on top.</li>
+      </ul>
+   </section>
+
+</st-docs>

@@ -1,0 +1,187 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+@import '~@stratio/sds-themes/dist/stratio/constants';
+
+.st-table {
+   border-collapse: collapse;
+   border-spacing: 0;
+
+   th,
+   td {
+      padding: var(--egeo-st-table__cell--padding, 9px 20px 9px 20px);
+      white-space: var(--egeo-st-table__cell--white-space, normal);
+   }
+
+   &__header {
+      border-bottom: 1px solid var(--egeo-st-table__header--border-bottom, var(--egeo-theme-space-50, $space-50));
+      color: var(--egeo-st-table__header--color, var(--egeo-theme-space-80, $space-80));
+      font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   }
+
+   &__checkbox {
+      height: 20px;
+      margin-right: 15px;
+   }
+
+   &__header-text {
+      color: var(--egeo-st-table__header--color, var(--egeo-theme-space-80, $space-80));
+      display: inline-block;
+      font-size: var(--egeo-st-table__header--font-size, var(---egeo-theme-font-size-12, $egeo-font-size-12));
+      font-stretch: normal;
+      font-style: normal;
+      font-weight: var(--egeo-st-table__header--font-weight, 600);
+      letter-spacing: var(--egeo-st-table__header--letter-spacing, normal);
+      line-height: normal;
+      text-transform: var(--egeo-st-table__header--text-transform, initial);
+   }
+
+   &__header-item {
+      text-align: var(--egeo-st-table__header--text-align, left);
+
+      .st-table__checkbox {
+         display: inline-block;
+      }
+
+      &--sortable {
+         cursor: pointer;
+      }
+   }
+
+   &__order-arrow {
+      bottom: 0;
+      color: var(--egeo-theme-space-80, $space-80);
+      font-size: var(--egeo-st-table__header--font-size, var(---egeo-theme-font-size-12, $egeo-font-size-12));
+      font-weight: bold;
+      left: -20px;
+      line-height: var(--egeo-st-table__header--line-height, $egeo-line-height-18);
+      position: absolute;
+      vertical-align: middle;
+   }
+
+   &__filter-arrow {
+      color: var(--egeo-theme-space-80, $space-80);
+      cursor: pointer;
+      font-family: var(--egeo-theme-icon-font, $egeo-stratio-icons);
+      font-size: var(--egeo-st-table__header--font-size, var(---egeo-theme-font-size-12, $egeo-font-size-12));
+      font-weight: bold;
+      line-height:  var(--egeo-st-table__header__filter-arrow--line-height, 13px);
+      margin-left: 4px;
+      min-width: 12px;
+      position: relative;
+      vertical-align: middle;
+
+      &.icon-facets-2 {
+         line-height: 20px;
+         vertical-align: baseline;
+      }
+   }
+}
+
+// row theme
+.st-table-row {
+   box-shadow: inset 0 -1px 0 0 var(--egeo-st-table__row--border-bottom, var(--egeo-theme-space-20, $space-20));
+   color: var(--egeo-theme-space-110, $space-110);
+   font-family: var(--egeo-theme-main-font, $egeo-nunito-sans);
+   font-stretch: normal;
+   font-style: normal;
+   font-weight: normal;
+   letter-spacing: normal;
+   text-align: left;
+   transition: background-color ease-in-out 0.3s;
+   vertical-align: top;
+
+   td,
+   td > * {
+      font-size: var(--egeo-st-table__row--font-size, var(--egeo-theme-font-size-14, $egeo-font-size-14));
+   }
+
+   &:hover {
+      td.clickable > * {
+         color: var(--egeo-theme-action, $action);
+         cursor: pointer;
+      }
+   }
+}
+
+.st-table-row:hover {
+   background-color: var(--egeo-st-table__row--hover--bg-color, var(--egeo-theme-action-10, $action-10));
+}
+
+.st-table-row.selected {
+   background-color: var(--egeo-st-table__row--selected--bg-color, var(--egeo-theme-space-5, $space-5));
+}
+
+st-table.fixed-header {
+   display: block;
+   overflow: auto;
+
+   table {
+      border-collapse: separate;
+   }
+
+   thead {
+      tr {
+         border: none;
+      }
+      th {
+         background-color: white;
+         border-bottom: 1px solid var(--egeo-st-table__header--border-bottom, var(--egeo-theme-space-50, $space-50));
+         position: sticky !important;
+         top: 0;
+         z-index: 1;
+      }
+   }
+}
+
+st-table.sticky-hover-menu {
+   thead th {
+      z-index: 2 !important;
+   }
+
+   .hover-menu {
+      background-image:  linear-gradient(to left,
+         var(--egeo-st-table__row--hover--bg-color, var(--egeo-theme-action-10, $action-10)),
+         var(--egeo-st-table__row--hover--bg-color, var(--egeo-theme-action-10, $action-10)), transparent);
+      box-shadow: inset 0 -1px 0 0 var(--egeo-st-table__row--border-bottom, var(--egeo-theme-space-20, $space-20));
+      opacity: var(--egeo-st-table__hover-button--opacity, 0);
+      position: sticky !important;
+      right: 0;
+      vertical-align: middle;
+
+      &.hover-menu--show {
+         z-index: 1;
+      }
+   }
+
+   tr:hover {
+      .hover-menu {
+         background-image: linear-gradient(to left,
+            var(--egeo-st-table__row--hover--bg-color, var(--egeo-theme-action-10, $action-10)),
+            var(--egeo-st-table__row--hover--bg-color, var(--egeo-theme-action-10, $action-10)), transparent) !important;
+      }
+   }
+}
+
+.st-table.separated-rows {
+   border-collapse: separate;
+   border-spacing: 0 6px;
+}
+
+td.st-table-hover {
+   color: var(--egeo-theme-space-50, $space-50);
+   display: flex;
+   justify-content: flex-end;
+   padding: var(--egeo-st-table__hover-menu--padding, 0 25px 0 20px);
+
+   &:hover {
+      color: var(--egeo-theme-space, $space);
+   }
+}

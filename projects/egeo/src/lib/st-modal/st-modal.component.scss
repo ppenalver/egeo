@@ -1,0 +1,83 @@
+/**
+ * © 2017 Stratio Big Data Inc., Sucursal en España.
+ *
+ * This software is licensed under the Apache License, Version 2.0.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the terms of the License for more details.
+ *
+ * SPDX-License-Identifier: Apache-2.0.
+ */
+.st-modal-container {
+   display: flex;
+   height: 100vh;
+   left: 0;
+   position: fixed;
+   top: 0;
+   width: 100%;
+
+   .st-modal {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+
+      &.st-modal-fullscreen {
+         min-height: 100vh;
+         max-height: 100vh;
+         min-width: 100%;
+         max-width: 100%;
+      }
+
+      .st-modal-header {
+         display: flex;
+         flex-direction: row;
+         height: 70px;
+         width: 100%;
+
+         .container {
+            display: flex;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+            align-items: center;
+            flex-wrap: nowrap;
+
+            .status-icon {
+               padding-right: 1.05rem;
+
+               &.delete {
+                  &:before {
+                     content: var(--egeo-st-modal__delete-icon--content, "\e043");
+                  }
+               }
+
+               &.alert {
+                  &:before {
+                     content: var(--egeo-st-modal__warning-icon--content, "\e613");
+                  }
+               }
+            }
+
+            .close-button {
+               font-size: var(--egeo-st-modal__close-icon--font-size, inherit);
+               color: var(--egeo-st-modal__close-icon--color, inherit);
+
+               &:before {
+                  content: var(--egeo-st-modal__close-icon--content, "\e117");
+               }
+            }
+         }
+      }
+
+      st-modal-buttons {
+         display: flex;
+         justify-content: flex-end;
+         margin-left: auto;
+      }
+
+      .container {
+         min-width: auto;
+      }
+   }
+}

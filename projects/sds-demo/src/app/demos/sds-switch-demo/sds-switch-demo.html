@@ -1,0 +1,59 @@
+<!--
+
+    © 2017 Stratio Big Data Inc., Sucursal en España.
+
+    This software is licensed under the Apache License, Version 2.0.
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the terms of the License for more details.
+
+    SPDX-License-Identifier: Apache-2.0.
+
+-->
+<st-docs [htmlFile]="configDoc.html" [tsFile]="configDoc.ts" [componentFile]="configDoc.component">
+   <section class="demo-layout">
+      <p class="demo-layout__component-description">A Switch changes the state of single setting between on and off. The switch must be used when the action of switching is applied instantaneously.</p>
+      <h2 class="demo-layout__demo-label">Demo</h2>
+      <div class="demo-layout__demo-container">
+         <div class="demo-layout__demo-container__demo" [ngClass]="{'st-inline-group': activeDispositionOption?.value === 'horizontal'}">
+            <p *ngIf="titleLabel" class="st-group-label">Group of sds-switch</p>
+            <sds-switch class="swicth-demo" name="switch-1" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 1' : ''" [(ngModel)]="model"></sds-switch>
+            <sds-switch class="swicth-demo" name="switch-2" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 2' : ''" [(ngModel)]="model2"></sds-switch>
+            <sds-switch class="swicth-demo" name="switch-3" [disabled]="disabled" [position]="activePositionOption?.value || positionOptions[0].value" [label]="label ? 'Switch 3' : ''" [(ngModel)]="model3"></sds-switch>
+         </div>
+         <div class="demo-layout__demo-container__demo-config">
+            <div class="st-inline-group">
+               <h1>Position</h1>
+               <sds-radio *ngFor="let positionOption of positionOptions" name="position-options" [value]="positionOption.value" [checked]="positionOption.value === 'left'" (change)="activePositionOption = $event">{{positionOption.label}}</sds-radio>
+            </div>
+            <div class="st-inline-group">
+               <h1>Disposition</h1>
+               <sds-radio *ngFor="let dispositionOption of dispositionOptions" name="disposition-options" [value]="dispositionOption.value" [checked]="dispositionOption.value === 'vertical'" (change)="activeDispositionOption = $event">{{dispositionOption.label}}</sds-radio>
+            </div>
+            <div>
+               <h1>Options</h1>
+               <sds-checkbox name="titleLabel" [(ngModel)]="titleLabel">
+                  <span>Title label</span>
+               </sds-checkbox>
+               <sds-checkbox name="titleLabel" [(ngModel)]="label">
+                  <span>Label</span>
+               </sds-checkbox>
+               <sds-checkbox name="titleLabel" [(ngModel)]="disabled">
+                  <span>Disabled</span>
+               </sds-checkbox>
+            </div>
+         </div>
+      </div>
+      <h2 class="demo-layout__title">Design and behaviour</h2>
+      <p class="demo-layout__paragraph">Switches are used for binary actions that occur immediately after the user “flips” the Switch. They are commonly used for “On/Off”, “Activate/Deactivate” situations.</p>
+      <p class="demo-layout__paragraph">Switches take up less space than an “on/off” radio button group and communicate their intended purpose better than a checkbox that toggles functionality.</p>
+      <h2 class="demo-layout__title">Usage and best practices</h2>
+      <p class="demo-layout__paragraph">Below are the good practices that should guide the uses of the component to maintain coherence in the design system and the spirit with which they were sustained.</p>
+      <ul class="demo-layout__list">
+         <li class="demo-layout__list-item">A heading may accompany a Switch to further clarify on the action the Switch will perform.</li>
+         <li class="demo-layout__list-item">Use labels with a Switch so the action is clear. Labels should be three words or less and can appear on both sides of a Switch although left part of the Switch it’s preferred.</li>
+         <li class="demo-layout__list-item">Switches should take immediate effect and should not require the user to click Save or Submit to apply the new state.</li>
+         <li class="demo-layout__list-item">Use a checkbox instead if the user would have to press a submit button to run the chosen option.</li>
+      </ul>
+   </section>
+</st-docs>
